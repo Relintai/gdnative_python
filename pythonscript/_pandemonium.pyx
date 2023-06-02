@@ -1,29 +1,29 @@
-# `_pandemoniummonium` module contains all the callbacks needed by Pandemonium's Pluginscript
+# `_pandemonium` module contains all the callbacks needed by Pandemonium's Pluginscript
 # system to expose Python as a language to Pandemonium (see pythonscript.c for
 # more on this).
 # Hence there is no point of importing this module from Python given it
 # only expose C functions.
-# Beside this module depend on the `pandemoniummonium.hazmat` module so it would be a bad
-# idea to make the `pandemoniummonium` module depend on it...
+# Beside this module depend on the `pandemonium.hazmat` module so it would be a bad
+# idea to make the `pandemonium` module depend on it...
 include "_pandemonium_editor.pxi"
 include "_pandemonium_profiling.pxi"
 include "_pandemonium_script.pxi"
 include "_pandemonium_instance.pxi"
 include "_pandemonium_io.pxi"
 
-from pandemoniummonium._hazmat.gdnative_api_struct cimport (
+from pandemonium._hazmat.gdnative_api_struct cimport (
     pandemonium_gdnative_init_options,
     pandemonium_pluginscript_language_data,
 )
-from pandemoniummonium._hazmat.internal cimport set_pythonscript_verbose, get_pythonscript_verbose
-from pandemoniummonium.builtins cimport GDString
+from pandemonium._hazmat.internal cimport set_pythonscript_verbose, get_pythonscript_verbose
+from pandemonium.builtins cimport GDString
 
 import sys
 
 # OS and ProjectSettings are singletons exposed as global python objects,
 # hence there are not available from a cimport
-from pandemoniummonium.bindings import OS, ProjectSettings
-from pandemoniummonium._version import __version__ as pythonscript_version
+from pandemonium.bindings import OS, ProjectSettings
+from pandemonium._version import __version__ as pythonscript_version
 
 
 def _setup_config_entry(name, default_value):
@@ -37,7 +37,7 @@ def _setup_config_entry(name, default_value):
 
 cdef api pandemonium_pluginscript_language_data *pythonscript_init() with gil:
     # Pass argv arguments
-    sys.argv = ["pandemoniummonium"] + [str(x) for x in OS.get_cmdline_args()]
+    sys.argv = ["pandemonium"] + [str(x) for x in OS.get_cmdline_args()]
 
     # Update PYTHONPATH according to configuration
     pythonpath = str(_setup_config_entry("python_script/path", "res://;res://lib"))

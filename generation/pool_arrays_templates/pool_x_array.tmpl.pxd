@@ -12,8 +12,8 @@ cdef class {{ t.py_pool }}:
     # Operators
 
     cdef inline bint operator_equal(self, {{ t.py_pool }} other)
-    cdef inline {{ t.py_value }} operator_getitem(self, godot_int index)
-    cdef inline {{ t.py_pool }} operator_getslice(self, godot_int start, godot_int end, godot_int step)
+    cdef inline {{ t.py_value }} operator_getitem(self, pandemonium_int index)
+    cdef inline {{ t.py_pool }} operator_getslice(self, pandemonium_int start, pandemonium_int end, pandemonium_int step)
 
     # Methods
 
@@ -22,8 +22,8 @@ cdef class {{ t.py_pool }}:
     cdef inline void append_array(self, {{ t.py_pool }} array)
     cpdef inline void invert(self)
     cpdef inline void push_back(self, {{ t.py_value }} data)
-    cpdef inline void resize(self, godot_int size)
-    cdef inline godot_int size(self)
+    cpdef inline void resize(self, pandemonium_int size)
+    cdef inline pandemonium_int size(self)
 
 
 @cython.final

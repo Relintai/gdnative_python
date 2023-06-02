@@ -4,7 +4,7 @@ import importlib
 
 from cpython.ref cimport PyObject
 
-from pandemoniummonium._hazmat.gdnative_api_struct cimport (
+from pandemonium._hazmat.gdnative_api_struct cimport (
     pandemonium_pluginscript_language_data,
     pandemonium_string,
     pandemonium_bool,
@@ -23,26 +23,26 @@ from pandemoniummonium._hazmat.gdnative_api_struct cimport (
     PANDEMONIUM_METHOD_FLAG_FROM_SCRIPT,
     PANDEMONIUM_METHOD_RPC_MODE_DISABLED,
 )
-from pandemoniummonium._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
-from pandemoniummonium._hazmat.conversion cimport (
+from pandemonium._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
+from pandemonium._hazmat.conversion cimport (
     pandemonium_string_to_pyobj,
     pyobj_to_pandemonium_string,
     pyobj_to_pandemonium_string_name,
     pytype_to_pandemonium_type,
 )
-from pandemoniummonium._hazmat.internal cimport (
+from pandemonium._hazmat.internal cimport (
     get_pythonscript_verbose,
     get_exposed_class,
     set_exposed_class,
     destroy_exposed_class,
 )
-from pandemoniummonium.bindings cimport _initialize_bindings, Object
-from pandemoniummonium.builtins cimport Array, Dictionary
+from pandemonium.bindings cimport _initialize_bindings, Object
+from pandemonium.builtins cimport Array, Dictionary
 
 import inspect
 import traceback
 
-from pandemoniummonium.tags import ExportedField, SignalField
+from pandemonium.tags import ExportedField, SignalField
 
 
 cdef inline pandemonium_pluginscript_script_manifest _build_empty_script_manifest():

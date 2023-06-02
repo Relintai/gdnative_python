@@ -1,8 +1,8 @@
 # Public low-level APIs are exposed here
 
-from pandemoniummonium._hazmat cimport gdnative_api_struct
+from pandemonium._hazmat cimport gdnative_api_struct
 # Re-expose Pandemonium API with better names
-from pandemoniummonium._hazmat.gdapi cimport (
+from pandemonium._hazmat.gdapi cimport (
     pythonscript_gdapi10 as gdapi10,
     pythonscript_gdapi11 as gdapi11,
     pythonscript_gdapi12 as gdapi12,

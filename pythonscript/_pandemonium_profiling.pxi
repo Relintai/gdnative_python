@@ -1,10 +1,10 @@
 # cython: c_string_type=unicode, c_string_encoding=utf8
 
-from pandemoniummonium._hazmat.gdnative_api_struct cimport (
+from pandemonium._hazmat.gdnative_api_struct cimport (
     pandemonium_pluginscript_language_data,
     pandemonium_pluginscript_profiling_data,
 )
-from pandemoniummonium._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
+from pandemonium._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
 
 import sys
 from collections import defaultdict

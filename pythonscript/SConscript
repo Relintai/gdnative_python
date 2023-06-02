@@ -29,15 +29,15 @@ env.AppendUnique(LIBPATH=[Dir(".")])
 env.AppendUnique(CYTHON_COMPILE_DEPS=[libpythonscript])
 
 
-SConscript(["pandemoniummonium/SConscript"])
+SConscript(["pandemonium/SConscript"])
 
 
-# `_pandemonium_api.h` is only for internal use between _pandemoniummonium and pythonscript
+# `_pandemonium_api.h` is only for internal use between _pandemonium and pythonscript
 # libraries, hence no need to provide it as part of the release
 *mods, _ = env.CythonModule(
-    ["_pandemoniummonium", "_pandemonium_api.h"],
+    ["_pandemonium", "_pandemonium_api.h"],
     [
-        "_pandemoniummonium.pyx",
+        "_pandemonium.pyx",
         "_pandemonium_editor.pxi",
         "_pandemonium_instance.pxi",
         "_pandemonium_profiling.pxi",
