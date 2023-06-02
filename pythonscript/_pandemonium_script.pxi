@@ -79,9 +79,6 @@ cdef Dictionary _build_method_info(object meth, object methname):
     # TODO: use annotation to determine return type ?
     methinfo["return"] = None
     methinfo["flags"] = PANDEMONIUM_METHOD_FLAG_FROM_SCRIPT
-    methinfo["rpc_mode"] = getattr(
-        meth, "__rpc", PANDEMONIUM_METHOD_RPC_MODE_DISABLED
-    )
     return methinfo
 
 
@@ -93,7 +90,6 @@ cdef Dictionary _build_property_info(object prop):
     propinfo["hint_string"] = prop.hint_string
     propinfo["usage"] = prop.usage
     propinfo["default_value"] = prop.default
-    propinfo["rset_mode"] = prop.rpc
     return propinfo
 
 cdef inline object is_method(object meth):
