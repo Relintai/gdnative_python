@@ -90,6 +90,14 @@ ALL_TYPES = [
         is_stack_only=True,
     ),
     TypeSpec(
+        gdapi_type="float",
+        c_type="float",
+        cy_type="float",
+        py_type="float",
+        is_base_type=True,
+        is_stack_only=True,
+    ),
+    TypeSpec(
         gdapi_type="wchar_t",
         c_type="wchar_t",
         cy_type="wchar_t",
@@ -97,7 +105,28 @@ ALL_TYPES = [
         is_stack_only=True,
     ),
     TypeSpec(
+        gdapi_type="char16_t",
+        c_type="char16_t",
+        cy_type="char16_t",
+        is_base_type=True,
+        is_stack_only=True,
+    ),
+    TypeSpec(
+        gdapi_type="char32_t",
+        c_type="char32_t",
+        cy_type="char32_t",
+        is_base_type=True,
+        is_stack_only=True,
+    ),
+    TypeSpec(
         gdapi_type="char", c_type="char", cy_type="char", is_base_type=True, is_stack_only=True
+    ),
+    TypeSpec(
+        gdapi_type="pandemonium_char_type",
+        c_type="pandemonium_char_type",
+        cy_type="pandemonium_char_type",
+        is_base_type=True,
+        is_stack_only=True,
     ),
     TypeSpec(
         gdapi_type="schar",

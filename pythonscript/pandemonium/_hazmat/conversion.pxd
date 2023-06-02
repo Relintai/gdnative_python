@@ -13,18 +13,20 @@ from pandemonium._hazmat.gdnative_api_struct cimport (
 from pandemonium.builtins cimport GDString, NodePath
 
 
+# Strings are now char32_t
+# TODO remove this id everything works
 # Pandemonium string are basically a vector of wchar_t, each wchar_t representing
 # a single unicode character (i.e. there is no surrogates support).
 # The sad part is wchar_t is not portable: it is 16bits long on Windows and
 # 32bits long on Linux and MacOS...
 # So we end up with a UCS2 encoding on Windows and UCS4 everywhere else :'(
-IF UNAME_SYSNAME == "Windows":
-    # Specify endianess otherwise `encode` appends a BOM at the start of the converted string
-    DEF _STRING_ENCODING = "UTF-16-LE"
-    DEF _STRING_CODEPOINT_LENGTH = 2
-ELSE:
-    DEF _STRING_ENCODING = "UTF-32-LE"
-    DEF _STRING_CODEPOINT_LENGTH = 4
+#IF UNAME_SYSNAME == "Windows":
+#    # Specify endianess otherwise `encode` appends a BOM at the start of the converted string
+#    DEF _STRING_ENCODING = "UTF-16-LE"
+#    DEF _STRING_CODEPOINT_LENGTH = 2
+#ELSE:
+DEF _STRING_ENCODING = "UTF-32-LE"
+DEF _STRING_CODEPOINT_LENGTH = 4
 
 
 cdef inline str pandemonium_string_to_pyobj(const pandemonium_string *p_gdstr):
