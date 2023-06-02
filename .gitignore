@@ -34,3 +34,5 @@ logs
 /examples/*/addons
 /tests/*/addons
 /tests/*/lib
+
+output.preprocessed.c
