@@ -13,16 +13,23 @@ from pandemonium._hazmat.gdnative_api_struct cimport (
 from pandemonium.bindings cimport Object
 from pandemonium.builtins cimport (
     Vector2,
+    Vector2i,
     Rect2,
+    Rect2i,
     Vector3,
+    Vector3i,
+    Vector4,
+    Vector4i,
     Transform2D,
     Plane,
     Quaternion,
     AABB,
     Basis,
     Transform,
+    Projection,
     Color,
     NodePath,
+    StringName,
     RID,
     Dictionary,
     Array,
@@ -32,7 +39,11 @@ from pandemonium.builtins cimport (
     PoolRealArray,
     PoolStringArray,
     PoolVector2Array,
+    PoolVector2iArray,
     PoolVector3Array,
+    PoolVector3iArray,
+    PoolVector4Array,
+    PoolVector4iArray,
     PoolColorArray,
 )
 
@@ -47,16 +58,23 @@ GD_PY_TYPES = (
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_STRING, GDString),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_OBJECT, Object),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR2, Vector2),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR2I, Vector2i),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_RECT2, Rect2),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_RECT2I, Rect2i),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR3, Vector3),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR3I, Vector3i),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR4, Vector4),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR4I, Vector4i),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_TRANSFORM2D, Transform2D),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_PLANE, Plane),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_QUATERNION, Quaternion),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_AABB, AABB),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_BASIS, Basis),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_TRANSFORM, Transform),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_PROJECTION, Projection),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_COLOR, Color),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_NODE_PATH, NodePath),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_STRING_NAME, StringName),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_RID, RID),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_DICTIONARY, Dictionary),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_ARRAY, Array),
@@ -75,8 +93,24 @@ GD_PY_TYPES = (
         PoolVector2Array,
     ),
     (
+        pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR2I_ARRAY,
+        PoolVector2iArray,
+    ),
+    (
         pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR3_ARRAY,
         PoolVector3Array,
+    ),
+    (
+        pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR3I_ARRAY,
+        PoolVector3iArray,
+    ),
+    (
+        pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR4_ARRAY,
+        PoolVector4Array,
+    ),
+    (
+        pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR4I_ARRAY,
+        PoolVector4iArray,
     ),
     (
         pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_COLOR_ARRAY,
@@ -131,11 +165,26 @@ cdef object pandemonium_variant_to_pyobj(const pandemonium_variant *p_gdvar):
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR2:
         return _pandemonium_variant_to_pyobj_vector2(p_gdvar)
 
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR2I:
+        return _pandemonium_variant_to_pyobj_vector2i(p_gdvar)
+
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_RECT2:
         return _pandemonium_variant_to_pyobj_rect2(p_gdvar)
 
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_RECT2I:
+        return _pandemonium_variant_to_pyobj_rect2i(p_gdvar)
+
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR3:
         return _pandemonium_variant_to_pyobj_vector3(p_gdvar)
+
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR3I:
+        return _pandemonium_variant_to_pyobj_vector3i(p_gdvar)
+
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR4:
+        return _pandemonium_variant_to_pyobj_vector4(p_gdvar)
+
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR4I:
+        return _pandemonium_variant_to_pyobj_vector4i(p_gdvar)
 
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_TRANSFORM2D:
         return _pandemonium_variant_to_pyobj_transform2d(p_gdvar)
@@ -155,11 +204,17 @@ cdef object pandemonium_variant_to_pyobj(const pandemonium_variant *p_gdvar):
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_TRANSFORM:
         return _pandemonium_variant_to_pyobj_transform(p_gdvar)
 
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_PROJECTION:
+        return _pandemonium_variant_to_pyobj_projection(p_gdvar)
+
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_COLOR:
         return _pandemonium_variant_to_pyobj_color(p_gdvar)
 
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_NODE_PATH:
         return _pandemonium_variant_to_pyobj_node_path(p_gdvar)
+
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_STRING_NAME:
+        return _pandemonium_variant_to_pyobj_string_name(p_gdvar)
 
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_RID:
         return _pandemonium_variant_to_pyobj_rid(p_gdvar)
@@ -188,8 +243,20 @@ cdef object pandemonium_variant_to_pyobj(const pandemonium_variant *p_gdvar):
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR2_ARRAY:
         return _pandemonium_variant_to_pyobj_pool_vector2_array(p_gdvar)
 
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR2I_ARRAY:
+        return _pandemonium_variant_to_pyobj_pool_vector2i_array(p_gdvar)
+
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR3_ARRAY:
         return _pandemonium_variant_to_pyobj_pool_vector3_array(p_gdvar)
+
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR3I_ARRAY:
+        return _pandemonium_variant_to_pyobj_pool_vector3i_array(p_gdvar)
+
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR4_ARRAY:
+        return _pandemonium_variant_to_pyobj_pool_vector4_array(p_gdvar)
+
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR4I_ARRAY:
+        return _pandemonium_variant_to_pyobj_pool_vector4i_array(p_gdvar)
 
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_COLOR_ARRAY:
         return _pandemonium_variant_to_pyobj_pool_color_array(p_gdvar)
@@ -210,18 +277,40 @@ cdef inline Vector2 _pandemonium_variant_to_pyobj_vector2(const pandemonium_vari
     ret._gd_data = gdapi10.pandemonium_variant_as_vector2(p_gdvar)
     return ret
 
+cdef inline Vector2i _pandemonium_variant_to_pyobj_vector2i(const pandemonium_variant *p_gdvar):
+    cdef Vector2i ret = Vector2i.__new__(Vector2i)
+    ret._gd_data = gdapi10.pandemonium_variant_as_vector2i(p_gdvar)
+    return ret
 
 cdef inline Rect2 _pandemonium_variant_to_pyobj_rect2(const pandemonium_variant *p_gdvar):
     cdef Rect2 ret = Rect2.__new__(Rect2)
     ret._gd_data = gdapi10.pandemonium_variant_as_rect2(p_gdvar)
     return ret
 
+cdef inline Rect2i _pandemonium_variant_to_pyobj_rect2i(const pandemonium_variant *p_gdvar):
+    cdef Rect2i ret = Rect2i.__new__(Rect2i)
+    ret._gd_data = gdapi10.pandemonium_variant_as_rect2i(p_gdvar)
+    return ret
 
 cdef inline Vector3 _pandemonium_variant_to_pyobj_vector3(const pandemonium_variant *p_gdvar):
     cdef Vector3 ret = Vector3.__new__(Vector3)
     ret._gd_data = gdapi10.pandemonium_variant_as_vector3(p_gdvar)
     return ret
 
+cdef inline Vector3i _pandemonium_variant_to_pyobj_vector3i(const pandemonium_variant *p_gdvar):
+    cdef Vector3i ret = Vector3i.__new__(Vector3i)
+    ret._gd_data = gdapi10.pandemonium_variant_as_vector3i(p_gdvar)
+    return ret
+
+cdef inline Vector4 _pandemonium_variant_to_pyobj_vector4(const pandemonium_variant *p_gdvar):
+    cdef Vector4 ret = Vector4.__new__(Vector4)
+    ret._gd_data = gdapi10.pandemonium_variant_as_vector4(p_gdvar)
+    return ret
+
+cdef inline Vector4i _pandemonium_variant_to_pyobj_vector4i(const pandemonium_variant *p_gdvar):
+    cdef Vector4i ret = Vector4i.__new__(Vector4i)
+    ret._gd_data = gdapi10.pandemonium_variant_as_vector4i(p_gdvar)
+    return ret
 
 cdef inline Transform2D _pandemonium_variant_to_pyobj_transform2d(const pandemonium_variant *p_gdvar):
     cdef Transform2D ret = Transform2D.__new__(Transform2D)
@@ -234,6 +323,10 @@ cdef inline Transform _pandemonium_variant_to_pyobj_transform(const pandemonium_
     ret._gd_data = gdapi10.pandemonium_variant_as_transform(p_gdvar)
     return ret
 
+cdef inline Projection _pandemonium_variant_to_pyobj_projection(const pandemonium_variant *p_gdvar):
+    cdef Projection ret = Projection.__new__(Projection)
+    ret._gd_data = gdapi10.pandemonium_variant_as_projection(p_gdvar)
+    return ret
 
 cdef inline Plane _pandemonium_variant_to_pyobj_plane(const pandemonium_variant *p_gdvar):
     cdef Plane ret = Plane.__new__(Plane)
@@ -270,6 +363,10 @@ cdef inline NodePath _pandemonium_variant_to_pyobj_node_path(const pandemonium_v
     ret._gd_data = gdapi10.pandemonium_variant_as_node_path(p_gdvar)
     return ret
 
+cdef inline StringName _pandemonium_variant_to_pyobj_string_name(const pandemonium_variant *p_gdvar):
+    cdef StringName ret = StringName.__new__(StringName)
+    ret._gd_data = gdapi10.pandemonium_variant_as_string_name(p_gdvar)
+    return ret
 
 cdef inline RID _pandemonium_variant_to_pyobj_rid(const pandemonium_variant *p_gdvar):
     cdef RID ret = RID.__new__(RID)
@@ -325,12 +422,30 @@ cdef inline PoolVector2Array _pandemonium_variant_to_pyobj_pool_vector2_array(co
     a._gd_data = gdapi10.pandemonium_variant_as_pool_vector2_array(p_gdvar)
     return a
 
+cdef inline PoolVector2iArray _pandemonium_variant_to_pyobj_pool_vector2i_array(const pandemonium_variant *p_gdvar):
+    cdef PoolVector2iArray a = PoolVector2iArray.__new__(PoolVector2iArray)
+    a._gd_data = gdapi10.pandemonium_variant_as_pool_vector2i_array(p_gdvar)
+    return a
 
 cdef inline PoolVector3Array _pandemonium_variant_to_pyobj_pool_vector3_array(const pandemonium_variant *p_gdvar):
     cdef PoolVector3Array a = PoolVector3Array.__new__(PoolVector3Array)
     a._gd_data = gdapi10.pandemonium_variant_as_pool_vector3_array(p_gdvar)
     return a
 
+cdef inline PoolVector3iArray _pandemonium_variant_to_pyobj_pool_vector3i_array(const pandemonium_variant *p_gdvar):
+    cdef PoolVector3iArray a = PoolVector3iArray.__new__(PoolVector3iArray)
+    a._gd_data = gdapi10.pandemonium_variant_as_pool_vector3i_array(p_gdvar)
+    return a
+
+cdef inline PoolVector4Array _pandemonium_variant_to_pyobj_pool_vector4_array(const pandemonium_variant *p_gdvar):
+    cdef PoolVector4Array a = PoolVector4Array.__new__(PoolVector4Array)
+    a._gd_data = gdapi10.pandemonium_variant_as_pool_vector4_array(p_gdvar)
+    return a
+
+cdef inline PoolVector4iArray _pandemonium_variant_to_pyobj_pool_vector4i_array(const pandemonium_variant *p_gdvar):
+    cdef PoolVector4iArray a = PoolVector4iArray.__new__(PoolVector4iArray)
+    a._gd_data = gdapi10.pandemonium_variant_as_pool_vector4i_array(p_gdvar)
+    return a
 
 cdef inline PoolColorArray _pandemonium_variant_to_pyobj_pool_color_array(const pandemonium_variant *p_gdvar):
     cdef PoolColorArray a = PoolColorArray.__new__(PoolColorArray)
@@ -353,8 +468,16 @@ cdef bint pyobj_to_pandemonium_variant(object pyobj, pandemonium_variant *p_var)
         gdapi10.pandemonium_variant_new_string(p_var, &(<GDString>pyobj)._gd_data)
     elif isinstance(pyobj, Vector2):
         gdapi10.pandemonium_variant_new_vector2(p_var, &(<Vector2>pyobj)._gd_data)
+    elif isinstance(pyobj, Vector2i):
+        gdapi10.pandemonium_variant_new_vector2i(p_var, &(<Vector2i>pyobj)._gd_data)
     elif isinstance(pyobj, Vector3):
         gdapi10.pandemonium_variant_new_vector3(p_var, &(<Vector3>pyobj)._gd_data)
+    elif isinstance(pyobj, Vector3i):
+        gdapi10.pandemonium_variant_new_vector3i(p_var, &(<Vector3i>pyobj)._gd_data)
+    elif isinstance(pyobj, Vector4):
+        gdapi10.pandemonium_variant_new_vector4(p_var, &(<Vector4>pyobj)._gd_data)
+    elif isinstance(pyobj, Vector4i):
+        gdapi10.pandemonium_variant_new_vector4i(p_var, &(<Vector4i>pyobj)._gd_data)
     elif isinstance(pyobj, Plane):
         gdapi10.pandemonium_variant_new_plane(p_var, &(<Plane>pyobj)._gd_data)
     elif isinstance(pyobj, Quaternion):
@@ -367,14 +490,20 @@ cdef bint pyobj_to_pandemonium_variant(object pyobj, pandemonium_variant *p_var)
         gdapi10.pandemonium_variant_new_color(p_var, &(<Color>pyobj)._gd_data)
     elif isinstance(pyobj, NodePath):
         gdapi10.pandemonium_variant_new_node_path(p_var, &(<NodePath>pyobj)._gd_data)
+    elif isinstance(pyobj, StringName):
+        gdapi10.pandemonium_variant_new_string_name(p_var, &(<StringName>pyobj)._gd_data)
     elif isinstance(pyobj, RID):
         gdapi10.pandemonium_variant_new_rid(p_var, &(<RID>pyobj)._gd_data)
     elif isinstance(pyobj, Rect2):
         gdapi10.pandemonium_variant_new_rect2(p_var, &(<Rect2>pyobj)._gd_data)
+    elif isinstance(pyobj, Rect2i):
+        gdapi10.pandemonium_variant_new_rect2i(p_var, &(<Rect2i>pyobj)._gd_data)
     elif isinstance(pyobj, Transform2D):
         gdapi10.pandemonium_variant_new_transform2d(p_var, &(<Transform2D>pyobj)._gd_data)
     elif isinstance(pyobj, Transform):
         gdapi10.pandemonium_variant_new_transform(p_var, &(<Transform>pyobj)._gd_data)
+    elif isinstance(pyobj, Projection):
+        gdapi10.pandemonium_variant_new_projection(p_var, &(<Projection>pyobj)._gd_data)
     elif isinstance(pyobj, Dictionary):
         gdapi10.pandemonium_variant_new_dictionary(p_var, &(<Dictionary>pyobj)._gd_data)
     elif isinstance(pyobj, Array):
@@ -389,8 +518,16 @@ cdef bint pyobj_to_pandemonium_variant(object pyobj, pandemonium_variant *p_var)
         gdapi10.pandemonium_variant_new_pool_string_array(p_var, &(<PoolStringArray>pyobj)._gd_data)
     elif isinstance(pyobj, PoolVector2Array):
         gdapi10.pandemonium_variant_new_pool_vector2_array(p_var, &(<PoolVector2Array>pyobj)._gd_data)
+    elif isinstance(pyobj, PoolVector2iArray):
+        gdapi10.pandemonium_variant_new_pool_vector2i_array(p_var, &(<PoolVector2iArray>pyobj)._gd_data)
     elif isinstance(pyobj, PoolVector3Array):
         gdapi10.pandemonium_variant_new_pool_vector3_array(p_var, &(<PoolVector3Array>pyobj)._gd_data)
+    elif isinstance(pyobj, PoolVector3iArray):
+        gdapi10.pandemonium_variant_new_pool_vector3i_array(p_var, &(<PoolVector3iArray>pyobj)._gd_data)
+    elif isinstance(pyobj, PoolVector4Array):
+        gdapi10.pandemonium_variant_new_pool_vector4_array(p_var, &(<PoolVector4Array>pyobj)._gd_data)
+    elif isinstance(pyobj, PoolVector4iArray):
+        gdapi10.pandemonium_variant_new_pool_vector4i_array(p_var, &(<PoolVector4iArray>pyobj)._gd_data)
     elif isinstance(pyobj, PoolColorArray):
         gdapi10.pandemonium_variant_new_pool_color_array(p_var, &(<PoolColorArray>pyobj)._gd_data)
     elif isinstance(pyobj, Object):
@@ -432,3 +569,13 @@ cdef NodePath ensure_is_nodepath(object nodepath_or_pystr):
             return NodePath(nodepath_or_pystr)
         except TypeError:
             raise TypeError(f"Invalid value {nodepath_or_pystr!r}, must be str or NodePath")
+
+cdef StringName ensure_is_string_name(object string_name_or_pystr):
+    cdef StringName StringName_converted
+    try:
+        return <StringName?>string_name_or_pystr
+    except TypeError:
+        try:
+            return StringName(string_name_or_pystr)
+        except TypeError:
+            raise TypeError(f"Invalid value {string_name_or_pystr!r}, must be str or StringName")
