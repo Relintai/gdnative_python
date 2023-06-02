@@ -1,32 +1,12 @@
-.. image:: https://github.com/touilleMan/godot-python/actions/workflows/build.yml/badge.svg
-    :target: https://github.com/touilleMan/godot-python/actions
-    :alt: Github action tests
 
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-   :target: https://github.com/ambv/black
-   :alt: Code style: black
+===============
+GDNative Python
+===============
 
 
-================================================
-Godot Python, because you want Python on Godot !
-================================================
+The goal of this project is to provide Python language support as a scripting module for the Pandemonium game engine.
 
-
-🚧🚨 **Heavy refactoring in progress** 🚨🚧
-
-The project is under heavy refactoring to support Godot4 (which is totally incompatible
-with the current codebase).
-
-Development is done on the `godot4-meson branch <https://github.com/touilleMan/godot-python/tree/godot4-meson>`_
-until things start getting usable.
-
-
-.. image:: https://github.com/touilleMan/godot-python/raw/master/misc/godot_python.svg
-   :width: 200px
-   :align: right
-
-The goal of this project is to provide Python language support as a scripting
-module for the `Godot <http://godotengine.org>`_ game engine.
+It's a fork of https://github.com/touilleMan/godot-python .
 
 
 Quickstart
@@ -39,7 +19,7 @@ By order of simplicity:
 - Finally you can also head to the project `release page <https://github.com/touilleMan/godot-python/releases>`_ if you want to only download one specific platform build
 
 
-.. image:: https://github.com/touilleMan/godot-python/raw/master/misc/showcase.png
+.. image:: https://github.com/Relintai/gdnative_python/raw/master/misc/showcase.png
    :align: center
 
 
