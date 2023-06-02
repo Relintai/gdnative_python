@@ -295,8 +295,8 @@ class PatchedAutoPxd(AutoPxd):
 
     def visit_ArrayDecl(self, node):
         # autopxd doesn't support array with an expression as size, but in:
-        #   typedef struct {uint8_t _dont_touch_that[GODOT_VECTOR3_SIZE];} pandemonium_vector3;
-        # `GODOT_VECTOR3_SIZE` gets resolved as `sizeof(void*)` :(
+        #   typedef struct {uint8_t _dont_touch_that[PANDEMONIUM_VECTOR3_SIZE];} pandemonium_vector3;
+        # `PANDEMONIUM_VECTOR3_SIZE` gets resolved as `sizeof(void*)` :(
         if node.type.declname == "_dont_touch_that":
             # Of course the 0 size is wrong, but it's not an issue given
             # we don't touch this array in Cython code (hence the name ^^)
@@ -373,28 +373,28 @@ cdef extern from "{header_name}" nogil:
 
     \"\"\"
     typedef enum {{
-        GODOT_METHOD_FLAG_NORMAL = 1,
-        GODOT_METHOD_FLAG_EDITOR = 2,
-        GODOT_METHOD_FLAG_NOSCRIPT = 4,
-        GODOT_METHOD_FLAG_CONST = 8,
-        GODOT_METHOD_FLAG_REVERSE = 16,
-        GODOT_METHOD_FLAG_VIRTUAL = 32,
-        GODOT_METHOD_FLAG_FROM_SCRIPT = 64,
-        GODOT_METHOD_FLAG_VARARG = 128,
-        GODOT_METHOD_FLAGS_DEFAULT = GODOT_METHOD_FLAG_NORMAL
+        PANDEMONIUM_METHOD_FLAG_NORMAL = 1,
+        PANDEMONIUM_METHOD_FLAG_EDITOR = 2,
+        PANDEMONIUM_METHOD_FLAG_NOSCRIPT = 4,
+        PANDEMONIUM_METHOD_FLAG_CONST = 8,
+        PANDEMONIUM_METHOD_FLAG_REVERSE = 16,
+        PANDEMONIUM_METHOD_FLAG_VIRTUAL = 32,
+        PANDEMONIUM_METHOD_FLAG_FROM_SCRIPT = 64,
+        PANDEMONIUM_METHOD_FLAG_VARARG = 128,
+        PANDEMONIUM_METHOD_FLAGS_DEFAULT = PANDEMONIUM_METHOD_FLAG_NORMAL
     }} pandemonium_method_flags;
     \"\"\"
 
     ctypedef enum pandemonium_method_flags:
-        GODOT_METHOD_FLAG_NORMAL = 1
-        GODOT_METHOD_FLAG_EDITOR = 2
-        GODOT_METHOD_FLAG_NOSCRIPT = 4
-        GODOT_METHOD_FLAG_CONST = 8
-        GODOT_METHOD_FLAG_REVERSE = 16  # used for events
-        GODOT_METHOD_FLAG_VIRTUAL = 32
-        GODOT_METHOD_FLAG_FROM_SCRIPT = 64
-        GODOT_METHOD_FLAG_VARARG = 128
-        GODOT_METHOD_FLAGS_DEFAULT = 1  # METHOD_FLAG_NORMAL
+        PANDEMONIUM_METHOD_FLAG_NORMAL = 1
+        PANDEMONIUM_METHOD_FLAG_EDITOR = 2
+        PANDEMONIUM_METHOD_FLAG_NOSCRIPT = 4
+        PANDEMONIUM_METHOD_FLAG_CONST = 8
+        PANDEMONIUM_METHOD_FLAG_REVERSE = 16  # used for events
+        PANDEMONIUM_METHOD_FLAG_VIRTUAL = 32
+        PANDEMONIUM_METHOD_FLAG_FROM_SCRIPT = 64
+        PANDEMONIUM_METHOD_FLAG_VARARG = 128
+        PANDEMONIUM_METHOD_FLAGS_DEFAULT = 1  # METHOD_FLAG_NORMAL
 
     ctypedef bint bool
 

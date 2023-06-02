@@ -51,32 +51,32 @@ cdef class Vector3:
     @property
     def x(self) -> pandemonium_real:
         {{ force_mark_rendered("pandemonium_vector3_get_axis") }}
-        return gdapi10.pandemonium_vector3_get_axis(&self._gd_data, pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_X)
+        return gdapi10.pandemonium_vector3_get_axis(&self._gd_data, pandemonium_vector3_axis.PANDEMONIUM_VECTOR3_AXIS_X)
 
     @x.setter
     def x(self, pandemonium_real val) -> None:
         {{ force_mark_rendered("pandemonium_vector3_set_axis") }}
-        gdapi10.pandemonium_vector3_set_axis(&self._gd_data, pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_X, val)
+        gdapi10.pandemonium_vector3_set_axis(&self._gd_data, pandemonium_vector3_axis.PANDEMONIUM_VECTOR3_AXIS_X, val)
 
     @property
     def y(self) -> pandemonium_real:
         {{ force_mark_rendered("pandemonium_vector3_get_axis") }}
-        return gdapi10.pandemonium_vector3_get_axis(&self._gd_data, pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_Y)
+        return gdapi10.pandemonium_vector3_get_axis(&self._gd_data, pandemonium_vector3_axis.PANDEMONIUM_VECTOR3_AXIS_Y)
 
     @y.setter
     def y(self, pandemonium_real val) -> None:
         {{ force_mark_rendered("pandemonium_vector3_set_axis") }}
-        gdapi10.pandemonium_vector3_set_axis(&self._gd_data, pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_Y, val)
+        gdapi10.pandemonium_vector3_set_axis(&self._gd_data, pandemonium_vector3_axis.PANDEMONIUM_VECTOR3_AXIS_Y, val)
 
     @property
     def z(self) -> pandemonium_real:
         {{ force_mark_rendered("pandemonium_vector3_get_axis") }}
-        return gdapi10.pandemonium_vector3_get_axis(&self._gd_data, pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_Z)
+        return gdapi10.pandemonium_vector3_get_axis(&self._gd_data, pandemonium_vector3_axis.PANDEMONIUM_VECTOR3_AXIS_Z)
 
     @z.setter
     def z(self, pandemonium_real val) -> None:
         {{ force_mark_rendered("pandemonium_vector3_set_axis") }}
-        gdapi10.pandemonium_vector3_set_axis(&self._gd_data, pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_Z, val)
+        gdapi10.pandemonium_vector3_set_axis(&self._gd_data, pandemonium_vector3_axis.PANDEMONIUM_VECTOR3_AXIS_Z, val)
 
     {{ render_operator_eq() | indent }}
     {{ render_operator_ne() | indent }}
@@ -143,9 +143,9 @@ cdef class Vector3:
 
 {%- block python_consts %}
     AXIS = IntEnum("AXIS", {
-        "X": pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_X,
-        "Y": pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_Y,
-        "Z": pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_Z,
+        "X": pandemonium_vector3_axis.PANDEMONIUM_VECTOR3_AXIS_X,
+        "Y": pandemonium_vector3_axis.PANDEMONIUM_VECTOR3_AXIS_Y,
+        "Z": pandemonium_vector3_axis.PANDEMONIUM_VECTOR3_AXIS_Z,
     })
 
     ZERO = Vector3(0, 0, 0)  # Zero vector.

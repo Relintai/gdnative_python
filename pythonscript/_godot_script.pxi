@@ -16,12 +16,12 @@ from pandemoniummonium._hazmat.gdnative_api_struct cimport (
     pandemonium_string_name,
     pandemonium_pluginscript_script_data,
     pandemonium_pluginscript_script_manifest,
-    GODOT_OK,
-    GODOT_ERR_UNAVAILABLE,
-    GODOT_ERR_FILE_BAD_PATH,
-    GODOT_ERR_PARSE_ERROR,
-    GODOT_METHOD_FLAG_FROM_SCRIPT,
-    GODOT_METHOD_RPC_MODE_DISABLED,
+    PANDEMONIUM_OK,
+    PANDEMONIUM_ERR_UNAVAILABLE,
+    PANDEMONIUM_ERR_FILE_BAD_PATH,
+    PANDEMONIUM_ERR_PARSE_ERROR,
+    PANDEMONIUM_METHOD_FLAG_FROM_SCRIPT,
+    PANDEMONIUM_METHOD_RPC_MODE_DISABLED,
 )
 from pandemoniummonium._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
 from pandemoniummonium._hazmat.conversion cimport (
@@ -65,7 +65,7 @@ cdef Dictionary _build_signal_info(object signal):
     methinfo["args"] = Array()
     methinfo["default_args"] = Array()
     methinfo["return"] = None
-    methinfo["flags"] = GODOT_METHOD_FLAG_FROM_SCRIPT
+    methinfo["flags"] = PANDEMONIUM_METHOD_FLAG_FROM_SCRIPT
     return methinfo
 
 
@@ -78,9 +78,9 @@ cdef Dictionary _build_method_info(object meth, object methname):
     methinfo["default_args"] = Array()  # TODO
     # TODO: use annotation to determine return type ?
     methinfo["return"] = None
-    methinfo["flags"] = GODOT_METHOD_FLAG_FROM_SCRIPT
+    methinfo["flags"] = PANDEMONIUM_METHOD_FLAG_FROM_SCRIPT
     methinfo["rpc_mode"] = getattr(
-        meth, "__rpc", GODOT_METHOD_RPC_MODE_DISABLED
+        meth, "__rpc", PANDEMONIUM_METHOD_RPC_MODE_DISABLED
     )
     return methinfo
 
@@ -168,7 +168,7 @@ cdef api pandemonium_pluginscript_script_manifest pythonscript_script_init(
         print(
             f"Bad python script path `{path}`, must starts by `res://` and ends with `.py/pyc/pyo/pyd`"
         )
-        r_error[0] = GODOT_ERR_FILE_BAD_PATH
+        r_error[0] = PANDEMONIUM_ERR_FILE_BAD_PATH
         return _build_empty_script_manifest()
 
     # TODO: possible bug if res:// is not part of PYTHONPATH
@@ -200,14 +200,14 @@ cdef api pandemonium_pluginscript_script_manifest pythonscript_script_init(
         print(
             f"Got exception loading {path} ({modname}): {traceback.format_exc()}"
         )
-        r_error[0] = GODOT_ERR_PARSE_ERROR
+        r_error[0] = PANDEMONIUM_ERR_PARSE_ERROR
         return _build_empty_script_manifest()
 
     if cls is None:
         print(
             f"Cannot load {path} ({modname}) because it doesn't expose any class to Pandemonium"
         )
-        r_error[0] = GODOT_ERR_PARSE_ERROR
+        r_error[0] = PANDEMONIUM_ERR_PARSE_ERROR
         return _build_empty_script_manifest()
 
     if is_reload:
@@ -218,7 +218,7 @@ cdef api pandemonium_pluginscript_script_manifest pythonscript_script_init(
         # Apparently multiple PluginScript instances can exist at the same time for the same script.
         set_exposed_class(cls)
 
-    r_error[0] = GODOT_OK
+    r_error[0] = PANDEMONIUM_OK
     return _build_script_manifest(cls)
 
 

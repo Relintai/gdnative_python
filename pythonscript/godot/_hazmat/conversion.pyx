@@ -40,46 +40,46 @@ from warnings import warn
 
 
 GD_PY_TYPES = (
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_NIL, type(None)),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_BOOL, bool),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_INT, int),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_REAL, float),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_STRING, GDString),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_OBJECT, Object),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_VECTOR2, Vector2),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_RECT2, Rect2),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_VECTOR3, Vector3),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_TRANSFORM2D, Transform2D),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_PLANE, Plane),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_QUAT, Quat),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_AABB, AABB),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_BASIS, Basis),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_TRANSFORM, Transform),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_COLOR, Color),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_NODE_PATH, NodePath),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_RID, RID),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_DICTIONARY, Dictionary),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_ARRAY, Array),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_NIL, type(None)),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_BOOL, bool),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_INT, int),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_REAL, float),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_STRING, GDString),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_OBJECT, Object),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR2, Vector2),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_RECT2, Rect2),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR3, Vector3),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_TRANSFORM2D, Transform2D),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_PLANE, Plane),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_QUAT, Quat),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_AABB, AABB),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_BASIS, Basis),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_TRANSFORM, Transform),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_COLOR, Color),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_NODE_PATH, NodePath),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_RID, RID),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_DICTIONARY, Dictionary),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_ARRAY, Array),
     (
-        pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_BYTE_ARRAY,
+        pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_BYTE_ARRAY,
         PoolByteArray,
     ),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_INT_ARRAY, PoolIntArray),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_INT_ARRAY, PoolIntArray),
     (
-        pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_REAL_ARRAY,
+        pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_REAL_ARRAY,
         PoolRealArray,
     ),
-    (pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_STRING_ARRAY, PoolStringArray),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_STRING_ARRAY, PoolStringArray),
     (
-        pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_VECTOR2_ARRAY,
+        pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR2_ARRAY,
         PoolVector2Array,
     ),
     (
-        pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_VECTOR3_ARRAY,
+        pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR3_ARRAY,
         PoolVector3Array,
     ),
     (
-        pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_COLOR_ARRAY,
+        pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_COLOR_ARRAY,
         PoolColorArray,
     ),
 )
@@ -102,10 +102,10 @@ cdef pandemonium_variant_type pytype_to_pandemonium_type(object pytype):
     cdef gdtype = next((gd for gd, py in GD_PY_TYPES if py == pytype), None)
     if gdtype is None:
         if issubclass(pytype, Object):
-            return pandemonium_variant_type.GODOT_VARIANT_TYPE_OBJECT
+            return pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_OBJECT
         else:
             warn(f"No Pandemonium equivalent for Python type `{pytype}`")
-            return pandemonium_variant_type.GODOT_VARIANT_TYPE_NIL
+            return pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_NIL
 
     return gdtype
 
@@ -113,85 +113,85 @@ cdef pandemonium_variant_type pytype_to_pandemonium_type(object pytype):
 cdef object pandemonium_variant_to_pyobj(const pandemonium_variant *p_gdvar):
     cdef pandemonium_variant_type gdtype = gdapi10.pandemonium_variant_get_type(p_gdvar)
 
-    if gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_NIL:
+    if gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_NIL:
         return None
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_BOOL:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_BOOL:
         return bool(gdapi10.pandemonium_variant_as_bool(p_gdvar))
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_INT:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_INT:
         return int(gdapi10.pandemonium_variant_as_int(p_gdvar))
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_REAL:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_REAL:
         return float(gdapi10.pandemonium_variant_as_real(p_gdvar))
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_STRING:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_STRING:
         return _pandemonium_variant_to_pyobj_string(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_VECTOR2:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR2:
         return _pandemonium_variant_to_pyobj_vector2(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_RECT2:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_RECT2:
         return _pandemonium_variant_to_pyobj_rect2(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_VECTOR3:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR3:
         return _pandemonium_variant_to_pyobj_vector3(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_TRANSFORM2D:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_TRANSFORM2D:
         return _pandemonium_variant_to_pyobj_transform2d(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_PLANE:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_PLANE:
         return _pandemonium_variant_to_pyobj_plane(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_QUAT:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_QUAT:
         return _pandemonium_variant_to_pyobj_quat(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_AABB:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_AABB:
         return _pandemonium_variant_to_pyobj_aabb(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_BASIS:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_BASIS:
         return _pandemonium_variant_to_pyobj_basis(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_TRANSFORM:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_TRANSFORM:
         return _pandemonium_variant_to_pyobj_transform(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_COLOR:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_COLOR:
         return _pandemonium_variant_to_pyobj_color(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_NODE_PATH:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_NODE_PATH:
         return _pandemonium_variant_to_pyobj_node_path(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_RID:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_RID:
         return _pandemonium_variant_to_pyobj_rid(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_OBJECT:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_OBJECT:
         return _pandemonium_variant_to_pyobj_object(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_DICTIONARY:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_DICTIONARY:
         return _pandemonium_variant_to_pyobj_dictionary(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_ARRAY:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_ARRAY:
         return _pandemonium_variant_to_pyobj_array(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_BYTE_ARRAY:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_BYTE_ARRAY:
         return _pandemonium_variant_to_pyobj_pool_byte_array(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_INT_ARRAY:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_INT_ARRAY:
         return _pandemonium_variant_to_pyobj_pool_int_array(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_REAL_ARRAY:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_REAL_ARRAY:
         return _pandemonium_variant_to_pyobj_pool_real_array(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_STRING_ARRAY:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_STRING_ARRAY:
         return _pandemonium_variant_to_pyobj_pool_string_array(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_VECTOR2_ARRAY:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR2_ARRAY:
         return _pandemonium_variant_to_pyobj_pool_vector2_array(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_VECTOR3_ARRAY:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_VECTOR3_ARRAY:
         return _pandemonium_variant_to_pyobj_pool_vector3_array(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.GODOT_VARIANT_TYPE_POOL_COLOR_ARRAY:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_POOL_COLOR_ARRAY:
         return _pandemonium_variant_to_pyobj_pool_color_array(p_gdvar)
 
     else:

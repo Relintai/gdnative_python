@@ -60,10 +60,10 @@
 # @pytest.mark.parametrize(
 #     "args",
 #     [
-#         (lib.GODOT_VARIANT_TYPE_NIL, type(None)),
-#         (lib.GODOT_VARIANT_TYPE_REAL, float),
-#         (lib.GODOT_VARIANT_TYPE_STRING, str),
-#         (lib.GODOT_VARIANT_TYPE_DICTIONARY, Dictionary),
+#         (lib.PANDEMONIUM_VARIANT_TYPE_NIL, type(None)),
+#         (lib.PANDEMONIUM_VARIANT_TYPE_REAL, float),
+#         (lib.PANDEMONIUM_VARIANT_TYPE_STRING, str),
+#         (lib.PANDEMONIUM_VARIANT_TYPE_DICTIONARY, Dictionary),
 #     ],
 # )
 # def test_gd_py_type_translation(args):
@@ -77,17 +77,17 @@
 
 
 # # @pytest.mark.parametrize('args', [
-# #     (None, lib.GODOT_VARIANT_TYPE_NIL),
-# #     (0, lib.GODOT_VARIANT_TYPE_INT),
-# #     (42, lib.GODOT_VARIANT_TYPE_INT),
-# #     (0.0, lib.GODOT_VARIANT_TYPE_REAL),
-# #     (42.5, lib.GODOT_VARIANT_TYPE_REAL),
-# #     ('', lib.GODOT_VARIANT_TYPE_STRING),
-# #     ('test', lib.GODOT_VARIANT_TYPE_STRING),
-# #     (Dictionary(), lib.GODOT_VARIANT_TYPE_DICTIONARY),
-# #     (Dictionary({'foo': 1, 2: 'bar'}), lib.GODOT_VARIANT_TYPE_DICTIONARY),
-# #     (Array(), lib.GODOT_VARIANT_TYPE_ARRAY),
-# #     (Array(['foo', 2]), lib.GODOT_VARIANT_TYPE_ARRAY),
+# #     (None, lib.PANDEMONIUM_VARIANT_TYPE_NIL),
+# #     (0, lib.PANDEMONIUM_VARIANT_TYPE_INT),
+# #     (42, lib.PANDEMONIUM_VARIANT_TYPE_INT),
+# #     (0.0, lib.PANDEMONIUM_VARIANT_TYPE_REAL),
+# #     (42.5, lib.PANDEMONIUM_VARIANT_TYPE_REAL),
+# #     ('', lib.PANDEMONIUM_VARIANT_TYPE_STRING),
+# #     ('test', lib.PANDEMONIUM_VARIANT_TYPE_STRING),
+# #     (Dictionary(), lib.PANDEMONIUM_VARIANT_TYPE_DICTIONARY),
+# #     (Dictionary({'foo': 1, 2: 'bar'}), lib.PANDEMONIUM_VARIANT_TYPE_DICTIONARY),
+# #     (Array(), lib.PANDEMONIUM_VARIANT_TYPE_ARRAY),
+# #     (Array(['foo', 2]), lib.PANDEMONIUM_VARIANT_TYPE_ARRAY),
 # # ])
 # # def test_new_raw_initialized(args):
 # #     pyobj, gdtype = args
@@ -100,17 +100,17 @@
 # @pytest.mark.parametrize(
 #     "args",
 #     [
-#         (None, lib.GODOT_VARIANT_TYPE_NIL),
-#         (0, lib.GODOT_VARIANT_TYPE_INT),
-#         (42, lib.GODOT_VARIANT_TYPE_INT),
-#         (0.0, lib.GODOT_VARIANT_TYPE_REAL),
-#         (42.5, lib.GODOT_VARIANT_TYPE_REAL),
-#         ("", lib.GODOT_VARIANT_TYPE_STRING),
-#         ("test", lib.GODOT_VARIANT_TYPE_STRING),
-#         (Dictionary(), lib.GODOT_VARIANT_TYPE_DICTIONARY),
-#         (Dictionary({"foo": 1, 2: "bar"}), lib.GODOT_VARIANT_TYPE_DICTIONARY),
-#         (Array(), lib.GODOT_VARIANT_TYPE_ARRAY),
-#         (Array(["foo", 2]), lib.GODOT_VARIANT_TYPE_ARRAY),
+#         (None, lib.PANDEMONIUM_VARIANT_TYPE_NIL),
+#         (0, lib.PANDEMONIUM_VARIANT_TYPE_INT),
+#         (42, lib.PANDEMONIUM_VARIANT_TYPE_INT),
+#         (0.0, lib.PANDEMONIUM_VARIANT_TYPE_REAL),
+#         (42.5, lib.PANDEMONIUM_VARIANT_TYPE_REAL),
+#         ("", lib.PANDEMONIUM_VARIANT_TYPE_STRING),
+#         ("test", lib.PANDEMONIUM_VARIANT_TYPE_STRING),
+#         (Dictionary(), lib.PANDEMONIUM_VARIANT_TYPE_DICTIONARY),
+#         (Dictionary({"foo": 1, 2: "bar"}), lib.PANDEMONIUM_VARIANT_TYPE_DICTIONARY),
+#         (Array(), lib.PANDEMONIUM_VARIANT_TYPE_ARRAY),
+#         (Array(["foo", 2]), lib.PANDEMONIUM_VARIANT_TYPE_ARRAY),
 #     ],
 # )
 # def test_pyobj_raw_conversion(args):

@@ -116,7 +116,7 @@ cdef api pandemonium_variant pythonscript_instance_call_method(
     # TODO: optimize this by caching pandemonium_string_name -> method lookup
     fn = instance.__exported.get(key)
     if not callable(fn):
-        r_error.error = pandemonium_variant_call_error_error.GODOT_CALL_ERROR_CALL_ERROR_INVALID_METHOD
+        r_error.error = pandemonium_variant_call_error_error.PANDEMONIUM_CALL_ERROR_CALL_ERROR_INVALID_METHOD
         gdapi10.pandemonium_variant_new_nil(&var_ret)
         return var_ret
 
@@ -126,22 +126,22 @@ cdef api pandemonium_variant pythonscript_instance_call_method(
     try:
         pyargs = [pandemonium_variant_to_pyobj(p_args[i]) for i in range(p_argcount)]
         ret = fn(instance, *pyargs)
-        r_error.error = pandemonium_variant_call_error_error.GODOT_CALL_ERROR_CALL_OK
+        r_error.error = pandemonium_variant_call_error_error.PANDEMONIUM_CALL_ERROR_CALL_OK
         pyobj_to_pandemonium_variant(ret, &var_ret)
         return var_ret
 
     except NotImplementedError:
-        r_error.error = pandemonium_variant_call_error_error.GODOT_CALL_ERROR_CALL_ERROR_INVALID_METHOD
+        r_error.error = pandemonium_variant_call_error_error.PANDEMONIUM_CALL_ERROR_CALL_ERROR_INVALID_METHOD
 
     except TypeError:
         traceback.print_exc()
         # TODO: handle errors here
-        r_error.error = pandemonium_variant_call_error_error.GODOT_CALL_ERROR_CALL_ERROR_INVALID_ARGUMENT
+        r_error.error = pandemonium_variant_call_error_error.PANDEMONIUM_CALL_ERROR_CALL_ERROR_INVALID_ARGUMENT
         r_error.argument = 1
-        r_error.expected = pandemonium_variant_type.GODOT_VARIANT_TYPE_NIL
+        r_error.expected = pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_NIL
     except Exception:
         traceback.print_exc()
-        r_error.error = pandemonium_variant_call_error_error.GODOT_CALL_ERROR_CALL_ERROR_INVALID_METHOD
+        r_error.error = pandemonium_variant_call_error_error.PANDEMONIUM_CALL_ERROR_CALL_ERROR_INVALID_METHOD
 
     # TODO: also catch other exceptions types ?
 

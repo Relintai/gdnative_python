@@ -11,7 +11,7 @@ on:
 # Global Settings
 env:
   PYTHON_VERSION: "3.7"
-  GODOT_BINARY_VERSION: "3.2.3"
+  PANDEMONIUM_BINARY_VERSION: "3.2.3"
 
 
 jobs:
@@ -65,7 +65,7 @@ jobs:
           pip install -U pip
           pip install -r requirements.txt
           # Configuration for scons
-          echo 'pandemonium_binary = "${{ env.GODOT_BINARY_VERSION }}"' >> custom.py
+          echo 'pandemonium_binary = "${{ env.PANDEMONIUM_BINARY_VERSION }}"' >> custom.py
           echo 'platform = "${{ env.PLATFORM }}"' >> custom.py
           echo 'CC = "${{ env.CC }}"' >> custom.py
       - name: 'Build project'
@@ -126,7 +126,7 @@ jobs:
           python -m pip install --user -U pip
           python -m pip install --user -r requirements.txt
           # Configuration for scons
-          echo 'pandemonium_binary = "${{ env.GODOT_BINARY_VERSION }}"' >> custom.py
+          echo 'pandemonium_binary = "${{ env.PANDEMONIUM_BINARY_VERSION }}"' >> custom.py
           echo 'platform = "${{ matrix.PLATFORM }}"' >> custom.py
           echo 'MSVC_USE_SCRIPT = True' >> custom.py
           echo 'TARGET_ARCH = "${{ matrix.VS_ARCH }}"' >> custom.py
@@ -198,7 +198,7 @@ jobs:
           pip install -U pip
           pip install -r requirements.txt
           # Configuration for scons
-          echo 'pandemonium_binary = "${{ env.GODOT_BINARY_VERSION }}"' >> custom.py
+          echo 'pandemonium_binary = "${{ env.PANDEMONIUM_BINARY_VERSION }}"' >> custom.py
           echo 'platform = "${{ env.PLATFORM }}"' >> custom.py
           echo 'CC = "${{ env.CC }}"' >> custom.py
       - name: 'Build project'

@@ -111,7 +111,7 @@ cdef api pandemonium_error pythonscript_complete_code(
     pandemonium_bool *r_force,
     pandemonium_string *r_call_hint
 ) with gil:
-    return pandemonium_error.GODOT_OK
+    return pandemonium_error.PANDEMONIUM_OK
 
 
 cdef api void pythonscript_auto_indent_code(
