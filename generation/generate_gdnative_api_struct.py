@@ -23,6 +23,10 @@ STDLIB_INCLUDES = {
         "int64_t",
     ],
     "wchar.h": ["wchar_t", "size_t"],
+    "uchar.h": [
+        "char32_t",
+        "char16_t",
+    ],
 }
 STDLIB_TYPES = {t for m in STDLIB_INCLUDES.values() for t in m}
 
