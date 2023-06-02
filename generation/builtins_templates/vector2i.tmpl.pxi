@@ -96,7 +96,6 @@ cdef class Vector2i:
 
     ZERO = Vector2i(0, 0)
     ONE = Vector2i(1, 1)
-    INF = Vector2i(math.inf, math.inf)
     LEFT = Vector2i(-1, 0)
     RIGHT = Vector2i(1, 0)
     UP = Vector2i(0, -1)

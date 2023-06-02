@@ -423,9 +423,9 @@ def cook_data(data):
         elif type == "pandemonium_vector2i":
             return f"Vector2i{value}"
         elif type == "pandemonium_rect2":
-            return f"Rect2{value}".replace("[P: (", "(Vector2(").replace("), S: (", "), Vector2(").replace(")]", "))")
+            return f"Rect2{value}".replace("[P: (", "(").replace("), S: (", ", ").replace(")]", ")")
         elif type == "pandemonium_rect2i":
-            return f"Rect2i{value}".replace("[P: (", "(Vector2i(").replace("), S: (", "), Vector2i(").replace(")]", "))")
+            return f"Rect2i{value}".replace("[P: (", "(").replace("), S: (", ", ").replace(")]", ")")
         elif type == "pandemonium_vector3":
             return f"Vector3{value}"
         elif type == "pandemonium_vector3i":
@@ -448,7 +448,7 @@ def cook_data(data):
         elif value == "[RID]":
             return "RID()"
         elif type == "pandemonium_color":
-            return f"Color({value})"
+            return f"Color{value}"
         elif type == "pandemonium_pool_color_array" and value == "[PoolColorArray]":
             return "PoolColorArray()"
         elif type == "pandemonium_array" and value == "[]":

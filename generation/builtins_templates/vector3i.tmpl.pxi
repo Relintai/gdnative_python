@@ -124,7 +124,6 @@ cdef class Vector3i:
 
     ZERO = Vector3i(0, 0, 0)  # Zero vector.
     ONE = Vector3i(1, 1, 1)  # One vector.
-    INF = Vector3i(math.inf, math.inf, math.inf)  # Infinite vector.
     LEFT = Vector3i(-1, 0, 0)  # Left unit vector.
     RIGHT = Vector3i(1, 0, 0)  # Right unit vector.
     UP = Vector3i(0, 1, 0)  # Up unit vector.
