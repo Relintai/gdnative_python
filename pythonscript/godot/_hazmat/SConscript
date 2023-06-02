@@ -20,7 +20,7 @@ env.Install("$DIST_SITE_PACKAGES/godot/_hazmat", pxds)
 
 gdnative_api_struct_pxd = env.Command(
     target="gdnative_api_struct.pxd",
-    source=["#/generation/generate_gdnative_api_struct.py", env["godot_headers"]],
+    source=["#/generation/generate_gdnative_api_struct.py", env["pandemonium_headers"]],
     action="python ${SOURCES[0]} --input ${SOURCES[1]} --output ${TARGET}",
 )
 

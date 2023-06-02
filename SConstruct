@@ -56,7 +56,7 @@ vars.Add(
     default="3.2.2",
     converter=godot_binary_converter,
 )
-vars.Add("godot_headers", "Path to Godot GDnative headers", "")
+vars.Add("pandemonium_headers", "Path to Godot GDnative headers", "")
 vars.Add("debugger", "Run test with a debugger", "")
 vars.Add(BoolVariable("debug", "Compile with debug symbols", False))
 vars.Add(BoolVariable("headless", "Run tests in headless mode", False))
@@ -135,14 +135,14 @@ Help(vars.GenerateHelpText(env))
 # ImportVirtualenv(env)
 
 
-if env["godot_headers"]:
-    env["godot_headers"] = Dir(env["godot_headers"])
+if env["pandemonium_headers"]:
+    env["pandemonium_headers"] = Dir(env["pandemonium_headers"])
 else:
-    env["godot_headers"] = Dir("godot_headers")
-env.AppendUnique(CPPPATH=["$godot_headers"])
+    env["pandemonium_headers"] = Dir("pandemonium_headers")
+env.AppendUnique(CPPPATH=["$pandemonium_headers"])
 # TODO: not sure why, but CPPPATH scan result for cython modules change between
 # first and subsequent runs of scons (module is considered to no longer depend
-# on godot_headers on subsequent run, so the build redone)
+# on pandemonium_headers on subsequent run, so the build redone)
 SetOption("implicit_cache", 1)
 
 

@@ -38,7 +38,7 @@ env.Depends(
 
 godot_builtins_srcs = env.Command(
     target=("builtins.pyx", "builtins.pxd"),
-    source=("#/generation/generate_builtins.py", "${godot_headers}/gdnative_api.json"),
+    source=("#/generation/generate_builtins.py", "${pandemonium_headers}/gdnative_api.json"),
     action="python ${SOURCES[0]} --input ${SOURCES[1]} --output ${TARGET}",
 )
 env.Depends(
@@ -84,7 +84,7 @@ else:
 
 godot_bindings_srcs = bindings_env.Command(
     target=("bindings.pyx", "bindings.pxd", "bindings.pyi"),
-    source=("#/generation/generate_bindings.py", "${godot_headers}/api.json"),
+    source=("#/generation/generate_bindings.py", "${pandemonium_headers}/api.json"),
     action=("python ${SOURCES[0]} ${opts} --input ${SOURCES[1]} --output ${TARGET} "),
     opts="--sample" if sample else "",
 )

@@ -308,8 +308,8 @@ if __name__ == "__main__":
         "--input",
         "-i",
         required=True,
-        metavar="GODOT_HEADERS_PATH",
-        help="Path to Godot GDNative headers",
+        metavar="PANDEMONIUM_HEADERS_PATH",
+        help="Path to GDNative headers",
     )
     parser.add_argument(
         "--output",
