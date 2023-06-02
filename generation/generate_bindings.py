@@ -196,20 +196,31 @@ SUPPORTED_TYPES = {
     "pandemonium_color",
     "pandemonium_dictionary",
     "pandemonium_node_path",
+    "pandemonium_string_name",
     "pandemonium_plane",
-    "pandemonium_quat",
+    "pandemonium_quaternion",
     "pandemonium_rect2",
+    "pandemonium_rect2i",
     "pandemonium_rid",
     "pandemonium_transform",
     "pandemonium_transform2d",
+    "pandemonium_projection",
     "pandemonium_vector2",
+    "pandemonium_vector2i",
     "pandemonium_vector3",
+    "pandemonium_vector3i",
+    "pandemonium_vector4",
+    "pandemonium_vector4i",
     "pandemonium_pool_byte_array",
     "pandemonium_pool_int_array",
     "pandemonium_pool_real_array",
     "pandemonium_pool_string_array",
     "pandemonium_pool_vector2_array",
+    "pandemonium_pool_vector2i_array",
     "pandemonium_pool_vector3_array",
+    "pandemonium_pool_vector3i_array",
+    "pandemonium_pool_vector4_array",
+    "pandemonium_pool_vector4i_array",
     "pandemonium_pool_color_array",
 }
 
@@ -399,22 +410,41 @@ def cook_data(data):
                 return value
         elif type == "pandemonium_string":
             return f'"{value}"'
+        elif type == "pandemonium_node_path":
+            return f'"{value}"'
+        elif type == "pandemonium_string_name":
+            return f'"{value}"'
         elif type == "pandemonium_object" and value in ("[Object:null]", "Null"):
             return "None"
         elif type == "pandemonium_dictionary" and value == "{}":
             return "Dictionary()"
         elif type == "pandemonium_vector2":
             return f"Vector2{value}"
+        elif type == "pandemonium_vector2i":
+            return f"Vector2i{value}"
         elif type == "pandemonium_rect2":
             return f"Rect2{value}"
+        elif type == "pandemonium_rect2i":
+            return f"Rect2i{value}"
         elif type == "pandemonium_vector3":
             return f"Vector3{value}"
-        elif type == "pandemonium_transform" and value == "1, 0, 0, 0, 1, 0, 0, 0, 1 - 0, 0, 0":
+        elif type == "pandemonium_vector3i":
+            return f"Vector3i{value}"
+        elif type == "pandemonium_vector4":
+            return f"Vector4{value}"
+        elif type == "pandemonium_vector4i":
+            return f"Vector4i{value}"
+        elif type == "pandemonium_transform" and value == "1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0":
+            # TODO
             return (
                 "Transform(Vector3(1, 0, 0), Vector3(0, 1, 0), Vector3(0, 0, 1), Vector3(0, 0, 0))"
             )
         elif type == "pandemonium_transform2d" and value == "((1, 0), (0, 1), (0, 0))":
+            # TODO
             return "Transform2D(Vector2(1, 0), Vector2(0, 1), Vector2(0, 0))"
+        elif type == "pandemonium_projection":
+            # TODO
+            return "Projection()"
         elif value == "[RID]":
             return "RID()"
         elif type == "pandemonium_color":
@@ -425,8 +455,16 @@ def cook_data(data):
             return f"Array()"
         elif type == "pandemonium_pool_vector2_array" and value == "[]":
             return f"PoolVector2Array()"
+        elif type == "pandemonium_pool_vector2i_array" and value == "[]":
+            return f"PoolVector2iArray()"
         elif type == "pandemonium_pool_vector3_array" and value == "[]":
             return f"PoolVector3Array()"
+        elif type == "pandemonium_pool_vector3i_array" and value == "[]":
+            return f"PoolVector3iArray()"
+        elif type == "pandemonium_pool_vector4_array" and value == "[]":
+            return f"PoolVector4Array()"
+        elif type == "pandemonium_pool_vector4i_array" and value == "[]":
+            return f"PoolVector4iArray()"
         elif type == "pandemonium_pool_int_array" and value == "[]":
             return f"PoolIntArray()"
         elif type == "pandemonium_pool_real_array" and value == "[]":

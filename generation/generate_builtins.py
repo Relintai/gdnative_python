@@ -144,7 +144,7 @@ TARGET_TO_TYPE_SPEC = {
     "rect2": TYPE_RECT2,
     "transform2d": TYPE_TRANSFORM2D,
     "plane": TYPE_PLANE,
-    "quat": TYPE_QUATERNION,
+    "quaternion": TYPE_QUATERNION,
     "transform": TYPE_TRANSFORM,
     "node_path": TYPE_NODEPATH,
     "dictionary": TYPE_DICTIONARY,

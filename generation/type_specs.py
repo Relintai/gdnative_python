@@ -205,7 +205,7 @@ TYPE_PLANE = TypeSpec(
     gdapi_type="Plane", c_type="pandemonium_plane", cy_type="Plane", is_builtin=True, is_stack_only=True
 )
 TYPE_QUATERNION = TypeSpec(
-    gdapi_type="Quaternion", c_type="pandemonium_quat", cy_type="Quaternion", is_builtin=True, is_stack_only=True
+    gdapi_type="Quaternion", c_type="pandemonium_quaternion", cy_type="Quaternion", is_builtin=True, is_stack_only=True
 )
 TYPE_RECT2 = TypeSpec(
     gdapi_type="Rect2", c_type="pandemonium_rect2", cy_type="Rect2", is_builtin=True, is_stack_only=True
