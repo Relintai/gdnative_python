@@ -2,7 +2,7 @@
 
 from libc.stddef cimport wchar_t
 
-from pannemdniummonium._hazmat.gdnative_api_struct cimport (
+from pandemonium._hazmat.gdnative_api_struct cimport (
     pandemonium_pluginscript_language_data,
     pandemonium_string,
     pandemonium_bool,
