@@ -5,15 +5,16 @@ Credits
 Development Lead
 ----------------
 
+* Péter Magyar  `@Relintai <https://github.com/Relintai>`_
+
+
+Godot Python Development Lead
+-----------------------------
+
 * Emmanuel Leblond `@touilleMan <https://github.com/touilleMan>`_
 
-Godot Python logo
------------------
-
-* `@Pinswell <https://github.com/Pinswell>`_
-
-Contributors
-------------
+Godot Python Original Contributors
+----------------------------------
 
 * Răzvan Cosmin Rădulescu `@razvanc-r <https://github.com/razvanc-r>`_
 * Max Hilbrunner `@mhilbrunner <https://github.com/mhilbrunner>`_
