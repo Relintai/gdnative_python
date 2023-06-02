@@ -204,8 +204,8 @@ TYPE_STRING_NAME = TypeSpec(
 TYPE_PLANE = TypeSpec(
     gdapi_type="Plane", c_type="pandemonium_plane", cy_type="Plane", is_builtin=True, is_stack_only=True
 )
-TYPE_QUAT = TypeSpec(
-    gdapi_type="Quat", c_type="pandemonium_quat", cy_type="Quat", is_builtin=True, is_stack_only=True
+TYPE_QUATERNION = TypeSpec(
+    gdapi_type="Quaternion", c_type="pandemonium_quat", cy_type="Quaternion", is_builtin=True, is_stack_only=True
 )
 TYPE_RECT2 = TypeSpec(
     gdapi_type="Rect2", c_type="pandemonium_rect2", cy_type="Rect2", is_builtin=True, is_stack_only=True
@@ -383,7 +383,7 @@ ALL_TYPES_EXCEPT_OBJECTS = [
     TYPE_NODEPATH,
     TYPE_STRING_NAME,
     TYPE_PLANE,
-    TYPE_QUAT,
+    TYPE_QUATERNION,
     TYPE_RECT2,
     TYPE_RECT2I,
     TYPE_RID,

@@ -13,7 +13,7 @@ from pandemonium.builtins import (
     Dictionary,
     NodePath,
     Plane,
-    Quat,
+    Quaternion,
     Rect2,
     RID,
     Transform2D,
@@ -94,7 +94,7 @@ class VariantType(IntFlag):
     VECTOR3: int
     TRANSFORM2D: int
     PLANE: int
-    QUAT: int
+    QUATERNION: int
     AABB: int
     BASIS: int
     TRANSFORM: int

@@ -1,6 +1,6 @@
 import pytest
 
-from pandemonium import Basis, Vector3, Quat
+from pandemonium import Basis, Vector3, Quaternion
 
 
 def test_default():
@@ -38,7 +38,7 @@ def test_bad_init_from_rows(args):
     [
         ["from_axis_angle", (Vector3.ONE, 1.1)],
         ["from_euler", (Vector3.ONE,)],
-        ["from_euler", (Quat(),)],
+        ["from_euler", (Quaternion(),)],
     ],
 )
 def test_inits(field, args):
@@ -98,11 +98,11 @@ def test_repr():
         ["scaled", Basis, (Vector3(),)],
         ["get_scale", Vector3, ()],
         ["get_euler", Vector3, ()],
-        ["get_quat", Quat, ()],
-        ["set_quat", type(None), (Quat(),)],
+        ["get_quat", Quaternion, ()],
+        ["set_quat", type(None), (Quaternion(),)],
         ["set_axis_angle_scale", type(None), (Vector3.ONE, 1.1, Vector3.ONE)],
         ["set_euler_scale", type(None), (Vector3.ONE, Vector3.ONE)],
-        ["set_quat_scale", type(None), (Quat(), Vector3.ONE)],
+        ["set_quat_scale", type(None), (Quaternion(), Vector3.ONE)],
         ["tdotx", float, (Vector3(),)],
         ["tdoty", float, (Vector3(),)],
         ["tdotz", float, (Vector3(),)],

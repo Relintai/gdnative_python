@@ -5,7 +5,7 @@
 
 
 @cython.final
-cdef class Quat:
+cdef class Quaternion:
 {% block cdef_attributes %}
     cdef pandemonium_quat _gd_data
 {% endblock %}
@@ -18,7 +18,7 @@ cdef class Quat:
     @staticmethod
     def from_axis_angle(Vector3 axis not None, pandemonium_real angle):
         # Call to __new__ bypasses __init__ constructor
-        cdef Quat ret = Quat.__new__(Quat)
+        cdef Quaternion ret = Quaternion.__new__(Quaternion)
         {{ force_mark_rendered("pandemonium_quat_new_with_axis_angle") }}
         gdapi10.pandemonium_quat_new_with_axis_angle(&ret._gd_data, &axis._gd_data, angle)
         return ret
@@ -26,7 +26,7 @@ cdef class Quat:
     @staticmethod
     def from_basis(Basis basis not None):
         # Call to __new__ bypasses __init__ constructor
-        cdef Quat ret = Quat.__new__(Quat)
+        cdef Quaternion ret = Quaternion.__new__(Quaternion)
         {{ force_mark_rendered("pandemonium_quat_new_with_basis") }}
         gdapi11.pandemonium_quat_new_with_basis(&ret._gd_data, &basis._gd_data)
         return ret
@@ -34,30 +34,30 @@ cdef class Quat:
     @staticmethod
     def from_euler(Vector3 euler not None):
         # Call to __new__ bypasses __init__ constructor
-        cdef Quat ret = Quat.__new__(Quat)
+        cdef Quaternion ret = Quaternion.__new__(Quaternion)
         {{ force_mark_rendered("pandemonium_quat_new_with_euler") }}
         gdapi11.pandemonium_quat_new_with_euler(&ret._gd_data, &euler._gd_data)
         return ret
 
-    def __repr__(Quat self):
-        return f"<Quat(x={self.x}, y={self.y}, z={self.z}, w={self.w})>"
+    def __repr__(Quaternion self):
+        return f"<Quaternion(x={self.x}, y={self.y}, z={self.z}, w={self.w})>"
 
     {{ render_operator_eq() | indent }}
     {{ render_operator_ne() | indent }}
 
     {{ render_method("operator_neg", py_name="__neg__") | indent }}
 
-    def __pos__(Quat self):
+    def __pos__(Quaternion self):
         return self
 
     {{ render_method("operator_add", py_name="__add__") | indent }}
     {{ render_method("operator_subtract", py_name="__sub__") | indent }}
     {{ render_method("operator_multiply", py_name="__mul__") | indent }}
 
-    def __truediv__(Quat self, pandemonium_real val):
+    def __truediv__(Quaternion self, pandemonium_real val):
         if val == 0:
             raise ZeroDivisionError
-        cdef Quat ret  = Quat.__new__(Quat)
+        cdef Quaternion ret  = Quaternion.__new__(Quaternion)
         {{ force_mark_rendered("pandemonium_quat_operator_divide") }}
         ret._gd_data = gdapi10.pandemonium_quat_operator_divide(&self._gd_data, val)
         return ret
@@ -82,5 +82,5 @@ cdef class Quat:
 {% endblock %}
 
 {%- block python_consts %}
-    IDENTITY = Quat(0, 0, 0, 1)
+    IDENTITY = Quaternion(0, 0, 0, 1)
 {% endblock %}

@@ -6,7 +6,7 @@ from pandemonium import GDString
 
 def test_base():
     assert GDString().empty()
-    # Todo later: GDString creation from GD types: Vector2/3, Transform, Plane, Quat, AABB, Color, ...
+    # Todo later: GDString creation from GD types: Vector2/3, Transform, Plane, Quaternion, AABB, Color, ...
     s = GDString("12")
     assert s.begins_with(GDString("1"))
     assert s.bigrams().size() == 1

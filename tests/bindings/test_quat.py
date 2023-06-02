@@ -1,11 +1,11 @@
 import pytest
 
-from pandemonium import Basis, Quat, Vector3
+from pandemonium import Basis, Quaternion, Vector3
 
 
 def test_base():
-    v = Quat()
-    assert type(v) == Quat
+    v = Quaternion()
+    assert type(v) == Quaternion
 
 
 @pytest.mark.parametrize(
@@ -17,9 +17,9 @@ def test_base():
     ],
 )
 def test_inits(field, args):
-    build = getattr(Quat, field)
+    build = getattr(Quaternion, field)
     v = build(*args)
-    assert isinstance(v, Quat)
+    assert isinstance(v, Quaternion)
 
 
 @pytest.mark.parametrize(
@@ -36,14 +36,14 @@ def test_inits(field, args):
     ],
 )
 def test_bad_inits(field, args):
-    build = getattr(Quat, field)
+    build = getattr(Quaternion, field)
     with pytest.raises(TypeError):
         v = build(*args)
 
 
 def test_repr():
-    v = Quat(1.0, 2.0, 3.0, 4.0)
-    assert repr(v) == "<Quat(x=1.0, y=2.0, z=3.0, w=4.0)>"
+    v = Quaternion(1.0, 2.0, 3.0, 4.0)
+    assert repr(v) == "<Quaternion(x=1.0, y=2.0, z=3.0, w=4.0)>"
 
 
 @pytest.mark.parametrize(
@@ -59,7 +59,7 @@ def test_instantiate(args):
     # Can build it with int or float or nothing
     msg_tmpl = "%s vs (expected) %s (args=%s)"
     args, expected_x, expected_y, expected_z, expected_w = args
-    v = Quat(*args)
+    v = Quaternion(*args)
     assert pytest.approx(v.x) == expected_x, msg_tmpl % (v.x, expected_x, args)
     assert pytest.approx(v.y) == expected_y, msg_tmpl % (v.y, expected_y, args)
     assert pytest.approx(v.z) == expected_z, msg_tmpl % (v.z, expected_z, args)
@@ -68,21 +68,21 @@ def test_instantiate(args):
 
 def test_bad_instantiate():
     with pytest.raises(TypeError):
-        Quat("a", 2, 3, 4)
+        Quaternion("a", 2, 3, 4)
     with pytest.raises(TypeError):
-        Quat(1, "b", 2, 4)
+        Quaternion(1, "b", 2, 4)
     with pytest.raises(TypeError):
-        Quat(1, 2, "c", 4)
+        Quaternion(1, 2, "c", 4)
     with pytest.raises(TypeError):
-        Quat(1, 2, 3, "d")
+        Quaternion(1, 2, 3, "d")
     with pytest.raises(TypeError):
-        Quat(None, 2, 3, 4)
+        Quaternion(None, 2, 3, 4)
     with pytest.raises(TypeError):
-        Quat(1, None, 2, 4)
+        Quaternion(1, None, 2, 4)
     with pytest.raises(TypeError):
-        Quat(1, 2, None, 4)
+        Quaternion(1, 2, None, 4)
     with pytest.raises(TypeError):
-        Quat(1, 2, 3, None)
+        Quaternion(1, 2, 3, None)
 
 
 @pytest.mark.parametrize(
@@ -90,20 +90,20 @@ def test_bad_instantiate():
     [
         ["length", float, ()],
         ["length_squared", float, ()],
-        ["normalized", Quat, ()],
+        ["normalized", Quaternion, ()],
         ["is_normalized", bool, ()],
-        ["inverse", Quat, ()],
-        ["dot", float, (Quat(),)],
+        ["inverse", Quaternion, ()],
+        ["dot", float, (Quaternion(),)],
         ["xform", Vector3, (Vector3(),)],
-        ["slerp", Quat, (Quat(), 1.0)],
-        ["slerpni", Quat, (Quat(), 1.0)],
-        ["cubic_slerp", Quat, (Quat(), Quat(), Quat(), 1.0)],
+        ["slerp", Quaternion, (Quaternion(), 1.0)],
+        ["slerpni", Quaternion, (Quaternion(), 1.0)],
+        ["cubic_slerp", Quaternion, (Quaternion(), Quaternion(), Quaternion(), 1.0)],
         ["set_axis_angle", type(None), (Vector3(1, 2, 3), 3.3)],
     ],
     ids=lambda x: x[0],
 )
 def test_methods(field, ret_type, params):
-    v = Quat()
+    v = Quaternion()
     # Don't test methods' validity but bindings one
     assert hasattr(v, field)
     method = getattr(v, field)
@@ -116,7 +116,7 @@ def test_methods(field, ret_type, params):
     "field,ret_type", [("x", float), ("y", float), ("z", float), ("w", float)], ids=lambda x: x[0]
 )
 def test_properties(field, ret_type):
-    v = Quat()
+    v = Quaternion()
     assert hasattr(v, field)
     field_val = getattr(v, field)
     assert type(field_val) == ret_type
@@ -141,13 +141,13 @@ def test_properties(field, ret_type):
     ids=lambda x: x[0],
 )
 def test_bad_properties(field, bad_value):
-    v = Quat()
+    v = Quaternion()
     with pytest.raises(TypeError):
         setattr(v, field, bad_value)
 
 
 def test_unary():
-    v = Quat(1, 2, 3, 4)
+    v = Quaternion(1, 2, 3, 4)
     v2 = -v
     assert v2.x == -1
     assert v2.y == -2
@@ -158,7 +158,7 @@ def test_unary():
     assert v3.y == 2
     assert v3.z == 3
     assert v3.w == 4
-    v = Quat(1.5, 2.5, 3.5, 4.5)
+    v = Quaternion(1.5, 2.5, 3.5, 4.5)
     v2 = -v
     assert v2.x == -1.5
     assert v2.y == -2.5
@@ -174,89 +174,89 @@ def test_unary():
 @pytest.mark.parametrize(
     "param,result",
     [
-        (Quat(0, 0, 0, 0), Quat(2, 3, 4, 5)),
-        (Quat(4, 3, 2, 1), Quat(6, 6, 6, 6)),
-        (Quat(-4, -3, -2, -1), Quat(-2, -0, 2, 4)),
+        (Quaternion(0, 0, 0, 0), Quaternion(2, 3, 4, 5)),
+        (Quaternion(4, 3, 2, 1), Quaternion(6, 6, 6, 6)),
+        (Quaternion(-4, -3, -2, -1), Quaternion(-2, -0, 2, 4)),
     ],
     ids=lambda x: x[0],
 )
 def test_add(param, result):
-    calc = Quat(2, 3, 4, 5) + param
+    calc = Quaternion(2, 3, 4, 5) + param
     assert calc == result
 
 
 @pytest.mark.parametrize(
     "param,result",
     [
-        (Quat(0, 0, 0, 0), Quat(2, 3, 4, 5)),
-        (Quat(5, 4, 3, 2), Quat(-3, -1, 1, 3)),
-        (Quat(-1, -1, -1, -1), Quat(3, 4, 5, 6)),
+        (Quaternion(0, 0, 0, 0), Quaternion(2, 3, 4, 5)),
+        (Quaternion(5, 4, 3, 2), Quaternion(-3, -1, 1, 3)),
+        (Quaternion(-1, -1, -1, -1), Quaternion(3, 4, 5, 6)),
     ],
     ids=lambda x: x[0],
 )
 def test_sub(param, result):
-    calc = Quat(2, 3, 4, 5) - param
+    calc = Quaternion(2, 3, 4, 5) - param
     assert calc == result
 
 
 @pytest.mark.parametrize("arg", [None, 1, "dummy"], ids=lambda x: x[0])
 def test_bad_add(arg):
     with pytest.raises(TypeError):
-        Quat(2, 3, 4, 5) + arg
+        Quaternion(2, 3, 4, 5) + arg
 
 
 @pytest.mark.parametrize("arg", [None, 1, "dummy"], ids=lambda x: x[0])
 def test_bad_sub(arg):
     with pytest.raises(TypeError):
-        Quat(2, 3, 4, 5) - arg
+        Quaternion(2, 3, 4, 5) - arg
 
 
-@pytest.mark.parametrize("arg", [None, "dummy", Quat(1, 1, 1, 1)], ids=lambda x: x[0])
+@pytest.mark.parametrize("arg", [None, "dummy", Quaternion(1, 1, 1, 1)], ids=lambda x: x[0])
 def test_bad_div(arg):
     with pytest.raises(TypeError):
-        Quat(2, 3, 4, 5) / arg
+        Quaternion(2, 3, 4, 5) / arg
 
 
 def test_zero_div():
     with pytest.raises(ZeroDivisionError):
-        Quat(2, 3, 4, 5) / 0
+        Quaternion(2, 3, 4, 5) / 0
 
 
 @pytest.mark.parametrize("arg", [None, "dummy"], ids=lambda x: x[0])
 def test_bad_mul(arg):
     with pytest.raises(TypeError):
-        Quat(2, 3, 4, 5) * arg
+        Quaternion(2, 3, 4, 5) * arg
 
 
 @pytest.mark.parametrize(
     "param,result",
-    [(0, Quat(0, 0, 0, 0)), (1, Quat(2, 3, 4, 5)), (2.5, Quat(5, 7.5, 10, 12.5))],
+    [(0, Quaternion(0, 0, 0, 0)), (1, Quaternion(2, 3, 4, 5)), (2.5, Quaternion(5, 7.5, 10, 12.5))],
     ids=lambda x: x[0],
 )
 def test_mul(param, result):
-    calc = Quat(2, 3, 4, 5) * param
+    calc = Quaternion(2, 3, 4, 5) * param
     assert calc == result
 
 
 @pytest.mark.parametrize(
     "param,result",
-    [(1, Quat(2, 3, 4, 5)), (0.5, Quat(4, 6, 8, 10)), (2, Quat(1, 1.5, 2, 2.5))],
+    [(1, Quaternion(2, 3, 4, 5)), (0.5, Quaternion(4, 6, 8, 10)), (2, Quaternion(1, 1.5, 2, 2.5))],
     ids=lambda x: x[0],
 )
 def test_div(param, result):
-    calc = Quat(2, 3, 4, 5) / param
+    calc = Quaternion(2, 3, 4, 5) / param
     assert calc == result
 
 
 def test_equal():
-    arr = Quat(0.1, 1, 2, 3)
-    other = Quat(0.1, 1, 2, 3)
+    arr = Quaternion(0.1, 1, 2, 3)
+    other = Quaternion(0.1, 1, 2, 3)
     assert arr == other
-    bad = Quat(0.1, 1, 2, 4)
+    bad = Quaternion(0.1, 1, 2, 4)
     assert not arr == bad  # Force use of __eq__
 
 
-@pytest.mark.parametrize("arg", [None, 0, "foo", Quat(0.1, 1, 2, 4)])
+@pytest.mark.parametrize("arg", [None, 0, "foo", Quaternion(0.1, 1, 2, 4)])
 def test_bad_equal(arg):
-    arr = Quat(0.1, 1, 2, 3)
+    arr = Quaternion(0.1, 1, 2, 3)
     assert arr != arg

@@ -17,7 +17,7 @@ from pandemonium.builtins cimport (
     Vector3,
     Transform2D,
     Plane,
-    Quat,
+    Quaternion,
     AABB,
     Basis,
     Transform,
@@ -51,7 +51,7 @@ GD_PY_TYPES = (
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR3, Vector3),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_TRANSFORM2D, Transform2D),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_PLANE, Plane),
-    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_QUAT, Quat),
+    (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_QUATERNION, Quaternion),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_AABB, AABB),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_BASIS, Basis),
     (pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_TRANSFORM, Transform),
@@ -143,7 +143,7 @@ cdef object pandemonium_variant_to_pyobj(const pandemonium_variant *p_gdvar):
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_PLANE:
         return _pandemonium_variant_to_pyobj_plane(p_gdvar)
 
-    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_QUAT:
+    elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_QUATERNION:
         return _pandemonium_variant_to_pyobj_quat(p_gdvar)
 
     elif gdtype == pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_AABB:
@@ -241,8 +241,8 @@ cdef inline Plane _pandemonium_variant_to_pyobj_plane(const pandemonium_variant 
     return ret
 
 
-cdef inline Quat _pandemonium_variant_to_pyobj_quat(const pandemonium_variant *p_gdvar):
-    cdef Quat ret = Quat.__new__(Quat)
+cdef inline Quaternion _pandemonium_variant_to_pyobj_quat(const pandemonium_variant *p_gdvar):
+    cdef Quaternion ret = Quaternion.__new__(Quaternion)
     ret._gd_data = gdapi10.pandemonium_variant_as_quat(p_gdvar)
     return ret
 
@@ -357,8 +357,8 @@ cdef bint pyobj_to_pandemonium_variant(object pyobj, pandemonium_variant *p_var)
         gdapi10.pandemonium_variant_new_vector3(p_var, &(<Vector3>pyobj)._gd_data)
     elif isinstance(pyobj, Plane):
         gdapi10.pandemonium_variant_new_plane(p_var, &(<Plane>pyobj)._gd_data)
-    elif isinstance(pyobj, Quat):
-        gdapi10.pandemonium_variant_new_quat(p_var, &(<Quat>pyobj)._gd_data)
+    elif isinstance(pyobj, Quaternion):
+        gdapi10.pandemonium_variant_new_quat(p_var, &(<Quaternion>pyobj)._gd_data)
     elif isinstance(pyobj, AABB):
         gdapi10.pandemonium_variant_new_aabb(p_var, &(<AABB>pyobj)._gd_data)
     elif isinstance(pyobj, Basis):

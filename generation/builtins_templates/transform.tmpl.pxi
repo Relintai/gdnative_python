@@ -33,7 +33,7 @@ cdef class Transform:
         return ret
 
     @staticmethod
-    def from_quat(Quat quat not None):
+    def from_quat(Quaternion quat not None):
         cdef Transform ret = Transform.__new__(Transform)
         {{ force_mark_rendered("pandemonium_transform_new_with_quat") }}
         gdapi11.pandemonium_transform_new_with_quat(&ret._gd_data, &quat._gd_data)

@@ -39,10 +39,10 @@ cdef class Basis:
             pass
         try:
             {{ force_mark_rendered("pandemonium_basis_new_with_euler_quat") }}
-            gdapi10.pandemonium_basis_new_with_euler_quat(&ret._gd_data, &(<Quat?>from_)._gd_data)
+            gdapi10.pandemonium_basis_new_with_euler_quat(&ret._gd_data, &(<Quaternion?>from_)._gd_data)
             return ret
         except TypeError:
-            raise TypeError('`from_` must be Quat or Vector3')
+            raise TypeError('`from_` must be Quaternion or Vector3')
 
     @staticmethod
     def from_axis_angle(Vector3 axis not None, phi):

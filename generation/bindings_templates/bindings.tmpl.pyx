@@ -75,7 +75,7 @@ class VariantType(IntFlag):
     VECTOR3 = pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_VECTOR3
     TRANSFORM2D = pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_TRANSFORM2D
     PLANE = pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_PLANE
-    QUAT = pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_QUAT
+    QUATERNION = pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_QUATERNION
     AABB = pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_AABB
     BASIS = pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_BASIS
     TRANSFORM = pandemonium_variant_type.PANDEMONIUM_VARIANT_TYPE_TRANSFORM
