@@ -117,11 +117,11 @@ cdef class Basis:
     {{ render_method("scaled") | indent }}
     {{ render_method("get_scale") | indent }}
     {{ render_method("get_euler") | indent }}
-    {{ render_method("get_quat") | indent }}
-    {{ render_method("set_quat") | indent }}
+    {{ render_method("get_quaternion") | indent }}
+    {{ render_method("set_quaternion") | indent }}
     {{ render_method("set_axis_angle_scale") | indent }}
     {{ render_method("set_euler_scale") | indent }}
-    {{ render_method("set_quat_scale") | indent }}
+    {{ render_method("set_quaternion_scale") | indent }}
     {{ render_method("tdotx") | indent }}
     {{ render_method("tdoty") | indent }}
     {{ render_method("tdotz") | indent }}

@@ -52,8 +52,6 @@ cdef class AABB:
     {{ render_operator_eq() | indent }}
     {{ render_operator_ne() | indent }}
     {{ render_method("as_string") | indent }}
-    {{ render_method("get_area") | indent }}
-    {{ render_method("has_no_area") | indent }}
     {{ render_method("has_no_surface") | indent }}
     {{ render_method("intersects") | indent }}
     {{ render_method("encloses") | indent }}

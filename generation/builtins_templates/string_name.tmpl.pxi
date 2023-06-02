@@ -29,16 +29,16 @@ cdef class StringName:
         gdapi10.pandemonium_string_name_destroy(&self._gd_data)
 
     def __repr__(StringName self):
-        return f"<StringName({self.as_string()})>"
+        return f"<StringName({self.get_name()})>"
 
     def __str__(StringName self):
-        return str(self.as_string())
+        return str(self.get_name())
 
     {{ render_operator_eq() | indent }}
     {{ render_operator_ne() | indent }}
 
     {{ render_method("destroy") | indent }}
-    {{ render_method("as_string") | indent }}
+    {{ render_method("get_name") | indent }}
 {% endblock %}
 
 {%- block python_consts %}

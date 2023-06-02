@@ -107,7 +107,7 @@ cdef class Vector2:
     {{ render_method("bounce") | indent }}
     {{ render_method("reflect") | indent }}
     {{ render_method("abs") | indent }}
-    {{ render_method("clamped") | indent }}
+    {{ render_method("limit_length") | indent }}
 {% endblock %}
 
 {%- block python_consts %}
