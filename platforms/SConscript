@@ -16,7 +16,7 @@ def resolve_pandemonium_download_url(major, minor, patch, extra, platform):
     #    return f"https://downloads.tuxfamily.org/godotengine/{version}/Pandemonium_v{version}-{extra}_{platform}.zip"
     #else:
     #   return f"https://downloads.tuxfamily.org/godotengine/{version}/{extra}/Pandemonium_v{version}-{extra}_{platform}.zip"
-    returnf ""
+    return ""
 
 
 def resolve_pandemonium_binary_name(major, minor, patch, extra, platform):
