@@ -21,6 +21,8 @@ STDLIB_INCLUDES = {
         "int32_t",
         "uint64_t",
         "int64_t",
+        "uint_least16_t",
+        "uint_least32_t"
     ],
     "wchar.h": ["wchar_t", "size_t"],
     "uchar.h": [
@@ -368,6 +370,9 @@ if __name__ == "__main__":
 
 from libc.stddef cimport wchar_t, size_t
 from libc.stdint cimport {', '.join(STDLIB_INCLUDES['stdint.h'])}
+
+ctypedef uint_least16_t char16_t
+ctypedef uint_least32_t char32_t
 
 cdef extern from "{header_name}" nogil:
 
