@@ -1,22 +1,22 @@
 import builtins
 import enum
 
-from godot._hazmat.gdnative_api_struct cimport (
+from pandemonium._hazmat.gdnative_api_struct cimport (
     pandemonium_method_rpc_mode,
     pandemonium_property_usage_flags,
     pandemonium_method_rpc_mode,
     pandemonium_property_hint,
     pandemonium_variant,
 )
-from godot._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
-from godot._hazmat.conversion cimport (
+from pandemonium._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
+from pandemonium._hazmat.conversion cimport (
     is_pytype_compatible_with_pandemonium_variant,
     pyobj_to_pandemonium_variant,
     pandemonium_variant_to_pyobj,
 )
-from godot._hazmat.internal cimport get_exposed_class, set_exposed_class
-from godot.builtins cimport Array, Dictionary, GDString
-from godot.bindings cimport Object, Resource
+from pandemonium._hazmat.internal cimport get_exposed_class, set_exposed_class
+from pandemonium.builtins cimport Array, Dictionary, GDString
+from pandemonium.bindings cimport Object, Resource
 
 
 # Make Godot enums accesible from Python at runtime
@@ -250,7 +250,7 @@ def export(
 
     usage::
         @exposed
-        class CustomObject(godot.bindings.Object):
+        class CustomObject(pandemonium.bindings.Object):
             a = export(str)  # Expose attribute
             b = export(int, default=42)
 
@@ -284,13 +284,13 @@ def exposed(cls=None, tool=False):
     usage::
 
         @exposed
-        class CustomObject(godot.bindings.Object):
+        class CustomObject(pandemonium.bindings.Object):
             pass
     """
     def wrapper(cls):
         if not issubclass(cls, Object):
             raise ValueError(
-                f"{cls!r} must inherit from a Godot (e.g. `godot.bindings.Node`) "
+                f"{cls!r} must inherit from a Godot (e.g. `pandemonium.bindings.Node`) "
                 "class to be marked as @exposed"
             )
 

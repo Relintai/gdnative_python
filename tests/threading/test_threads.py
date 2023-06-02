@@ -1,7 +1,7 @@
 import pytest
 from threading import Thread
 
-from godot import Vector3, SurfaceTool, Mesh, MeshInstance
+from pandemonium import Vector3, SurfaceTool, Mesh, MeshInstance
 
 
 def test_simple_thread():

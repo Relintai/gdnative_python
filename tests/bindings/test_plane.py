@@ -1,6 +1,6 @@
 import pytest
 
-from godot import Vector3, Plane
+from pandemonium import Vector3, Plane
 
 
 def test_init():

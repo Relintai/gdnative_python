@@ -1,6 +1,6 @@
 import pytest
 
-from godot import ResourceLoader
+from pandemonium import ResourceLoader
 
 import pymain
 

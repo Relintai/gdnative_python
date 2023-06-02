@@ -1,7 +1,7 @@
 import sys
 import pytest
 
-from godot import GDString
+from pandemonium import GDString
 
 
 def test_base():

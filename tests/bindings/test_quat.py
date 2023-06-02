@@ -1,6 +1,6 @@
 import pytest
 
-from godot import Basis, Quat, Vector3
+from pandemonium import Basis, Quat, Vector3
 
 
 def test_base():

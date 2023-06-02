@@ -1,4 +1,4 @@
-from godot import exposed, EditorPlugin, ProjectSettings, ResourceLoader
+from pandemonium import exposed, EditorPlugin, ProjectSettings, ResourceLoader
 
 
 BASE_RES = str(ProjectSettings.localize_path(__file__)).rsplit("/", 1)[0]

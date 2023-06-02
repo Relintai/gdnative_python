@@ -4,12 +4,12 @@
 cimport cython
 from libc.stdint cimport uintptr_t
 
-from godot._hazmat.gdapi cimport (
+from pandemonium._hazmat.gdapi cimport (
     pythonscript_gdapi10 as gdapi10,
     pythonscript_gdapi11 as gdapi11,
     pythonscript_gdapi12 as gdapi12,
 )
-from godot._hazmat.gdnative_api_struct cimport (
+from pandemonium._hazmat.gdnative_api_struct cimport (
 {% for t in types %}
 	{{ t.gd_value }},
 	{{ t.gd_pool }},
@@ -17,7 +17,7 @@ from godot._hazmat.gdnative_api_struct cimport (
 	{{ t.gd_pool }}_read_access,
 {% endfor %}
 )
-from godot.builtins cimport (
+from pandemonium.builtins cimport (
 	Array,
 {% for t in types %}
 {% if not t.is_base_type %}

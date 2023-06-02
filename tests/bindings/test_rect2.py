@@ -1,6 +1,6 @@
 import pytest
 
-from godot import Rect2, Vector2
+from pandemonium import Rect2, Vector2
 
 
 def test_base():

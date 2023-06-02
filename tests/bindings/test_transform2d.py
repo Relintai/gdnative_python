@@ -1,6 +1,6 @@
 import pytest
 
-from godot import Transform2D, Vector2, Rect2
+from pandemonium import Transform2D, Vector2, Rect2
 
 
 def test_init():

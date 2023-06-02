@@ -1,8 +1,8 @@
 from libc.stddef cimport wchar_t
 from libc.stdio cimport printf
 
-from godot._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
-from godot._hazmat.gdnative_api_struct cimport (
+from pandemonium._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
+from pandemonium._hazmat.gdnative_api_struct cimport (
     pandemonium_string,
     pandemonium_string_name,
     pandemonium_int,
@@ -10,8 +10,8 @@ from godot._hazmat.gdnative_api_struct cimport (
     pandemonium_variant,
     pandemonium_variant_type,
 )
-from godot.bindings cimport Object
-from godot.builtins cimport (
+from pandemonium.bindings cimport Object
+from pandemonium.builtins cimport (
     Vector2,
     Rect2,
     Vector3,
@@ -278,7 +278,7 @@ cdef inline RID _pandemonium_variant_to_pyobj_rid(const pandemonium_variant *p_g
 
 
 cdef inline Object _pandemonium_variant_to_pyobj_object(const pandemonium_variant *p_gdvar):
-    # TODO: This conversion relies on godot String and lookup into bindings
+    # TODO: This conversion relies on pandemonium String and lookup into bindings
     # modules, wouldn't it be better to create a `ObjectFromVariant` lazy
     # class instead ?
     return Object.cast_from_variant(p_gdvar)

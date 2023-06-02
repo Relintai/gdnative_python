@@ -1,15 +1,15 @@
 import traceback
 
-from godot import Node, exposed, export
+from pandemonium import Node, exposed, export
 
 try:
-    from godot.globals import global_gd, global_py
+    from pandemonium.globals import global_gd, global_py
 
     global_import_outcome = "ok"
 except Exception as exc:
     traceback.print_exc()
     global_import_outcome = (
-        f"Error doing `from godot.globals import global_gd, global_py` at module level: {exc!r}"
+        f"Error doing `from pandemonium.globals import global_gd, global_py` at module level: {exc!r}"
     )
 
 
@@ -41,17 +41,17 @@ class access_from_python(Node):
                 return
             node.set_accessed("Python")
 
-        # Also test accessing from `godot.globals` module
+        # Also test accessing from `pandemonium.globals` module
         if global_import_outcome != "ok":
             self.outcome = global_import_outcome
             return
 
-        from godot import globals as pandemonium_globals
+        from pandemonium import globals as pandemonium_globals
 
         pandemonium_globals_dir = dir(pandemonium_globals)
         expected_pandemonium_globals_dir = ["global_gd", "global_py"]
         if pandemonium_globals_dir != expected_pandemonium_globals_dir:
-            self.outcome = f"Invalid `dir(godot.globals)` (expected: `{expected_pandemonium_globals_dir}`, got `{pandemonium_globals_dir}`)"
+            self.outcome = f"Invalid `dir(pandemonium.globals)` (expected: `{expected_pandemonium_globals_dir}`, got `{pandemonium_globals_dir}`)"
             return
         for name, type in (("global_py", "Python"), ("global_gd", "GDScript")):
             node_from_globals = getattr(pandemonium_globals, name)

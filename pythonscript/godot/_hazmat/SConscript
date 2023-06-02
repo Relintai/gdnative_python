@@ -12,10 +12,10 @@ pxds = [
     )
 ]
 env.AppendUnique(CYTHON_DEPS=pxds)
-env.Install("$DIST_SITE_PACKAGES/godot/_hazmat", pxds)
+env.Install("$DIST_SITE_PACKAGES/pandemonium/_hazmat", pxds)
 
 
-### Generate godot api .h -> gdnative_api_struct.pxd ###
+### Generate pandemonium api .h -> gdnative_api_struct.pxd ###
 
 
 gdnative_api_struct_pxd = env.Command(
@@ -28,6 +28,6 @@ gdnative_api_struct_pxd = env.Command(
 ### Cython modules ###
 
 
-env.Install("$DIST_SITE_PACKAGES/godot/_hazmat", env.CythonModule("conversion", "conversion.pyx"))
+env.Install("$DIST_SITE_PACKAGES/pandemonium/_hazmat", env.CythonModule("conversion", "conversion.pyx"))
 
-env.Install("$DIST_SITE_PACKAGES/godot/_hazmat", env.CythonModule("internal", "internal.pyx"))
+env.Install("$DIST_SITE_PACKAGES/pandemonium/_hazmat", env.CythonModule("internal", "internal.pyx"))

@@ -1,4 +1,4 @@
-from godot._hazmat.gdnative_api_struct cimport (
+from pandemonium._hazmat.gdnative_api_struct cimport (
     pandemonium_gdnative_core_api_struct,
     pandemonium_gdnative_core_1_1_api_struct,
     pandemonium_gdnative_core_1_2_api_struct,

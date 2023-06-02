@@ -4,7 +4,7 @@ from random import Random
 from inspect import isfunction
 from functools import partial
 
-from godot import (
+from pandemonium import (
     Array,
     Vector2,
     Vector3,

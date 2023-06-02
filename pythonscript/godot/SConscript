@@ -14,11 +14,11 @@ pxds = [
         "pool_arrays.pxd",
     )
 ]
-env.Install("$DIST_SITE_PACKAGES/godot", [File("_version.py"), File("globals.py"), *pxds])
+env.Install("$DIST_SITE_PACKAGES/pandemonium", [File("_version.py"), File("globals.py"), *pxds])
 env.AppendUnique(CYTHON_DEPS=pxds)
 
 
-env.Install("$DIST_SITE_PACKAGES/godot", env.CythonModule("tags", "tags.pyx"))
+env.Install("$DIST_SITE_PACKAGES/pandemonium", env.CythonModule("tags", "tags.pyx"))
 
 
 ### Builtins ###
@@ -49,8 +49,8 @@ env.Depends(
 env.Depends(pandemonium_builtins_srcs, pandemonium_pool_arrays_srcs)
 
 
-env.Install("$DIST_SITE_PACKAGES/godot", env.CythonModule("pool_arrays", "pool_arrays.pyx"))
-env.Install("$DIST_SITE_PACKAGES/godot", env.CythonModule("builtins", "builtins.pyx"))
+env.Install("$DIST_SITE_PACKAGES/pandemonium", env.CythonModule("pool_arrays", "pool_arrays.pyx"))
+env.Install("$DIST_SITE_PACKAGES/pandemonium", env.CythonModule("builtins", "builtins.pyx"))
 
 
 ### Bindings ###
@@ -95,6 +95,6 @@ bindings_env.Depends(
 
 
 bindings_env.Install(
-    "$DIST_SITE_PACKAGES/godot", bindings_env.CythonModule("bindings", "bindings.pyx")
+    "$DIST_SITE_PACKAGES/pandemonium", bindings_env.CythonModule("bindings", "bindings.pyx")
 )
-bindings_env.Install("$DIST_SITE_PACKAGES/godot", "bindings.pyi")
+bindings_env.Install("$DIST_SITE_PACKAGES/pandemonium", "bindings.pyi")

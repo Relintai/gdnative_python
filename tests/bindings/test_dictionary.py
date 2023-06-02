@@ -1,7 +1,7 @@
 import pytest
 import json
 
-from godot import Dictionary, Vector2, Array, GDString, Node, Resource, OS
+from pandemonium import Dictionary, Vector2, Array, GDString, Node, Resource, OS
 
 
 def test_base():

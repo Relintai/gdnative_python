@@ -42,7 +42,7 @@ class CCCP:
 
     In the end remember that we are not compiling a C program, but creating a
     .pxd file that will (in conjuction with a .pyx) be used to generate a .c
-    file that will include the godot api headers. So there is no need to handle
+    file that will include the pandemonium api headers. So there is no need to handle
     platform specific (or even opaque structure size !) detail here: they will
     be ignored by cython and left to the final C compilation.
     """

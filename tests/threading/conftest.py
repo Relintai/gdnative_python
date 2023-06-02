@@ -1,6 +1,6 @@
 import pytest
 
-from godot import OS, Node, Reference
+from pandemonium import OS, Node, Reference
 
 
 __global_objs = []

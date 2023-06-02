@@ -1,4 +1,4 @@
-from godot import exposed, InputEventKey, KEY_UP, KEY_DOWN, LineEdit
+from pandemonium import exposed, InputEventKey, KEY_UP, KEY_DOWN, LineEdit
 
 
 @exposed(tool=True)

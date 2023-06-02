@@ -1,7 +1,7 @@
 import os
 import pytest
 
-from godot import exposed, Node, OS
+from pandemonium import exposed, Node, OS
 
 
 __current_node = None
@@ -35,5 +35,5 @@ class Main(Node):
         print(f"running `pytest {' '.join(pytest_args)}`")
         if pytest.main(pytest_args):
             OS.set_exit_code(1)
-        # Exit godot
+        # Exit pandemonium
         self.get_tree().quit()

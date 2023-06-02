@@ -13,7 +13,7 @@ EnsureSConsVersion(3, 0)
 def extract_version():
     # Hold my beer...
     gl = {}
-    exec(open("pythonscript/godot/_version.py").read(), gl)
+    exec(open("pythonscript/pandemonium/_version.py").read(), gl)
     return gl["__version__"]
 
 
@@ -47,7 +47,7 @@ vars.Add(
 )
 vars.Add("pytest_args", "Pytest arguments passed to tests functions", "")
 vars.Add(
-    "pandemonium_args", "Additional arguments passed to godot binary when running tests&examples", ""
+    "pandemonium_args", "Additional arguments passed to pandemonium binary when running tests&examples", ""
 )
 vars.Add("release_suffix", "Suffix to add to the release archive", extract_version())
 vars.Add(
@@ -226,9 +226,9 @@ def generate_release(target, source, env):
 
 # Zip format doesn't support symlinks that are needed for Linux&macOS
 if env["platform"].startswith("windows"):
-    release_target = "build/godot-python-${release_suffix}-${platform}.zip"
+    release_target = "build/pandemonium-python-${release_suffix}-${platform}.zip"
 else:
-    release_target = "build/godot-python-${release_suffix}-${platform}.tar.bz2"
+    release_target = "build/pandemonium-python-${release_suffix}-${platform}.tar.bz2"
 release = env.Command(release_target, env["DIST_ROOT"], generate_release)
 env.Alias("release", release)
 env.AlwaysBuild("release")

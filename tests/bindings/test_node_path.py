@@ -1,6 +1,6 @@
 import pytest
 
-from godot import Vector3, NodePath, GDString
+from pandemonium import Vector3, NodePath, GDString
 
 
 def test_init():

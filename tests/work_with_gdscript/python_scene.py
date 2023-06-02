@@ -1,4 +1,4 @@
-from godot import exposed, export, Node2D
+from pandemonium import exposed, export, Node2D
 
 
 @exposed

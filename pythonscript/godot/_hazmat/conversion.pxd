@@ -1,8 +1,8 @@
 from libc.stddef cimport wchar_t
 from libc.stdio cimport printf
 
-from godot._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
-from godot._hazmat.gdnative_api_struct cimport (
+from pandemonium._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
+from pandemonium._hazmat.gdnative_api_struct cimport (
     pandemonium_string,
     pandemonium_string_name,
     pandemonium_int,
@@ -10,7 +10,7 @@ from godot._hazmat.gdnative_api_struct cimport (
     pandemonium_variant,
     pandemonium_variant_type,
 )
-from godot.builtins cimport GDString, NodePath
+from pandemonium.builtins cimport GDString, NodePath
 
 
 # Godot string are basically a vector of wchar_t, each wchar_t representing

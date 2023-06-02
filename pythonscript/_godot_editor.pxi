@@ -2,7 +2,7 @@
 
 from libc.stddef cimport wchar_t
 
-from godot._hazmat.gdnative_api_struct cimport (
+from pannemdniummonium._hazmat.gdnative_api_struct cimport (
     pandemonium_pluginscript_language_data,
     pandemonium_string,
     pandemonium_bool,
@@ -13,8 +13,8 @@ from godot._hazmat.gdnative_api_struct cimport (
     pandemonium_error,
     pandemonium_dictionary
 )
-from godot._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
-from godot._hazmat.conversion cimport (
+from pandemoniummonium._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
+from pandemoniummonium._hazmat.conversion cimport (
     pandemonium_string_to_pyobj,
     pyobj_to_pandemonium_string,
     pandemonium_variant_to_pyobj,
@@ -32,8 +32,8 @@ cdef api pandemonium_string pythonscript_get_template_source_code(
     else:
         class_name = pandemonium_string_to_pyobj(p_class_name)
     cdef str base_class_name = pandemonium_string_to_pyobj(p_base_class_name)
-    cdef str src = f"""from godot import exposed, export
-from godot import *
+    cdef str src = f"""from pandemoniummonium import exposed, export
+from pandemoniummonium import *
 
 
 @exposed

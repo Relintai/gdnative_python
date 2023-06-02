@@ -3,7 +3,7 @@
 from libc.stddef cimport wchar_t
 from cpython cimport Py_INCREF, Py_DECREF, PyObject
 
-from godot._hazmat.gdnative_api_struct cimport (
+from pandemoniummonium._hazmat.gdnative_api_struct cimport (
     pandemonium_string,
     pandemonium_string_name,
     pandemonium_bool,
@@ -18,8 +18,8 @@ from godot._hazmat.gdnative_api_struct cimport (
     pandemonium_variant_call_error_error,
     pandemonium_variant_type,
 )
-from godot._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
-from godot._hazmat.conversion cimport (
+from pandemoniummonium._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
+from pandemoniummonium._hazmat.conversion cimport (
     pandemonium_variant_to_pyobj,
     pyobj_to_pandemonium_variant,
     pandemonium_string_name_to_pyobj,

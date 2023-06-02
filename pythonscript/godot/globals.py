@@ -1,4 +1,4 @@
-from _godot import __global_constants
+from _pandemonium import __global_constants
 
 
 def __getattr__(name):

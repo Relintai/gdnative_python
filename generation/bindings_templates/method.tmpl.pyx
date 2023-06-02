@@ -110,7 +110,7 @@ with nogil:
 # It's important to initialize this pointer to null given
 # in case of Reference, Godot will try to decrease the
 # refcount if the pointer is valid !
-# (see https://github.com/godotengine/godot/issues/35609)
+# (see https://github.com/pandemoniumengine/pandemonium/issues/35609)
 cdef pandemonium_object *{{ retval }} = NULL
 {% set retval_as_arg = "&{}".format(retval) %}
 {% elif method.return_type.c_type == "pandemonium_variant" %}

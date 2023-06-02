@@ -5,8 +5,8 @@ from collections import deque
 from threading import Thread, Lock, Event
 from queue import SimpleQueue
 
-from _godot import StdoutStderrCaptureToGodot, StdinCapture
-from godot import exposed, export, ResourceLoader, VBoxContainer
+from _pandemonium import StdoutStderrCaptureToGodot, StdinCapture
+from pandemonium import exposed, export, ResourceLoader, VBoxContainer
 
 from .plugin import BASE_RES
 

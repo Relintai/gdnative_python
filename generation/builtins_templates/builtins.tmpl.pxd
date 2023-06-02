@@ -3,8 +3,8 @@
 
 cimport cython
 
-from godot._hazmat.gdnative_api_struct cimport *
-from godot.pool_arrays cimport (
+from pandemonium._hazmat.gdnative_api_struct cimport *
+from pandemonium.pool_arrays cimport (
     PoolIntArray,
     PoolRealArray,
     PoolByteArray,

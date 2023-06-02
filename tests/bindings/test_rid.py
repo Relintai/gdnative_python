@@ -1,6 +1,6 @@
 import pytest
 
-from godot import RID, Environment, Node, OS
+from pandemonium import RID, Environment, Node, OS
 
 
 @pytest.fixture

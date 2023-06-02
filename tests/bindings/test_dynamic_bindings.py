@@ -1,6 +1,6 @@
 # import pytest
 
-# from godot.bindings import (
+# from pandemonium.bindings import (
 #     Object,
 #     Node,
 #     Viewport,

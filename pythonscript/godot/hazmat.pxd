@@ -1,8 +1,8 @@
 # Public low-level APIs are exposed here
 
-from godot._hazmat cimport gdnative_api_struct
+from pandemoniummonium._hazmat cimport gdnative_api_struct
 # Re-expose Godot API with better names
-from godot._hazmat.gdapi cimport (
+from pandemoniummonium._hazmat.gdapi cimport (
     pythonscript_gdapi10 as gdapi10,
     pythonscript_gdapi11 as gdapi11,
     pythonscript_gdapi12 as gdapi12,
@@ -11,7 +11,7 @@ from godot._hazmat.gdapi cimport (
     pythonscript_gdapi_ext_android as gdapi_ext_android,
     pythonscript_gdapi_ext_arvr as gdapi_ext_arvr,
 )
-from godot._hazmat.conversion cimport (
+from pandemonium._hazmat.conversion cimport (
 	pandemonium_string_to_pyobj,
 	pyobj_to_pandemonium_string,
 	pandemonium_variant_to_pyobj,

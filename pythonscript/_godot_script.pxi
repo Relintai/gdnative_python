@@ -4,7 +4,7 @@ import importlib
 
 from cpython.ref cimport PyObject
 
-from godot._hazmat.gdnative_api_struct cimport (
+from pandemoniummonium._hazmat.gdnative_api_struct cimport (
     pandemonium_pluginscript_language_data,
     pandemonium_string,
     pandemonium_bool,
@@ -23,26 +23,26 @@ from godot._hazmat.gdnative_api_struct cimport (
     GODOT_METHOD_FLAG_FROM_SCRIPT,
     GODOT_METHOD_RPC_MODE_DISABLED,
 )
-from godot._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
-from godot._hazmat.conversion cimport (
+from pandemoniummonium._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
+from pandemoniummonium._hazmat.conversion cimport (
     pandemonium_string_to_pyobj,
     pyobj_to_pandemonium_string,
     pyobj_to_pandemonium_string_name,
     pytype_to_pandemonium_type,
 )
-from godot._hazmat.internal cimport (
+from pandemoniummonium._hazmat.internal cimport (
     get_pythonscript_verbose,
     get_exposed_class,
     set_exposed_class,
     destroy_exposed_class,
 )
-from godot.bindings cimport _initialize_bindings, Object
-from godot.builtins cimport Array, Dictionary
+from pandemoniummonium.bindings cimport _initialize_bindings, Object
+from pandemoniummonium.builtins cimport Array, Dictionary
 
 import inspect
 import traceback
 
-from godot.tags import ExportedField, SignalField
+from pandemoniummonium.tags import ExportedField, SignalField
 
 
 cdef inline pandemonium_pluginscript_script_manifest _build_empty_script_manifest():

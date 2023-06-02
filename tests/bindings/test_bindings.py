@@ -2,8 +2,8 @@ import pytest
 from math import inf
 from struct import unpack
 
-import godot
-from godot import (
+import pandemonium
+from pandemonium import (
     Vector3,
     GDString,
     NodePath,
@@ -39,17 +39,17 @@ def test_free_node():
 
 
 def test_expose_contains_constant():
-    assert "OK" in dir(godot)
+    assert "OK" in dir(pandemonium)
     assert OK is not None
 
 
 def test_expose_contains_class():
-    assert "Node" in dir(godot)
+    assert "Node" in dir(pandemonium)
     assert Node is not None
 
 
 def test_expose_contains_builtins():
-    assert "Vector3" in dir(godot)
+    assert "Vector3" in dir(pandemonium)
     assert Vector3 is not None
 
 
@@ -91,7 +91,7 @@ def test_call_none_in_bindings_args(current_node):
         current_node.get_path_to(None)
     assert (
         str(exc.value)
-        == "Argument 'node' has incorrect type (expected godot.bindings.Node, got NoneType)"
+        == "Argument 'node' has incorrect type (expected pandemonium.bindings.Node, got NoneType)"
     )
 
 

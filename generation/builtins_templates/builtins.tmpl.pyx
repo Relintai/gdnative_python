@@ -5,14 +5,14 @@ from typing import Union
 
 cimport cython
 
-from godot._hazmat.gdnative_api_struct cimport *
-from godot._hazmat.gdapi cimport (
+from pandemonium._hazmat.gdnative_api_struct cimport *
+from pandemonium._hazmat.gdapi cimport (
     pythonscript_gdapi10 as gdapi10,
     pythonscript_gdapi11 as gdapi11,
     pythonscript_gdapi12 as gdapi12,
 )
-from godot._hazmat.conversion cimport *
-from godot.pool_arrays cimport (
+from pandemonium._hazmat.conversion cimport *
+from pandemonium.pool_arrays cimport (
     PoolIntArray,
     PoolRealArray,
     PoolByteArray,

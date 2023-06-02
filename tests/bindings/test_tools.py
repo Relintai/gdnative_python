@@ -1,7 +1,7 @@
 # import pytest
 
-# from godot import Array, Dictionary
-# from godot.hazmat.tools import (
+# from pandemonium import Array, Dictionary
+# from pandemonium.hazmat.tools import (
 #     variant_to_pyobj,
 #     pyobj_to_variant,
 #     gdobj_to_pyobj,

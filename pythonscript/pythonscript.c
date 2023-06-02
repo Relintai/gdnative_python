@@ -65,9 +65,9 @@ static PyThreadState *gilstate = NULL;
 
 
 /*
- * Global variables exposing Godot API to the godot.hazmat cython module.
- * Hence we must initialized them before loading `_godot`/`godot` modules
- * (which both depend on `godot.hazmat`).
+ * Global variables exposing Godot API to the pandemonium.hazmat cython module.
+ * Hence we must initialized them before loading `_pandemonium`/`pandemonium` modules
+ * (which both depend on `pandemonium.hazmat`).
  */
 #ifdef _WIN32
 # define PYTHONSCRIPT_EXPORT __declspec(dllexport)
@@ -184,16 +184,16 @@ GDN_EXPORT void pandemonium_gdnative_init(pandemonium_gdnative_init_options *opt
     // Py_SetPath(new_path);
     // PyRun_SimpleString("import sys\nprint('PYTHON_PATH:', sys.path)\n");
 
-    Py_SetProgramName(L"godot");
+    Py_SetProgramName(L"pandemonium");
     // Initialize interpreter but skip initialization registration of signal handlers
     Py_InitializeEx(0);
     // PyEval_InitThreads acquires the GIL, so we must release it later.
     // Since python3.7 PyEval_InitThreads is automatically called by Py_InitializeEx, but it's better to leave it here
     // to be explicit. Calling it again does nothing.
     PyEval_InitThreads();
-    int ret = import__godot();
+    int ret = import__pandemonium();
     if (ret != 0){
-        GD_ERROR_PRINT("Cannot load godot python module");
+        GD_ERROR_PRINT("Cannot load pandemonium python module");
         return;
     }
 

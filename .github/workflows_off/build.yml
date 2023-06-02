@@ -90,7 +90,7 @@ jobs:
         uses: actions/upload-artifact@11830c9f4d30053679cb8904e3b3ce1b8c00bf40  # pin@v2
         with:
           name: ${{ env.PLATFORM }}-release
-          path: 'build/godot-python-*.tar.bz2'
+          path: 'build/pandemonium-python-*.tar.bz2'
 
 
 #################################################################################
@@ -166,7 +166,7 @@ jobs:
         uses: actions/upload-artifact@11830c9f4d30053679cb8904e3b3ce1b8c00bf40  # pin@v2
         with:
           name: ${{ matrix.PLATFORM }}-release
-          path: 'build/godot-python-*.zip'
+          path: 'build/pandemonium-python-*.zip'
 
 
 #################################################################################
@@ -217,7 +217,7 @@ jobs:
         uses: actions/upload-artifact@11830c9f4d30053679cb8904e3b3ce1b8c00bf40  # pin@v2
         with:
           name: ${{ env.PLATFORM }}-release
-          path: 'build/godot-python-*.tar.bz2'
+          path: 'build/pandemonium-python-*.tar.bz2'
 
 
 #################################################################################
@@ -246,6 +246,6 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
-          file: godot-python-*.*
+          file: pandemonium-python-*.*
           file_glob: true
           overwrite: true

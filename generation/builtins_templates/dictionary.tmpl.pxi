@@ -153,7 +153,7 @@ cdef class Dictionary:
             for k, v in other.items():
                 self[k] = v
         else:
-            raise TypeError("other must be godot.Dictionary or dict")
+            raise TypeError("other must be pandemonium.Dictionary or dict")
 
     def items(self):
         cdef pandemonium_variant *p_key = NULL
@@ -176,7 +176,7 @@ cdef class Dictionary:
         return dict(self) == dict(other)
 
     def __eq__(self, other):
-        {# see https://github.com/godotengine/godot/issues/27615 #}
+        {# see https://github.com/pandemoniumengine/pandemonium/issues/27615 #}
         {{ force_mark_rendered("pandemonium_dictionary_operator_equal") }}
         try:
             return Dictionary.operator_equal(self, <Dictionary?>other)

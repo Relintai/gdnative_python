@@ -260,7 +260,7 @@ def load_builtins_specs_from_gdnative_api_json(gdnative_api: dict) -> List[Built
         revision_gdapi = f"gdapi{revision['version']['major']}{revision['version']['minor']}"
         for func in revision["api"]:
             assert func["name"] not in specs
-            # Ignore godot pool (generate by another script)
+            # Ignore pandemonium pool (generate by another script)
             if func["name"].startswith("pandemonium_pool_") or func["name"].startswith("pandemonium_variant_"):
                 continue
             spec = load_builtin_method_spec(func, gdapi=revision_gdapi)
@@ -372,7 +372,7 @@ if __name__ == "__main__":
         return val[: -len(suffix)]
 
     parser = argparse.ArgumentParser(
-        description="Generate godot builtins bindings files (except pool arrays)"
+        description="Generate pandemonium builtins bindings files (except pool arrays)"
     )
     parser.add_argument(
         "--input",

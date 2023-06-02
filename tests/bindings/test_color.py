@@ -1,6 +1,6 @@
 import pytest
 
-from godot import Color, Vector2, GDString, Node
+from pandemonium import Color, Vector2, GDString, Node
 
 from conftest import generate_global_obj
 

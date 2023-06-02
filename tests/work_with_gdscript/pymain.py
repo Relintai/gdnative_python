@@ -3,7 +3,7 @@
 import os
 import pytest
 
-from godot import exposed, Node, OS
+from pandemonium import exposed, Node, OS
 
 
 root_node = None

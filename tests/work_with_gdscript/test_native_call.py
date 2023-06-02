@@ -3,7 +3,7 @@
 #       - overload native method ?
 import pytest
 
-from godot import GDString, ResourceLoader, GDScript, PluginScript
+from pandemonium import GDString, ResourceLoader, GDScript, PluginScript
 
 
 def test_native_method(node):

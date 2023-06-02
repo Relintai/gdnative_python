@@ -98,7 +98,7 @@ def generate_pool_array(output_path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Generate godot pool_x_array builtins bindings files"
+        description="Generate pandemonium pool_x_array builtins bindings files"
     )
     parser.add_argument("--output", "-o", default=None)
     args = parser.parse_args()

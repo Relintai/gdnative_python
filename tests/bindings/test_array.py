@@ -1,6 +1,6 @@
 import pytest
 
-from godot import (
+from pandemonium import (
     GDString,
     Array,
     Vector2,

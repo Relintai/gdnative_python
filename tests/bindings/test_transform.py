@@ -1,6 +1,6 @@
 import pytest
 
-from godot import Transform, Basis, Vector3
+from pandemonium import Transform, Basis, Vector3
 
 
 def test_base():

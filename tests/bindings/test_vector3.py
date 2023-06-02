@@ -1,7 +1,7 @@
 import pytest
 from enum import IntEnum
 
-from godot import Vector3
+from pandemonium import Vector3
 
 
 def test_base():

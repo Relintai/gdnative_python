@@ -5,7 +5,7 @@
 # (Note PEP484 state that import without as and * are not exposed by the stub file)
 from typing import Any, Union
 from enum import IntFlag
-from godot.builtins import (
+from pandemonium.builtins import (
     AABB,
     Array,
     Basis,

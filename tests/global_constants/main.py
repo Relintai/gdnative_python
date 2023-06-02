@@ -1,6 +1,6 @@
 import traceback
 
-from godot import exposed, Node, OS
+from pandemonium import exposed, Node, OS
 
 
 @exposed
@@ -43,5 +43,5 @@ class Main(Node):
 
         if not ok:
             OS.set_exit_code(1)
-        # Exit godot
+        # Exit pandemonium
         self.get_tree().quit()

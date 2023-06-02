@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 run/main_scene="res://main.tscn"
-name="godot-threading-tests"
+name="pandemonium-threading-tests"
 main_scene="res://main.tscn"
 
 [gdnative]

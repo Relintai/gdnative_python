@@ -1,4 +1,4 @@
-from godot import exposed, Vector2, Area2D
+from pandemonium import exposed, Vector2, Area2D
 
 
 DEFAULT_SPEED = 220

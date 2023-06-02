@@ -1,4 +1,4 @@
-from godot import exposed, export
+from pandemonium import exposed, export
 
 from pynode import PyNode
 

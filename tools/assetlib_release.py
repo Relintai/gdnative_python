@@ -20,7 +20,7 @@ from zipfile import ZipFile
 from concurrent.futures import ThreadPoolExecutor
 
 
-API_REPO_URL = "https://api.github.com/repos/touilleMan/godot-python/releases"
+API_REPO_URL = "https://github.com/Relintai/gdnative_python/releases"
 PLATFORMS = ("x11-32", "x11-64", "osx-64", "windows-32", "windows-64")
 MISC_DIR = Path(__file__).parent / "../misc"
 

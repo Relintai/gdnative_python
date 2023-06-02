@@ -1,6 +1,6 @@
 import pytest
 
-from godot import AABB, Vector3, Plane
+from pandemonium import AABB, Vector3, Plane
 
 
 def test_base():

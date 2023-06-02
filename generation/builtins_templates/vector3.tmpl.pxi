@@ -1,7 +1,7 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
-from godot._hazmat.gdnative_api_struct cimport pandemonium_vector3_axis
+from pandemonium._hazmat.gdnative_api_struct cimport pandemonium_vector3_axis
 
 import math
 from enum import IntEnum

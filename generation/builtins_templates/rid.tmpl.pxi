@@ -1,7 +1,7 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
-from godot.bindings cimport Resource
+from pandemonium.bindings cimport Resource
 {% endblock -%}
 
 

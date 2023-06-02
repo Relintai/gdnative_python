@@ -1,4 +1,4 @@
-from godot import exposed, signal, export, Node2D
+from pandemonium import exposed, signal, export, Node2D
 
 
 SCORE_TO_WIN = 2

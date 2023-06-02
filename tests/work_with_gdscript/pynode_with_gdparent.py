@@ -1,4 +1,4 @@
-from godot import exposed, ResourceLoader
+from pandemonium import exposed, ResourceLoader
 
 
 GDNode = ResourceLoader.load("res://gdnode.gd", "", False)

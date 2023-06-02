@@ -216,12 +216,12 @@ SUPPORTED_TYPES = {
 
 def pre_cook_patch_stuff(raw_data):
     for klass in raw_data:
-        # see https://github.com/godotengine/godot/pull/40386
+        # see https://github.com/pandemoniumengine/pandemonium/pull/40386
         if klass["name"] == "Reference":
             klass["is_reference"] = True
         for prop in klass["properties"]:
             prop["name"] = prop["name"].replace("/", "_")
-            # see https://github.com/godotengine/godot/pull/40383
+            # see https://github.com/pandemoniumengine/pandemonium/pull/40383
             if prop["type"] == "17/17:RichTextEffect":
                 prop["type"] = "Array"
         for meth in klass["methods"]:
@@ -239,7 +239,7 @@ def pre_cook_patch_stuff(raw_data):
 
 def post_cook_patch_stuff(classes):
     for klass in classes:
-        # See https://github.com/godotengine/godot/issues/34254
+        # See https://github.com/pandemoniumengine/pandemonium/issues/34254
         if klass.name == "_OS":
             for meth in klass.methods:
                 if meth.name in (
@@ -585,7 +585,7 @@ if __name__ == "__main__":
             raise argparse.ArgumentTypeError(f"Must have a `{suffix}` suffix")
         return val[: -len(suffix)]
 
-    parser = argparse.ArgumentParser(description="Generate godot api bindings bindings files")
+    parser = argparse.ArgumentParser(description="Generate pandemonium api bindings bindings files")
     parser.add_argument(
         "--input",
         "-i",

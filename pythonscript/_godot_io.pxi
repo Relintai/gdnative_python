@@ -4,12 +4,12 @@ import traceback
 from io import TextIOBase
 from threading import Lock
 
-from godot._hazmat.conversion cimport (
+from pandemoniummonium._hazmat.conversion cimport (
     pandemonium_string_to_pyobj,
     pyobj_to_pandemonium_string,
     pandemonium_variant_to_pyobj,
 )
-from godot._hazmat.gdnative_api_struct cimport (
+from pandemoniummonium._hazmat.gdnative_api_struct cimport (
     pandemonium_string,
     pandemonium_string_name,
     pandemonium_bool,

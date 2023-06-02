@@ -13,7 +13,7 @@ Introduction
 This is a beta version of the Python module for Godot.
 
 You are likely to encounter bugs and catastrophic crashes, if so please
-report them to https://github.com/touilleMan/godot-python/issues.
+report them to https://github.com/Relintai/gdnative_python.
 
 
 Working features

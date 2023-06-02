@@ -1,4 +1,4 @@
-from godot import exposed, rpcsync, Area2D, Vector2
+from pandemonium import exposed, rpcsync, Area2D, Vector2
 
 
 DEFAULT_SPEED = 80

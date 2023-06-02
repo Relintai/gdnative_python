@@ -1,6 +1,6 @@
 import threading
 
-from godot.bindings cimport Object
+from pandemonium.bindings cimport Object
 
 
 cdef bint __pythonscript_verbose = False
@@ -35,11 +35,11 @@ cdef void set_exposed_class(object cls):
     cdef ModExposedClass mod
     cdef str modname = cls.__module__
 
-    # Use a threadlock to avoid data races in case godot loads/unloads scripts in multiple threads
+    # Use a threadlock to avoid data races in case pandemonium loads/unloads scripts in multiple threads
     with __exposed_classes_lock:
 
         # We must keep track of reference counts for the module when reloading a script,
-        # godot calls pythonscript_script_init BEFORE pythonscript_script_finish
+        # pandemonium calls pythonscript_script_init BEFORE pythonscript_script_finish
         # this happens because Godot can make multiple PluginScript instances for the same resource.
 
         # Godot calls
@@ -67,7 +67,7 @@ cdef void destroy_exposed_class(object cls):
     cdef ModExposedClass mod
     cdef str modname = cls.__module__
 
-    # Use a threadlock to avoid data races in case godot loads/unloads scripts in multiple threads
+    # Use a threadlock to avoid data races in case pandemonium loads/unloads scripts in multiple threads
     with __exposed_classes_lock:
 
         try:
@@ -78,8 +78,8 @@ cdef void destroy_exposed_class(object cls):
             if mod.refcount == 1:
                 del __modules_with_exposed_class[modname]
                 # Not safe to ever get rid of all references...
-                # see: https://github.com/touilleMan/godot-python/issues/170
-                # and: https://github.com/godotengine/godot/issues/10946
+                # see: https://github.com/touilleMan/pandemonium-python/issues/170
+                # and: https://github.com/pandemoniumengine/pandemonium/issues/10946
                 # sometimes script reloading craps out leaving dangling references
                 # __all_exposed_classes.remove(modname, cls)
             else:

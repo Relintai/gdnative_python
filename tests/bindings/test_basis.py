@@ -1,6 +1,6 @@
 import pytest
 
-from godot import Basis, Vector3, Quat
+from pandemonium import Basis, Vector3, Quat
 
 
 def test_default():

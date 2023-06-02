@@ -1,20 +1,20 @@
 # Start with a sanity check to ensure the loading is done from Godot-Python
 # (and not from a regular Python interpreter which would lead to a segfault).
 # The idea is we should have the following loading order:
-# godot binary -> pythonscript.so -> _godot.so -> godot/__init__.py
+# pandemonium binary -> pythonscript.so -> _pandemonium.so -> pandemonium/__init__.py
 import sys
 
-if "_godot" not in sys.modules:
+if "_pandemonium" not in sys.modules:
     raise ImportError(
-        "Cannot initialize godot module given Godot GDNative API not available.\n"
+        "Cannot initialize pandemonium module given Godot GDNative API not available.\n"
         "This is most likely because you are running code from a regular Python interpreter"
-        " (i.e. doing something like `python my_script.py`) while godot module is only available"
+        " (i.e. doing something like `python my_script.py`) while pandemonium module is only available"
         " to Python code loaded from Godot through Godot-Python plugin."
     )
 del sys
 
-from godot._version import __version__
-from godot.tags import (
+from pandemonium._version import __version__
+from pandemonium.tags import (
     MethodRPCMode,
     PropertyHint,
     PropertyUsageFlag,
@@ -31,7 +31,7 @@ from godot.tags import (
     export,
     exposed,
 )
-from godot.pool_arrays import (
+from pandemonium.pool_arrays import (
     PoolIntArray,
     PoolRealArray,
     PoolByteArray,
@@ -40,5 +40,5 @@ from godot.pool_arrays import (
     PoolColorArray,
     PoolStringArray,
 )
-from godot.builtins import *
-from godot.bindings import *
+from pandemonium.builtins import *
+from pandemonium.bindings import *

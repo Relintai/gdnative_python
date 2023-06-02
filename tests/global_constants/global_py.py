@@ -1,4 +1,4 @@
-from godot import Node, exposed, export, Array
+from pandemonium import Node, exposed, export, Array
 
 
 @exposed
