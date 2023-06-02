@@ -1,5 +1,9 @@
 from libc.stddef cimport wchar_t
 from libc.stdio cimport printf
+from libc.stdint cimport uint_least16_t, uint_least32_t
+
+ctypedef uint_least16_t char16_t
+ctypedef uint_least32_t char32_t
 
 from pandemonium._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
 from pandemonium._hazmat.gdnative_api_struct cimport (
@@ -31,11 +35,11 @@ DEF _STRING_CODEPOINT_LENGTH = 4
 
 cdef inline str pandemonium_string_to_pyobj(const pandemonium_string *p_gdstr):
     # TODO: unicode&windows support is most likely broken...
-    cdef char *raw = <char*>gdapi10.pandemonium_string_wide_str(p_gdstr)
+    cdef char *raw = <char*>gdapi10.pandemonium_string_get_data(p_gdstr)
     cdef pandemonium_int length = gdapi10.pandemonium_string_length(p_gdstr)
     return raw[:length * _STRING_CODEPOINT_LENGTH].decode(_STRING_ENCODING)
 
-    # cdef char *raw = <char*>gdapi10.pandemonium_string_wide_str(p_gdstr)
+    # cdef char *raw = <char*>gdapi10.pandemonium_string_get_data(p_gdstr)
     # cdef pandemonium_int length = gdapi10.pandemonium_string_length(p_gdstr)
     # printf("==========> pandemonium_string_to_pyobj ")
     # cdef int i
@@ -50,8 +54,8 @@ cdef inline str pandemonium_string_to_pyobj(const pandemonium_string *p_gdstr):
 cdef inline void pyobj_to_pandemonium_string(str pystr, pandemonium_string *p_gdstr):
     # TODO: unicode&windows support is most likely broken...
     cdef bytes raw = pystr.encode(_STRING_ENCODING)
-    gdapi10.pandemonium_string_new_with_wide_string(
-        p_gdstr, (<wchar_t*><char*>raw), len(pystr)
+    gdapi10.pandemonium_string_newc_clip_to_len(
+        p_gdstr, (<char32_t*><char*>raw), len(pystr)
     )
 
 
@@ -61,11 +65,10 @@ cdef inline str pandemonium_string_name_to_pyobj(const pandemonium_string_name *
     gdapi10.pandemonium_string_destroy(&strname)
     return ret
 
-
 cdef inline void pyobj_to_pandemonium_string_name(str pystr, pandemonium_string_name *p_gdname):
     cdef pandemonium_string strname
     pyobj_to_pandemonium_string(pystr, &strname)
-    gdapi10.pandemonium_string_name_new(p_gdname, &strname)
+    gdapi10.pandemonium_string_name_new_data_string(p_gdname, &strname)
     gdapi10.pandemonium_string_destroy(&strname)
 
 

@@ -89,7 +89,7 @@ cdef class Projection:
                 &(<Vector4?>x_axis)._gd_data,
                 &(<Vector4?>y_axis)._gd_data,
                 &(<Vector4?>z_axis)._gd_data,
-                &(<Vector4?>origin)._gd_data,
+                &(<Vector4?>w_axis)._gd_data,
             )
 
     def __repr__(Projection self):

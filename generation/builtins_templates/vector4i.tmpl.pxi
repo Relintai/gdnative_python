@@ -92,27 +92,27 @@ cdef class Vector4i:
     {{ render_method("operator_add", py_name="__add__") | indent }}
     {{ render_method("operator_subtract", py_name="__sub__") | indent }}
 
-    def __mul__(Vector4i self, val):
-        cdef Vector4i _val
-        try:
-            _val = <Vector4i?>val
-        except TypeError:
-            return Vector4i_multiply_scalar(self, val)
-        else:
-            return Vector4i_multiply_vector(self, _val)
+    #def __mul__(Vector4i self, val):
+    #    cdef Vector4i _val
+    #    try:
+    #        _val = <Vector4i?>val
+    #    except TypeError:
+    #        return Vector4i_multiply_scalar(self, val)
+    #    else:
+    #        return Vector4i_multiply_vector(self, _val)
 
-    def __truediv__(Vector4i self, val):
-        cdef Vector4i _val
-        try:
-            _val = <Vector4i?>val
-        except TypeError:
-            if val is 0:
-                raise ZeroDivisionError()
-            return Vector4i_divide_scalar(self, val)
-        else:
-            if _val.x == 0 or _val.y == 0 or _val.z == 0:
-                raise ZeroDivisionError()
-            return Vector4i_divide_vector(self, _val)
+    #def __truediv__(Vector4i self, val):
+    #    cdef Vector4i _val
+    #    try:
+    #        _val = <Vector4i?>val
+    #    except TypeError:
+    #        if val is 0:
+    #            raise ZeroDivisionError()
+    #        return Vector4i_divide_scalar(self, val)
+    #    else:
+    #        if _val.x == 0 or _val.y == 0 or _val.z == 0:
+    #            raise ZeroDivisionError()
+    #        return Vector4i_divide_vector(self, _val)
 
     {{ render_method("as_string") | indent }}
 {% endblock %}

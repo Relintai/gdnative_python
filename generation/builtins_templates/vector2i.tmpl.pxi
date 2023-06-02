@@ -58,27 +58,27 @@ cdef class Vector2i:
     {{ render_method("operator_add", py_name="__add__") | indent }}
     {{ render_method("operator_subtract", py_name="__sub__") | indent }}
 
-    def __mul__(Vector2i self, val):
-        cdef Vector2i _val
-        try:
-            _val = <Vector2i?>val
-        except TypeError:
-            return Vector2i_multiply_scalar(self, val)
-        else:
-            return Vector2i_multiply_vector(self, _val)
+    #def __mul__(Vector2i self, val):
+    #    cdef Vector2i _val
+    #    try:
+    #        _val = <Vector2i?>val
+    #    except TypeError:
+    #        return Vector2i_multiply_scalar(self, val)
+    #    else:
+    #        return Vector2i_multiply_vector(self, _val)
 
-    def __truediv__(Vector2i self, val):
-        cdef Vector2i _val
-        try:
-            _val = <Vector2i?>val
-        except TypeError:
-            if val is 0:
-                raise ZeroDivisionError()
-            return Vector2i_divide_scalar(self, val)
-        else:
-            if _val.x == 0 or _val.y == 0:
-                raise ZeroDivisionError()
-            return Vector2i_divide_vector(self, _val)
+    #def __truediv__(Vector2i self, val):
+    #    cdef Vector2i _val
+    #    try:
+    #        _val = <Vector2i?>val
+    #    except TypeError:
+    #        if val is 0:
+    #            raise ZeroDivisionError()
+    #        return Vector2i_divide_scalar(self, val)
+    #    else:
+    #        if _val.x == 0 or _val.y == 0:
+    #            raise ZeroDivisionError()
+    #        return Vector2i_divide_vector(self, _val)
 
     {{ render_property("x", "get_x", "set_x") | indent }}
     {{ render_property("y", "get_y", "set_y") | indent }}

@@ -57,7 +57,7 @@ cdef class Array:
         if not iterable:
             gdapi10.pandemonium_array_new(&self._gd_data)
         elif isinstance(iterable, Array):
-            self._gd_data = gdapi10.pandemonium_array_duplicate(&(<Array>iterable)._gd_data, False)
+            self._gd_data = gdapi10.pandemonium_array_duplicate(&(<Array>iterable)._gd_data)
         # TODO: handle Pool*Array
         else:
             gdapi10.pandemonium_array_new(&self._gd_data)
@@ -96,7 +96,9 @@ cdef class Array:
     cdef inline Array operator_getslice(self, pandemonium_int start, pandemonium_int stop, pandemonium_int step):
         {{ force_mark_rendered("pandemonium_array_slice") }}
         cdef Array ret = Array.__new__(Array)
-        ret._gd_data = gdapi10.pandemonium_array_slice(&self._gd_data, start, stop, step, False)
+        #TODO
+        #ret._gd_data = gdapi10.pandemonium_array_slice_step(&self._gd_data, start, stop, step, False)
+        ret._gd_data = gdapi10.pandemonium_array_slice(&self._gd_data, start, stop)
         return ret
 
     # TODO: support slice

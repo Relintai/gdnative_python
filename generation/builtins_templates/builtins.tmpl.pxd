@@ -9,52 +9,57 @@ from pandemonium.pool_arrays cimport (
     PoolRealArray,
     PoolByteArray,
     PoolVector2Array,
+    PoolVector2iArray,
     PoolVector3Array,
+    PoolVector3iArray,
+    PoolVector4Array,
+    PoolVector4iArray,
     PoolColorArray,
     PoolStringArray,
 )
 
+
 {% set render_target = "rid" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "vector3" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "vector2" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "vector2i" %}
-{% include 'render.tmpl.pyx' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "vector3i" %}
-{% include 'render.tmpl.pyx' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "vector4" %}
-{% include 'render.tmpl.pyx' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "vector4i" %}
-{% include 'render.tmpl.pyx' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "aabb" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "basis" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "color" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "gdstring" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "rect2" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "rect2i" %}
-{% include 'render.tmpl.pyx' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "projection" %}
-{% include 'render.tmpl.pyx' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "transform2d" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "plane" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "quaternion" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "transform" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "node_path" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "string_name" %}
-{% include 'render.tmpl.pyx' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "dictionary" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}
 {% set render_target = "array" %}
-{% include 'render.tmpl.pyi' with context  %}
+{% include 'render.tmpl.pxd' with context  %}

@@ -191,7 +191,7 @@ cdef class Basis:
             return Basis_multiply_scalar(self, val)
 
         else:
-            return Basis_multiply_vector(self, _val)
+            return Basis_multiply(self, _val)
 
     {{ render_method("as_string") | indent }}
     {{ render_method("inverse") | indent }}

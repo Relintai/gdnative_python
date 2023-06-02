@@ -14,12 +14,12 @@ cdef class StringName:
         {{ force_mark_rendered("pandemonium_string_name_new") }}
         cdef pandemonium_string gd_from
         try:
-            gdapi10.pandemonium_string_name_new(&self._gd_data, &(<GDString?>from_)._gd_data)
+            gdapi10.pandemonium_string_name_new_data_string(&self._gd_data, &(<GDString?>from_)._gd_data)
         except TypeError:
             if not isinstance(from_, str):
                 raise TypeError("`from_` must be str or GDString")
             pyobj_to_pandemonium_string(from_, &gd_from)
-            gdapi10.pandemonium_string_name_new(&self._gd_data, &gd_from)
+            gdapi10.pandemonium_string_name_new_data_string(&self._gd_data, &gd_from)
             gdapi10.pandemonium_string_destroy(&gd_from)
 
     def __dealloc__(StringName self):
@@ -34,8 +34,8 @@ cdef class StringName:
     def __str__(StringName self):
         return str(self.get_name())
 
-    {{ render_operator_eq() | indent }}
-    {{ render_operator_ne() | indent }}
+    #{{ render_operator_eq() | indent }}
+    #{{ render_operator_ne() | indent }}
 
     {{ render_method("destroy") | indent }}
     {{ render_method("get_name") | indent }}

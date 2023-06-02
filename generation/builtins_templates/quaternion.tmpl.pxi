@@ -31,7 +31,7 @@
 @cython.final
 cdef class Quaternion:
 {% block cdef_attributes %}
-    cdef pandemonium_quat _gd_data
+    cdef pandemonium_quaternion _gd_data
 {% endblock %}
 
 {% block python_defs %}

@@ -48,9 +48,9 @@ from pandemonium.tags import ExportedField, SignalField
 cdef inline pandemonium_pluginscript_script_manifest _build_empty_script_manifest():
     cdef pandemonium_pluginscript_script_manifest manifest
     manifest.data = NULL
-    gdapi10.pandemonium_string_name_new_data(&manifest.name, "")
+    gdapi10.pandemonium_string_name_new_data_char(&manifest.name, "")
     manifest.is_tool = False
-    gdapi10.pandemonium_string_name_new_data(&manifest.base, "")
+    gdapi10.pandemonium_string_name_new_data_char(&manifest.base, "")
     gdapi10.pandemonium_dictionary_new(&manifest.member_lines)
     gdapi10.pandemonium_array_new(&manifest.methods)
     gdapi10.pandemonium_array_new(&manifest.signals)

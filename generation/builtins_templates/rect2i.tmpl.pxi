@@ -43,7 +43,7 @@ cdef class Rect2i:
         gdapi10.pandemonium_rect2i_new(&self._gd_data, x, y, width, height)
 
     @staticmethod
-    def from_pos_size(Vector2 position not None, Vector2 size not None):
+    def from_pos_size(Vector2i position not None, Vector2i size not None):
         {{ force_mark_rendered("pandemonium_rect2i_new_with_position_and_size") }}
         cdef Rect2i ret = Rect2i.__new__(Rect2i)
         gdapi10.pandemonium_rect2i_new_with_position_and_size(&ret._gd_data, &position._gd_data, &size._gd_data)
@@ -59,10 +59,10 @@ cdef class Rect2i:
     {{ render_property("position", getter="get_position", setter="set_position") | indent }}
 
     @property
-    def end(Rect2i self) -> Vector2:
+    def end(Rect2i self) -> Vector2i:
         cdef pandemonium_vector2i position = gdapi10.pandemonium_rect2i_get_position(&self._gd_data)
         cdef pandemonium_vector2i size = gdapi10.pandemonium_rect2i_get_size(&self._gd_data)
-        cdef Vector2 ret = Vector2.__new__(Vector2)
+        cdef Vector2i ret = Vector2i.__new__(Vector2i)
         ret._gd_data = gdapi10.pandemonium_vector2i_operator_add(&position, &size)
         return ret
 
