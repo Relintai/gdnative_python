@@ -71,11 +71,65 @@ TYPE_ERROR = TypeSpec(
     is_stack_only=True,
     is_enum=True,
 )
+TYPE_VECTOR2_AXIS = TypeSpec(
+    gdapi_type="enum.Vector2::Axis",
+    c_type="godot_vector2_axis",
+    cy_type="godot_vector2_axis",
+    py_type="Vector2.Axis",
+    is_base_type=True,
+    is_stack_only=True,
+    is_enum=True,
+)
+TYPE_VECTOR2I_AXIS = TypeSpec(
+    gdapi_type="enum.Vector2i::Axis",
+    c_type="godot_vector2i_axis",
+    cy_type="godot_vector2i_axis",
+    py_type="Vector2i.Axis",
+    is_base_type=True,
+    is_stack_only=True,
+    is_enum=True,
+)
 TYPE_VECTOR3_AXIS = TypeSpec(
     gdapi_type="enum.Vector3::Axis",
     c_type="godot_vector3_axis",
     cy_type="godot_vector3_axis",
     py_type="Vector3.Axis",
+    is_base_type=True,
+    is_stack_only=True,
+    is_enum=True,
+)
+TYPE_VECTOR3I_AXIS = TypeSpec(
+    gdapi_type="enum.Vector3i::Axis",
+    c_type="godot_vector3i_axis",
+    cy_type="godot_vector3i_axis",
+    py_type="Vector3i.Axis",
+    is_base_type=True,
+    is_stack_only=True,
+    is_enum=True,
+)
+TYPE_VECTOR4_AXIS = TypeSpec(
+    gdapi_type="enum.Vector4::Axis",
+    c_type="godot_vector4_axis",
+    cy_type="godot_vector4_axis",
+    py_type="Vector4.Axis",
+    is_base_type=True,
+    is_stack_only=True,
+    is_enum=True,
+)
+TYPE_VECTOR4I_AXIS = TypeSpec(
+    gdapi_type="enum.Vector4i::Axis",
+    c_type="godot_vector4i_axis",
+    cy_type="godot_vector4i_axis",
+    py_type="Vector4i.Axis",
+    is_base_type=True,
+    is_stack_only=True,
+    is_enum=True,
+)
+TYPE_PROJECTION_PLANES = TypeSpec(
+    gdapi_type="enum.Projection::Planes",
+    c_type="pandemonium_projection_planes",
+    cy_type="pandemonium_projection_planes",
+    py_type="Projection.Planes",
     is_base_type=True,
     is_stack_only=True,
     is_enum=True,
@@ -139,6 +193,14 @@ TYPE_NODEPATH = TypeSpec(
     is_builtin=True,
     is_stack_only=True,
 )
+TYPE_STRING_NAME = TypeSpec(
+    gdapi_type="StringName",
+    c_type="godot_string_name",
+    cy_type="StringName",
+    py_type="Union[str, StringName]",
+    is_builtin=True,
+    is_stack_only=True,
+)
 TYPE_PLANE = TypeSpec(
     gdapi_type="Plane", c_type="godot_plane", cy_type="Plane", is_builtin=True, is_stack_only=True
 )
@@ -147,6 +209,9 @@ TYPE_QUAT = TypeSpec(
 )
 TYPE_RECT2 = TypeSpec(
     gdapi_type="Rect2", c_type="godot_rect2", cy_type="Rect2", is_builtin=True, is_stack_only=True
+)
+TYPE_RECT2I = TypeSpec(
+    gdapi_type="Rect2i", c_type="godot_rect2i", cy_type="Rect2i", is_builtin=True, is_stack_only=True
 )
 TYPE_RID = TypeSpec(
     gdapi_type="RID", c_type="godot_rid", cy_type="RID", is_builtin=True, is_stack_only=True
@@ -165,6 +230,13 @@ TYPE_TRANSFORM2D = TypeSpec(
     is_builtin=True,
     is_stack_only=True,
 )
+TYPE_PROJECTION = TypeSpec(
+    gdapi_type="Projection",
+    c_type="godot_projection",
+    cy_type="Projection",
+    is_builtin=True,
+    is_stack_only=True,
+)
 TYPE_VECTOR2 = TypeSpec(
     gdapi_type="Vector2",
     c_type="godot_vector2",
@@ -172,10 +244,38 @@ TYPE_VECTOR2 = TypeSpec(
     is_builtin=True,
     is_stack_only=True,
 )
+TYPE_VECTOR2I = TypeSpec(
+    gdapi_type="Vector2i",
+    c_type="godot_vector2i",
+    cy_type="Vector2i",
+    is_builtin=True,
+    is_stack_only=True,
+)
 TYPE_VECTOR3 = TypeSpec(
     gdapi_type="Vector3",
     c_type="godot_vector3",
     cy_type="Vector3",
+    is_builtin=True,
+    is_stack_only=True,
+)
+TYPE_VECTOR3I = TypeSpec(
+    gdapi_type="Vector3i",
+    c_type="godot_vector3i",
+    cy_type="Vector3i",
+    is_builtin=True,
+    is_stack_only=True,
+)
+TYPE_VECTOR4 = TypeSpec(
+    gdapi_type="Vector4",
+    c_type="godot_vector4",
+    cy_type="Vector4",
+    is_builtin=True,
+    is_stack_only=True,
+)
+TYPE_VECTOR4I = TypeSpec(
+    gdapi_type="Vector4i",
+    c_type="godot_vector4i",
+    cy_type="Vector4i",
     is_builtin=True,
     is_stack_only=True,
 )
@@ -214,10 +314,38 @@ TYPE_POOLVECTOR2ARRAY = TypeSpec(
     is_builtin=True,
     is_stack_only=True,
 )
+TYPE_POOLVECTOR2IARRAY = TypeSpec(
+    gdapi_type="PoolVector2iArray",
+    c_type="godot_pool_vector2i_array",
+    cy_type="PoolVector2iArray",
+    is_builtin=True,
+    is_stack_only=True,
+)
 TYPE_POOLVECTOR3ARRAY = TypeSpec(
     gdapi_type="PoolVector3Array",
     c_type="godot_pool_vector3_array",
     cy_type="PoolVector3Array",
+    is_builtin=True,
+    is_stack_only=True,
+)
+TYPE_POOLVECTOR3IARRAY = TypeSpec(
+    gdapi_type="PoolVector3iArray",
+    c_type="godot_pool_vector3i_array",
+    cy_type="PoolVector3iArray",
+    is_builtin=True,
+    is_stack_only=True,
+)
+TYPE_POOLVECTOR4ARRAY = TypeSpec(
+    gdapi_type="PoolVector4Array",
+    c_type="godot_pool_vector4_array",
+    cy_type="PoolVector4Array",
+    is_builtin=True,
+    is_stack_only=True,
+)
+TYPE_POOLVECTOR4IARRAY = TypeSpec(
+    gdapi_type="PoolVector4iArray",
+    c_type="godot_pool_vector4i_array",
+    cy_type="PoolVector4iArray",
     is_builtin=True,
     is_stack_only=True,
 )
@@ -236,7 +364,13 @@ ALL_TYPES_EXCEPT_OBJECTS = [
     TYPE_INT,
     TYPE_FLOAT,
     TYPE_ERROR,
+    TYPE_VECTOR2_AXIS,
+    TYPE_VECTOR2I_AXIS,
     TYPE_VECTOR3_AXIS,
+    TYPE_VECTOR3I_AXIS,
+    TYPE_VECTOR4_AXIS,
+    TYPE_VECTOR4I_AXIS,
+    TYPE_PROJECTION_PLANES,
     TYPE_VARIANT_TYPE,
     TYPE_VARIANT_OPERATOR,
     TYPE_VARIANT,
@@ -247,19 +381,30 @@ ALL_TYPES_EXCEPT_OBJECTS = [
     TYPE_COLOR,
     TYPE_DICTIONARY,
     TYPE_NODEPATH,
+    TYPE_STRING_NAME,
     TYPE_PLANE,
     TYPE_QUAT,
     TYPE_RECT2,
+    TYPE_RECT2I,
     TYPE_RID,
     TYPE_TRANSFORM,
     TYPE_TRANSFORM2D,
+    TYPE_PROJECTION,
     TYPE_VECTOR2,
+    TYPE_VECTOR2I,
     TYPE_VECTOR3,
+    TYPE_VECTOR3I,
+    TYPE_VECTOR4,
+    TYPE_VECTOR4I,
     TYPE_POOLBYTEARRAY,
     TYPE_POOLINTARRAY,
     TYPE_POOLREALARRAY,
     TYPE_POOLSTRINGARRAY,
     TYPE_POOLVECTOR2ARRAY,
+    TYPE_POOLVECTOR2IARRAY,
     TYPE_POOLVECTOR3ARRAY,
+    TYPE_POOLVECTOR3IARRAY,
+    TYPE_POOLVECTOR4ARRAY,
+    TYPE_POOLVECTOR4IARRAY,
     TYPE_POOLCOLORARRAY,
 ]
