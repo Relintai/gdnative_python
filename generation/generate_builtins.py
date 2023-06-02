@@ -29,6 +29,13 @@ from type_specs import (
     TYPE_NODEPATH,
     TYPE_DICTIONARY,
     TYPE_ARRAY,
+    TYPE_STRING_NAME,
+    TYPE_RECT2I,
+    TYPE_PROJECTION,
+    TYPE_VECTOR2I,
+    TYPE_VECTOR3I,
+    TYPE_VECTOR4,
+    TYPE_VECTOR4I,
 )
 
 
@@ -107,9 +114,9 @@ ALL_TYPES = [
         is_builtin=True,
     ),
     TypeSpec(
-        gdapi_type="pandemonium_string_name",
-        c_type="pandemonium_string_name",
-        cy_type="pandemonium_string_name",
+        gdapi_type="pandemonium_char_16_string",
+        c_type="pandemonium_char_16_string",
+        cy_type="pandemonium_char_16_string",
         py_type="str",
         is_builtin=True,
     ),
@@ -142,8 +149,14 @@ TARGET_TO_TYPE_SPEC = {
     "node_path": TYPE_NODEPATH,
     "dictionary": TYPE_DICTIONARY,
     "array": TYPE_ARRAY,
+    "string_name": TYPE_STRING_NAME,
+    "rect2i": TYPE_RECT2I,
+    "projection": TYPE_PROJECTION,
+    "vector2i": TYPE_VECTOR2I,
+    "vector3i": TYPE_VECTOR3I,
+    "vector4": TYPE_VECTOR4,
+    "vector4i": TYPE_VECTOR4I,
 }
-
 
 @dataclass
 class ArgumentSpec:

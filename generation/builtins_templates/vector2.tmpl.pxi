@@ -1,6 +1,7 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
+from pandemonium._hazmat.gdnative_api_struct cimport pandemonium_vector2_axis
 import math
 
 cdef inline Vector2 Vector2_multiply_vector(Vector2 self, Vector2 b):
@@ -110,8 +111,10 @@ cdef class Vector2:
 {% endblock %}
 
 {%- block python_consts %}
-    AXIS_X = 0
-    AXIS_Y = 0
+    AXIS = IntEnum("AXIS", {
+        "X": pandemonium_vector2_axis.PANDEMONIUM_VECTOR2_AXIS_X,
+        "Y": pandemonium_vector2_axis.PANDEMONIUM_VECTOR2_AXIS_Y,
+    })
 
     ZERO = Vector2(0, 0)
     ONE = Vector2(1, 1)
