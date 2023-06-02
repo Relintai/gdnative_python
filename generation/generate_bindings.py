@@ -407,13 +407,13 @@ def cook_data(data):
             if value == "Null":
                 return "None"
             else:
-                return value
+                return value.replace("inf", "float('inf')")
         elif type == "pandemonium_string":
             return f'"{value}"'
-        elif type == "pandemonium_node_path":
-            return f'"{value}"'
-        elif type == "pandemonium_string_name":
-            return f'"{value}"'
+        #elif type == "pandemonium_node_path":
+        #    return f'"{value}"'
+        #elif type == "pandemonium_string_name":
+        #    return f'"{value}"'
         elif type == "pandemonium_object" and value in ("[Object:null]", "Null"):
             return "None"
         elif type == "pandemonium_dictionary" and value == "{}":
@@ -423,9 +423,9 @@ def cook_data(data):
         elif type == "pandemonium_vector2i":
             return f"Vector2i{value}"
         elif type == "pandemonium_rect2":
-            return f"Rect2{value}"
+            return f"Rect2{value}".replace("[P: (", "(Vector2(").replace("), S: (", "), Vector2(").replace(")]", "))")
         elif type == "pandemonium_rect2i":
-            return f"Rect2i{value}"
+            return f"Rect2i{value}".replace("[P: (", "(Vector2i(").replace("), S: (", "), Vector2i(").replace(")]", "))")
         elif type == "pandemonium_vector3":
             return f"Vector3{value}"
         elif type == "pandemonium_vector3i":
