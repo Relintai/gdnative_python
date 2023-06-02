@@ -27,9 +27,7 @@ class MethodRPCMode(enum.IntEnum):
     REMOTE = pandemonium_method_rpc_mode.PANDEMONIUM_METHOD_RPC_MODE_REMOTE
     MASTER = pandemonium_method_rpc_mode.PANDEMONIUM_METHOD_RPC_MODE_MASTER
     PUPPET = pandemonium_method_rpc_mode.PANDEMONIUM_METHOD_RPC_MODE_PUPPET
-    SLAVE = pandemonium_method_rpc_mode.PANDEMONIUM_METHOD_RPC_MODE_SLAVE
     REMOTESYNC = pandemonium_method_rpc_mode.PANDEMONIUM_METHOD_RPC_MODE_REMOTESYNC
-    SYNC = pandemonium_method_rpc_mode.PANDEMONIUM_METHOD_RPC_MODE_SYNC
     MASTERSYNC = pandemonium_method_rpc_mode.PANDEMONIUM_METHOD_RPC_MODE_MASTERSYNC
     PUPPETSYNC = pandemonium_method_rpc_mode.PANDEMONIUM_METHOD_RPC_MODE_PUPPETSYNC
 
@@ -41,13 +39,15 @@ class PropertyHint(enum.IntEnum):
     ENUM = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_ENUM
     EXP_EASING = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_EXP_EASING
     LENGTH = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_LENGTH
-    SPRITE_FRAME = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_SPRITE_FRAME
+    HINT_BUTTON = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_BUTTON
     KEY_ACCEL = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_KEY_ACCEL
     FLAGS = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_FLAGS
     LAYERS_2D_RENDER = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_LAYERS_2D_RENDER
     LAYERS_2D_PHYSICS = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_LAYERS_2D_PHYSICS
+    LAYERS_2D_NAVIGATION = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_LAYERS_2D_NAVIGATION
     LAYERS_3D_RENDER = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_LAYERS_3D_RENDER
     LAYERS_3D_PHYSICS = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_LAYERS_3D_PHYSICS
+    LAYERS_3D_NAVIGATION = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_LAYERS_3D_NAVIGATION
     FILE = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_FILE
     DIR = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_DIR
     GLOBAL_FILE = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_GLOBAL_FILE
@@ -69,8 +69,12 @@ class PropertyHint(enum.IntEnum):
     PROPERTY_OF_BASE_TYPE = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_PROPERTY_OF_BASE_TYPE
     PROPERTY_OF_INSTANCE = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_PROPERTY_OF_INSTANCE
     PROPERTY_OF_SCRIPT = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_PROPERTY_OF_SCRIPT
+    PANDEMONIUM_PROPERTY_HINT_OBJECT_TOO_BIG = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_OBJECT_TOO_BIG
+    PANDEMONIUM_PROPERTY_HINT_NODE_PATH_VALID_TYPES = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_NODE_PATH_VALID_TYPES
+    PANDEMONIUM_PROPERTY_HINT_SAVE_FILE = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_SAVE_FILE
+    PANDEMONIUM_PROPERTY_HINT_ENUM_SUGGESTION = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_ENUM_SUGGESTION
+    PANDEMONIUM_PROPERTY_HINT_LINK = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_LINK
     MAX = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_MAX
-
 
 class PropertyUsageFlag(enum.IntFlag):
     STORAGE = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_STORAGE
@@ -82,48 +86,26 @@ class PropertyUsageFlag(enum.IntFlag):
     INTERNATIONALIZED = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_INTERNATIONALIZED
     GROUP = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_GROUP
     CATEGORY = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_CATEGORY
-    STORE_IF_NONZERO = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_STORE_IF_NONZERO
-    STORE_IF_NONONE = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_STORE_IF_NONONE
     NO_INSTANCE_STATE = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_NO_INSTANCE_STATE
     RESTART_IF_CHANGED = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_RESTART_IF_CHANGED
     SCRIPT_VARIABLE = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_SCRIPT_VARIABLE
     STORE_IF_NULL = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_STORE_IF_NULL
     ANIMATE_AS_TRIGGER = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_ANIMATE_AS_TRIGGER
     UPDATE_ALL_IF_MODIFIED = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED
+
+    #PANDEMONIUM_PROPERTY_USAGE_SCRIPT_DEFAULT_VALUE = 1 << 17,
+    #PANDEMONIUM_PROPERTY_USAGE_CLASS_IS_ENUM = 1 << 18,
+    #PANDEMONIUM_PROPERTY_USAGE_NIL_IS_VARIANT = 1 << 19,
+    #PANDEMONIUM_PROPERTY_USAGE_INTERNAL = 1 << 20,
+    #PANDEMONIUM_PROPERTY_USAGE_DO_NOT_SHARE_ON_DUPLICATE = 1 << 21, // If the object is duplicated also this property will be duplicated
+    #PANDEMONIUM_PROPERTY_USAGE_HIGH_END_GFX = 1 << 22,
+    #PANDEMONIUM_PROPERTY_USAGE_NODE_PATH_FROM_SCENE_ROOT = 1 << 23,
+    #PANDEMONIUM_PROPERTY_USAGE_RESOURCE_NOT_PERSISTENT = 1 << 24,
+    #PANDEMONIUM_PROPERTY_USAGE_KEYING_INCREMENTS = 1 << 25, // Used in inspector to increment property when keyed in animation player
+
     DEFAULT = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_DEFAULT
     DEFAULT_INTL = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_DEFAULT_INTL
     NOEDITOR = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_NOEDITOR
-
-
-# Expose RPC modes can be used both as a decorator and as a value to pass
-# to ExportedField ;-)
-
-
-class RPCMode:
-    def __init__(self, mod, modname):
-        self.mod = mod
-        self.modname = modname
-
-    def __call__(self, decorated):
-        if isinstance(decorated, ExportedField):
-            decorated.rpc = self.mod
-        else:
-            decorated.__rpc = self.mod
-
-    def __repr__(self):
-        return f"<{type(self).__name__}({self.modname!r})>"
-
-
-rpcdisabled = RPCMode(MethodRPCMode.DISABLED, "disabled")
-rpcremote = RPCMode(MethodRPCMode.REMOTE, "remote")
-rpcmaster = RPCMode(MethodRPCMode.MASTER, "master")
-rpcpuppet = RPCMode(MethodRPCMode.PUPPET, "puppet")
-rpcslave = RPCMode(MethodRPCMode.SLAVE, "slave")
-rpcremotesync = RPCMode(MethodRPCMode.REMOTESYNC, "remotesync")
-rpcsync = RPCMode(MethodRPCMode.SYNC, "sync")
-rpcmastersync = RPCMode(MethodRPCMode.MASTERSYNC, "mastersync")
-rpcpuppetsync = RPCMode(MethodRPCMode.PUPPETSYNC, "puppetsync")
-
 
 class SignalField:
     def __init__(self, name):
@@ -153,7 +135,6 @@ class ExportedField:
         hint,
         usage,
         hint_string,
-        rpc,
     ):
         self.property = None
 
@@ -189,10 +170,6 @@ class ExportedField:
         self.hint = hint
         self.usage = usage
         self.hint_string = hint_string
-        if isinstance(rpc, RPCMode):
-            self.rpc = rpc.mod
-        else:
-            self.rpc = rpc
 
     def __repr__(self):
         return f"<{type(self).__name__}(type={self.type!r}, default={self.default!r})>"
@@ -205,7 +182,6 @@ class ExportedField:
             hint=self.hint,
             usage=self.usage,
             hint_string=self.hint_string,
-            rpc=self.rpc,
         )
 
     def __call__(self, decorated):
@@ -218,10 +194,6 @@ class ExportedField:
 
         updated = self._copy()
 
-        # It's possible decorated has already been passed through a rpc decorator
-        rpc = getattr(decorated, "__rpc", None)
-        if rpc:
-            updated.rpc = rpc
         updated.property = decorated
         return updated
 
@@ -242,7 +214,6 @@ def export(
         hint: PropertyHint=PropertyHint.NONE,
         usage: PropertyUsageFlag=PropertyUsageFlag.DEFAULT,
         hint_string: str="",
-        rpc: MethodRPCMode=MethodRPCMode.DISABLED
     ):
     """
     Decorator used to mark a class attribute as beeing exported to Pandemonium
@@ -270,7 +241,6 @@ def export(
         hint=hint,
         usage=usage,
         hint_string=hint_string,
-        rpc=rpc,
     )
 
 
