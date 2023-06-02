@@ -12,20 +12,31 @@ from pandemonium.builtins import (
     Color,
     Dictionary,
     NodePath,
+    StringName,
     Plane,
     Quaternion,
     Rect2,
+    Rect2i,
     RID,
     Transform2D,
     Transform,
+    Projection,
     Vector2,
+    Vector2i,
     Vector3,
+    Vector3i,
+    Vector4,
+    Vector4i,
     PoolByteArray,
     PoolIntArray,
     PoolRealArray,
     PoolStringArray,
     PoolVector2Array,
+    PoolVector2iArray,
     PoolVector3Array,
+    PoolVector3iArray,
+    PoolVector4Array,
+    PoolVector4iArray,
     PoolColorArray,
     GDString,
 )
@@ -90,16 +101,23 @@ class VariantType(IntFlag):
     REAL: int
     STRING: int
     VECTOR2: int
+    VECTOR2I: int
     RECT2: int
+    RECT2I: int
     VECTOR3: int
+    VECTOR3I: int
+    VECTOR4: int
+    VECTOR4I: int
     TRANSFORM2D: int
     PLANE: int
     QUATERNION: int
     AABB: int
     BASIS: int
     TRANSFORM: int
+    PROJECTION: int
     COLOR: int
     NODE_PATH: int
+    STRING_NAME: int
     RID: int
     OBJECT: int
     DICTIONARY: int
@@ -109,7 +127,11 @@ class VariantType(IntFlag):
     POOL_REAL_ARRAY: int
     POOL_STRING_ARRAY: int
     POOL_VECTOR2_ARRAY: int
+    POOL_VECTOR2I_ARRAY: int
     POOL_VECTOR3_ARRAY: int
+    POOL_VECTOR3I_ARRAY: int
+    POOL_VECTOR4_ARRAY: int
+    POOL_VECTOR4I_ARRAY: int
     POOL_COLOR_ARRAY: int
 
 
