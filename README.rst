@@ -8,17 +8,6 @@ The goal of this project is to provide Python language support as a scripting mo
 
 It's a fork of https://github.com/touilleMan/godot-python .
 
-
-Quickstart
-==========
-
-By order of simplicity:
-
-- Directly download the project from within Godot with the asset library tab.
-- Download from the `asset library website <https://godotengine.org/asset-library/asset/179>`_.
-- Finally you can also head to the project `release page <https://github.com/touilleMan/godot-python/releases>`_ if you want to only download one specific platform build
-
-
 .. image:: https://github.com/Relintai/gdnative_python/raw/master/misc/showcase.png
    :align: center
 
