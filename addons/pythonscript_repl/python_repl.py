@@ -140,8 +140,8 @@ class PythonREPL(VBoxContainer):
         self.history = []
         self.selected_history = 0
         self.output_box = self.get_node("OutputBox")
-        self.output_box.add_font_override("normal_font", FONT)
-        self.output_box.add_font_override("mono_font", FONT)
+        self.output_box.add_theme_font_override("normal_font", FONT)
+        self.output_box.add_theme_font_override("mono_font", FONT)
         self.run_button = self.get_node("FooterContainer/RunButton")
         self.run_button.connect("pressed", self, "execute")
         self.clear_button = self.get_node("HeaderContainer/ClearButton")
