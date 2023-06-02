@@ -8,17 +8,17 @@ from libc.stdint cimport uint8_t
 @cython.final
 cdef class Color:
 {% block cdef_attributes %}
-    cdef godot_color _gd_data
+    cdef pandemonium_color _gd_data
 {% endblock %}
 
 {% block python_defs %}
-    def __init__(self, godot_real r=0, godot_real g=0, godot_real b=0, a=None):
+    def __init__(self, pandemonium_real r=0, pandemonium_real g=0, pandemonium_real b=0, a=None):
         if a is None:
-            {{ force_mark_rendered("godot_color_new_rgb")}}
-            gdapi10.godot_color_new_rgb(&self._gd_data, r, g, b)
+            {{ force_mark_rendered("pandemonium_color_new_rgb")}}
+            gdapi10.pandemonium_color_new_rgb(&self._gd_data, r, g, b)
         else:
-            {{ force_mark_rendered("godot_color_new_rgba")}}
-            gdapi10.godot_color_new_rgba(&self._gd_data, r, g, b, a)
+            {{ force_mark_rendered("pandemonium_color_new_rgba")}}
+            gdapi10.pandemonium_color_new_rgba(&self._gd_data, r, g, b, a)
 
     def __repr__(self):
         return f"<Color(r={self.r}, g={self.g}, b={self.b}, a={self.a})>"
@@ -27,7 +27,7 @@ cdef class Color:
     def from_resource(Resource resource not None):
         # Call to __new__ bypasses __init__ constructor
         cdef RID ret = RID.__new__(RID)
-        gdapi10.godot_rid_new_with_resource(&ret._gd_data, resource._gd_ptr)
+        gdapi10.pandemonium_rid_new_with_resource(&ret._gd_data, resource._gd_ptr)
         return ret
 
     @property

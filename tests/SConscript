@@ -23,8 +23,8 @@ for test in ["bindings", "helloworld", "threading", "global_constants"]:
     dist_symlink = env.Symlink(f"{test}/lib", "_lib_vendors")
     target = env.Command(
         test,
-        ["$godot_binary", dist_symlink],
-        cmd_prefx + "${SOURCE.abspath} ${godot_args} --path ${TARGET} " + cmd_suffix,
+        ["$pandemonium_binary", dist_symlink],
+        cmd_prefx + "${SOURCE.abspath} ${pandemonium_args} --path ${TARGET} " + cmd_suffix,
     )
     env.Depends(target, env["DIST_ROOT"])
     env.AlwaysBuild(target)

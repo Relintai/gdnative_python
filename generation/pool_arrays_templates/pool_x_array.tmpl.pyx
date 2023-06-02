@@ -2,8 +2,8 @@
 {% if type['gd_value'] == type['py_value'] %}
 {{ dst }} = {{ src }}
 {% else %}
-dst = godot_string_to_pyobj(&src)
-gdapi10.godot_string_destroy(&src)
+dst = pandemonium_string_to_pyobj(&src)
+gdapi10.pandemonium_string_destroy(&src)
 {% endif %}
 {% endmacro %}
 
@@ -61,10 +61,10 @@ cdef class {{ t.py_pool }}:
     # Operators
 
     def __getitem__(self, index):
-        cdef godot_int size = self.size()
-        cdef godot_int start
-        cdef godot_int stop
-        cdef godot_int step
+        cdef pandemonium_int size = self.size()
+        cdef pandemonium_int start
+        cdef pandemonium_int stop
+        cdef pandemonium_int step
         if isinstance(index, slice):
             step = index.step if index.step is not None else 1
             if step == 0:
@@ -87,7 +87,7 @@ cdef class {{ t.py_pool }}:
                 raise IndexError("list index out of range")
             return self.operator_getitem(index)
 
-    cdef inline {{ t.py_value }} operator_getitem(self, godot_int index):
+    cdef inline {{ t.py_value }} operator_getitem(self, pandemonium_int index):
 {% if t.is_base_type %}
         return gdapi10.{{ t.gd_pool }}_get(&self._gd_data, index)
 {% else %}
@@ -96,9 +96,9 @@ cdef class {{ t.py_pool }}:
         return ret
 {% endif %}
 
-    cdef inline {{ t.py_pool }} operator_getslice(self, godot_int start, godot_int stop, godot_int step):
+    cdef inline {{ t.py_pool }} operator_getslice(self, pandemonium_int start, pandemonium_int stop, pandemonium_int step):
         cdef {{ t.py_pool }} ret = {{ t.py_pool }}.new()
-        cdef godot_int size = self.size()
+        cdef pandemonium_int size = self.size()
 
         if start > size - 1:
             start = size - 1
@@ -136,7 +136,7 @@ cdef class {{ t.py_pool }}:
         )
         cdef const {{ t.gd_value }} *src_ptr = gdapi10.{{ t.gd_pool }}_read_access_ptr(src_access)
         cdef {{ t.gd_value }} *dst_ptr = gdapi10.{{ t.gd_pool }}_write_access_ptr(dst_access)
-        cdef godot_int i
+        cdef pandemonium_int i
         for i in range(items):
 {% if t.is_stack_only %}
             dst_ptr[i] = src_ptr[i * step + start]
@@ -150,8 +150,8 @@ cdef class {{ t.py_pool }}:
         return ret
 
     # TODO: support slice
-    def __setitem__(self, godot_int index, {{ t.py_value }} value):
-        cdef godot_int size
+    def __setitem__(self, pandemonium_int index, {{ t.py_value }} value):
+        cdef pandemonium_int size
         size = self.size()
         if index < 0:
             index += size
@@ -164,8 +164,8 @@ cdef class {{ t.py_pool }}:
 {% endif %}
 
     # TODO: support slice
-    def __delitem__(self, godot_int index):
-        cdef godot_int size
+    def __delitem__(self, pandemonium_int index):
+        cdef pandemonium_int size
         size = self.size()
         if index < 0:
             index += size
@@ -218,8 +218,8 @@ cdef class {{ t.py_pool }}:
     cdef inline bint operator_equal(self, {{ t.py_pool }} other):
         if other is None:
             return False
-        # TODO `godot_array_operator_equal` is missing in gdapi, submit a PR ?
-        cdef godot_int size = self.size()
+        # TODO `pandemonium_array_operator_equal` is missing in gdapi, submit a PR ?
+        cdef pandemonium_int size = self.size()
         if size != other.size():
             return False
 
@@ -231,7 +231,7 @@ cdef class {{ t.py_pool }}:
         )
         cdef const {{ t.gd_value }} *a_ptr = gdapi10.{{ t.gd_pool }}_read_access_ptr(a_access)
         cdef const {{ t.gd_value }} *b_ptr = gdapi10.{{ t.gd_pool }}_read_access_ptr(b_access)
-        cdef godot_int i
+        cdef pandemonium_int i
         cdef bint ret = True
         for i in range(size):
 {% if t.is_base_type %}
@@ -273,10 +273,10 @@ cdef class {{ t.py_pool }}:
         gdapi10.{{ t.gd_pool }}_push_back(&self._gd_data, &data._gd_data)
 {% endif %}
 
-    cpdef inline void resize(self, godot_int size):
+    cpdef inline void resize(self, pandemonium_int size):
         gdapi10.{{ t.gd_pool }}_resize(&self._gd_data, size)
 
-    cdef inline godot_int size(self):
+    cdef inline pandemonium_int size(self):
         return gdapi10.{{ t.gd_pool }}_size(&self._gd_data)
 
     # Raw access

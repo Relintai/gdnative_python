@@ -5,15 +5,15 @@
 # only expose C functions.
 # Beside this module depend on the `godot.hazmat` module so it would be a bad
 # idea to make the `godot` module depend on it...
-include "_godot_editor.pxi"
-include "_godot_profiling.pxi"
-include "_godot_script.pxi"
-include "_godot_instance.pxi"
-include "_godot_io.pxi"
+include "_pandemonium_editor.pxi"
+include "_pandemonium_profiling.pxi"
+include "_pandemonium_script.pxi"
+include "_pandemonium_instance.pxi"
+include "_pandemonium_io.pxi"
 
 from godot._hazmat.gdnative_api_struct cimport (
-    godot_gdnative_init_options,
-    godot_pluginscript_language_data,
+    pandemonium_gdnative_init_options,
+    pandemonium_pluginscript_language_data,
 )
 from godot._hazmat.internal cimport set_pythonscript_verbose, get_pythonscript_verbose
 from godot.builtins cimport GDString
@@ -35,7 +35,7 @@ def _setup_config_entry(name, default_value):
     return ProjectSettings.get_setting(gdname)
 
 
-cdef api godot_pluginscript_language_data *pythonscript_init() with gil:
+cdef api pandemonium_pluginscript_language_data *pythonscript_init() with gil:
     # Pass argv arguments
     sys.argv = ["godot"] + [str(x) for x in OS.get_cmdline_args()]
 
@@ -66,9 +66,9 @@ cdef api godot_pluginscript_language_data *pythonscript_init() with gil:
     return NULL
 
 
-cdef api void pythonscript_finish(godot_pluginscript_language_data *data) with gil:
+cdef api void pythonscript_finish(pandemonium_pluginscript_language_data *data) with gil:
     # /!\ When this function is called, the Python interpreter is fully operational
     # and might be running user-created threads doing concurrent stuff.
-    # That will continue until `godot_gdnative_terminate` is called (which is
+    # That will continue until `pandemonium_gdnative_terminate` is called (which is
     # responsible for the actual teardown of the interpreter).
     pass

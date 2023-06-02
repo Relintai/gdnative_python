@@ -5,12 +5,12 @@
 
 {% if not cls.singleton %}
 global __{{ cls.name }}_constructor
-__{{ cls.name }}_constructor = gdapi10.godot_get_class_constructor("{{ cls.name }}")
+__{{ cls.name }}_constructor = gdapi10.pandemonium_get_class_constructor("{{ cls.name }}")
 {% endif %}
 
 {% for method in cls.methods %}
 global {{ get_method_bind_register_name(cls, method) }}
-{{ get_method_bind_register_name(cls, method) }} = gdapi10.godot_method_bind_get_method("{{ cls.bind_register_name }}", "{{ method.name }}")
+{{ get_method_bind_register_name(cls, method) }} = gdapi10.pandemonium_method_bind_get_method("{{ cls.bind_register_name }}", "{{ method.name }}")
 {% endfor %}
 
 {% endmacro %}
@@ -24,11 +24,11 @@ from cpython.object cimport PyObject_GenericGetAttr, PyObject_GenericSetAttr
 {% endif %}
 
 {% if not cls.singleton %}
-cdef godot_class_constructor __{{ cls.name }}_constructor = NULL
+cdef pandemonium_class_constructor __{{ cls.name }}_constructor = NULL
 {% endif %}
 
 {% for method in cls.methods %}
-cdef godot_method_bind *{{ get_method_bind_register_name(cls, method) }} = NULL
+cdef pandemonium_method_bind *{{ get_method_bind_register_name(cls, method) }} = NULL
 {% endfor %}
 
 cdef class {{ cls.name }}({{ cls.base_class }}):
@@ -36,7 +36,7 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
     # free is virtual but this is not marked in api.json :'(
     def free(self):
         with nogil:
-            gdapi10.godot_object_destroy(self._gd_ptr)
+            gdapi10.pandemonium_object_destroy(self._gd_ptr)
 
     def __init__(self):
         raise RuntimeError(
@@ -47,12 +47,12 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
         return f"<{type(self).__name__} wrapper on 0x{<size_t>self._gd_ptr:x}>"
 
     @staticmethod
-    cdef inline Object cast_from_variant(const godot_variant *p_gdvar):
-        cdef godot_object *ptr = gdapi10.godot_variant_as_object(p_gdvar)
+    cdef inline Object cast_from_variant(const pandemonium_variant *p_gdvar):
+        cdef pandemonium_object *ptr = gdapi10.pandemonium_variant_as_object(p_gdvar)
         # Retreive class
         cdef GDString classname = GDString.__new__(GDString)
         with nogil:
-            gdapi10.godot_method_bind_ptrcall(
+            gdapi10.pandemonium_method_bind_ptrcall(
                 __methbind__Object__get_class,
                 ptr,
                 NULL,
@@ -61,11 +61,11 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
         return globals()[str(classname)]._from_ptr(<size_t>ptr)
 
     @staticmethod
-    cdef inline Object cast_from_ptr(godot_object *ptr):
+    cdef inline Object cast_from_ptr(pandemonium_object *ptr):
         # Retreive class
         cdef GDString classname = GDString.__new__(GDString)
         with nogil:
-            gdapi10.godot_method_bind_ptrcall(
+            gdapi10.pandemonium_method_bind_ptrcall(
                 __methbind__Object__get_class,
                 ptr,
                 NULL,
@@ -139,14 +139,14 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
     def __init__(self):
         if __{{ cls.name }}_constructor == NULL:
             raise NotImplementedError(__ERR_MSG_BINDING_NOT_AVAILABLE)
-        cdef godot_bool __ret
+        cdef pandemonium_bool __ret
         with nogil:
             self._gd_ptr = __{{ cls["name"] }}_constructor()
 
             if self._gd_ptr is NULL:
                 raise MemoryError
 
-            gdapi10.godot_method_bind_ptrcall(
+            gdapi10.pandemonium_method_bind_ptrcall(
                 __methbind__Reference__init_ref,
                 self._gd_ptr,
                 NULL,
@@ -172,24 +172,24 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
         raise RuntimeError(f"Refcounted Godot object must be created with `{ cls.__name__ }()`")
 
     def __dealloc__(self):
-        cdef godot_bool __ret
+        cdef pandemonium_bool __ret
         if self._gd_ptr == NULL:
             return
         with nogil:
-            gdapi10.godot_method_bind_ptrcall(
+            gdapi10.pandemonium_method_bind_ptrcall(
                 __methbind__Reference__unreference,
                 self._gd_ptr,
                 NULL,
                 &__ret
             )
             if __ret:
-                gdapi10.godot_object_destroy(self._gd_ptr)
+                gdapi10.pandemonium_object_destroy(self._gd_ptr)
 {% endif %}
 
 {% endif %}
 
     @staticmethod
-    cdef {{ cls.name }} from_ptr(godot_object *_ptr):
+    cdef {{ cls.name }} from_ptr(pandemonium_object *_ptr):
         # Call to __new__ bypasses __init__ constructor
         cdef {{ cls.name }} wrapper = {{ cls.name }}.__new__({{ cls.name }})
         wrapper._gd_ptr = _ptr
@@ -202,7 +202,7 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
 {% if not cls.singleton and cls.instantiable %}
     @classmethod
     def _new(cls):
-        cdef godot_object* ptr = __{{ cls.name }}_constructor()
+        cdef pandemonium_object* ptr = __{{ cls.name }}_constructor()
         if ptr is NULL:
             raise MemoryError
         return <size_t>ptr
@@ -212,9 +212,9 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
     def _from_ptr(ptr):
         # Call to __new__ bypasses __init__ constructor
         cdef {{ cls.name }} wrapper = {{ cls.name }}.__new__({{ cls.name }})
-        # /!\ doing `<godot_object*>ptr` would return the address of
+        # /!\ doing `<pandemonium_object*>ptr` would return the address of
         # the PyObject instead of casting it value !
-        wrapper._gd_ptr = <godot_object *><size_t>ptr
+        wrapper._gd_ptr = <pandemonium_object *><size_t>ptr
 {% if cls.is_reference %}
         # Note we steal the reference from the caller given we
         # don't call `Reference.reference` here

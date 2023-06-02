@@ -17,21 +17,21 @@ def {{ py_name or spec.py_name }}({{ spec.klass.cy_type }} self{%- if args_witho
 ) -> {{ spec.return_type.py_type }}:
 {% for arg in args_without_self %}
 {%     if arg.is_variant %}
-    cdef godot_variant __var_{{ arg.name }}
-    if not pyobj_to_godot_variant({{ arg.name }}, &__var_{{ arg.name }}):
+    cdef pandemonium_variant __var_{{ arg.name }}
+    if not pyobj_to_pandemonium_variant({{ arg.name }}, &__var_{{ arg.name }}):
 {%         for initialized_arg in args_without_self %}
 {%             if initialized_arg.name == arg.name %}
 {%                 break %}
 {%             endif %}
 {%             if initialized_arg.is_variant %}
-        gdapi10.godot_variant_destroy(&__var_{{ initialized_arg.name }})
+        gdapi10.pandemonium_variant_destroy(&__var_{{ initialized_arg.name }})
 {%             endif %}
 {%         endfor %}
         raise TypeError(f"Cannot convert `{ {{ arg.name}} !r}` to Godot Variant")
 {%     endif %}
 {% endfor %}
 {% if spec.return_type.is_variant %}
-    cdef godot_variant __var_ret = (
+    cdef pandemonium_variant __var_ret = (
 {%- elif spec.return_type.is_builtin %}
     cdef {{ spec.return_type.cy_type }} __ret = {{ spec.return_type.cy_type }}.__new__({{ spec.return_type.cy_type }})
     __ret._gd_data = (
@@ -62,12 +62,12 @@ def {{ py_name or spec.py_name }}({{ spec.klass.cy_type }} self{%- if args_witho
 ))
 {% for arg in args_without_self %}
 {% if arg.is_variant %}
-    gdapi10.godot_variant_destroy(&__var_{{ arg.name }})
+    gdapi10.pandemonium_variant_destroy(&__var_{{ arg.name }})
 {% endif %}
 {% endfor %}
 {% if spec.return_type.is_variant %}
-    cdef object __ret = godot_variant_to_pyobj(&__var_ret)
-    gdapi10.godot_variant_destroy(&__var_ret)
+    cdef object __ret = pandemonium_variant_to_pyobj(&__var_ret)
+    gdapi10.pandemonium_variant_destroy(&__var_ret)
     return __ret
 {% elif not spec.return_type.is_void %}
     return __ret

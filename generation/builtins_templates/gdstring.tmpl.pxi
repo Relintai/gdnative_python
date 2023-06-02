@@ -4,99 +4,99 @@
 from libc.stdint cimport int8_t
 {% endblock -%}
 
-{# godot_char_string is not really a bultin type...#}
-{{ force_mark_rendered("godot_char_string_destroy") }}
-{{ force_mark_rendered("godot_char_string_get_data") }}
-{{ force_mark_rendered("godot_char_string_length") }}
+{# pandemonium_char_string is not really a bultin type...#}
+{{ force_mark_rendered("pandemonium_char_string_destroy") }}
+{{ force_mark_rendered("pandemonium_char_string_get_data") }}
+{{ force_mark_rendered("pandemonium_char_string_length") }}
 {# Those methods are present in gdnative_api.json but not in the Godot documentation... #}
-{{ force_mark_rendered("godot_string_ascii") }}
-{{ force_mark_rendered("godot_string_ascii_extended") }}
-{{ force_mark_rendered("godot_string_begins_with_char_array") }}
-{{ force_mark_rendered("godot_string_c_escape_multiline") }}
-{{ force_mark_rendered("godot_string_camelcase_to_underscore") }}
-{{ force_mark_rendered("godot_string_camelcase_to_underscore_lowercased") }}
-{{ force_mark_rendered("godot_string_char_lowercase") }}
-{{ force_mark_rendered("godot_string_char_to_double") }}
-{{ force_mark_rendered("godot_string_char_to_int") }}
-{{ force_mark_rendered("godot_string_char_to_int64_with_len") }}
-{{ force_mark_rendered("godot_string_char_to_int_with_len") }}
-{{ force_mark_rendered("godot_string_char_uppercase") }}
-{{ force_mark_rendered("godot_string_chars_to_utf8") }}
-{{ force_mark_rendered("godot_string_chars_to_utf8_with_len") }}
-{{ force_mark_rendered("godot_string_chr") }}
-{{ force_mark_rendered("godot_string_find_from") }}
-{{ force_mark_rendered("godot_string_findmk") }}
-{{ force_mark_rendered("godot_string_findmk_from") }}
-{{ force_mark_rendered("godot_string_findmk_from_in_place") }}
-{{ force_mark_rendered("godot_string_findn_from") }}
-{{ force_mark_rendered("godot_string_format_with_custom_placeholder") }}
-{{ force_mark_rendered("godot_string_get_slice") }}
-{{ force_mark_rendered("godot_string_get_slice_count") }}
-{{ force_mark_rendered("godot_string_get_slicec") }}
-{{ force_mark_rendered("godot_string_hash64") }}
-{{ force_mark_rendered("godot_string_hash_chars") }}
-{{ force_mark_rendered("godot_string_hash_chars_with_len") }}
-{{ force_mark_rendered("godot_string_hash_utf8_chars") }}
-{{ force_mark_rendered("godot_string_hash_utf8_chars_with_len") }}
-{{ force_mark_rendered("godot_string_hex_encode_buffer") }}
-{{ force_mark_rendered("godot_string_hex_to_int64") }}
-{{ force_mark_rendered("godot_string_hex_to_int64_with_prefix") }}
-{{ force_mark_rendered("godot_string_hex_to_int_without_prefix") }}
-{{ force_mark_rendered("godot_string_is_numeric") }}
-{{ force_mark_rendered("godot_string_is_resource_file") }}
-{{ force_mark_rendered("godot_string_lpad") }}
-{{ force_mark_rendered("godot_string_lpad_with_custom_character") }}
-{{ force_mark_rendered("godot_string_md5") }}
-{{ force_mark_rendered("godot_string_name_destroy") }}
-{{ force_mark_rendered("godot_string_name_get_data_unique_pointer") }}
-{{ force_mark_rendered("godot_string_name_get_hash") }}
-{{ force_mark_rendered("godot_string_name_get_name") }}
-{{ force_mark_rendered("godot_string_name_new") }}
-{{ force_mark_rendered("godot_string_name_new_data") }}
-{{ force_mark_rendered("godot_string_name_operator_equal") }}
-{{ force_mark_rendered("godot_string_name_operator_less") }}
-{{ force_mark_rendered("godot_string_naturalnocasecmp_to") }}
-{{ force_mark_rendered("godot_string_num") }}
-{{ force_mark_rendered("godot_string_num_int64") }}
-{{ force_mark_rendered("godot_string_num_int64_capitalized") }}
-{{ force_mark_rendered("godot_string_num_real") }}
-{{ force_mark_rendered("godot_string_num_scientific") }}
-{{ force_mark_rendered("godot_string_num_with_decimals") }}
-{{ force_mark_rendered("godot_string_operator_index") }}
-{{ force_mark_rendered("godot_string_operator_index_const") }}
-{{ force_mark_rendered("godot_string_parse_utf8") }}
-{{ force_mark_rendered("godot_string_parse_utf8_with_len") }}
-{{ force_mark_rendered("godot_string_path_to") }}
-{{ force_mark_rendered("godot_string_path_to_file") }}
-{{ force_mark_rendered("godot_string_replace_first") }}
-{{ force_mark_rendered("godot_string_rfind_from") }}
-{{ force_mark_rendered("godot_string_rfindn_from") }}
-{{ force_mark_rendered("godot_string_rpad") }}
-{{ force_mark_rendered("godot_string_rpad_with_custom_character") }}
-{{ force_mark_rendered("godot_string_simplify_path") }}
-{{ force_mark_rendered("godot_string_split_allow_empty") }}
-{{ force_mark_rendered("godot_string_split_floats_allows_empty") }}
-{{ force_mark_rendered("godot_string_split_floats_mk") }}
-{{ force_mark_rendered("godot_string_split_floats_mk_allows_empty") }}
-{{ force_mark_rendered("godot_string_split_ints") }}
-{{ force_mark_rendered("godot_string_split_ints_allows_empty") }}
-{{ force_mark_rendered("godot_string_split_ints_mk") }}
-{{ force_mark_rendered("godot_string_split_ints_mk_allows_empty") }}
-{{ force_mark_rendered("godot_string_split_spaces") }}
-{{ force_mark_rendered("godot_string_sprintf") }}
-{{ force_mark_rendered("godot_string_to_double") }}
-{{ force_mark_rendered("godot_string_to_int64") }}
-{{ force_mark_rendered("godot_string_unicode_char_to_double") }}
-{{ force_mark_rendered("godot_string_utf8") }}
-{{ force_mark_rendered("godot_string_wchar_to_int") }}
-{{ force_mark_rendered("godot_string_wide_str") }}
-{{ force_mark_rendered("godot_string_word_wrap") }}
-{{ force_mark_rendered("godot_string_xml_escape_with_quotes") }}
+{{ force_mark_rendered("pandemonium_string_ascii") }}
+{{ force_mark_rendered("pandemonium_string_ascii_extended") }}
+{{ force_mark_rendered("pandemonium_string_begins_with_char_array") }}
+{{ force_mark_rendered("pandemonium_string_c_escape_multiline") }}
+{{ force_mark_rendered("pandemonium_string_camelcase_to_underscore") }}
+{{ force_mark_rendered("pandemonium_string_camelcase_to_underscore_lowercased") }}
+{{ force_mark_rendered("pandemonium_string_char_lowercase") }}
+{{ force_mark_rendered("pandemonium_string_char_to_double") }}
+{{ force_mark_rendered("pandemonium_string_char_to_int") }}
+{{ force_mark_rendered("pandemonium_string_char_to_int64_with_len") }}
+{{ force_mark_rendered("pandemonium_string_char_to_int_with_len") }}
+{{ force_mark_rendered("pandemonium_string_char_uppercase") }}
+{{ force_mark_rendered("pandemonium_string_chars_to_utf8") }}
+{{ force_mark_rendered("pandemonium_string_chars_to_utf8_with_len") }}
+{{ force_mark_rendered("pandemonium_string_chr") }}
+{{ force_mark_rendered("pandemonium_string_find_from") }}
+{{ force_mark_rendered("pandemonium_string_findmk") }}
+{{ force_mark_rendered("pandemonium_string_findmk_from") }}
+{{ force_mark_rendered("pandemonium_string_findmk_from_in_place") }}
+{{ force_mark_rendered("pandemonium_string_findn_from") }}
+{{ force_mark_rendered("pandemonium_string_format_with_custom_placeholder") }}
+{{ force_mark_rendered("pandemonium_string_get_slice") }}
+{{ force_mark_rendered("pandemonium_string_get_slice_count") }}
+{{ force_mark_rendered("pandemonium_string_get_slicec") }}
+{{ force_mark_rendered("pandemonium_string_hash64") }}
+{{ force_mark_rendered("pandemonium_string_hash_chars") }}
+{{ force_mark_rendered("pandemonium_string_hash_chars_with_len") }}
+{{ force_mark_rendered("pandemonium_string_hash_utf8_chars") }}
+{{ force_mark_rendered("pandemonium_string_hash_utf8_chars_with_len") }}
+{{ force_mark_rendered("pandemonium_string_hex_encode_buffer") }}
+{{ force_mark_rendered("pandemonium_string_hex_to_int64") }}
+{{ force_mark_rendered("pandemonium_string_hex_to_int64_with_prefix") }}
+{{ force_mark_rendered("pandemonium_string_hex_to_int_without_prefix") }}
+{{ force_mark_rendered("pandemonium_string_is_numeric") }}
+{{ force_mark_rendered("pandemonium_string_is_resource_file") }}
+{{ force_mark_rendered("pandemonium_string_lpad") }}
+{{ force_mark_rendered("pandemonium_string_lpad_with_custom_character") }}
+{{ force_mark_rendered("pandemonium_string_md5") }}
+{{ force_mark_rendered("pandemonium_string_name_destroy") }}
+{{ force_mark_rendered("pandemonium_string_name_get_data_unique_pointer") }}
+{{ force_mark_rendered("pandemonium_string_name_get_hash") }}
+{{ force_mark_rendered("pandemonium_string_name_get_name") }}
+{{ force_mark_rendered("pandemonium_string_name_new") }}
+{{ force_mark_rendered("pandemonium_string_name_new_data") }}
+{{ force_mark_rendered("pandemonium_string_name_operator_equal") }}
+{{ force_mark_rendered("pandemonium_string_name_operator_less") }}
+{{ force_mark_rendered("pandemonium_string_naturalnocasecmp_to") }}
+{{ force_mark_rendered("pandemonium_string_num") }}
+{{ force_mark_rendered("pandemonium_string_num_int64") }}
+{{ force_mark_rendered("pandemonium_string_num_int64_capitalized") }}
+{{ force_mark_rendered("pandemonium_string_num_real") }}
+{{ force_mark_rendered("pandemonium_string_num_scientific") }}
+{{ force_mark_rendered("pandemonium_string_num_with_decimals") }}
+{{ force_mark_rendered("pandemonium_string_operator_index") }}
+{{ force_mark_rendered("pandemonium_string_operator_index_const") }}
+{{ force_mark_rendered("pandemonium_string_parse_utf8") }}
+{{ force_mark_rendered("pandemonium_string_parse_utf8_with_len") }}
+{{ force_mark_rendered("pandemonium_string_path_to") }}
+{{ force_mark_rendered("pandemonium_string_path_to_file") }}
+{{ force_mark_rendered("pandemonium_string_replace_first") }}
+{{ force_mark_rendered("pandemonium_string_rfind_from") }}
+{{ force_mark_rendered("pandemonium_string_rfindn_from") }}
+{{ force_mark_rendered("pandemonium_string_rpad") }}
+{{ force_mark_rendered("pandemonium_string_rpad_with_custom_character") }}
+{{ force_mark_rendered("pandemonium_string_simplify_path") }}
+{{ force_mark_rendered("pandemonium_string_split_allow_empty") }}
+{{ force_mark_rendered("pandemonium_string_split_floats_allows_empty") }}
+{{ force_mark_rendered("pandemonium_string_split_floats_mk") }}
+{{ force_mark_rendered("pandemonium_string_split_floats_mk_allows_empty") }}
+{{ force_mark_rendered("pandemonium_string_split_ints") }}
+{{ force_mark_rendered("pandemonium_string_split_ints_allows_empty") }}
+{{ force_mark_rendered("pandemonium_string_split_ints_mk") }}
+{{ force_mark_rendered("pandemonium_string_split_ints_mk_allows_empty") }}
+{{ force_mark_rendered("pandemonium_string_split_spaces") }}
+{{ force_mark_rendered("pandemonium_string_sprintf") }}
+{{ force_mark_rendered("pandemonium_string_to_double") }}
+{{ force_mark_rendered("pandemonium_string_to_int64") }}
+{{ force_mark_rendered("pandemonium_string_unicode_char_to_double") }}
+{{ force_mark_rendered("pandemonium_string_utf8") }}
+{{ force_mark_rendered("pandemonium_string_wchar_to_int") }}
+{{ force_mark_rendered("pandemonium_string_wide_str") }}
+{{ force_mark_rendered("pandemonium_string_word_wrap") }}
+{{ force_mark_rendered("pandemonium_string_xml_escape_with_quotes") }}
 
 @cython.final
 cdef class GDString:
 {% block cdef_attributes %}
-    cdef godot_string _gd_data
+    cdef pandemonium_string _gd_data
 
     @staticmethod
     cdef inline GDString new()
@@ -105,54 +105,54 @@ cdef class GDString:
     cdef inline GDString new_with_wide_string(wchar_t *content, int size)
 
     @staticmethod
-    cdef inline GDString from_ptr(const godot_string *_ptr)
+    cdef inline GDString from_ptr(const pandemonium_string *_ptr)
 {% endblock %}
 
 {% block python_defs %}
     def __init__(self, str pystr=None):
         if not pystr:
-            {{ force_mark_rendered("godot_string_new" )}}
-            gdapi10.godot_string_new(&self._gd_data)
+            {{ force_mark_rendered("pandemonium_string_new" )}}
+            gdapi10.pandemonium_string_new(&self._gd_data)
         else:
-            pyobj_to_godot_string(pystr, &self._gd_data)
+            pyobj_to_pandemonium_string(pystr, &self._gd_data)
 
     @staticmethod
     cdef inline GDString new():
         # Call to __new__ bypasses __init__ constructor
         cdef GDString ret = GDString.__new__(GDString)
-        gdapi10.godot_string_new(&ret._gd_data)
+        gdapi10.pandemonium_string_new(&ret._gd_data)
         return ret
 
     @staticmethod
     cdef inline GDString new_with_wide_string(wchar_t *content, int size):
-        {{ force_mark_rendered("godot_string_new_with_wide_string") }}
+        {{ force_mark_rendered("pandemonium_string_new_with_wide_string") }}
         # Call to __new__ bypasses __init__ constructor
         cdef GDString ret = GDString.__new__(GDString)
-        gdapi10.godot_string_new_with_wide_string(&ret._gd_data, content, size)
+        gdapi10.pandemonium_string_new_with_wide_string(&ret._gd_data, content, size)
         return ret
 
     @staticmethod
-    cdef inline GDString from_ptr(const godot_string *_ptr):
+    cdef inline GDString from_ptr(const pandemonium_string *_ptr):
         # Call to __new__ bypasses __init__ constructor
         cdef GDString ret = GDString.__new__(GDString)
-        # `godot_string` is a cheap structure pointing on a refcounted buffer.
-        # Unlike it name could let think, `godot_string_new_copy` only
+        # `pandemonium_string` is a cheap structure pointing on a refcounted buffer.
+        # Unlike it name could let think, `pandemonium_string_new_copy` only
         # increments the refcount of the underlying structure.
-        {{ force_mark_rendered("godot_string_new_copy") }}
-        gdapi10.godot_string_new_copy(&ret._gd_data, _ptr)
+        {{ force_mark_rendered("pandemonium_string_new_copy") }}
+        gdapi10.pandemonium_string_new_copy(&ret._gd_data, _ptr)
         return ret
 
     def __dealloc__(GDString self):
         # /!\ if `__init__` is skipped, `_gd_data` must be initialized by
         # hand otherwise we will get a segfault here
-        {{ force_mark_rendered("godot_string_destroy" )}}
-        gdapi10.godot_string_destroy(&self._gd_data)
+        {{ force_mark_rendered("pandemonium_string_destroy" )}}
+        gdapi10.pandemonium_string_destroy(&self._gd_data)
 
     def __repr__(GDString self):
         return f"<GDString({str(self)!r})>"
 
     def __str__(GDString self):
-        return godot_string_to_pyobj(&self._gd_data)
+        return pandemonium_string_to_pyobj(&self._gd_data)
 
     {{ render_operator_eq() | indent }}
     {{ render_operator_ne() | indent }}
@@ -188,9 +188,9 @@ cdef class GDString:
 
     @staticmethod
     def humanize_size(size_t size):
-        {{ force_mark_rendered("godot_string_humanize_size") }}
+        {{ force_mark_rendered("pandemonium_string_humanize_size") }}
         cdef GDString __ret = GDString.__new__(GDString)
-        __ret._gd_data = gdapi10.godot_string_humanize_size(size)
+        __ret._gd_data = gdapi10.pandemonium_string_humanize_size(size)
         return __ret
 
     {{ render_method("insert") | indent }}

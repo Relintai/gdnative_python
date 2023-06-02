@@ -51,8 +51,8 @@ ALL_TYPES = [
     *ALL_TYPES_EXCEPT_OBJECTS,
     *TYPES_SIZED_INT,
     TypeSpec(
-        gdapi_type="godot_object",
-        c_type="godot_object",
+        gdapi_type="pandemonium_object",
+        c_type="pandemonium_object",
         cy_type="object",
         py_type="Object",
         is_object=True,
@@ -73,7 +73,7 @@ ALL_TYPES = [
         is_base_type=True,
         is_stack_only=True,
     ),
-    # /!\ godot_real is a C float (note py_type is still `float` given that's how Python call all floating point numbers)
+    # /!\ pandemonium_real is a C float (note py_type is still `float` given that's how Python call all floating point numbers)
     TypeSpec(
         gdapi_type="double",
         c_type="double",
@@ -100,16 +100,16 @@ ALL_TYPES = [
         is_stack_only=True,
     ),
     TypeSpec(
-        gdapi_type="godot_char_string",
-        c_type="godot_char_string",
-        cy_type="godot_char_string",
+        gdapi_type="pandemonium_char_string",
+        c_type="pandemonium_char_string",
+        cy_type="pandemonium_char_string",
         py_type="str",
         is_builtin=True,
     ),
     TypeSpec(
-        gdapi_type="godot_string_name",
-        c_type="godot_string_name",
-        cy_type="godot_string_name",
+        gdapi_type="pandemonium_string_name",
+        c_type="pandemonium_string_name",
+        cy_type="pandemonium_string_name",
         py_type="str",
         is_builtin=True,
     ),
@@ -162,7 +162,7 @@ class BuiltinMethodSpec:
     klass: TypeSpec
     # Name of the function in the GDNative C API
     c_name: str
-    # Basically gd_name without the `godot_<type>_` prefix
+    # Basically gd_name without the `pandemonium_<type>_` prefix
     py_name: str
     return_type: TypeSpec
     args: List[ArgumentSpec]
@@ -186,14 +186,14 @@ env.filters["merge"] = lambda x, **kwargs: {**x, **kwargs}
 
 def load_builtin_method_spec(func: dict, gdapi: str) -> BuiltinMethodSpec:
     c_name = func["name"]
-    assert c_name.startswith("godot_"), func
+    assert c_name.startswith("pandemonium_"), func
     for builtin_type in BUILTINS_TYPES:
         prefix = f"{builtin_type.c_type}_"
         if c_name.startswith(prefix):
             py_name = c_name[len(prefix) :]
             break
     else:
-        # This function is not part of a builtin class (e.g. godot_print), we can ignore it
+        # This function is not part of a builtin class (e.g. pandemonium_print), we can ignore it
         return
 
     def _cook_type(raw_type):
@@ -245,7 +245,7 @@ def pre_cook_patch_stuff(gdnative_api):
     while revision:
         for func in revision["api"]:
             # `signed char` is used in some string methods to return comparison
-            # information (see `godot_string_casecmp_to`).
+            # information (see `pandemonium_string_casecmp_to`).
             # The type in two word messes with our (poor) type parsing.
             if func["return_type"] == "signed char":
                 func["return_type"] = "int8_t"
@@ -261,7 +261,7 @@ def load_builtins_specs_from_gdnative_api_json(gdnative_api: dict) -> List[Built
         for func in revision["api"]:
             assert func["name"] not in specs
             # Ignore godot pool (generate by another script)
-            if func["name"].startswith("godot_pool_") or func["name"].startswith("godot_variant_"):
+            if func["name"].startswith("pandemonium_pool_") or func["name"].startswith("pandemonium_variant_"):
                 continue
             spec = load_builtin_method_spec(func, gdapi=revision_gdapi)
             if spec:

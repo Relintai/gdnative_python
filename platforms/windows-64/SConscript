@@ -13,7 +13,7 @@ cpython_build = Dir("cpython_build")
 
 
 env["bits"] = "64"
-env["godot_binary_download_platform"] = "win64.exe"
+env["pandemonium_binary_download_platform"] = "win64.exe"
 env["cpython_build"] = cpython_build
 env["cpython_build_dir"] = cpython_build
 env["DIST_SITE_PACKAGES"] = Dir(f"{env['DIST_PLATFORM']}/Lib/site-packages")

@@ -2,17 +2,17 @@ import builtins
 import enum
 
 from godot._hazmat.gdnative_api_struct cimport (
-    godot_method_rpc_mode,
-    godot_property_usage_flags,
-    godot_method_rpc_mode,
-    godot_property_hint,
-    godot_variant,
+    pandemonium_method_rpc_mode,
+    pandemonium_property_usage_flags,
+    pandemonium_method_rpc_mode,
+    pandemonium_property_hint,
+    pandemonium_variant,
 )
 from godot._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
 from godot._hazmat.conversion cimport (
-    is_pytype_compatible_with_godot_variant,
-    pyobj_to_godot_variant,
-    godot_variant_to_pyobj,
+    is_pytype_compatible_with_pandemonium_variant,
+    pyobj_to_pandemonium_variant,
+    pandemonium_variant_to_pyobj,
 )
 from godot._hazmat.internal cimport get_exposed_class, set_exposed_class
 from godot.builtins cimport Array, Dictionary, GDString
@@ -23,76 +23,76 @@ from godot.bindings cimport Object, Resource
 
 
 class MethodRPCMode(enum.IntEnum):
-    DISABLED = godot_method_rpc_mode.GODOT_METHOD_RPC_MODE_DISABLED
-    REMOTE = godot_method_rpc_mode.GODOT_METHOD_RPC_MODE_REMOTE
-    MASTER = godot_method_rpc_mode.GODOT_METHOD_RPC_MODE_MASTER
-    PUPPET = godot_method_rpc_mode.GODOT_METHOD_RPC_MODE_PUPPET
-    SLAVE = godot_method_rpc_mode.GODOT_METHOD_RPC_MODE_SLAVE
-    REMOTESYNC = godot_method_rpc_mode.GODOT_METHOD_RPC_MODE_REMOTESYNC
-    SYNC = godot_method_rpc_mode.GODOT_METHOD_RPC_MODE_SYNC
-    MASTERSYNC = godot_method_rpc_mode.GODOT_METHOD_RPC_MODE_MASTERSYNC
-    PUPPETSYNC = godot_method_rpc_mode.GODOT_METHOD_RPC_MODE_PUPPETSYNC
+    DISABLED = pandemonium_method_rpc_mode.GODOT_METHOD_RPC_MODE_DISABLED
+    REMOTE = pandemonium_method_rpc_mode.GODOT_METHOD_RPC_MODE_REMOTE
+    MASTER = pandemonium_method_rpc_mode.GODOT_METHOD_RPC_MODE_MASTER
+    PUPPET = pandemonium_method_rpc_mode.GODOT_METHOD_RPC_MODE_PUPPET
+    SLAVE = pandemonium_method_rpc_mode.GODOT_METHOD_RPC_MODE_SLAVE
+    REMOTESYNC = pandemonium_method_rpc_mode.GODOT_METHOD_RPC_MODE_REMOTESYNC
+    SYNC = pandemonium_method_rpc_mode.GODOT_METHOD_RPC_MODE_SYNC
+    MASTERSYNC = pandemonium_method_rpc_mode.GODOT_METHOD_RPC_MODE_MASTERSYNC
+    PUPPETSYNC = pandemonium_method_rpc_mode.GODOT_METHOD_RPC_MODE_PUPPETSYNC
 
 
 class PropertyHint(enum.IntEnum):
-    NONE = godot_property_hint.GODOT_PROPERTY_HINT_NONE
-    RANGE = godot_property_hint.GODOT_PROPERTY_HINT_RANGE
-    EXP_RANGE = godot_property_hint.GODOT_PROPERTY_HINT_EXP_RANGE
-    ENUM = godot_property_hint.GODOT_PROPERTY_HINT_ENUM
-    EXP_EASING = godot_property_hint.GODOT_PROPERTY_HINT_EXP_EASING
-    LENGTH = godot_property_hint.GODOT_PROPERTY_HINT_LENGTH
-    SPRITE_FRAME = godot_property_hint.GODOT_PROPERTY_HINT_SPRITE_FRAME
-    KEY_ACCEL = godot_property_hint.GODOT_PROPERTY_HINT_KEY_ACCEL
-    FLAGS = godot_property_hint.GODOT_PROPERTY_HINT_FLAGS
-    LAYERS_2D_RENDER = godot_property_hint.GODOT_PROPERTY_HINT_LAYERS_2D_RENDER
-    LAYERS_2D_PHYSICS = godot_property_hint.GODOT_PROPERTY_HINT_LAYERS_2D_PHYSICS
-    LAYERS_3D_RENDER = godot_property_hint.GODOT_PROPERTY_HINT_LAYERS_3D_RENDER
-    LAYERS_3D_PHYSICS = godot_property_hint.GODOT_PROPERTY_HINT_LAYERS_3D_PHYSICS
-    FILE = godot_property_hint.GODOT_PROPERTY_HINT_FILE
-    DIR = godot_property_hint.GODOT_PROPERTY_HINT_DIR
-    GLOBAL_FILE = godot_property_hint.GODOT_PROPERTY_HINT_GLOBAL_FILE
-    GLOBAL_DIR = godot_property_hint.GODOT_PROPERTY_HINT_GLOBAL_DIR
-    RESOURCE_TYPE = godot_property_hint.GODOT_PROPERTY_HINT_RESOURCE_TYPE
-    MULTILINE_TEXT = godot_property_hint.GODOT_PROPERTY_HINT_MULTILINE_TEXT
-    PLACEHOLDER_TEXT = godot_property_hint.GODOT_PROPERTY_HINT_PLACEHOLDER_TEXT
-    COLOR_NO_ALPHA = godot_property_hint.GODOT_PROPERTY_HINT_COLOR_NO_ALPHA
-    IMAGE_COMPRESS_LOSSY = godot_property_hint.GODOT_PROPERTY_HINT_IMAGE_COMPRESS_LOSSY
-    IMAGE_COMPRESS_LOSSLESS = godot_property_hint.GODOT_PROPERTY_HINT_IMAGE_COMPRESS_LOSSLESS
-    OBJECT_ID = godot_property_hint.GODOT_PROPERTY_HINT_OBJECT_ID
-    TYPE_STRING = godot_property_hint.GODOT_PROPERTY_HINT_TYPE_STRING
-    NODE_PATH_TO_EDITED_NODE = godot_property_hint.GODOT_PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE
-    METHOD_OF_VARIANT_TYPE = godot_property_hint.GODOT_PROPERTY_HINT_METHOD_OF_VARIANT_TYPE
-    METHOD_OF_BASE_TYPE = godot_property_hint.GODOT_PROPERTY_HINT_METHOD_OF_BASE_TYPE
-    METHOD_OF_INSTANCE = godot_property_hint.GODOT_PROPERTY_HINT_METHOD_OF_INSTANCE
-    METHOD_OF_SCRIPT = godot_property_hint.GODOT_PROPERTY_HINT_METHOD_OF_SCRIPT
-    PROPERTY_OF_VARIANT_TYPE = godot_property_hint.GODOT_PROPERTY_HINT_PROPERTY_OF_VARIANT_TYPE
-    PROPERTY_OF_BASE_TYPE = godot_property_hint.GODOT_PROPERTY_HINT_PROPERTY_OF_BASE_TYPE
-    PROPERTY_OF_INSTANCE = godot_property_hint.GODOT_PROPERTY_HINT_PROPERTY_OF_INSTANCE
-    PROPERTY_OF_SCRIPT = godot_property_hint.GODOT_PROPERTY_HINT_PROPERTY_OF_SCRIPT
-    MAX = godot_property_hint.GODOT_PROPERTY_HINT_MAX
+    NONE = pandemonium_property_hint.GODOT_PROPERTY_HINT_NONE
+    RANGE = pandemonium_property_hint.GODOT_PROPERTY_HINT_RANGE
+    EXP_RANGE = pandemonium_property_hint.GODOT_PROPERTY_HINT_EXP_RANGE
+    ENUM = pandemonium_property_hint.GODOT_PROPERTY_HINT_ENUM
+    EXP_EASING = pandemonium_property_hint.GODOT_PROPERTY_HINT_EXP_EASING
+    LENGTH = pandemonium_property_hint.GODOT_PROPERTY_HINT_LENGTH
+    SPRITE_FRAME = pandemonium_property_hint.GODOT_PROPERTY_HINT_SPRITE_FRAME
+    KEY_ACCEL = pandemonium_property_hint.GODOT_PROPERTY_HINT_KEY_ACCEL
+    FLAGS = pandemonium_property_hint.GODOT_PROPERTY_HINT_FLAGS
+    LAYERS_2D_RENDER = pandemonium_property_hint.GODOT_PROPERTY_HINT_LAYERS_2D_RENDER
+    LAYERS_2D_PHYSICS = pandemonium_property_hint.GODOT_PROPERTY_HINT_LAYERS_2D_PHYSICS
+    LAYERS_3D_RENDER = pandemonium_property_hint.GODOT_PROPERTY_HINT_LAYERS_3D_RENDER
+    LAYERS_3D_PHYSICS = pandemonium_property_hint.GODOT_PROPERTY_HINT_LAYERS_3D_PHYSICS
+    FILE = pandemonium_property_hint.GODOT_PROPERTY_HINT_FILE
+    DIR = pandemonium_property_hint.GODOT_PROPERTY_HINT_DIR
+    GLOBAL_FILE = pandemonium_property_hint.GODOT_PROPERTY_HINT_GLOBAL_FILE
+    GLOBAL_DIR = pandemonium_property_hint.GODOT_PROPERTY_HINT_GLOBAL_DIR
+    RESOURCE_TYPE = pandemonium_property_hint.GODOT_PROPERTY_HINT_RESOURCE_TYPE
+    MULTILINE_TEXT = pandemonium_property_hint.GODOT_PROPERTY_HINT_MULTILINE_TEXT
+    PLACEHOLDER_TEXT = pandemonium_property_hint.GODOT_PROPERTY_HINT_PLACEHOLDER_TEXT
+    COLOR_NO_ALPHA = pandemonium_property_hint.GODOT_PROPERTY_HINT_COLOR_NO_ALPHA
+    IMAGE_COMPRESS_LOSSY = pandemonium_property_hint.GODOT_PROPERTY_HINT_IMAGE_COMPRESS_LOSSY
+    IMAGE_COMPRESS_LOSSLESS = pandemonium_property_hint.GODOT_PROPERTY_HINT_IMAGE_COMPRESS_LOSSLESS
+    OBJECT_ID = pandemonium_property_hint.GODOT_PROPERTY_HINT_OBJECT_ID
+    TYPE_STRING = pandemonium_property_hint.GODOT_PROPERTY_HINT_TYPE_STRING
+    NODE_PATH_TO_EDITED_NODE = pandemonium_property_hint.GODOT_PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE
+    METHOD_OF_VARIANT_TYPE = pandemonium_property_hint.GODOT_PROPERTY_HINT_METHOD_OF_VARIANT_TYPE
+    METHOD_OF_BASE_TYPE = pandemonium_property_hint.GODOT_PROPERTY_HINT_METHOD_OF_BASE_TYPE
+    METHOD_OF_INSTANCE = pandemonium_property_hint.GODOT_PROPERTY_HINT_METHOD_OF_INSTANCE
+    METHOD_OF_SCRIPT = pandemonium_property_hint.GODOT_PROPERTY_HINT_METHOD_OF_SCRIPT
+    PROPERTY_OF_VARIANT_TYPE = pandemonium_property_hint.GODOT_PROPERTY_HINT_PROPERTY_OF_VARIANT_TYPE
+    PROPERTY_OF_BASE_TYPE = pandemonium_property_hint.GODOT_PROPERTY_HINT_PROPERTY_OF_BASE_TYPE
+    PROPERTY_OF_INSTANCE = pandemonium_property_hint.GODOT_PROPERTY_HINT_PROPERTY_OF_INSTANCE
+    PROPERTY_OF_SCRIPT = pandemonium_property_hint.GODOT_PROPERTY_HINT_PROPERTY_OF_SCRIPT
+    MAX = pandemonium_property_hint.GODOT_PROPERTY_HINT_MAX
 
 
 class PropertyUsageFlag(enum.IntFlag):
-    STORAGE = godot_property_usage_flags.GODOT_PROPERTY_USAGE_STORAGE
-    EDITOR = godot_property_usage_flags.GODOT_PROPERTY_USAGE_EDITOR
-    NETWORK = godot_property_usage_flags.GODOT_PROPERTY_USAGE_NETWORK
-    EDITOR_HELPER = godot_property_usage_flags.GODOT_PROPERTY_USAGE_EDITOR_HELPER
-    CHECKABLE = godot_property_usage_flags.GODOT_PROPERTY_USAGE_CHECKABLE
-    CHECKED = godot_property_usage_flags.GODOT_PROPERTY_USAGE_CHECKED
-    INTERNATIONALIZED = godot_property_usage_flags.GODOT_PROPERTY_USAGE_INTERNATIONALIZED
-    GROUP = godot_property_usage_flags.GODOT_PROPERTY_USAGE_GROUP
-    CATEGORY = godot_property_usage_flags.GODOT_PROPERTY_USAGE_CATEGORY
-    STORE_IF_NONZERO = godot_property_usage_flags.GODOT_PROPERTY_USAGE_STORE_IF_NONZERO
-    STORE_IF_NONONE = godot_property_usage_flags.GODOT_PROPERTY_USAGE_STORE_IF_NONONE
-    NO_INSTANCE_STATE = godot_property_usage_flags.GODOT_PROPERTY_USAGE_NO_INSTANCE_STATE
-    RESTART_IF_CHANGED = godot_property_usage_flags.GODOT_PROPERTY_USAGE_RESTART_IF_CHANGED
-    SCRIPT_VARIABLE = godot_property_usage_flags.GODOT_PROPERTY_USAGE_SCRIPT_VARIABLE
-    STORE_IF_NULL = godot_property_usage_flags.GODOT_PROPERTY_USAGE_STORE_IF_NULL
-    ANIMATE_AS_TRIGGER = godot_property_usage_flags.GODOT_PROPERTY_USAGE_ANIMATE_AS_TRIGGER
-    UPDATE_ALL_IF_MODIFIED = godot_property_usage_flags.GODOT_PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED
-    DEFAULT = godot_property_usage_flags.GODOT_PROPERTY_USAGE_DEFAULT
-    DEFAULT_INTL = godot_property_usage_flags.GODOT_PROPERTY_USAGE_DEFAULT_INTL
-    NOEDITOR = godot_property_usage_flags.GODOT_PROPERTY_USAGE_NOEDITOR
+    STORAGE = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_STORAGE
+    EDITOR = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_EDITOR
+    NETWORK = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_NETWORK
+    EDITOR_HELPER = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_EDITOR_HELPER
+    CHECKABLE = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_CHECKABLE
+    CHECKED = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_CHECKED
+    INTERNATIONALIZED = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_INTERNATIONALIZED
+    GROUP = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_GROUP
+    CATEGORY = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_CATEGORY
+    STORE_IF_NONZERO = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_STORE_IF_NONZERO
+    STORE_IF_NONONE = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_STORE_IF_NONONE
+    NO_INSTANCE_STATE = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_NO_INSTANCE_STATE
+    RESTART_IF_CHANGED = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_RESTART_IF_CHANGED
+    SCRIPT_VARIABLE = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_SCRIPT_VARIABLE
+    STORE_IF_NULL = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_STORE_IF_NULL
+    ANIMATE_AS_TRIGGER = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_ANIMATE_AS_TRIGGER
+    UPDATE_ALL_IF_MODIFIED = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED
+    DEFAULT = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_DEFAULT
+    DEFAULT_INTL = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_DEFAULT_INTL
+    NOEDITOR = pandemonium_property_usage_flags.GODOT_PROPERTY_USAGE_NOEDITOR
 
 
 # Expose RPC modes can be used both as a decorator and as a value to pass
@@ -161,17 +161,17 @@ class ExportedField:
         type = Array if type == list else type
         type = Dictionary if type == dict else type
 
-        if not is_pytype_compatible_with_godot_variant(type):
+        if not is_pytype_compatible_with_pandemonium_variant(type):
             raise ValueError(f"{type!r} type value not compatible with Godot")
 
-        cdef godot_variant gd_default
+        cdef pandemonium_variant gd_default
         if default is not None:
             # Convert `default` to a Godot-compatible value (e.g. str -> GDString)
-            if not pyobj_to_godot_variant(default, &gd_default):
-                gdapi10.godot_variant_destroy(&gd_default)
+            if not pyobj_to_pandemonium_variant(default, &gd_default):
+                gdapi10.pandemonium_variant_destroy(&gd_default)
                 raise ValueError(f"{default!r} default value not compatible with Godot")
-            default = godot_variant_to_pyobj(&gd_default)
-            gdapi10.godot_variant_destroy(&gd_default)
+            default = pandemonium_variant_to_pyobj(&gd_default)
+            gdapi10.pandemonium_variant_destroy(&gd_default)
 
             if not isinstance(default, type):
                 raise ValueError(f"{default!r} default value not compatible with {type!r} type")

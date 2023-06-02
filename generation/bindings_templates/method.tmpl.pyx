@@ -15,7 +15,7 @@ __methbind__{{ cls.name }}__{{ method.name }}
 {% macro render_method_signature(method) %}
 {{ method.name }}(self,
 {%- for arg in method.arguments %}
-{%- if arg.type.c_type in ("godot_string", "godot_node_path") %}
+{%- if arg.type.c_type in ("pandemonium_string", "pandemonium_node_path") %}
  object {{ arg.name }}
 {%- else %}
  {{ arg.type.cy_type }} {{ arg.name }}
@@ -42,12 +42,12 @@ if {{ retval }} == NULL:
     return None
 else:
     return Object.cast_from_ptr({{ retval }})
-{% elif method.return_type.c_type == "godot_variant" %}
+{% elif method.return_type.c_type == "pandemonium_variant" %}
 try:
-    return godot_variant_to_pyobj(&{{ retval }})
+    return pandemonium_variant_to_pyobj(&{{ retval }})
 finally:
     with nogil:
-        gdapi10.godot_variant_destroy(&{{ retval }})
+        gdapi10.pandemonium_variant_destroy(&{{ retval }})
 {% elif method.return_type.is_enum %}
 return {{ method.return_type.py_type }}({{ retval }})
 {% else %}
@@ -63,10 +63,10 @@ cdef const void *{{ argsval }}[{{ method.arguments | length }}]
 {% for arg in method.arguments %}
 {% set i = loop.index - 1 %}
 # {{ arg.type.c_type }} {{ arg.name }}
-{% if arg.type.c_type == "godot_string" %}
+{% if arg.type.c_type == "pandemonium_string" %}
 cdef GDString __gdstr_{{ arg.name }} = ensure_is_gdstring({{ arg.name }})
 {{ argsval }}[{{ i }}] = <void*>(&__gdstr_{{ arg.name }}._gd_data)
-{% elif arg.type.c_type == "godot_node_path" %}
+{% elif arg.type.c_type == "pandemonium_node_path" %}
 cdef NodePath __nodepath_{{ arg.name }} = ensure_is_nodepath({{ arg.name }})
 {{ argsval }}[{{ i }}] = <void*>(&__nodepath_{{ arg.name }}._gd_data)
 {% elif arg.type.is_object %}
@@ -75,13 +75,13 @@ cdef NodePath __nodepath_{{ arg.name }} = ensure_is_nodepath({{ arg.name }})
 {%- else %}
 {{ argsval }}[{{ i }}] = <void*>{{ arg.name }}._gd_ptr
 {%- endif %}
-{% elif arg.type.c_type == "godot_variant" %}
-cdef godot_variant __var_{{ arg.name }}
-pyobj_to_godot_variant({{ arg.name }}, &__var_{{ arg.name }})
+{% elif arg.type.c_type == "pandemonium_variant" %}
+cdef pandemonium_variant __var_{{ arg.name }}
+pyobj_to_pandemonium_variant({{ arg.name }}, &__var_{{ arg.name }})
 {{ argsval }}[{{ i }}] = <void*>(&__var_{{ arg.name }})
 {% elif arg.type.is_builtin %}
 {{ argsval }}[{{ i }}] = <void*>(&{{ arg.name }}._gd_data)
-{% elif arg.type.c_type == "godot_real" %}
+{% elif arg.type.c_type == "pandemonium_real" %}
 # ptrcall does not work with single precision floats, so we must convert to a double
 cdef double {{ arg.name }}_d = <double>{{ arg.name }};
 {{ argsval }}[{{ i }}] = &{{ arg.name }}_d
@@ -95,9 +95,9 @@ cdef double {{ arg.name }}_d = <double>{{ arg.name }};
 {% macro _render_method_destroy_args(method) %}
 {% for arg in method.arguments %}
 {% set i = loop.index - 1 %}
-{% if arg.type.c_type == "godot_variant" %}
+{% if arg.type.c_type == "pandemonium_variant" %}
 with nogil:
-    gdapi10.godot_variant_destroy(&__var_{{ arg.name }})
+    gdapi10.pandemonium_variant_destroy(&__var_{{ arg.name }})
 {% endif %}
 {% endfor %}
 {%- endmacro %}
@@ -111,16 +111,16 @@ with nogil:
 # in case of Reference, Godot will try to decrease the
 # refcount if the pointer is valid !
 # (see https://github.com/godotengine/godot/issues/35609)
-cdef godot_object *{{ retval }} = NULL
+cdef pandemonium_object *{{ retval }} = NULL
 {% set retval_as_arg = "&{}".format(retval) %}
-{% elif method.return_type.c_type == "godot_variant" %}
-cdef godot_variant {{ retval }}
+{% elif method.return_type.c_type == "pandemonium_variant" %}
+cdef pandemonium_variant {{ retval }}
 {% set retval_as_arg = "&{}".format(retval) %}
 {% elif method.return_type.is_builtin %}
 {% set cy_type =  method.return_type.cy_type %}
 cdef {{ cy_type }} {{ retval }} = {{ cy_type }}.__new__({{ cy_type }})
 {% set retval_as_arg = "&{}._gd_data".format(retval) %}
-{% elif method.return_type.c_type == "godot_real" %}
+{% elif method.return_type.c_type == "pandemonium_real" %}
 # ptrcall does not work with single precision floats, so we must convert to a double
 cdef double {{ retval }}
 {% set retval_as_arg = "&{}".format(retval) %}
@@ -131,7 +131,7 @@ cdef {{ method.return_type.c_type }} {{ retval }}
 if {{ get_method_bind_register_name(cls, method) }} == NULL:
     raise NotImplementedError(__ERR_MSG_BINDING_NOT_AVAILABLE)
 with nogil:
-    gdapi10.godot_method_bind_ptrcall(
+    gdapi10.pandemonium_method_bind_ptrcall(
         {{ get_method_bind_register_name(cls, method) }},
         self._gd_ptr,
     {% if (method.arguments | length )  != 0 %}

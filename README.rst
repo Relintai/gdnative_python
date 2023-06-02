@@ -86,16 +86,7 @@ Godot-Python requires Python >= 3.7 and a C compiler.
 Godot GDNative header
 ---------------------
 
-
-The Godot GDNative headers are provided as git submodule:
-
-.. code-block:: bash
-
-	$ git submodule init
-	$ git submodule update
-
-Alternatively, you can get them `from github <https://github.com/GodotNativeTools/godot_headers>`_.
-
+TODO (need to be copied from the gdnative module)
 
 Linux
 -----
@@ -263,7 +254,7 @@ use that the static library and binary for building and tests.
 
 .. code-block:: bash
 
-	godot-python(venv)$ scons platform=x11-64 godot_binary=../godot/bin/godot.x11.opt.64
+	godot-python(venv)$ scons platform=x11-64 pandemonium_binary=../godot/bin/godot.x11.opt.64
 
 
 Additional build options

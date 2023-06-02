@@ -8,7 +8,7 @@
 #     pyobj_to_gdobj,
 #     gd_to_py_type,
 #     py_to_gd_type,
-#     godot_string_to_pyobj,
+#     pandemonium_string_to_pyobj,
 # )
 # from pythonscriptcffi import lib
 
@@ -51,9 +51,9 @@
 
 
 # @pytest.mark.parametrize("arg", ["", "foo", "l" + "o" * 25000 + "ong"])
-# def test_godot_string_to_pyobj(arg):
+# def test_pandemonium_string_to_pyobj(arg):
 #     gdstr = pyobj_to_gdobj(arg)
-#     ret_arg = godot_string_to_pyobj(gdstr)
+#     ret_arg = pandemonium_string_to_pyobj(gdstr)
 #     assert ret_arg == arg
 
 

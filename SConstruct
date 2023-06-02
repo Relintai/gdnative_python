@@ -17,10 +17,10 @@ def extract_version():
     return gl["__version__"]
 
 
-def godot_binary_converter(val, env):
+def pandemonium_binary_converter(val, env):
     file = File(val)
     if file.exists():
-        # Note here `env["godot_binary_download_version"]` is not defined, this is ok given
+        # Note here `env["pandemonium_binary_download_version"]` is not defined, this is ok given
         # this variable shouldn't be needed if Godot doesn't have to be downloaded
         return file
     # Provided value is version information with format <major>.<minor>.<patch>[-<extra>]
@@ -31,8 +31,8 @@ def godot_binary_converter(val, env):
         raise UserError(
             f"`{val}` is neither an existing file nor a valid <major>.<minor>.<patch>[-<extra>] Godot version format"
         )
-    env["godot_binary_download_version"] = (major, minor, patch, extra or "stable")
-    # `godot_binary` is set to None to indicate it should be downloaded
+    env["pandemonium_binary_download_version"] = (major, minor, patch, extra or "stable")
+    # `pandemonium_binary` is set to None to indicate it should be downloaded
     return None
 
 
@@ -47,14 +47,14 @@ vars.Add(
 )
 vars.Add("pytest_args", "Pytest arguments passed to tests functions", "")
 vars.Add(
-    "godot_args", "Additional arguments passed to godot binary when running tests&examples", ""
+    "pandemonium_args", "Additional arguments passed to godot binary when running tests&examples", ""
 )
 vars.Add("release_suffix", "Suffix to add to the release archive", extract_version())
 vars.Add(
-    "godot_binary",
+    "pandemonium_binary",
     "Path to Godot binary or version of Godot to use",
     default="3.2.2",
-    converter=godot_binary_converter,
+    converter=pandemonium_binary_converter,
 )
 vars.Add("pandemonium_headers", "Path to Godot GDnative headers", "")
 vars.Add("debugger", "Run test with a debugger", "")

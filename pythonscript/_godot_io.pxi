@@ -5,33 +5,33 @@ from io import TextIOBase
 from threading import Lock
 
 from godot._hazmat.conversion cimport (
-    godot_string_to_pyobj,
-    pyobj_to_godot_string,
-    godot_variant_to_pyobj,
+    pandemonium_string_to_pyobj,
+    pyobj_to_pandemonium_string,
+    pandemonium_variant_to_pyobj,
 )
 from godot._hazmat.gdnative_api_struct cimport (
-    godot_string,
-    godot_string_name,
-    godot_bool,
-    godot_array,
-    godot_pool_string_array,
-    godot_object,
-    godot_variant,
-    godot_variant_call_error,
-    godot_method_rpc_mode,
-    godot_pluginscript_script_data,
-    godot_pluginscript_instance_data,
-    godot_variant_call_error_error,
-    godot_variant_type
+    pandemonium_string,
+    pandemonium_string_name,
+    pandemonium_bool,
+    pandemonium_array,
+    pandemonium_pool_string_array,
+    pandemonium_object,
+    pandemonium_variant,
+    pandemonium_variant_call_error,
+    pandemonium_method_rpc_mode,
+    pandemonium_pluginscript_script_data,
+    pandemonium_pluginscript_instance_data,
+    pandemonium_variant_call_error_error,
+    pandemonium_variant_type
 )
 
 
-cpdef inline void godot_print(str pystr):
-    cdef godot_string gdstr
-    pyobj_to_godot_string(pystr, &gdstr)
+cpdef inline void pandemonium_print(str pystr):
+    cdef pandemonium_string gdstr
+    pyobj_to_pandemonium_string(pystr, &gdstr)
     with nogil:
-        gdapi10.godot_print(&gdstr)
-        gdapi10.godot_string_destroy(&gdstr)
+        gdapi10.pandemonium_print(&gdstr)
+        gdapi10.pandemonium_string_destroy(&gdstr)
 
 
 class StdinCapture(TextIOBase):
@@ -112,11 +112,11 @@ class StdoutStderrCaptureToGodot(StdoutStderrCapture):
                 self.buffer = ""
 
     def _write(self, buff):
-        cdef godot_string gdstr
-        pyobj_to_godot_string(buff, &gdstr)
+        cdef pandemonium_string gdstr
+        pyobj_to_pandemonium_string(buff, &gdstr)
         with nogil:
-            gdapi10.godot_print(&gdstr)
-            gdapi10.godot_string_destroy(&gdstr)
+            gdapi10.pandemonium_print(&gdstr)
+            gdapi10.pandemonium_string_destroy(&gdstr)
 
 
 cdef _capture_io_streams = None

@@ -4,28 +4,28 @@
 {% endblock -%}
 
 {# TODO: conversion from pool arrays is not supported #}
-{{ force_mark_rendered("godot_array_new_pool_byte_array") }}
-{{ force_mark_rendered("godot_array_new_pool_color_array") }}
-{{ force_mark_rendered("godot_array_new_pool_int_array") }}
-{{ force_mark_rendered("godot_array_new_pool_real_array") }}
-{{ force_mark_rendered("godot_array_new_pool_string_array") }}
-{{ force_mark_rendered("godot_array_new_pool_vector2_array") }}
-{{ force_mark_rendered("godot_array_new_pool_vector3_array") }}
+{{ force_mark_rendered("pandemonium_array_new_pool_byte_array") }}
+{{ force_mark_rendered("pandemonium_array_new_pool_color_array") }}
+{{ force_mark_rendered("pandemonium_array_new_pool_int_array") }}
+{{ force_mark_rendered("pandemonium_array_new_pool_real_array") }}
+{{ force_mark_rendered("pandemonium_array_new_pool_string_array") }}
+{{ force_mark_rendered("pandemonium_array_new_pool_vector2_array") }}
+{{ force_mark_rendered("pandemonium_array_new_pool_vector3_array") }}
 {# We can't do const in Python #}
-{{ force_mark_rendered("godot_array_operator_index_const") }}
+{{ force_mark_rendered("pandemonium_array_operator_index_const") }}
 
 @cython.final
 cdef class Array:
 {% block cdef_attributes %}
-    cdef godot_array _gd_data
+    cdef pandemonium_array _gd_data
 
     @staticmethod
     cdef inline Array new()
 
     @staticmethod
-    cdef inline Array from_ptr(const godot_array *_ptr)
+    cdef inline Array from_ptr(const pandemonium_array *_ptr)
 
-    cdef inline Array operator_getslice(self, godot_int start, godot_int stop, godot_int step)
+    cdef inline Array operator_getslice(self, pandemonium_int start, pandemonium_int stop, pandemonium_int step)
     cdef inline bint operator_equal(self, Array other)
     cdef inline Array operator_add(self, Array items)
     cdef inline operator_iadd(self, Array items)
@@ -33,15 +33,15 @@ cdef class Array:
 
 {% block python_defs %}
     def __init__(self, iterable=None):
-        {{ force_mark_rendered("godot_array_new") }}
-        {{ force_mark_rendered("godot_array_duplicate") }}
+        {{ force_mark_rendered("pandemonium_array_new") }}
+        {{ force_mark_rendered("pandemonium_array_duplicate") }}
         if not iterable:
-            gdapi10.godot_array_new(&self._gd_data)
+            gdapi10.pandemonium_array_new(&self._gd_data)
         elif isinstance(iterable, Array):
-            self._gd_data = gdapi11.godot_array_duplicate(&(<Array>iterable)._gd_data, False)
+            self._gd_data = gdapi11.pandemonium_array_duplicate(&(<Array>iterable)._gd_data, False)
         # TODO: handle Pool*Array
         else:
-            gdapi10.godot_array_new(&self._gd_data)
+            gdapi10.pandemonium_array_new(&self._gd_data)
             for x in iterable:
                 self.append(x)
 
@@ -49,44 +49,44 @@ cdef class Array:
     cdef inline Array new():
         # Call to __new__ bypasses __init__ constructor
         cdef Array ret = Array.__new__(Array)
-        gdapi10.godot_array_new(&ret._gd_data)
+        gdapi10.pandemonium_array_new(&ret._gd_data)
         return ret
 
     @staticmethod
-    cdef inline Array from_ptr(const godot_array *_ptr):
+    cdef inline Array from_ptr(const pandemonium_array *_ptr):
         # Call to __new__ bypasses __init__ constructor
         cdef Array ret = Array.__new__(Array)
-        # `godot_array` is a cheap structure pointing on a refcounted vector
-        # of variants. Unlike it name could let think, `godot_array_new_copy`
+        # `pandemonium_array` is a cheap structure pointing on a refcounted vector
+        # of variants. Unlike it name could let think, `pandemonium_array_new_copy`
         # only increment the refcount of the underlying structure.
-        {{ force_mark_rendered("godot_array_new_copy") }}
-        gdapi10.godot_array_new_copy(&ret._gd_data, _ptr)
+        {{ force_mark_rendered("pandemonium_array_new_copy") }}
+        gdapi10.pandemonium_array_new_copy(&ret._gd_data, _ptr)
         return ret
 
     def __dealloc__(self):
         # /!\ if `__init__` is skipped, `_gd_data` must be initialized by
         # hand otherwise we will get a segfault here
-        {{ force_mark_rendered("godot_array_destroy") }}
-        gdapi10.godot_array_destroy(&self._gd_data)
+        {{ force_mark_rendered("pandemonium_array_destroy") }}
+        gdapi10.pandemonium_array_destroy(&self._gd_data)
 
     def __repr__(self):
         return f"<{type(self).__name__}([{', '.join([repr(x) for x in self])}])>"
 
     # Operators
 
-    cdef inline Array operator_getslice(self, godot_int start, godot_int stop, godot_int step):
-        {{ force_mark_rendered("godot_array_slice") }}
+    cdef inline Array operator_getslice(self, pandemonium_int start, pandemonium_int stop, pandemonium_int step):
+        {{ force_mark_rendered("pandemonium_array_slice") }}
         cdef Array ret = Array.__new__(Array)
-        ret._gd_data = gdapi12.godot_array_slice(&self._gd_data, start, stop, step, False)
+        ret._gd_data = gdapi12.pandemonium_array_slice(&self._gd_data, start, stop, step, False)
         return ret
 
     # TODO: support slice
     def __getitem__(self, index):
-        {{ force_mark_rendered("godot_array_operator_index") }}
-        cdef godot_int size = self.size()
-        cdef godot_int start
-        cdef godot_int stop
-        cdef godot_int step
+        {{ force_mark_rendered("pandemonium_array_operator_index") }}
+        cdef pandemonium_int size = self.size()
+        cdef pandemonium_int start
+        cdef pandemonium_int stop
+        cdef pandemonium_int step
 
         if isinstance(index, slice):
             step = index.step if index.step is not None else 1
@@ -105,28 +105,28 @@ cdef class Array:
         if index < 0 or index >= size:
             raise IndexError("list index out of range")
 
-        cdef godot_variant *p_ret = gdapi10.godot_array_operator_index(&self._gd_data, index)
-        return godot_variant_to_pyobj(p_ret)
+        cdef pandemonium_variant *p_ret = gdapi10.pandemonium_array_operator_index(&self._gd_data, index)
+        return pandemonium_variant_to_pyobj(p_ret)
 
     # TODO: support slice
-    def __setitem__(self, godot_int index, object value):
-        cdef godot_int size = self.size()
+    def __setitem__(self, pandemonium_int index, object value):
+        cdef pandemonium_int size = self.size()
         index = size + index if index < 0 else index
         if abs(index) >= size:
             raise IndexError("list index out of range")
 
-        cdef godot_variant *p_ret = gdapi10.godot_array_operator_index(&self._gd_data, index)
-        gdapi10.godot_variant_destroy(p_ret)
-        pyobj_to_godot_variant(value, p_ret)
+        cdef pandemonium_variant *p_ret = gdapi10.pandemonium_array_operator_index(&self._gd_data, index)
+        gdapi10.pandemonium_variant_destroy(p_ret)
+        pyobj_to_pandemonium_variant(value, p_ret)
 
     # TODO: support slice
-    def __delitem__(self, godot_int index):
-        cdef godot_int size = self.size()
+    def __delitem__(self, pandemonium_int index):
+        cdef pandemonium_int size = self.size()
         index = size + index if index < 0 else index
         if abs(index) >= size:
             raise IndexError("list index out of range")
 
-        gdapi10.godot_array_remove(&self._gd_data, index)
+        gdapi10.pandemonium_array_remove(&self._gd_data, index)
 
     def __iter__(self):
         # TODO: mid iteration mutation should throw exception ?
@@ -141,15 +141,15 @@ cdef class Array:
         return self.duplicate(True)
 
     cdef inline bint operator_equal(self, Array other):
-        # TODO `godot_array_operator_equal` is missing in gdapi, submit a PR ?
-        cdef godot_int size = self.size()
+        # TODO `pandemonium_array_operator_equal` is missing in gdapi, submit a PR ?
+        cdef pandemonium_int size = self.size()
         if size != other.size():
             return False
         cdef int i
         for i in range(size):
-            if not gdapi10.godot_variant_operator_equal(
-                    gdapi10.godot_array_operator_index(&self._gd_data, i),
-                    gdapi10.godot_array_operator_index(&other._gd_data, i)
+            if not gdapi10.pandemonium_variant_operator_equal(
+                    gdapi10.pandemonium_array_operator_index(&self._gd_data, i),
+                    gdapi10.pandemonium_array_operator_index(&other._gd_data, i)
                 ):
                 return False
         return True
@@ -167,9 +167,9 @@ cdef class Array:
             return True
 
     cdef inline operator_iadd(self, Array items):
-        cdef godot_int self_size = self.size()
-        cdef godot_int items_size = items.size()
-        gdapi10.godot_array_resize(&self._gd_data, self_size + items_size)
+        cdef pandemonium_int self_size = self.size()
+        cdef pandemonium_int items_size = items.size()
+        gdapi10.pandemonium_array_resize(&self._gd_data, self_size + items_size)
         cdef int i
         for i in range(items_size):
             Array.set(self, self_size + i, items.get(i))
@@ -184,10 +184,10 @@ cdef class Array:
         return self
 
     cdef inline Array operator_add(self, Array items):
-        cdef godot_int self_size = self.size()
-        cdef godot_int items_size = items.size()
+        cdef pandemonium_int self_size = self.size()
+        cdef pandemonium_int items_size = items.size()
         cdef Array ret = Array.new()
-        gdapi10.godot_array_resize(&ret._gd_data, self_size + items_size)
+        gdapi10.pandemonium_array_resize(&ret._gd_data, self_size + items_size)
         cdef int i
         for i in range(self_size):
             Array.set(ret, i, self.get(i))
@@ -234,11 +234,11 @@ cdef class Array:
     {{ render_method("rfind") | indent }}
     {{ render_method("sort") | indent }}
     {#- TODO: opaque object as param is not supported #}
-    {{- force_mark_rendered("godot_array_sort_custom") }}
+    {{- force_mark_rendered("pandemonium_array_sort_custom") }}
     {#- {{ render_method("sort_custom") | indent }} #}
     {{ render_method("bsearch") | indent }}
     {#- TODO: opaque object as param is not supported #}
-    {{- force_mark_rendered("godot_array_bsearch_custom") }}
+    {{- force_mark_rendered("pandemonium_array_bsearch_custom") }}
     {#- {{ render_method("bsearch_custom") | indent }} #}
     {{ render_method("max") | indent }}
     {{ render_method("min") | indent }}

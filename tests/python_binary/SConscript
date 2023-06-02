@@ -68,7 +68,7 @@ test_factory("run_python", f"{python} --version")
 
 
 test_factory(
-    "import_godot_module",
+    "import_pandemonium_module",
     [
         python,
         "-c",

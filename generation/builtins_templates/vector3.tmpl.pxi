@@ -1,7 +1,7 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
-from godot._hazmat.gdnative_api_struct cimport godot_vector3_axis
+from godot._hazmat.gdnative_api_struct cimport pandemonium_vector3_axis
 
 import math
 from enum import IntEnum
@@ -9,26 +9,26 @@ from enum import IntEnum
 
 cdef inline Vector3_multiply_vector(Vector3 self, Vector3 b):
     cdef Vector3 ret  = Vector3.__new__(Vector3)
-    {{ force_mark_rendered("godot_vector3_operator_multiply_vector") }}
-    ret._gd_data = gdapi10.godot_vector3_operator_multiply_vector(&self._gd_data, &b._gd_data)
+    {{ force_mark_rendered("pandemonium_vector3_operator_multiply_vector") }}
+    ret._gd_data = gdapi10.pandemonium_vector3_operator_multiply_vector(&self._gd_data, &b._gd_data)
     return ret
 
-cdef inline Vector3_multiply_scalar(Vector3 self, godot_real b):
+cdef inline Vector3_multiply_scalar(Vector3 self, pandemonium_real b):
     cdef Vector3 ret  = Vector3.__new__(Vector3)
-    {{ force_mark_rendered("godot_vector3_operator_multiply_scalar") }}
-    ret._gd_data = gdapi10.godot_vector3_operator_multiply_scalar(&self._gd_data, b)
+    {{ force_mark_rendered("pandemonium_vector3_operator_multiply_scalar") }}
+    ret._gd_data = gdapi10.pandemonium_vector3_operator_multiply_scalar(&self._gd_data, b)
     return ret
 
 cdef inline Vector3_divide_vector(Vector3 self, Vector3 b):
     cdef Vector3 ret  = Vector3.__new__(Vector3)
-    {{ force_mark_rendered("godot_vector3_operator_divide_vector") }}
-    ret._gd_data = gdapi10.godot_vector3_operator_divide_vector(&self._gd_data, &b._gd_data)
+    {{ force_mark_rendered("pandemonium_vector3_operator_divide_vector") }}
+    ret._gd_data = gdapi10.pandemonium_vector3_operator_divide_vector(&self._gd_data, &b._gd_data)
     return ret
 
-cdef inline Vector3_divide_scalar(Vector3 self, godot_real b):
+cdef inline Vector3_divide_scalar(Vector3 self, pandemonium_real b):
     cdef Vector3 ret  = Vector3.__new__(Vector3)
-    {{ force_mark_rendered("godot_vector3_operator_divide_scalar") }}
-    ret._gd_data = gdapi10.godot_vector3_operator_divide_scalar(&self._gd_data, b)
+    {{ force_mark_rendered("pandemonium_vector3_operator_divide_scalar") }}
+    ret._gd_data = gdapi10.pandemonium_vector3_operator_divide_scalar(&self._gd_data, b)
     return ret
 
 {% endblock -%}
@@ -37,46 +37,46 @@ cdef inline Vector3_divide_scalar(Vector3 self, godot_real b):
 @cython.final
 cdef class Vector3:
 {% block cdef_attributes %}
-    cdef godot_vector3 _gd_data
+    cdef pandemonium_vector3 _gd_data
 {% endblock %}
 
 {% block python_defs %}
-    def __init__(self, godot_real x=0.0, godot_real y=0.0, godot_real z=0.0):
-        {{ force_mark_rendered("godot_vector3_new") }}
-        gdapi10.godot_vector3_new(&self._gd_data, x, y, z)
+    def __init__(self, pandemonium_real x=0.0, pandemonium_real y=0.0, pandemonium_real z=0.0):
+        {{ force_mark_rendered("pandemonium_vector3_new") }}
+        gdapi10.pandemonium_vector3_new(&self._gd_data, x, y, z)
 
     def __repr__(self):
         return f"<Vector3(x={self.x}, y={self.y}, z={self.z})>"
 
     @property
-    def x(self) -> godot_real:
-        {{ force_mark_rendered("godot_vector3_get_axis") }}
-        return gdapi10.godot_vector3_get_axis(&self._gd_data, godot_vector3_axis.GODOT_VECTOR3_AXIS_X)
+    def x(self) -> pandemonium_real:
+        {{ force_mark_rendered("pandemonium_vector3_get_axis") }}
+        return gdapi10.pandemonium_vector3_get_axis(&self._gd_data, pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_X)
 
     @x.setter
-    def x(self, godot_real val) -> None:
-        {{ force_mark_rendered("godot_vector3_set_axis") }}
-        gdapi10.godot_vector3_set_axis(&self._gd_data, godot_vector3_axis.GODOT_VECTOR3_AXIS_X, val)
+    def x(self, pandemonium_real val) -> None:
+        {{ force_mark_rendered("pandemonium_vector3_set_axis") }}
+        gdapi10.pandemonium_vector3_set_axis(&self._gd_data, pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_X, val)
 
     @property
-    def y(self) -> godot_real:
-        {{ force_mark_rendered("godot_vector3_get_axis") }}
-        return gdapi10.godot_vector3_get_axis(&self._gd_data, godot_vector3_axis.GODOT_VECTOR3_AXIS_Y)
+    def y(self) -> pandemonium_real:
+        {{ force_mark_rendered("pandemonium_vector3_get_axis") }}
+        return gdapi10.pandemonium_vector3_get_axis(&self._gd_data, pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_Y)
 
     @y.setter
-    def y(self, godot_real val) -> None:
-        {{ force_mark_rendered("godot_vector3_set_axis") }}
-        gdapi10.godot_vector3_set_axis(&self._gd_data, godot_vector3_axis.GODOT_VECTOR3_AXIS_Y, val)
+    def y(self, pandemonium_real val) -> None:
+        {{ force_mark_rendered("pandemonium_vector3_set_axis") }}
+        gdapi10.pandemonium_vector3_set_axis(&self._gd_data, pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_Y, val)
 
     @property
-    def z(self) -> godot_real:
-        {{ force_mark_rendered("godot_vector3_get_axis") }}
-        return gdapi10.godot_vector3_get_axis(&self._gd_data, godot_vector3_axis.GODOT_VECTOR3_AXIS_Z)
+    def z(self) -> pandemonium_real:
+        {{ force_mark_rendered("pandemonium_vector3_get_axis") }}
+        return gdapi10.pandemonium_vector3_get_axis(&self._gd_data, pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_Z)
 
     @z.setter
-    def z(self, godot_real val) -> None:
-        {{ force_mark_rendered("godot_vector3_set_axis") }}
-        gdapi10.godot_vector3_set_axis(&self._gd_data, godot_vector3_axis.GODOT_VECTOR3_AXIS_Z, val)
+    def z(self, pandemonium_real val) -> None:
+        {{ force_mark_rendered("pandemonium_vector3_set_axis") }}
+        gdapi10.pandemonium_vector3_set_axis(&self._gd_data, pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_Z, val)
 
     {{ render_operator_eq() | indent }}
     {{ render_operator_ne() | indent }}
@@ -143,9 +143,9 @@ cdef class Vector3:
 
 {%- block python_consts %}
     AXIS = IntEnum("AXIS", {
-        "X": godot_vector3_axis.GODOT_VECTOR3_AXIS_X,
-        "Y": godot_vector3_axis.GODOT_VECTOR3_AXIS_Y,
-        "Z": godot_vector3_axis.GODOT_VECTOR3_AXIS_Z,
+        "X": pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_X,
+        "Y": pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_Y,
+        "Z": pandemonium_vector3_axis.GODOT_VECTOR3_AXIS_Z,
     })
 
     ZERO = Vector3(0, 0, 0)  # Zero vector.

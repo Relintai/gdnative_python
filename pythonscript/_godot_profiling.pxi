@@ -1,8 +1,8 @@
 # cython: c_string_type=unicode, c_string_encoding=utf8
 
 from godot._hazmat.gdnative_api_struct cimport (
-    godot_pluginscript_language_data,
-    godot_pluginscript_profiling_data,
+    pandemonium_pluginscript_language_data,
+    pandemonium_pluginscript_profiling_data,
 )
 from godot._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
 
@@ -11,7 +11,7 @@ from collections import defaultdict
 from time import perf_counter
 
 
-# TODO: should be greatly improved by using cdef struct and godot_string_name everywhere
+# TODO: should be greatly improved by using cdef struct and pandemonium_string_name everywhere
 
 
 class MethProfile:
@@ -134,7 +134,7 @@ cdef object profiler = None
 
 
 cdef api void pythonscript_profiling_start(
-    godot_pluginscript_language_data *p_data
+    pandemonium_pluginscript_language_data *p_data
 ) with gil:
     global profiler
     profiler = Profiler()
@@ -142,7 +142,7 @@ cdef api void pythonscript_profiling_start(
 
 
 cdef api void pythonscript_profiling_stop(
-    godot_pluginscript_language_data *p_data
+    pandemonium_pluginscript_language_data *p_data
 ) with gil:
     global profiler
     profiler = None
@@ -150,8 +150,8 @@ cdef api void pythonscript_profiling_stop(
 
 
 cdef api int pythonscript_profiling_get_accumulated_data(
-    godot_pluginscript_language_data *p_data,
-    godot_pluginscript_profiling_data *r_info,
+    pandemonium_pluginscript_language_data *p_data,
+    pandemonium_pluginscript_profiling_data *r_info,
     int p_info_max
 ) with gil:
     # Sort function to make sure we can display the most consuming ones
@@ -162,7 +162,7 @@ cdef api int pythonscript_profiling_get_accumulated_data(
     cdef object signature
     cdef object profile
     for i, (signature, profile) in enumerate(sorted_and_limited):
-        pyobj_to_godot_string_name(signature, &r_info[i].signature)
+        pyobj_to_pandemonium_string_name(signature, &r_info[i].signature)
         r_info[i].call_count = profile.call_count
         r_info[i].total_time = int(profile.total_time * 1e6)
         r_info[i].self_time = int(profile.self_time * 1e6)
@@ -170,8 +170,8 @@ cdef api int pythonscript_profiling_get_accumulated_data(
 
 
 cdef api int pythonscript_profiling_get_frame_data(
-    godot_pluginscript_language_data *p_data,
-    godot_pluginscript_profiling_data *r_info,
+    pandemonium_pluginscript_language_data *p_data,
+    pandemonium_pluginscript_profiling_data *r_info,
     int p_info_max
 ) with gil:
     # Sort function to make sure we can display the most consuming ones
@@ -182,7 +182,7 @@ cdef api int pythonscript_profiling_get_frame_data(
     cdef object signature
     cdef object profile
     for i, (signature, profile) in enumerate(sorted_and_limited):
-        pyobj_to_godot_string_name(signature, &r_info[i].signature)
+        pyobj_to_pandemonium_string_name(signature, &r_info[i].signature)
         r_info[i].call_count = profile.last_frame_call_count
         r_info[i].total_time = int(profile.last_frame_total_time * 1e6)
         r_info[i].self_time = int(profile.last_frame_self_time * 1e6)
@@ -190,7 +190,7 @@ cdef api int pythonscript_profiling_get_frame_data(
 
 
 cdef api void pythonscript_profiling_frame(
-    godot_pluginscript_language_data *p_data
+    pandemonium_pluginscript_language_data *p_data
 ) with gil:
     if profiler is not None:
         profiler.next_frame()

@@ -46,15 +46,15 @@ class access_from_python(Node):
             self.outcome = global_import_outcome
             return
 
-        from godot import globals as godot_globals
+        from godot import globals as pandemonium_globals
 
-        godot_globals_dir = dir(godot_globals)
-        expected_godot_globals_dir = ["global_gd", "global_py"]
-        if godot_globals_dir != expected_godot_globals_dir:
-            self.outcome = f"Invalid `dir(godot.globals)` (expected: `{expected_godot_globals_dir}`, got `{godot_globals_dir}`)"
+        pandemonium_globals_dir = dir(pandemonium_globals)
+        expected_pandemonium_globals_dir = ["global_gd", "global_py"]
+        if pandemonium_globals_dir != expected_pandemonium_globals_dir:
+            self.outcome = f"Invalid `dir(godot.globals)` (expected: `{expected_pandemonium_globals_dir}`, got `{pandemonium_globals_dir}`)"
             return
         for name, type in (("global_py", "Python"), ("global_gd", "GDScript")):
-            node_from_globals = getattr(godot_globals, name)
+            node_from_globals = getattr(pandemonium_globals, name)
             if str(node_from_globals.type) != type:
                 self.outcome = (
                     f"Invalid Node type for `{path}` (expected `{type}`, got `{node.type}`)"

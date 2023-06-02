@@ -3,7 +3,7 @@
  * to the pythonscript plugin.
  * It should be loaded by Godot's GDNative system (see the `pythonscript.gdnlib`
  * file in the example/test projects).
- * As part of the loading, GDNative will call the `godot_gdnative_init`
+ * As part of the loading, GDNative will call the `pandemonium_gdnative_init`
  * function which will in turn initialize the CPython interpreter then register
  * Python as a new language using Godot's Pluginscript system.
  */
@@ -18,7 +18,7 @@
 
 #include <gdnative_api_struct.gen.h>
 
-#include "_godot_api.h"
+#include "_pandemonium_api.h"
 
 
 static const char *PYTHONSCRIPT_RECOGNIZED_EXTENSIONS[] = { "py", "pyc", "pyo", "pyd", 0 };
@@ -60,7 +60,7 @@ static const char *PYTHONSCRIPT_RESERVED_WORDS[] = {
 };
 static const char *PYTHONSCRIPT_COMMENT_DELIMITERS[] = { "#", "\"\"\"\"\"\"", 0 };
 static const char *PYTHONSCRIPT_STRING_DELIMITERS[] = { "\" \"", "' '", 0 };
-static godot_pluginscript_language_desc desc;
+static pandemonium_pluginscript_language_desc desc;
 static PyThreadState *gilstate = NULL;
 
 
@@ -74,38 +74,38 @@ static PyThreadState *gilstate = NULL;
 #else
 # define PYTHONSCRIPT_EXPORT
 #endif
-PYTHONSCRIPT_EXPORT const godot_gdnative_core_api_struct *pythonscript_gdapi10 = NULL;
-PYTHONSCRIPT_EXPORT const godot_gdnative_core_1_1_api_struct *pythonscript_gdapi11 = NULL;
-PYTHONSCRIPT_EXPORT const godot_gdnative_core_1_2_api_struct *pythonscript_gdapi12 = NULL;
-PYTHONSCRIPT_EXPORT const godot_gdnative_ext_nativescript_api_struct *pythonscript_gdapi_ext_nativescript = NULL;
-PYTHONSCRIPT_EXPORT const godot_gdnative_ext_pluginscript_api_struct *pythonscript_gdapi_ext_pluginscript = NULL;
-PYTHONSCRIPT_EXPORT const godot_gdnative_ext_android_api_struct *pythonscript_gdapi_ext_android = NULL;
-PYTHONSCRIPT_EXPORT const godot_gdnative_ext_arvr_api_struct *pythonscript_gdapi_ext_arvr = NULL;
+PYTHONSCRIPT_EXPORT const pandemonium_gdnative_core_api_struct *pythonscript_gdapi10 = NULL;
+PYTHONSCRIPT_EXPORT const pandemonium_gdnative_core_1_1_api_struct *pythonscript_gdapi11 = NULL;
+PYTHONSCRIPT_EXPORT const pandemonium_gdnative_core_1_2_api_struct *pythonscript_gdapi12 = NULL;
+PYTHONSCRIPT_EXPORT const pandemonium_gdnative_ext_nativescript_api_struct *pythonscript_gdapi_ext_nativescript = NULL;
+PYTHONSCRIPT_EXPORT const pandemonium_gdnative_ext_pluginscript_api_struct *pythonscript_gdapi_ext_pluginscript = NULL;
+PYTHONSCRIPT_EXPORT const pandemonium_gdnative_ext_android_api_struct *pythonscript_gdapi_ext_android = NULL;
+PYTHONSCRIPT_EXPORT const pandemonium_gdnative_ext_arvr_api_struct *pythonscript_gdapi_ext_arvr = NULL;
 
 
-static void _register_gdapi(const godot_gdnative_init_options *options) {
-    pythonscript_gdapi10 = (const godot_gdnative_core_api_struct *)options->api_struct;
+static void _register_gdapi(const pandemonium_gdnative_init_options *options) {
+    pythonscript_gdapi10 = (const pandemonium_gdnative_core_api_struct *)options->api_struct;
     if (pythonscript_gdapi10->next) {
-        pythonscript_gdapi11 = (const godot_gdnative_core_1_1_api_struct *)pythonscript_gdapi10->next;
+        pythonscript_gdapi11 = (const pandemonium_gdnative_core_1_1_api_struct *)pythonscript_gdapi10->next;
         if (pythonscript_gdapi11->next) {
-            pythonscript_gdapi12 = (const godot_gdnative_core_1_2_api_struct *)pythonscript_gdapi11->next;
+            pythonscript_gdapi12 = (const pandemonium_gdnative_core_1_2_api_struct *)pythonscript_gdapi11->next;
         }
     }
 
     for (unsigned int i = 0; i < pythonscript_gdapi10->num_extensions; i++) {
-        const godot_gdnative_api_struct *ext = pythonscript_gdapi10->extensions[i];
+        const pandemonium_gdnative_api_struct *ext = pythonscript_gdapi10->extensions[i];
         switch (ext->type) {
             case GDNATIVE_EXT_NATIVESCRIPT:
-                pythonscript_gdapi_ext_nativescript = (const godot_gdnative_ext_nativescript_api_struct *)ext;
+                pythonscript_gdapi_ext_nativescript = (const pandemonium_gdnative_ext_nativescript_api_struct *)ext;
                 break;
             case GDNATIVE_EXT_PLUGINSCRIPT:
-                pythonscript_gdapi_ext_pluginscript = (const godot_gdnative_ext_pluginscript_api_struct *)ext;
+                pythonscript_gdapi_ext_pluginscript = (const pandemonium_gdnative_ext_pluginscript_api_struct *)ext;
                 break;
             case GDNATIVE_EXT_ANDROID:
-                pythonscript_gdapi_ext_android = (const godot_gdnative_ext_android_api_struct *)ext;
+                pythonscript_gdapi_ext_android = (const pandemonium_gdnative_ext_android_api_struct *)ext;
                 break;
             case GDNATIVE_EXT_ARVR:
-                pythonscript_gdapi_ext_arvr = (const godot_gdnative_ext_arvr_api_struct *)ext;
+                pythonscript_gdapi_ext_arvr = (const pandemonium_gdnative_ext_arvr_api_struct *)ext;
                 break;
             default:
                 break;
@@ -114,22 +114,22 @@ static void _register_gdapi(const godot_gdnative_init_options *options) {
 }
 
 
-GDN_EXPORT void godot_gdnative_init(godot_gdnative_init_options *options) {
+GDN_EXPORT void pandemonium_gdnative_init(pandemonium_gdnative_init_options *options) {
     // Registering the api should be the very first thing to do !
     _register_gdapi(options);
 
     // Now those macros are usable
 
     #define GD_PRINT(c_msg) { \
-        godot_string gd_msg; \
-        pythonscript_gdapi10->godot_string_new_with_wide_string( \
+        pandemonium_string gd_msg; \
+        pythonscript_gdapi10->pandemonium_string_new_with_wide_string( \
             &gd_msg, c_msg, -1); \
-        pythonscript_gdapi10->godot_print(&gd_msg); \
-        pythonscript_gdapi10->godot_string_destroy(&gd_msg); \
+        pythonscript_gdapi10->pandemonium_print(&gd_msg); \
+        pythonscript_gdapi10->pandemonium_string_destroy(&gd_msg); \
     }
 
     #define GD_ERROR_PRINT(msg) { \
-        pythonscript_gdapi10->godot_print_error(msg, __func__, __FILE__, __LINE__); \
+        pythonscript_gdapi10->pandemonium_print_error(msg, __func__, __FILE__, __LINE__); \
     }
 
     // Check for mandatory plugins
@@ -147,7 +147,7 @@ GDN_EXPORT void godot_gdnative_init(godot_gdnative_init_options *options) {
     // Make sure the shared library has all it symbols loaded
     // (strange bug with libpython3.x.so otherwise...)
     {
-        const wchar_t *wpath = pythonscript_gdapi10->godot_string_wide_str(
+        const wchar_t *wpath = pythonscript_gdapi10->pandemonium_string_wide_str(
             options->active_library_path
         );
         char path[300];
@@ -167,11 +167,11 @@ GDN_EXPORT void godot_gdnative_init(godot_gdnative_init_options *options) {
     // Retrieve path and set pythonhome
     {
         static wchar_t pythonhome[300];
-        godot_string _pythonhome = pythonscript_gdapi10->godot_string_get_base_dir(
+        pandemonium_string _pythonhome = pythonscript_gdapi10->pandemonium_string_get_base_dir(
             options->active_library_path
         );
-        wcsncpy(pythonhome, pythonscript_gdapi10->godot_string_wide_str(&_pythonhome), 300);
-        pythonscript_gdapi10->godot_string_destroy(&_pythonhome);
+        wcsncpy(pythonhome, pythonscript_gdapi10->pandemonium_string_wide_str(&_pythonhome), 300);
+        pythonscript_gdapi10->pandemonium_string_destroy(&_pythonhome);
         Py_SetPythonHome(pythonhome);
     }
     // TODO: site.USER_SITE seems to point to an invalid location in ~/.local
@@ -246,18 +246,18 @@ GDN_EXPORT void godot_gdnative_init(godot_gdnative_init_options *options) {
         desc.profiling_get_frame_data = pythonscript_profiling_get_frame_data;
         desc.profiling_frame = pythonscript_profiling_frame;
     }
-    pythonscript_gdapi_ext_pluginscript->godot_pluginscript_register_language(&desc);
+    pythonscript_gdapi_ext_pluginscript->pandemonium_pluginscript_register_language(&desc);
 
     // Release the Kraken... er I mean the GIL !
     gilstate = PyEval_SaveThread();
 }
 
 
-GDN_EXPORT void godot_gdnative_singleton() {
+GDN_EXPORT void pandemonium_gdnative_singleton() {
 }
 
 
-GDN_EXPORT void godot_gdnative_terminate() {
+GDN_EXPORT void pandemonium_gdnative_terminate() {
     // Re-acquire the gil in order to finalize properly
     PyEval_RestoreThread(gilstate);
 

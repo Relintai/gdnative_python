@@ -124,18 +124,18 @@ def test_bad_instantiate(arg):
         Array(arg)
 
 
-def test_instantiate_with_non_godot_data(recwarn):
+def test_instantiate_with_non_pandemonium_data(recwarn):
     with pytest.raises(TypeError):
         Array([object()])
 
 
-def test_append_with_non_godot_data(recwarn):
+def test_append_with_non_pandemonium_data(recwarn):
     v = Array()
     with pytest.raises(TypeError):
         v.append(object())
 
 
-def test_add_with_non_godot_data(recwarn):
+def test_add_with_non_pandemonium_data(recwarn):
     v = Array()
     with pytest.raises(TypeError):
         v += [object()]

@@ -4,16 +4,16 @@
 
 cdef class {{ cls.name }}({{ cls.base_class }}):
 {% if not cls.base_class %}
-    cdef godot_object *_gd_ptr
+    cdef pandemonium_object *_gd_ptr
 
     @staticmethod
-    cdef inline Object cast_from_variant(const godot_variant *p_gdvar)
+    cdef inline Object cast_from_variant(const pandemonium_variant *p_gdvar)
 
     @staticmethod
-    cdef inline Object cast_from_ptr(godot_object *ptr)
+    cdef inline Object cast_from_ptr(pandemonium_object *ptr)
 
 {% endif %}
     @staticmethod
-    cdef {{ cls.name }} from_ptr(godot_object *_ptr)
+    cdef {{ cls.name }} from_ptr(pandemonium_object *_ptr)
 
 {% endmacro %}

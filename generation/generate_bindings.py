@@ -184,33 +184,33 @@ SAMPLE_CLASSES = {
 
 SUPPORTED_TYPES = {
     "void",
-    "godot_bool",
-    "godot_int",
-    "godot_real",
-    "godot_string",
-    "godot_variant",
-    "godot_object",
-    "godot_aabb",
-    "godot_array",
-    "godot_basis",
-    "godot_color",
-    "godot_dictionary",
-    "godot_node_path",
-    "godot_plane",
-    "godot_quat",
-    "godot_rect2",
-    "godot_rid",
-    "godot_transform",
-    "godot_transform2d",
-    "godot_vector2",
-    "godot_vector3",
-    "godot_pool_byte_array",
-    "godot_pool_int_array",
-    "godot_pool_real_array",
-    "godot_pool_string_array",
-    "godot_pool_vector2_array",
-    "godot_pool_vector3_array",
-    "godot_pool_color_array",
+    "pandemonium_bool",
+    "pandemonium_int",
+    "pandemonium_real",
+    "pandemonium_string",
+    "pandemonium_variant",
+    "pandemonium_object",
+    "pandemonium_aabb",
+    "pandemonium_array",
+    "pandemonium_basis",
+    "pandemonium_color",
+    "pandemonium_dictionary",
+    "pandemonium_node_path",
+    "pandemonium_plane",
+    "pandemonium_quat",
+    "pandemonium_rect2",
+    "pandemonium_rid",
+    "pandemonium_transform",
+    "pandemonium_transform2d",
+    "pandemonium_vector2",
+    "pandemonium_vector3",
+    "pandemonium_pool_byte_array",
+    "pandemonium_pool_int_array",
+    "pandemonium_pool_real_array",
+    "pandemonium_pool_string_array",
+    "pandemonium_pool_vector2_array",
+    "pandemonium_pool_vector3_array",
+    "pandemonium_pool_color_array",
 }
 
 
@@ -357,8 +357,8 @@ def cook_data(data):
                 pcls, ecls = re.match(r"enum.(\w+)::(\w+)", type_).groups()
                 return TypeSpec(
                     gdapi_type=type_,
-                    c_type="godot_int",
-                    cy_type="godot_int",
+                    c_type="pandemonium_int",
+                    cy_type="pandemonium_int",
                     py_type=f"{class_renames[pcls]}.{ecls}",
                     is_base_type=True,
                     is_stack_only=True,
@@ -369,7 +369,7 @@ def cook_data(data):
             if "," in type_:
                 return TypeSpec(
                     gdapi_type=type_,
-                    c_type="godot_object",
+                    c_type="pandemonium_object",
                     cy_type="Resource",
                     py_type=f"Union[{','.join([class_renames[x] for x in type_.split(',')])}]",
                     is_object=True,
@@ -377,7 +377,7 @@ def cook_data(data):
             else:
                 return TypeSpec(
                     gdapi_type=type_,
-                    c_type="godot_object",
+                    c_type="pandemonium_object",
                     cy_type=class_renames[type_],
                     is_object=True,
                 )
@@ -392,46 +392,46 @@ def cook_data(data):
         if not has_default_value:
             return None
         # Mostly ad-hoc stuff given default values format in api.json is broken
-        if type in ("godot_bool", "godot_int", "godot_real", "godot_variant"):
+        if type in ("pandemonium_bool", "pandemonium_int", "pandemonium_real", "pandemonium_variant"):
             if value == "Null":
                 return "None"
             else:
                 return value
-        elif type == "godot_string":
+        elif type == "pandemonium_string":
             return f'"{value}"'
-        elif type == "godot_object" and value in ("[Object:null]", "Null"):
+        elif type == "pandemonium_object" and value in ("[Object:null]", "Null"):
             return "None"
-        elif type == "godot_dictionary" and value == "{}":
+        elif type == "pandemonium_dictionary" and value == "{}":
             return "Dictionary()"
-        elif type == "godot_vector2":
+        elif type == "pandemonium_vector2":
             return f"Vector2{value}"
-        elif type == "godot_rect2":
+        elif type == "pandemonium_rect2":
             return f"Rect2{value}"
-        elif type == "godot_vector3":
+        elif type == "pandemonium_vector3":
             return f"Vector3{value}"
-        elif type == "godot_transform" and value == "1, 0, 0, 0, 1, 0, 0, 0, 1 - 0, 0, 0":
+        elif type == "pandemonium_transform" and value == "1, 0, 0, 0, 1, 0, 0, 0, 1 - 0, 0, 0":
             return (
                 "Transform(Vector3(1, 0, 0), Vector3(0, 1, 0), Vector3(0, 0, 1), Vector3(0, 0, 0))"
             )
-        elif type == "godot_transform2d" and value == "((1, 0), (0, 1), (0, 0))":
+        elif type == "pandemonium_transform2d" and value == "((1, 0), (0, 1), (0, 0))":
             return "Transform2D(Vector2(1, 0), Vector2(0, 1), Vector2(0, 0))"
         elif value == "[RID]":
             return "RID()"
-        elif type == "godot_color":
+        elif type == "pandemonium_color":
             return f"Color({value})"
-        elif type == "godot_pool_color_array" and value == "[PoolColorArray]":
+        elif type == "pandemonium_pool_color_array" and value == "[PoolColorArray]":
             return "PoolColorArray()"
-        elif type == "godot_array" and value == "[]":
+        elif type == "pandemonium_array" and value == "[]":
             return f"Array()"
-        elif type == "godot_pool_vector2_array" and value == "[]":
+        elif type == "pandemonium_pool_vector2_array" and value == "[]":
             return f"PoolVector2Array()"
-        elif type == "godot_pool_vector3_array" and value == "[]":
+        elif type == "pandemonium_pool_vector3_array" and value == "[]":
             return f"PoolVector3Array()"
-        elif type == "godot_pool_int_array" and value == "[]":
+        elif type == "pandemonium_pool_int_array" and value == "[]":
             return f"PoolIntArray()"
-        elif type == "godot_pool_real_array" and value == "[]":
+        elif type == "pandemonium_pool_real_array" and value == "[]":
             return f"PoolRealArray()"
-        elif type == "godot_pool_string_array" and value == "[]":
+        elif type == "pandemonium_pool_string_array" and value == "[]":
             return f"PoolStringArray()"
         elif value == "Null":
             return "None"

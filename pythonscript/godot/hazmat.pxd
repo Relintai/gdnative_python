@@ -12,8 +12,8 @@ from godot._hazmat.gdapi cimport (
     pythonscript_gdapi_ext_arvr as gdapi_ext_arvr,
 )
 from godot._hazmat.conversion cimport (
-	godot_string_to_pyobj,
-	pyobj_to_godot_string,
-	godot_variant_to_pyobj,
-	pyobj_to_godot_variant,
+	pandemonium_string_to_pyobj,
+	pyobj_to_pandemonium_string,
+	pandemonium_variant_to_pyobj,
+	pyobj_to_pandemonium_variant,
 )

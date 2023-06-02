@@ -7,26 +7,26 @@
 @cython.final
 cdef class Plane:
 {% block cdef_attributes %}
-    cdef godot_plane _gd_data
+    cdef pandemonium_plane _gd_data
 {% endblock %}
 
 {% block python_defs %}
-    def __init__(self, godot_real a, godot_real b, godot_real c, godot_real d):
-        {{ force_mark_rendered("godot_plane_new_with_reals") }}
-        gdapi10.godot_plane_new_with_reals(&self._gd_data, a, b, c, d)
+    def __init__(self, pandemonium_real a, pandemonium_real b, pandemonium_real c, pandemonium_real d):
+        {{ force_mark_rendered("pandemonium_plane_new_with_reals") }}
+        gdapi10.pandemonium_plane_new_with_reals(&self._gd_data, a, b, c, d)
 
     @staticmethod
     def from_vectors(Vector3 v1 not None, Vector3 v2 not None, Vector3 v3 not None):
         cdef Plane ret = Plane.__new__(Plane)
-        {{ force_mark_rendered("godot_plane_new_with_vectors") }}
-        gdapi10.godot_plane_new_with_vectors(&ret._gd_data, &v1._gd_data, &v2._gd_data, &v3._gd_data)
+        {{ force_mark_rendered("pandemonium_plane_new_with_vectors") }}
+        gdapi10.pandemonium_plane_new_with_vectors(&ret._gd_data, &v1._gd_data, &v2._gd_data, &v3._gd_data)
         return ret
 
     @staticmethod
-    def from_normal(Vector3 normal not None, godot_real d):
+    def from_normal(Vector3 normal not None, pandemonium_real d):
         cdef Plane ret = Plane.__new__(Plane)
-        {{ force_mark_rendered("godot_plane_new_with_normal") }}
-        gdapi10.godot_plane_new_with_normal(&ret._gd_data, &normal._gd_data, d)
+        {{ force_mark_rendered("pandemonium_plane_new_with_normal") }}
+        gdapi10.pandemonium_plane_new_with_normal(&ret._gd_data, &normal._gd_data, d)
         return ret
 
     def __repr__(Plane self):
@@ -54,24 +54,24 @@ cdef class Plane:
 
     def intersects_segment(Plane self, Vector3 begin not None, Vector3 end not None):
         cdef Vector3 ret = Vector3.__new__(Vector3)
-        {{ force_mark_rendered("godot_plane_intersects_segment") }}
-        if gdapi10.godot_plane_intersects_segment(&self._gd_data, &ret._gd_data, &begin._gd_data, &end._gd_data):
+        {{ force_mark_rendered("pandemonium_plane_intersects_segment") }}
+        if gdapi10.pandemonium_plane_intersects_segment(&self._gd_data, &ret._gd_data, &begin._gd_data, &end._gd_data):
             return ret
         else:
             return None
 
     def intersects_ray(Plane self, Vector3 from_ not None, Vector3 dir not None):
         cdef Vector3 ret = Vector3.__new__(Vector3)
-        {{ force_mark_rendered("godot_plane_intersects_ray") }}
-        if gdapi10.godot_plane_intersects_ray(&self._gd_data, &ret._gd_data, &from_._gd_data, &dir._gd_data):
+        {{ force_mark_rendered("pandemonium_plane_intersects_ray") }}
+        if gdapi10.pandemonium_plane_intersects_ray(&self._gd_data, &ret._gd_data, &from_._gd_data, &dir._gd_data):
             return ret
         else:
             return None
 
     def intersect_3(Plane self, Plane b not None, Plane c not None):
         cdef Vector3 ret = Vector3.__new__(Vector3)
-        {{ force_mark_rendered("godot_plane_intersect_3") }}
-        if gdapi10.godot_plane_intersect_3(&self._gd_data, &ret._gd_data, &b._gd_data, &c._gd_data):
+        {{ force_mark_rendered("pandemonium_plane_intersect_3") }}
+        if gdapi10.pandemonium_plane_intersect_3(&self._gd_data, &ret._gd_data, &b._gd_data, &c._gd_data):
             return ret
         else:
             return None

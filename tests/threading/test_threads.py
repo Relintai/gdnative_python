@@ -19,7 +19,7 @@ def test_simple_thread():
     assert thread_said_hello
 
 
-def test_use_godot_from_thread():
+def test_use_pandemonium_from_thread():
     def target():
         st = SurfaceTool()
         st.begin(Mesh.PRIMITIVE_TRIANGLES)

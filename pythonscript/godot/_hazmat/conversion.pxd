@@ -3,12 +3,12 @@ from libc.stdio cimport printf
 
 from godot._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
 from godot._hazmat.gdnative_api_struct cimport (
-    godot_string,
-    godot_string_name,
-    godot_int,
-    godot_vector2,
-    godot_variant,
-    godot_variant_type,
+    pandemonium_string,
+    pandemonium_string_name,
+    pandemonium_int,
+    pandemonium_vector2,
+    pandemonium_variant,
+    pandemonium_variant_type,
 )
 from godot.builtins cimport GDString, NodePath
 
@@ -27,15 +27,15 @@ ELSE:
     DEF _STRING_CODEPOINT_LENGTH = 4
 
 
-cdef inline str godot_string_to_pyobj(const godot_string *p_gdstr):
+cdef inline str pandemonium_string_to_pyobj(const pandemonium_string *p_gdstr):
     # TODO: unicode&windows support is most likely broken...
-    cdef char *raw = <char*>gdapi10.godot_string_wide_str(p_gdstr)
-    cdef godot_int length = gdapi10.godot_string_length(p_gdstr)
+    cdef char *raw = <char*>gdapi10.pandemonium_string_wide_str(p_gdstr)
+    cdef pandemonium_int length = gdapi10.pandemonium_string_length(p_gdstr)
     return raw[:length * _STRING_CODEPOINT_LENGTH].decode(_STRING_ENCODING)
 
-    # cdef char *raw = <char*>gdapi10.godot_string_wide_str(p_gdstr)
-    # cdef godot_int length = gdapi10.godot_string_length(p_gdstr)
-    # printf("==========> godot_string_to_pyobj ")
+    # cdef char *raw = <char*>gdapi10.pandemonium_string_wide_str(p_gdstr)
+    # cdef pandemonium_int length = gdapi10.pandemonium_string_length(p_gdstr)
+    # printf("==========> pandemonium_string_to_pyobj ")
     # cdef int i
     # for i in range(length):
     #     printf("%c ", raw[i * 4]);
@@ -45,34 +45,34 @@ cdef inline str godot_string_to_pyobj(const godot_string *p_gdstr):
     # return ret
 
 
-cdef inline void pyobj_to_godot_string(str pystr, godot_string *p_gdstr):
+cdef inline void pyobj_to_pandemonium_string(str pystr, pandemonium_string *p_gdstr):
     # TODO: unicode&windows support is most likely broken...
     cdef bytes raw = pystr.encode(_STRING_ENCODING)
-    gdapi10.godot_string_new_with_wide_string(
+    gdapi10.pandemonium_string_new_with_wide_string(
         p_gdstr, (<wchar_t*><char*>raw), len(pystr)
     )
 
 
-cdef inline str godot_string_name_to_pyobj(const godot_string_name *p_gdname):
-    cdef godot_string strname = gdapi10.godot_string_name_get_name(p_gdname)
-    cdef ret = godot_string_to_pyobj(&strname)
-    gdapi10.godot_string_destroy(&strname)
+cdef inline str pandemonium_string_name_to_pyobj(const pandemonium_string_name *p_gdname):
+    cdef pandemonium_string strname = gdapi10.pandemonium_string_name_get_name(p_gdname)
+    cdef ret = pandemonium_string_to_pyobj(&strname)
+    gdapi10.pandemonium_string_destroy(&strname)
     return ret
 
 
-cdef inline void pyobj_to_godot_string_name(str pystr, godot_string_name *p_gdname):
-    cdef godot_string strname
-    pyobj_to_godot_string(pystr, &strname)
-    gdapi10.godot_string_name_new(p_gdname, &strname)
-    gdapi10.godot_string_destroy(&strname)
+cdef inline void pyobj_to_pandemonium_string_name(str pystr, pandemonium_string_name *p_gdname):
+    cdef pandemonium_string strname
+    pyobj_to_pandemonium_string(pystr, &strname)
+    gdapi10.pandemonium_string_name_new(p_gdname, &strname)
+    gdapi10.pandemonium_string_destroy(&strname)
 
 
-cdef object godot_variant_to_pyobj(const godot_variant *p_gdvar)
-cdef bint pyobj_to_godot_variant(object pyobj, godot_variant *p_var)
+cdef object pandemonium_variant_to_pyobj(const pandemonium_variant *p_gdvar)
+cdef bint pyobj_to_pandemonium_variant(object pyobj, pandemonium_variant *p_var)
 
-cdef bint is_pytype_compatible_with_godot_variant(object pytype)
-cdef object godot_type_to_pytype(godot_variant_type gdtype)
-cdef godot_variant_type pytype_to_godot_type(object pytype)
+cdef bint is_pytype_compatible_with_pandemonium_variant(object pytype)
+cdef object pandemonium_type_to_pytype(pandemonium_variant_type gdtype)
+cdef pandemonium_variant_type pytype_to_pandemonium_type(object pytype)
 
 cdef GDString ensure_is_gdstring(object gdstring_or_pystr)
 cdef NodePath ensure_is_nodepath(object nodepath_or_pystr)
@@ -80,10 +80,10 @@ cdef NodePath ensure_is_nodepath(object nodepath_or_pystr)
 
 # TODO: finish this...
 
-# cdef inline object cook_slice(slice slice_, godot_int size, godot_int *r_start, godot_int *r_stop, godot_int *r_step, godot_int *r_items):
-#     cdef godot_int start
-#     cdef godot_int stop
-#     cdef godot_int step
+# cdef inline object cook_slice(slice slice_, pandemonium_int size, pandemonium_int *r_start, pandemonium_int *r_stop, pandemonium_int *r_step, pandemonium_int *r_items):
+#     cdef pandemonium_int start
+#     cdef pandemonium_int stop
+#     cdef pandemonium_int step
 
 #     step = slice_.step if slice_.step is not None else 1
 #     if step == 0:
@@ -103,7 +103,7 @@ cdef NodePath ensure_is_nodepath(object nodepath_or_pystr)
 #     return None
 
 
-# cdef inline godot_int cook_slice_start(godot_int size, godot_int start):
+# cdef inline pandemonium_int cook_slice_start(pandemonium_int size, pandemonium_int start):
 #     if start > size - 1:
 #         return size - 1
 #     elif start < 0:
@@ -113,7 +113,7 @@ cdef NodePath ensure_is_nodepath(object nodepath_or_pystr)
 #     return start
 
 
-# cdef inline godot_int cook_slice_stop(godot_int size, godot_int stop):
+# cdef inline pandemonium_int cook_slice_stop(pandemonium_int size, pandemonium_int stop):
 #     if stop > size:
 #         return size
 #     elif stop < -size:
@@ -123,8 +123,8 @@ cdef NodePath ensure_is_nodepath(object nodepath_or_pystr)
 #     return stop
 
 
-# cdef inline godot_int cook_slice_get_items(godot_int size, godot_int start, godot_int stop, godot_int step):
-#     cdef godot_int items
+# cdef inline pandemonium_int cook_slice_get_items(pandemonium_int size, pandemonium_int start, pandemonium_int stop, pandemonium_int step):
+#     cdef pandemonium_int items
 #     if step > 0:
 #         if start >= stop:
 #             return 0

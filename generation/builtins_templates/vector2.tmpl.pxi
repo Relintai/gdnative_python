@@ -5,26 +5,26 @@ import math
 
 cdef inline Vector2 Vector2_multiply_vector(Vector2 self, Vector2 b):
     cdef Vector2 ret  = Vector2.__new__(Vector2)
-    {{ force_mark_rendered("godot_vector2_operator_multiply_vector") }}
-    ret._gd_data = gdapi10.godot_vector2_operator_multiply_vector(&self._gd_data, &b._gd_data)
+    {{ force_mark_rendered("pandemonium_vector2_operator_multiply_vector") }}
+    ret._gd_data = gdapi10.pandemonium_vector2_operator_multiply_vector(&self._gd_data, &b._gd_data)
     return ret
 
-cdef inline Vector2 Vector2_multiply_scalar(Vector2 self, godot_real b):
+cdef inline Vector2 Vector2_multiply_scalar(Vector2 self, pandemonium_real b):
     cdef Vector2 ret  = Vector2.__new__(Vector2)
-    {{ force_mark_rendered("godot_vector2_operator_multiply_scalar") }}
-    ret._gd_data = gdapi10.godot_vector2_operator_multiply_scalar(&self._gd_data, b)
+    {{ force_mark_rendered("pandemonium_vector2_operator_multiply_scalar") }}
+    ret._gd_data = gdapi10.pandemonium_vector2_operator_multiply_scalar(&self._gd_data, b)
     return ret
 
 cdef inline Vector2 Vector2_divide_vector(Vector2 self, Vector2 b):
     cdef Vector2 ret  = Vector2.__new__(Vector2)
-    {{ force_mark_rendered("godot_vector2_operator_divide_vector") }}
-    ret._gd_data = gdapi10.godot_vector2_operator_divide_vector(&self._gd_data, &b._gd_data)
+    {{ force_mark_rendered("pandemonium_vector2_operator_divide_vector") }}
+    ret._gd_data = gdapi10.pandemonium_vector2_operator_divide_vector(&self._gd_data, &b._gd_data)
     return ret
 
-cdef inline Vector2 Vector2_divide_scalar(Vector2 self, godot_real b):
+cdef inline Vector2 Vector2_divide_scalar(Vector2 self, pandemonium_real b):
     cdef Vector2 ret  = Vector2.__new__(Vector2)
-    {{ force_mark_rendered("godot_vector2_operator_divide_scalar") }}
-    ret._gd_data = gdapi10.godot_vector2_operator_divide_scalar(&self._gd_data, b)
+    {{ force_mark_rendered("pandemonium_vector2_operator_divide_scalar") }}
+    ret._gd_data = gdapi10.pandemonium_vector2_operator_divide_scalar(&self._gd_data, b)
     return ret
 {% endblock -%}
 
@@ -32,13 +32,13 @@ cdef inline Vector2 Vector2_divide_scalar(Vector2 self, godot_real b):
 @cython.final
 cdef class Vector2:
 {% block cdef_attributes %}
-    cdef godot_vector2 _gd_data
+    cdef pandemonium_vector2 _gd_data
 {% endblock %}
 
 {% block python_defs %}
-    def __init__(self, godot_real x=0.0, godot_real y=0.0):
-        {{ force_mark_rendered("godot_vector2_new") }}
-        gdapi10.godot_vector2_new(&self._gd_data, x, y)
+    def __init__(self, pandemonium_real x=0.0, pandemonium_real y=0.0):
+        {{ force_mark_rendered("pandemonium_vector2_new") }}
+        gdapi10.pandemonium_vector2_new(&self._gd_data, x, y)
 
     def __repr__(Vector2 self):
         return f"<Vector2(x={self.x}, y={self.y})>"

@@ -5,17 +5,17 @@ import importlib
 from cpython.ref cimport PyObject
 
 from godot._hazmat.gdnative_api_struct cimport (
-    godot_pluginscript_language_data,
-    godot_string,
-    godot_bool,
-    godot_array,
-    godot_pool_string_array,
-    godot_object,
-    godot_variant,
-    godot_error,
-    godot_string_name,
-    godot_pluginscript_script_data,
-    godot_pluginscript_script_manifest,
+    pandemonium_pluginscript_language_data,
+    pandemonium_string,
+    pandemonium_bool,
+    pandemonium_array,
+    pandemonium_pool_string_array,
+    pandemonium_object,
+    pandemonium_variant,
+    pandemonium_error,
+    pandemonium_string_name,
+    pandemonium_pluginscript_script_data,
+    pandemonium_pluginscript_script_manifest,
     GODOT_OK,
     GODOT_ERR_UNAVAILABLE,
     GODOT_ERR_FILE_BAD_PATH,
@@ -25,10 +25,10 @@ from godot._hazmat.gdnative_api_struct cimport (
 )
 from godot._hazmat.gdapi cimport pythonscript_gdapi10 as gdapi10
 from godot._hazmat.conversion cimport (
-    godot_string_to_pyobj,
-    pyobj_to_godot_string,
-    pyobj_to_godot_string_name,
-    pytype_to_godot_type,
+    pandemonium_string_to_pyobj,
+    pyobj_to_pandemonium_string,
+    pyobj_to_pandemonium_string_name,
+    pytype_to_pandemonium_type,
 )
 from godot._hazmat.internal cimport (
     get_pythonscript_verbose,
@@ -45,16 +45,16 @@ import traceback
 from godot.tags import ExportedField, SignalField
 
 
-cdef inline godot_pluginscript_script_manifest _build_empty_script_manifest():
-    cdef godot_pluginscript_script_manifest manifest
+cdef inline pandemonium_pluginscript_script_manifest _build_empty_script_manifest():
+    cdef pandemonium_pluginscript_script_manifest manifest
     manifest.data = NULL
-    gdapi10.godot_string_name_new_data(&manifest.name, "")
+    gdapi10.pandemonium_string_name_new_data(&manifest.name, "")
     manifest.is_tool = False
-    gdapi10.godot_string_name_new_data(&manifest.base, "")
-    gdapi10.godot_dictionary_new(&manifest.member_lines)
-    gdapi10.godot_array_new(&manifest.methods)
-    gdapi10.godot_array_new(&manifest.signals)
-    gdapi10.godot_array_new(&manifest.properties)
+    gdapi10.pandemonium_string_name_new_data(&manifest.base, "")
+    gdapi10.pandemonium_dictionary_new(&manifest.member_lines)
+    gdapi10.pandemonium_array_new(&manifest.methods)
+    gdapi10.pandemonium_array_new(&manifest.signals)
+    gdapi10.pandemonium_array_new(&manifest.properties)
     return manifest
 
 
@@ -88,7 +88,7 @@ cdef Dictionary _build_method_info(object meth, object methname):
 cdef Dictionary _build_property_info(object prop):
     cdef Dictionary propinfo = Dictionary()
     propinfo["name"] = prop.name
-    propinfo["type"] = pytype_to_godot_type(prop.type)
+    propinfo["type"] = pytype_to_pandemonium_type(prop.type)
     propinfo["hint"] = prop.hint
     propinfo["hint_string"] = prop.hint_string
     propinfo["usage"] = prop.usage
@@ -105,26 +105,26 @@ cdef inline object is_method(object meth):
 
     return False
 
-cdef godot_pluginscript_script_manifest _build_script_manifest(object cls):
-    cdef godot_pluginscript_script_manifest manifest
+cdef pandemonium_pluginscript_script_manifest _build_script_manifest(object cls):
+    cdef pandemonium_pluginscript_script_manifest manifest
     # No need to increase refcount here given `cls` is guaranteed to be kept
     # until we call `destroy_exposed_class`
     manifest.data = <PyObject*>cls
-    pyobj_to_godot_string_name(cls.__name__, &manifest.name)
+    pyobj_to_pandemonium_string_name(cls.__name__, &manifest.name)
     manifest.is_tool = cls.__tool
-    gdapi10.godot_dictionary_new(&manifest.member_lines)
+    gdapi10.pandemonium_dictionary_new(&manifest.member_lines)
 
     if cls.__bases__:
         # Only one Godot parent class (checked at class definition time)
-        godot_parent_class = next(
+        pandemonium_parent_class = next(
             (b for b in cls.__bases__ if issubclass(b, Object))
         )
-        if not godot_parent_class.__dict__.get("__exposed_python_class"):
-            base = godot_parent_class.__name__
+        if not pandemonium_parent_class.__dict__.get("__exposed_python_class"):
+            base = pandemonium_parent_class.__name__
         else:
             # Pluginscript wants us to return the parent as a path
-            base = f"res://{godot_parent_class.__module__.replace('.', '/')}.py"
-        pyobj_to_godot_string_name(base, &manifest.base)
+            base = f"res://{pandemonium_parent_class.__module__.replace('.', '/')}.py"
+        pyobj_to_pandemonium_string_name(base, &manifest.base)
 
     methods = Array()
     signals = Array()
@@ -137,25 +137,25 @@ cdef godot_pluginscript_script_manifest _build_script_manifest(object cls):
         else:
             assert is_method(v)
             methods.append(_build_method_info(v, k))
-    gdapi10.godot_array_new_copy(&manifest.methods, &methods._gd_data)
-    gdapi10.godot_array_new_copy(&manifest.signals, &signals._gd_data)
-    gdapi10.godot_array_new_copy(&manifest.properties, &properties._gd_data)
+    gdapi10.pandemonium_array_new_copy(&manifest.methods, &methods._gd_data)
+    gdapi10.pandemonium_array_new_copy(&manifest.signals, &signals._gd_data)
+    gdapi10.pandemonium_array_new_copy(&manifest.properties, &properties._gd_data)
 
     return manifest
 
 
-cdef api godot_pluginscript_script_manifest pythonscript_script_init(
-    godot_pluginscript_language_data *p_data,
-    const godot_string *p_path,
-    const godot_string *p_source,
-    godot_error *r_error
+cdef api pandemonium_pluginscript_script_manifest pythonscript_script_init(
+    pandemonium_pluginscript_language_data *p_data,
+    const pandemonium_string *p_path,
+    const pandemonium_string *p_source,
+    pandemonium_error *r_error
 ) with gil:
     # Godot class&singleton are not all available at Pythonscript bootstrap.
     # Hence we wait until the Pythonscript start being actually used (i.e. until
     # the first Python script is loaded) before initializing the bindings.
     _initialize_bindings()
 
-    cdef object path = godot_string_to_pyobj(p_path)
+    cdef object path = pandemonium_string_to_pyobj(p_path)
     if get_pythonscript_verbose():
         print(f"Loading python script from {path}")
 
@@ -223,7 +223,7 @@ cdef api godot_pluginscript_script_manifest pythonscript_script_init(
 
 
 cdef api void pythonscript_script_finish(
-    godot_pluginscript_script_data *p_data
+    pandemonium_pluginscript_script_data *p_data
 ) with gil:
     cdef object cls = <object>p_data
     if get_pythonscript_verbose():

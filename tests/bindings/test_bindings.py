@@ -73,7 +73,7 @@ def test_call_with_defaults_and_too_few_args(current_node):
 
 def test_call_none_in_base_type_args(current_node):
     with pytest.raises(TypeError) as exc:
-        # signature: def get_child(self, godot_int idx)
+        # signature: def get_child(self, pandemonium_int idx)
         current_node.get_child(None)
     assert str(exc.value) == "an integer is required"
 
@@ -221,9 +221,9 @@ def test_virtual_to_string_customize(generate_obj):
         node._to_string()
 
 
-@pytest.fixture(params=["godot_class", "python_subclass"])
+@pytest.fixture(params=["pandemonium_class", "python_subclass"])
 def node_for_access(request, current_node, generate_obj):
-    if request.param == "godot_class":
+    if request.param == "pandemonium_class":
         return generate_obj(Node)
     else:
         return current_node

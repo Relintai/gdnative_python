@@ -7,17 +7,17 @@
 @cython.final
 cdef class Transform2D:
 {% block cdef_attributes %}
-    cdef godot_transform2d _gd_data
+    cdef pandemonium_transform2d _gd_data
 {% endblock %}
 
 {% block python_defs %}
     def __init__(self, x_axis=None, y_axis=None, origin=None):
         if x_axis is None and y_axis is None and origin is None:
-            {{ force_mark_rendered("godot_transform2d_new_identity") }}
-            gdapi10.godot_transform2d_new_identity(&self._gd_data)
+            {{ force_mark_rendered("pandemonium_transform2d_new_identity") }}
+            gdapi10.pandemonium_transform2d_new_identity(&self._gd_data)
         else:
-            {{ force_mark_rendered("godot_transform2d_new_axis_origin") }}
-            gdapi10.godot_transform2d_new_axis_origin(
+            {{ force_mark_rendered("pandemonium_transform2d_new_axis_origin") }}
+            gdapi10.pandemonium_transform2d_new_axis_origin(
                 &self._gd_data,
                 &(<Vector2?>x_axis)._gd_data,
                 &(<Vector2?>y_axis)._gd_data,
@@ -25,10 +25,10 @@ cdef class Transform2D:
             )
 
     @staticmethod
-    def from_rot_pos(godot_real rot, Vector2 pos not None):
+    def from_rot_pos(pandemonium_real rot, Vector2 pos not None):
         cdef Transform2D ret = Transform2D.__new__(Transform2D)
-        {{ force_mark_rendered("godot_transform2d_new") }}
-        gdapi10.godot_transform2d_new(&ret._gd_data, rot, &pos._gd_data)
+        {{ force_mark_rendered("pandemonium_transform2d_new") }}
+        gdapi10.pandemonium_transform2d_new(&ret._gd_data, rot, &pos._gd_data)
         return ret
 
     def __repr__(Transform2D self):
@@ -57,15 +57,15 @@ cdef class Transform2D:
         cdef Rect2 ret_r2
         try:
             ret_v2 = Vector2.__new__(Vector2)
-            {{ force_mark_rendered("godot_transform2d_xform_vector2") }}
-            ret_v2._gd_data = gdapi10.godot_transform2d_xform_vector2(&self._gd_data, &(<Vector2?>v)._gd_data)
+            {{ force_mark_rendered("pandemonium_transform2d_xform_vector2") }}
+            ret_v2._gd_data = gdapi10.pandemonium_transform2d_xform_vector2(&self._gd_data, &(<Vector2?>v)._gd_data)
             return ret_v2
         except TypeError:
             pass
         try:
             ret_r2 = Rect2.__new__(Rect2)
-            {{ force_mark_rendered("godot_transform2d_xform_rect2") }}
-            ret_r2._gd_data = gdapi10.godot_transform2d_xform_rect2(&self._gd_data, &(<Rect2?>v)._gd_data)
+            {{ force_mark_rendered("pandemonium_transform2d_xform_rect2") }}
+            ret_r2._gd_data = gdapi10.pandemonium_transform2d_xform_rect2(&self._gd_data, &(<Rect2?>v)._gd_data)
             return ret_r2
         except TypeError:
             raise TypeError("`v` must be Vector2 or Rect2")
@@ -75,15 +75,15 @@ cdef class Transform2D:
         cdef Rect2 ret_r2
         try:
             ret_v2 = Vector2.__new__(Vector2)
-            {{ force_mark_rendered("godot_transform2d_xform_inv_vector2") }}
-            ret_v2._gd_data = gdapi10.godot_transform2d_xform_inv_vector2(&self._gd_data, &(<Vector2?>v)._gd_data)
+            {{ force_mark_rendered("pandemonium_transform2d_xform_inv_vector2") }}
+            ret_v2._gd_data = gdapi10.pandemonium_transform2d_xform_inv_vector2(&self._gd_data, &(<Vector2?>v)._gd_data)
             return ret_v2
         except TypeError:
             pass
         try:
             ret_r2 = Rect2.__new__(Rect2)
-            {{ force_mark_rendered("godot_transform2d_xform_inv_rect2") }}
-            ret_r2._gd_data = gdapi10.godot_transform2d_xform_inv_rect2(&self._gd_data, &(<Rect2?>v)._gd_data)
+            {{ force_mark_rendered("pandemonium_transform2d_xform_inv_rect2") }}
+            ret_r2._gd_data = gdapi10.pandemonium_transform2d_xform_inv_rect2(&self._gd_data, &(<Rect2?>v)._gd_data)
             return ret_r2
         except TypeError:
             raise TypeError("`v` must be Vector2 or Rect2")

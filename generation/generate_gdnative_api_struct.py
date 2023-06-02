@@ -295,7 +295,7 @@ class PatchedAutoPxd(AutoPxd):
 
     def visit_ArrayDecl(self, node):
         # autopxd doesn't support array with an expression as size, but in:
-        #   typedef struct {uint8_t _dont_touch_that[GODOT_VECTOR3_SIZE];} godot_vector3;
+        #   typedef struct {uint8_t _dont_touch_that[GODOT_VECTOR3_SIZE];} pandemonium_vector3;
         # `GODOT_VECTOR3_SIZE` gets resolved as `sizeof(void*)` :(
         if node.type.declname == "_dont_touch_that":
             # Of course the 0 size is wrong, but it's not an issue given
@@ -357,7 +357,7 @@ if __name__ == "__main__":
 
     pxd_cdef = p.lines()
     # Remove the cdef part given we want to add the `nogil` option and
-    # we also want to add the `godot_method_flags` C inline code
+    # we also want to add the `pandemonium_method_flags` C inline code
     assert pxd_cdef[0].startswith("cdef extern from")
     pxd_cdef_body = "\n".join(pxd_cdef[1:])
 
@@ -382,10 +382,10 @@ cdef extern from "{header_name}" nogil:
         GODOT_METHOD_FLAG_FROM_SCRIPT = 64,
         GODOT_METHOD_FLAG_VARARG = 128,
         GODOT_METHOD_FLAGS_DEFAULT = GODOT_METHOD_FLAG_NORMAL
-    }} godot_method_flags;
+    }} pandemonium_method_flags;
     \"\"\"
 
-    ctypedef enum godot_method_flags:
+    ctypedef enum pandemonium_method_flags:
         GODOT_METHOD_FLAG_NORMAL = 1
         GODOT_METHOD_FLAG_EDITOR = 2
         GODOT_METHOD_FLAG_NOSCRIPT = 4
