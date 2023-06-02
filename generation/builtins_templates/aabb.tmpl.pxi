@@ -1,6 +1,33 @@
 {%- block pxd_header -%}
 {%- endblock -%}
 {%- block pyx_header -%}
+
+# TODO
+
+{{ force_mark_rendered("pandemonium_aabb_abs") }}
+{{ force_mark_rendered("pandemonium_aabb_expand_to") }}
+{{ force_mark_rendered("pandemonium_aabb_get_center") }}
+{{ force_mark_rendered("pandemonium_aabb_get_edge") }}
+{{ force_mark_rendered("pandemonium_aabb_get_end") }}
+{{ force_mark_rendered("pandemonium_aabb_get_volume") }}
+{{ force_mark_rendered("pandemonium_aabb_grow_by") }}
+{{ force_mark_rendered("pandemonium_aabb_has_no_volume") }}
+{{ force_mark_rendered("pandemonium_aabb_intersects_inclusive") }}
+{{ force_mark_rendered("pandemonium_aabb_intersects_ray") }}
+{{ force_mark_rendered("pandemonium_aabb_intersects_ray_clip") }}
+{{ force_mark_rendered("pandemonium_aabb_intersects_ray_clip_normal") }}
+{{ force_mark_rendered("pandemonium_aabb_intersects_rayv") }}
+{{ force_mark_rendered("pandemonium_aabb_intersects_segment_clip") }}
+{{ force_mark_rendered("pandemonium_aabb_intersects_segment_clip_normal") }}
+{{ force_mark_rendered("pandemonium_aabb_intersects_segmentv") }}
+{{ force_mark_rendered("pandemonium_aabb_intersects_smits_intersect_ray") }}
+{{ force_mark_rendered("pandemonium_aabb_is_equal_approx") }}
+{{ force_mark_rendered("pandemonium_aabb_merge_with") }}
+{{ force_mark_rendered("pandemonium_aabb_project_range_in_plane") }}
+{{ force_mark_rendered("pandemonium_aabb_quantize") }}
+{{ force_mark_rendered("pandemonium_aabb_quantized") }}
+{{ force_mark_rendered("pandemonium_aabb_set_end") }}
+
 {%- endblock -%}
 
 @cython.final

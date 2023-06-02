@@ -1,6 +1,33 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
+
+# TODO
+
+{{ force_mark_rendered("pandemonium_vector2i_abs") }}
+{{ force_mark_rendered("pandemonium_vector2i_aspect") }}
+{{ force_mark_rendered("pandemonium_vector2i_clamp") }}
+{{ force_mark_rendered("pandemonium_vector2i_get_axis") }}
+{{ force_mark_rendered("pandemonium_vector2i_length") }}
+{{ force_mark_rendered("pandemonium_vector2i_length_squared") }}
+{{ force_mark_rendered("pandemonium_vector2i_linear_interpolate") }}
+{{ force_mark_rendered("pandemonium_vector2i_max") }}
+{{ force_mark_rendered("pandemonium_vector2i_max_axis") }}
+{{ force_mark_rendered("pandemonium_vector2i_min") }}
+{{ force_mark_rendered("pandemonium_vector2i_min_axis") }}
+{{ force_mark_rendered("pandemonium_vector2i_operator_divide_scalar") }}
+{{ force_mark_rendered("pandemonium_vector2i_operator_divide_vector") }}
+{{ force_mark_rendered("pandemonium_vector2i_operator_index") }}
+{{ force_mark_rendered("pandemonium_vector2i_operator_index_const") }}
+{{ force_mark_rendered("pandemonium_vector2i_operator_multiply_scalar") }}
+{{ force_mark_rendered("pandemonium_vector2i_operator_multiply_vector") }}
+{{ force_mark_rendered("pandemonium_vector2i_set_all") }}
+{{ force_mark_rendered("pandemonium_vector2i_set_axis") }}
+{{ force_mark_rendered("pandemonium_vector2i_sign") }}
+{{ force_mark_rendered("pandemonium_vector2i_to_vector2") }}
+
+# END TODO
+
 from pandemonium._hazmat.gdnative_api_struct cimport pandemonium_vector2i_axis
 {% endblock -%}
 

@@ -1,6 +1,45 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
+
+# TODO
+
+{{ force_mark_rendered("pandemonium_transform_affine_invert") }}
+{{ force_mark_rendered("pandemonium_transform_interpolate_with") }}
+{{ force_mark_rendered("pandemonium_transform_inverse_xform") }}
+{{ force_mark_rendered("pandemonium_transform_invert") }}
+{{ force_mark_rendered("pandemonium_transform_is_equal_approx") }}
+{{ force_mark_rendered("pandemonium_transform_orthogonalize") }}
+{{ force_mark_rendered("pandemonium_transform_orthogonalized") }}
+{{ force_mark_rendered("pandemonium_transform_orthonormalize") }}
+{{ force_mark_rendered("pandemonium_transform_rotate") }}
+{{ force_mark_rendered("pandemonium_transform_rotate_basis") }}
+{{ force_mark_rendered("pandemonium_transform_rotate_local") }}
+{{ force_mark_rendered("pandemonium_transform_rotated_local") }}
+{{ force_mark_rendered("pandemonium_transform_scale") }}
+{{ force_mark_rendered("pandemonium_transform_scale_basis") }}
+{{ force_mark_rendered("pandemonium_transform_scaled_local") }}
+{{ force_mark_rendered("pandemonium_transform_set") }}
+{{ force_mark_rendered("pandemonium_transform_set_look_at") }}
+{{ force_mark_rendered("pandemonium_transform_spherical_interpolate_with") }}
+{{ force_mark_rendered("pandemonium_transform_translate_localr") }}
+{{ force_mark_rendered("pandemonium_transform_translate_localv") }}
+{{ force_mark_rendered("pandemonium_transform_translated_local") }}
+{{ force_mark_rendered("pandemonium_transform_xform_fast") }}
+{{ force_mark_rendered("pandemonium_transform_xform_inv_fast") }}
+{{ force_mark_rendered("pandemonium_transform_xform_inv_pool_vector2") }}
+{{ force_mark_rendered("pandemonium_transform_xform_inv_pool_vector2i") }}
+{{ force_mark_rendered("pandemonium_transform_xform_inv_pool_vector3") }}
+{{ force_mark_rendered("pandemonium_transform_xform_inv_pool_vector3i") }}
+{{ force_mark_rendered("pandemonium_transform_xform_inv_vector3i") }}
+{{ force_mark_rendered("pandemonium_transform_xform_pool_vector2") }}
+{{ force_mark_rendered("pandemonium_transform_xform_pool_vector2i") }}
+{{ force_mark_rendered("pandemonium_transform_xform_pool_vector3") }}
+{{ force_mark_rendered("pandemonium_transform_xform_pool_vector3i") }}
+{{ force_mark_rendered("pandemonium_transform_xform_vector3i") }}
+
+# END TODO
+
 {% endblock -%}
 
 
@@ -33,10 +72,10 @@ cdef class Transform:
         return ret
 
     @staticmethod
-    def from_quat(Quaternion quat not None):
+    def from_quaternion(Quaternion quat not None):
         cdef Transform ret = Transform.__new__(Transform)
-        {{ force_mark_rendered("pandemonium_transform_new_with_quat") }}
-        gdapi11.pandemonium_transform_new_with_quat(&ret._gd_data, &quat._gd_data)
+        {{ force_mark_rendered("pandemonium_transform_new_with_quaternion") }}
+        gdapi11.pandemonium_transform_new_with_quaternion(&ret._gd_data, &quat._gd_data)
         return ret
 
     def __repr__(Transform self):

@@ -1,6 +1,25 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
+
+# TODO
+
+{{ force_mark_rendered("pandemonium_array_append_array") }}
+{{ force_mark_rendered("pandemonium_array_deep_equal") }}
+{{ force_mark_rendered("pandemonium_array_deep_equal_recursion_count") }}
+{{ force_mark_rendered("pandemonium_array_duplicate_deep") }}
+{{ force_mark_rendered("pandemonium_array_fill") }}
+{{ force_mark_rendered("pandemonium_array_find_from") }}
+{{ force_mark_rendered("pandemonium_array_new_pool_vector2i_array") }}
+{{ force_mark_rendered("pandemonium_array_new_pool_vector3i_array") }}
+{{ force_mark_rendered("pandemonium_array_new_pool_vector4_array") }}
+{{ force_mark_rendered("pandemonium_array_new_pool_vector4i_array") }}
+{{ force_mark_rendered("pandemonium_array_operator_equals") }}
+{{ force_mark_rendered("pandemonium_array_pop_at") }}
+{{ force_mark_rendered("pandemonium_array_rfind_from") }}
+{{ force_mark_rendered("pandemonium_array_slice_step") }}
+{{ force_mark_rendered("pandemonium_array_slice_step_deep") }}
+
 {% endblock -%}
 
 {# TODO: conversion from pool arrays is not supported #}

@@ -1,6 +1,47 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
+
+# TODO
+
+{{ force_mark_rendered("pandemonium_transform2d_affine_invert") }}
+{{ force_mark_rendered("pandemonium_transform2d_basis_determinant") }}
+{{ force_mark_rendered("pandemonium_transform2d_basis_scaled") }}
+{{ force_mark_rendered("pandemonium_transform2d_basis_xform") }}
+{{ force_mark_rendered("pandemonium_transform2d_basis_xform_inv") }}
+{{ force_mark_rendered("pandemonium_transform2d_get_axis") }}
+{{ force_mark_rendered("pandemonium_transform2d_get_column") }}
+{{ force_mark_rendered("pandemonium_transform2d_get_skew") }}
+{{ force_mark_rendered("pandemonium_transform2d_invert") }}
+{{ force_mark_rendered("pandemonium_transform2d_is_equal_approx") }}
+{{ force_mark_rendered("pandemonium_transform2d_looking_at") }}
+{{ force_mark_rendered("pandemonium_transform2d_orthonormalize") }}
+{{ force_mark_rendered("pandemonium_transform2d_rotate") }}
+{{ force_mark_rendered("pandemonium_transform2d_rotated_local") }}
+{{ force_mark_rendered("pandemonium_transform2d_scale") }}
+{{ force_mark_rendered("pandemonium_transform2d_scale_basis") }}
+{{ force_mark_rendered("pandemonium_transform2d_scaled_local") }}
+{{ force_mark_rendered("pandemonium_transform2d_set_axis") }}
+{{ force_mark_rendered("pandemonium_transform2d_set_column") }}
+{{ force_mark_rendered("pandemonium_transform2d_set_origin") }}
+{{ force_mark_rendered("pandemonium_transform2d_set_rotation") }}
+{{ force_mark_rendered("pandemonium_transform2d_set_rotation_and_scale") }}
+{{ force_mark_rendered("pandemonium_transform2d_set_rotation_scale_and_skew") }}
+{{ force_mark_rendered("pandemonium_transform2d_set_scale") }}
+{{ force_mark_rendered("pandemonium_transform2d_set_skew") }}
+{{ force_mark_rendered("pandemonium_transform2d_tdotx") }}
+{{ force_mark_rendered("pandemonium_transform2d_tdoty") }}
+{{ force_mark_rendered("pandemonium_transform2d_translate_localr") }}
+{{ force_mark_rendered("pandemonium_transform2d_translate_localv") }}
+{{ force_mark_rendered("pandemonium_transform2d_translated_local") }}
+{{ force_mark_rendered("pandemonium_transform2d_translater") }}
+{{ force_mark_rendered("pandemonium_transform2d_translatev") }}
+{{ force_mark_rendered("pandemonium_transform2d_untranslated") }}
+{{ force_mark_rendered("pandemonium_transform2d_xform_inv_vector2i") }}
+{{ force_mark_rendered("pandemonium_transform2d_xform_vector2i") }}
+
+# END TODO
+
 {% endblock -%}
 
 

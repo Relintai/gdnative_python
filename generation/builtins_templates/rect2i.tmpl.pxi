@@ -1,6 +1,33 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
+
+# TODO
+
+{{ force_mark_rendered("pandemonium_rect2i_abs") }}
+{{ force_mark_rendered("pandemonium_rect2i_clip") }}
+{{ force_mark_rendered("pandemonium_rect2i_encloses") }}
+{{ force_mark_rendered("pandemonium_rect2i_expand") }}
+{{ force_mark_rendered("pandemonium_rect2i_expand_to") }}
+{{ force_mark_rendered("pandemonium_rect2i_get_area") }}
+{{ force_mark_rendered("pandemonium_rect2i_get_center") }}
+{{ force_mark_rendered("pandemonium_rect2i_get_end") }}
+{{ force_mark_rendered("pandemonium_rect2i_grow") }}
+{{ force_mark_rendered("pandemonium_rect2i_grow_by") }}
+{{ force_mark_rendered("pandemonium_rect2i_grow_individual") }}
+{{ force_mark_rendered("pandemonium_rect2i_grow_margin") }}
+{{ force_mark_rendered("pandemonium_rect2i_grow_side") }}
+{{ force_mark_rendered("pandemonium_rect2i_has_no_area") }}
+{{ force_mark_rendered("pandemonium_rect2i_has_point") }}
+{{ force_mark_rendered("pandemonium_rect2i_intersection") }}
+{{ force_mark_rendered("pandemonium_rect2i_intersects") }}
+{{ force_mark_rendered("pandemonium_rect2i_merge") }}
+{{ force_mark_rendered("pandemonium_rect2i_new_from_rect2") }}
+{{ force_mark_rendered("pandemonium_rect2i_set_end") }}
+{{ force_mark_rendered("pandemonium_rect2i_to_rect2") }}
+
+# END TODO
+
 {% endblock -%}
 
 

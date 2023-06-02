@@ -1,6 +1,26 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
+
+# TODO
+
+{{ force_mark_rendered("pandemonium_rect2_distance_to") }}
+{{ force_mark_rendered("pandemonium_rect2_expand_to") }}
+{{ force_mark_rendered("pandemonium_rect2_get_center") }}
+{{ force_mark_rendered("pandemonium_rect2_get_end") }}
+{{ force_mark_rendered("pandemonium_rect2_get_support") }}
+{{ force_mark_rendered("pandemonium_rect2_grow_by") }}
+{{ force_mark_rendered("pandemonium_rect2_grow_side") }}
+{{ force_mark_rendered("pandemonium_rect2_intersection") }}
+{{ force_mark_rendered("pandemonium_rect2_intersects_segment") }}
+{{ force_mark_rendered("pandemonium_rect2_intersects_segment_pos") }}
+{{ force_mark_rendered("pandemonium_rect2_intersects_segment_pos_normal") }}
+{{ force_mark_rendered("pandemonium_rect2_intersects_transformed") }}
+{{ force_mark_rendered("pandemonium_rect2_is_equal_approx") }}
+{{ force_mark_rendered("pandemonium_rect2_set_end") }}
+
+# END TODO
+
 {% endblock -%}
 
 

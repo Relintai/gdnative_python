@@ -2,6 +2,56 @@
 {% endblock -%}
 {%- block pyx_header %}
 from libc.stdint cimport uint8_t
+
+# TODO
+
+{{ force_mark_rendered("pandemonium_color_clamp") }}
+{{ force_mark_rendered("pandemonium_color_color8") }}
+{{ force_mark_rendered("pandemonium_color_color8_alpha") }}
+{{ force_mark_rendered("pandemonium_color_contrast") }}
+{{ force_mark_rendered("pandemonium_color_from_rgbe9995") }}
+{{ force_mark_rendered("pandemonium_color_get_a8") }}
+{{ force_mark_rendered("pandemonium_color_get_b8") }}
+{{ force_mark_rendered("pandemonium_color_get_g8") }}
+{{ force_mark_rendered("pandemonium_color_get_luminance") }}
+{{ force_mark_rendered("pandemonium_color_get_r8") }}
+{{ force_mark_rendered("pandemonium_color_hex") }}
+{{ force_mark_rendered("pandemonium_color_hex64") }}
+{{ force_mark_rendered("pandemonium_color_html") }}
+{{ force_mark_rendered("pandemonium_color_html_is_valid") }}
+{{ force_mark_rendered("pandemonium_color_invert") }}
+{{ force_mark_rendered("pandemonium_color_is_equal_approx") }}
+{{ force_mark_rendered("pandemonium_color_named") }}
+{{ force_mark_rendered("pandemonium_color_operator_add") }}
+{{ force_mark_rendered("pandemonium_color_operator_add_eq") }}
+{{ force_mark_rendered("pandemonium_color_operator_div_color") }}
+{{ force_mark_rendered("pandemonium_color_operator_div_color_eq") }}
+{{ force_mark_rendered("pandemonium_color_operator_div_real") }}
+{{ force_mark_rendered("pandemonium_color_operator_div_real_eq") }}
+{{ force_mark_rendered("pandemonium_color_operator_index") }}
+{{ force_mark_rendered("pandemonium_color_operator_index_const") }}
+{{ force_mark_rendered("pandemonium_color_operator_mul_color") }}
+{{ force_mark_rendered("pandemonium_color_operator_mul_color_eq") }}
+{{ force_mark_rendered("pandemonium_color_operator_mul_real") }}
+{{ force_mark_rendered("pandemonium_color_operator_mul_real_eq") }}
+{{ force_mark_rendered("pandemonium_color_operator_negate") }}
+{{ force_mark_rendered("pandemonium_color_operator_sub") }}
+{{ force_mark_rendered("pandemonium_color_operator_sub_eq") }}
+{{ force_mark_rendered("pandemonium_color_set_a8") }}
+{{ force_mark_rendered("pandemonium_color_set_b8") }}
+{{ force_mark_rendered("pandemonium_color_set_g8") }}
+{{ force_mark_rendered("pandemonium_color_set_h") }}
+{{ force_mark_rendered("pandemonium_color_set_hsv") }}
+{{ force_mark_rendered("pandemonium_color_set_hsv_alpha") }}
+{{ force_mark_rendered("pandemonium_color_set_r8") }}
+{{ force_mark_rendered("pandemonium_color_set_s") }}
+{{ force_mark_rendered("pandemonium_color_set_v") }}
+{{ force_mark_rendered("pandemonium_color_to_linear") }}
+{{ force_mark_rendered("pandemonium_color_to_rgbe9995") }}
+{{ force_mark_rendered("pandemonium_color_to_srgb") }}
+
+
+
 {% endblock -%}
 
 

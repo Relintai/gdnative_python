@@ -4,6 +4,122 @@
 from libc.stdint cimport int8_t
 {% endblock -%}
 
+# TODO
+
+{{ force_mark_rendered("pandemonium_char_16_string_destroy") }}
+{{ force_mark_rendered("pandemonium_char_16_string_get") }}
+{{ force_mark_rendered("pandemonium_char_16_string_get_data") }}
+{{ force_mark_rendered("pandemonium_char_16_string_length") }}
+{{ force_mark_rendered("pandemonium_char_16_string_resize") }}
+{{ force_mark_rendered("pandemonium_char_16_string_set") }}
+{{ force_mark_rendered("pandemonium_char_16_string_size") }}
+{{ force_mark_rendered("pandemonium_char_string_get") }}
+{{ force_mark_rendered("pandemonium_char_string_resize") }}
+{{ force_mark_rendered("pandemonium_char_string_set") }}
+{{ force_mark_rendered("pandemonium_char_string_size") }}
+
+{{ force_mark_rendered("pandemonium_string_append_path") }}
+{{ force_mark_rendered("pandemonium_string_append_pathc") }}
+{{ force_mark_rendered("pandemonium_string_bool_num") }}
+{{ force_mark_rendered("pandemonium_string_bool_str") }}
+{{ force_mark_rendered("pandemonium_string_char_to_float") }}
+{{ force_mark_rendered("pandemonium_string_chars_to_utf16") }}
+{{ force_mark_rendered("pandemonium_string_chars_to_utf16_with_len") }}
+{{ force_mark_rendered("pandemonium_string_clear") }}
+{{ force_mark_rendered("pandemonium_string_contains") }}
+{{ force_mark_rendered("pandemonium_string_containsc") }}
+{{ force_mark_rendered("pandemonium_string_find_char") }}
+{{ force_mark_rendered("pandemonium_string_find_char_from") }}
+{{ force_mark_rendered("pandemonium_string_find_first_difference_index") }}
+{{ force_mark_rendered("pandemonium_string_findc") }}
+{{ force_mark_rendered("pandemonium_string_findc_from") }}
+{{ force_mark_rendered("pandemonium_string_get") }}
+{{ force_mark_rendered("pandemonium_string_get_data") }}
+{{ force_mark_rendered("pandemonium_string_get_invalid_node_name_characters") }}
+{{ force_mark_rendered("pandemonium_string_get_with_code_lines") }}
+{{ force_mark_rendered("pandemonium_string_hash_wchar") }}
+{{ force_mark_rendered("pandemonium_string_hash_wchar_with_len") }}
+{{ force_mark_rendered("pandemonium_string_hashc") }}
+{{ force_mark_rendered("pandemonium_string_hashc_with_len") }}
+{{ force_mark_rendered("pandemonium_string_indent") }}
+{{ force_mark_rendered("pandemonium_string_is_enclosed_in") }}
+{{ force_mark_rendered("pandemonium_string_is_network_share_path") }}
+{{ force_mark_rendered("pandemonium_string_is_quoted") }}
+{{ force_mark_rendered("pandemonium_string_is_valid_bool") }}
+{{ force_mark_rendered("pandemonium_string_is_valid_filename") }}
+{{ force_mark_rendered("pandemonium_string_is_valid_string") }}
+{{ force_mark_rendered("pandemonium_string_is_valid_unsigned_integer") }}
+{{ force_mark_rendered("pandemonium_string_is_word_at") }}
+{{ force_mark_rendered("pandemonium_string_is_word_atc") }}
+{{ force_mark_rendered("pandemonium_string_is_zero") }}
+{{ force_mark_rendered("pandemonium_string_join") }}
+{{ force_mark_rendered("pandemonium_string_lstrip") }}
+{{ force_mark_rendered("pandemonium_string_name_new_data_char") }}
+{{ force_mark_rendered("pandemonium_string_name_new_data_string") }}
+{{ force_mark_rendered("pandemonium_string_name_new_datac") }}
+{{ force_mark_rendered("pandemonium_string_new_char") }}
+{{ force_mark_rendered("pandemonium_string_new_char_clip_to_len") }}
+{{ force_mark_rendered("pandemonium_string_new_wchar") }}
+{{ force_mark_rendered("pandemonium_string_newc") }}
+{{ force_mark_rendered("pandemonium_string_newc_clip_to_len") }}
+{{ force_mark_rendered("pandemonium_string_newline_to_br") }}
+{{ force_mark_rendered("pandemonium_string_num_characters") }}
+{{ force_mark_rendered("pandemonium_string_num_uint64") }}
+{{ force_mark_rendered("pandemonium_string_num_uint64_capitalized") }}
+{{ force_mark_rendered("pandemonium_string_pandemonium_char_to_double") }}
+{{ force_mark_rendered("pandemonium_string_pandemonium_char_to_float") }}
+{{ force_mark_rendered("pandemonium_string_parse_url") }}
+{{ force_mark_rendered("pandemonium_string_parse_utf16") }}
+{{ force_mark_rendered("pandemonium_string_parse_utf16_with_len") }}
+{{ force_mark_rendered("pandemonium_string_parse_utf8_with_len_skip_cr") }}
+{{ force_mark_rendered("pandemonium_string_path_clean_end_slash") }}
+{{ force_mark_rendered("pandemonium_string_path_ensure_end_slash") }}
+{{ force_mark_rendered("pandemonium_string_path_get_prev_dir") }}
+{{ force_mark_rendered("pandemonium_string_print_unicode_error") }}
+{{ force_mark_rendered("pandemonium_string_property_name_encode") }}
+{{ force_mark_rendered("pandemonium_string_quote") }}
+{{ force_mark_rendered("pandemonium_string_quote_quotechar") }}
+{{ force_mark_rendered("pandemonium_string_remove") }}
+{{ force_mark_rendered("pandemonium_string_repeat") }}
+{{ force_mark_rendered("pandemonium_string_replacec") }}
+{{ force_mark_rendered("pandemonium_string_resize") }}
+{{ force_mark_rendered("pandemonium_string_rsplit_allow_empty") }}
+{{ force_mark_rendered("pandemonium_string_rsplit_maxsplit") }}
+{{ force_mark_rendered("pandemonium_string_set") }}
+{{ force_mark_rendered("pandemonium_string_set_length") }}
+{{ force_mark_rendered("pandemonium_string_sha1_buffer") }}
+{{ force_mark_rendered("pandemonium_string_sha1_text") }}
+{{ force_mark_rendered("pandemonium_string_size") }}
+{{ force_mark_rendered("pandemonium_string_split_floats_allow_empty") }}
+{{ force_mark_rendered("pandemonium_string_split_floats_mk_allow_empty") }}
+{{ force_mark_rendered("pandemonium_string_split_ints_allow_empty") }}
+{{ force_mark_rendered("pandemonium_string_split_ints_mk_allow_empty") }}
+{{ force_mark_rendered("pandemonium_string_split_maxsplit") }}
+{{ force_mark_rendered("pandemonium_string_substr_index") }}
+{{ force_mark_rendered("pandemonium_string_to_ascii_buffer") }}
+{{ force_mark_rendered("pandemonium_string_to_bool") }}
+{{ force_mark_rendered("pandemonium_string_to_intc") }}
+{{ force_mark_rendered("pandemonium_string_to_intc_len") }}
+{{ force_mark_rendered("pandemonium_string_to_intc_len_clamp") }}
+{{ force_mark_rendered("pandemonium_string_to_uint") }}
+{{ force_mark_rendered("pandemonium_string_to_utf16_buffer") }}
+{{ force_mark_rendered("pandemonium_string_to_utf32_buffer") }}
+{{ force_mark_rendered("pandemonium_string_to_utf8_buffer") }}
+{{ force_mark_rendered("pandemonium_string_unicode_at") }}
+{{ force_mark_rendered("pandemonium_string_unquote") }}
+{{ force_mark_rendered("pandemonium_string_uri_decode") }}
+{{ force_mark_rendered("pandemonium_string_uri_encode") }}
+{{ force_mark_rendered("pandemonium_string_utf16") }}
+{{ force_mark_rendered("pandemonium_string_utf16_byte_length") }}
+{{ force_mark_rendered("pandemonium_string_utf8_byte_length") }}
+{{ force_mark_rendered("pandemonium_string_validate_identifier") }}
+{{ force_mark_rendered("pandemonium_string_validate_node_name") }}
+{{ force_mark_rendered("pandemonium_string_wchar_to_double") }}
+{{ force_mark_rendered("pandemonium_string_wchar_to_float") }}
+
+# END TODO
+
+
 {# pandemonium_char_string is not really a bultin type...#}
 {{ force_mark_rendered("pandemonium_char_string_destroy") }}
 {{ force_mark_rendered("pandemonium_char_string_get_data") }}
@@ -36,8 +152,6 @@ from libc.stdint cimport int8_t
 {{ force_mark_rendered("pandemonium_string_hash64") }}
 {{ force_mark_rendered("pandemonium_string_hash_chars") }}
 {{ force_mark_rendered("pandemonium_string_hash_chars_with_len") }}
-{{ force_mark_rendered("pandemonium_string_hash_utf8_chars") }}
-{{ force_mark_rendered("pandemonium_string_hash_utf8_chars_with_len") }}
 {{ force_mark_rendered("pandemonium_string_hex_encode_buffer") }}
 {{ force_mark_rendered("pandemonium_string_hex_to_int64") }}
 {{ force_mark_rendered("pandemonium_string_hex_to_int64_with_prefix") }}
@@ -52,7 +166,6 @@ from libc.stdint cimport int8_t
 {{ force_mark_rendered("pandemonium_string_name_get_hash") }}
 {{ force_mark_rendered("pandemonium_string_name_get_name") }}
 {{ force_mark_rendered("pandemonium_string_name_new") }}
-{{ force_mark_rendered("pandemonium_string_name_new_data") }}
 {{ force_mark_rendered("pandemonium_string_name_operator_equal") }}
 {{ force_mark_rendered("pandemonium_string_name_operator_less") }}
 {{ force_mark_rendered("pandemonium_string_naturalnocasecmp_to") }}
@@ -75,21 +188,15 @@ from libc.stdint cimport int8_t
 {{ force_mark_rendered("pandemonium_string_rpad_with_custom_character") }}
 {{ force_mark_rendered("pandemonium_string_simplify_path") }}
 {{ force_mark_rendered("pandemonium_string_split_allow_empty") }}
-{{ force_mark_rendered("pandemonium_string_split_floats_allows_empty") }}
 {{ force_mark_rendered("pandemonium_string_split_floats_mk") }}
-{{ force_mark_rendered("pandemonium_string_split_floats_mk_allows_empty") }}
 {{ force_mark_rendered("pandemonium_string_split_ints") }}
-{{ force_mark_rendered("pandemonium_string_split_ints_allows_empty") }}
 {{ force_mark_rendered("pandemonium_string_split_ints_mk") }}
-{{ force_mark_rendered("pandemonium_string_split_ints_mk_allows_empty") }}
 {{ force_mark_rendered("pandemonium_string_split_spaces") }}
 {{ force_mark_rendered("pandemonium_string_sprintf") }}
 {{ force_mark_rendered("pandemonium_string_to_double") }}
 {{ force_mark_rendered("pandemonium_string_to_int64") }}
-{{ force_mark_rendered("pandemonium_string_unicode_char_to_double") }}
 {{ force_mark_rendered("pandemonium_string_utf8") }}
 {{ force_mark_rendered("pandemonium_string_wchar_to_int") }}
-{{ force_mark_rendered("pandemonium_string_wide_str") }}
 {{ force_mark_rendered("pandemonium_string_word_wrap") }}
 {{ force_mark_rendered("pandemonium_string_xml_escape_with_quotes") }}
 
@@ -125,10 +232,10 @@ cdef class GDString:
 
     @staticmethod
     cdef inline GDString new_with_wide_string(wchar_t *content, int size):
-        {{ force_mark_rendered("pandemonium_string_new_with_wide_string") }}
+        {{ force_mark_rendered("pandemonium_string_new_wchar_clip_to_len") }}
         # Call to __new__ bypasses __init__ constructor
         cdef GDString ret = GDString.__new__(GDString)
-        gdapi10.pandemonium_string_new_with_wide_string(&ret._gd_data, content, size)
+        gdapi10.pandemonium_string_new_wchar_clip_to_len(&ret._gd_data, content, size)
         return ret
 
     @staticmethod

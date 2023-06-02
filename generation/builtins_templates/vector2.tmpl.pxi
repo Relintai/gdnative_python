@@ -1,6 +1,37 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
+
+# TODO
+
+{{ force_mark_rendered("pandemonium_vector2_bezier_interpolate") }}
+{{ force_mark_rendered("pandemonium_vector2_ceil") }}
+{{ force_mark_rendered("pandemonium_vector2_cross") }}
+{{ force_mark_rendered("pandemonium_vector2_get_axis") }}
+{{ force_mark_rendered("pandemonium_vector2_is_equal_approx") }}
+{{ force_mark_rendered("pandemonium_vector2_max") }}
+{{ force_mark_rendered("pandemonium_vector2_max_axis") }}
+{{ force_mark_rendered("pandemonium_vector2_min") }}
+{{ force_mark_rendered("pandemonium_vector2_min_axis") }}
+{{ force_mark_rendered("pandemonium_vector2_normalize") }}
+{{ force_mark_rendered("pandemonium_vector2_operator_index") }}
+{{ force_mark_rendered("pandemonium_vector2_operator_index_const") }}
+{{ force_mark_rendered("pandemonium_vector2_orthogonal") }}
+{{ force_mark_rendered("pandemonium_vector2_plane_project") }}
+{{ force_mark_rendered("pandemonium_vector2_posmod") }}
+{{ force_mark_rendered("pandemonium_vector2_posmodv") }}
+{{ force_mark_rendered("pandemonium_vector2_project") }}
+{{ force_mark_rendered("pandemonium_vector2_round") }}
+{{ force_mark_rendered("pandemonium_vector2_set_all") }}
+{{ force_mark_rendered("pandemonium_vector2_set_axis") }}
+{{ force_mark_rendered("pandemonium_vector2_set_rotation") }}
+{{ force_mark_rendered("pandemonium_vector2_sign") }}
+{{ force_mark_rendered("pandemonium_vector2_slerp") }}
+
+
+# END TODO
+
+
 from pandemonium._hazmat.gdnative_api_struct cimport pandemonium_vector2_axis
 import math
 

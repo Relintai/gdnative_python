@@ -1,6 +1,16 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
+
+# TODO
+
+{{ force_mark_rendered("pandemonium_dictionary_deep_equal") }}
+{{ force_mark_rendered("pandemonium_dictionary_deep_equal_recursion_count") }}
+{{ force_mark_rendered("pandemonium_dictionary_merge") }}
+{{ force_mark_rendered("pandemonium_dictionary_merge_overwrite") }}
+
+# END TODO
+
 {% endblock -%}
 
 {# We can't do const in Python #}

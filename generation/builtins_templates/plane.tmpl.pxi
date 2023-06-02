@@ -1,6 +1,17 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
+
+# TODO
+
+{{ force_mark_rendered("pandemonium_plane_get_any_perpendicular_normal") }}
+{{ force_mark_rendered("pandemonium_plane_is_equal_approx") }}
+{{ force_mark_rendered("pandemonium_plane_is_equal_approx_any_side") }}
+{{ force_mark_rendered("pandemonium_plane_normalize") }}
+
+#END TODO
+
+
 {% endblock -%}
 
 

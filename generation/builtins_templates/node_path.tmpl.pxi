@@ -3,6 +3,17 @@
 {%- block pyx_header %}
 {% endblock -%}
 
+# TODO
+
+{{ force_mark_rendered("pandemonium_node_path_get_sname") }}
+{{ force_mark_rendered("pandemonium_node_path_hash") }}
+{{ force_mark_rendered("pandemonium_node_path_prepend_period") }}
+{{ force_mark_rendered("pandemonium_node_path_rel_path_to") }}
+{{ force_mark_rendered("pandemonium_node_path_simplified") }}
+{{ force_mark_rendered("pandemonium_node_path_simplify") }}
+
+# END TODO
+
 {{ force_mark_rendered("pandemonium_node_path_new_copy") }} {# NodePath is const, why does this exists in the first place ? #}
 
 @cython.final

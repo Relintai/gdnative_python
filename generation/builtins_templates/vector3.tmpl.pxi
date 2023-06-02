@@ -1,6 +1,39 @@
 {%- block pxd_header %}
 {% endblock -%}
 {%- block pyx_header %}
+
+# TODO
+
+{{ force_mark_rendered("pandemonium_vector3_bezier_interpolate") }}
+{{ force_mark_rendered("pandemonium_vector3_clamp") }}
+{{ force_mark_rendered("pandemonium_vector3_get_x") }}
+{{ force_mark_rendered("pandemonium_vector3_get_y") }}
+{{ force_mark_rendered("pandemonium_vector3_get_z") }}
+{{ force_mark_rendered("pandemonium_vector3_is_equal_approx") }}
+{{ force_mark_rendered("pandemonium_vector3_is_equal_approx_tolerance") }}
+{{ force_mark_rendered("pandemonium_vector3_is_equal_approxt") }}
+{{ force_mark_rendered("pandemonium_vector3_limit_length") }}
+{{ force_mark_rendered("pandemonium_vector3_limit_length_len") }}
+{{ force_mark_rendered("pandemonium_vector3_normalize") }}
+{{ force_mark_rendered("pandemonium_vector3_operator_index") }}
+{{ force_mark_rendered("pandemonium_vector3_operator_index_const") }}
+{{ force_mark_rendered("pandemonium_vector3_posmod") }}
+{{ force_mark_rendered("pandemonium_vector3_posmodv") }}
+{{ force_mark_rendered("pandemonium_vector3_project") }}
+{{ force_mark_rendered("pandemonium_vector3_rotate") }}
+{{ force_mark_rendered("pandemonium_vector3_round") }}
+{{ force_mark_rendered("pandemonium_vector3_set_all") }}
+{{ force_mark_rendered("pandemonium_vector3_set_x") }}
+{{ force_mark_rendered("pandemonium_vector3_set_y") }}
+{{ force_mark_rendered("pandemonium_vector3_set_z") }}
+{{ force_mark_rendered("pandemonium_vector3_sign") }}
+{{ force_mark_rendered("pandemonium_vector3_signed_angle_to") }}
+{{ force_mark_rendered("pandemonium_vector3_slerp") }}
+{{ force_mark_rendered("pandemonium_vector3_snap") }}
+{{ force_mark_rendered("pandemonium_vector3_zero") }}
+
+# END TODO
+
 from pandemonium._hazmat.gdnative_api_struct cimport pandemonium_vector3_axis
 
 import math
