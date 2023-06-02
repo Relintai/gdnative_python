@@ -142,14 +142,9 @@ GDN_EXPORT void pandemonium_gdnative_init(pandemonium_gdnative_init_options *opt
 	// Make sure the shared library has all it symbols loaded
 	// (strange bug with libpython3.x.so otherwise...)
 	{
-		pandemonium_char_16_string wpstr = pythonscript_gdapi10->pandemonium_string_utf16(options->active_library_path);
-		const wchar_t *wpath = (wchar_t *)pythonscript_gdapi10->pandemonium_char_16_string_get_data(&wpstr);
+		pandemonium_char_string wpstr = pythonscript_gdapi10->pandemonium_string_utf8(options->active_library_path);
+		const char *path = pythonscript_gdapi10->pandemonium_char_string_get_data(&wpstr);
 
-		//const wchar_t *wpath = pythonscript_gdapi10->pandemonium_string_wide_str(
-		//    options->active_library_path
-		//);
-		char path[300];
-		wcstombs(path, wpath, 300);
 		dlopen(path, RTLD_NOW | RTLD_GLOBAL);
 	}
 
@@ -165,11 +160,19 @@ GDN_EXPORT void pandemonium_gdnative_init(pandemonium_gdnative_init_options *opt
 	// Retrieve path and set pythonhome
 	{
 		static wchar_t pythonhome[300];
-		pandemonium_string _pythonhome = pythonscript_gdapi10->pandemonium_string_get_base_dir(
-				options->active_library_path);
+		pandemonium_string _pythonhome = pythonscript_gdapi10->pandemonium_string_get_base_dir(options->active_library_path);
 
 		pandemonium_char_16_string wpstr = pythonscript_gdapi10->pandemonium_string_utf16(&_pythonhome);
-		wcsncpy(pythonhome, (wchar_t *)pythonscript_gdapi10->pandemonium_char_16_string_get_data(&wpstr), 300);
+		const char16_t *phc = pythonscript_gdapi10->pandemonium_char_16_string_get_data(&wpstr);
+
+		// Ugly hack, because wchar_t's size varies by platform. TODO Should probably add back the wchar_t charstring + getters/setters
+		int i = 0;
+		while (phc[i] != '\0' && i < 299) {
+			pythonhome[i] = phc[i];
+			++i;
+		}
+		pythonhome[i] = '\0';
+		
 		pythonscript_gdapi10->pandemonium_string_destroy(&_pythonhome);
 		Py_SetPythonHome(pythonhome);
 	}
@@ -182,7 +185,6 @@ GDN_EXPORT void pandemonium_gdnative_init(pandemonium_gdnative_init_options *opt
 	// wcsncpy(new_path + 2, path, new_path_len - 2);
 	// Py_SetPath(new_path);
 	// PyRun_SimpleString("import sys\nprint('PYTHON_PATH:', sys.path)\n");
-
 	Py_SetProgramName(L"pandemonium");
 	// Initialize interpreter but skip initialization registration of signal handlers
 	Py_InitializeEx(0);
