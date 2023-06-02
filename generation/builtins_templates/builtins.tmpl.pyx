@@ -8,8 +8,6 @@ cimport cython
 from pandemonium._hazmat.gdnative_api_struct cimport *
 from pandemonium._hazmat.gdapi cimport (
     pythonscript_gdapi10 as gdapi10,
-    pythonscript_gdapi11 as gdapi11,
-    pythonscript_gdapi12 as gdapi12,
 )
 from pandemonium._hazmat.conversion cimport *
 from pandemonium.pool_arrays cimport (

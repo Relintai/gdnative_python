@@ -37,7 +37,7 @@ cdef class Dictionary:
         if not iterable:
             gdapi10.pandemonium_dictionary_new(&self._gd_data)
         elif isinstance(iterable, Dictionary):
-            self._gd_data = gdapi12.pandemonium_dictionary_duplicate(&(<Dictionary>iterable)._gd_data, False)
+            self._gd_data = gdapi10.pandemonium_dictionary_duplicate(&(<Dictionary>iterable)._gd_data, False)
         # TODO: handle Pool*Array
         elif isinstance(iterable, dict):
             gdapi10.pandemonium_dictionary_new(&self._gd_data)
@@ -104,7 +104,7 @@ cdef class Dictionary:
         cdef pandemonium_variant var_key
         if not pyobj_to_pandemonium_variant(key, &var_key):
             raise TypeError(f"Cannot convert `{key!r}` to Pandemonium Variant")
-        cdef pandemonium_bool ret = gdapi11.pandemonium_dictionary_erase_with_return(&self._gd_data, &var_key)
+        cdef pandemonium_bool ret = gdapi10.pandemonium_dictionary_erase_with_return(&self._gd_data, &var_key)
         gdapi10.pandemonium_variant_destroy(&var_key)
         if not ret:
             raise KeyError(key)
@@ -134,7 +134,7 @@ cdef class Dictionary:
         cdef pandemonium_variant var_default
         if default is not None:
             pyobj_to_pandemonium_variant(default, &var_default)
-            var_ret = gdapi11.pandemonium_dictionary_get_with_default(&self._gd_data, &var_key, &var_default)
+            var_ret = gdapi10.pandemonium_dictionary_get_with_default(&self._gd_data, &var_key, &var_default)
             gdapi10.pandemonium_variant_destroy(&var_default)
         else:
             var_ret = gdapi10.pandemonium_dictionary_get(&self._gd_data, &var_key)

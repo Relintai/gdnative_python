@@ -52,7 +52,7 @@ cdef class Quaternion:
         # Call to __new__ bypasses __init__ constructor
         cdef Quaternion ret = Quaternion.__new__(Quaternion)
         {{ force_mark_rendered("pandemonium_quaternion_new_with_basis") }}
-        gdapi11.pandemonium_quaternion_new_with_basis(&ret._gd_data, &basis._gd_data)
+        gdapi10.pandemonium_quaternion_new_with_basis(&ret._gd_data, &basis._gd_data)
         return ret
 
     @staticmethod
@@ -60,7 +60,7 @@ cdef class Quaternion:
         # Call to __new__ bypasses __init__ constructor
         cdef Quaternion ret = Quaternion.__new__(Quaternion)
         {{ force_mark_rendered("pandemonium_quaternion_new_with_euler") }}
-        gdapi11.pandemonium_quaternion_new_with_euler(&ret._gd_data, &euler._gd_data)
+        gdapi10.pandemonium_quaternion_new_with_euler(&ret._gd_data, &euler._gd_data)
         return ret
 
     def __repr__(Quaternion self):

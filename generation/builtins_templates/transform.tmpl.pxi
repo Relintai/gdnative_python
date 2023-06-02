@@ -75,7 +75,7 @@ cdef class Transform:
     def from_quaternion(Quaternion quat not None):
         cdef Transform ret = Transform.__new__(Transform)
         {{ force_mark_rendered("pandemonium_transform_new_with_quaternion") }}
-        gdapi11.pandemonium_transform_new_with_quaternion(&ret._gd_data, &quat._gd_data)
+        gdapi10.pandemonium_transform_new_with_quaternion(&ret._gd_data, &quat._gd_data)
         return ret
 
     def __repr__(Transform self):

@@ -75,22 +75,21 @@ static PyThreadState *gilstate = NULL;
 # define PYTHONSCRIPT_EXPORT
 #endif
 PYTHONSCRIPT_EXPORT const pandemonium_gdnative_core_api_struct *pythonscript_gdapi10 = NULL;
-PYTHONSCRIPT_EXPORT const pandemonium_gdnative_core_1_1_api_struct *pythonscript_gdapi11 = NULL;
-PYTHONSCRIPT_EXPORT const pandemonium_gdnative_core_1_2_api_struct *pythonscript_gdapi12 = NULL;
 PYTHONSCRIPT_EXPORT const pandemonium_gdnative_ext_nativescript_api_struct *pythonscript_gdapi_ext_nativescript = NULL;
 PYTHONSCRIPT_EXPORT const pandemonium_gdnative_ext_pluginscript_api_struct *pythonscript_gdapi_ext_pluginscript = NULL;
 PYTHONSCRIPT_EXPORT const pandemonium_gdnative_ext_android_api_struct *pythonscript_gdapi_ext_android = NULL;
-PYTHONSCRIPT_EXPORT const pandemonium_gdnative_ext_arvr_api_struct *pythonscript_gdapi_ext_arvr = NULL;
 
 
 static void _register_gdapi(const pandemonium_gdnative_init_options *options) {
     pythonscript_gdapi10 = (const pandemonium_gdnative_core_api_struct *)options->api_struct;
+    /*
     if (pythonscript_gdapi10->next) {
         pythonscript_gdapi11 = (const pandemonium_gdnative_core_1_1_api_struct *)pythonscript_gdapi10->next;
         if (pythonscript_gdapi11->next) {
             pythonscript_gdapi12 = (const pandemonium_gdnative_core_1_2_api_struct *)pythonscript_gdapi11->next;
         }
     }
+    */
 
     for (unsigned int i = 0; i < pythonscript_gdapi10->num_extensions; i++) {
         const pandemonium_gdnative_api_struct *ext = pythonscript_gdapi10->extensions[i];
@@ -103,9 +102,6 @@ static void _register_gdapi(const pandemonium_gdnative_init_options *options) {
                 break;
             case GDNATIVE_EXT_ANDROID:
                 pythonscript_gdapi_ext_android = (const pandemonium_gdnative_ext_android_api_struct *)ext;
-                break;
-            case GDNATIVE_EXT_ARVR:
-                pythonscript_gdapi_ext_arvr = (const pandemonium_gdnative_ext_arvr_api_struct *)ext;
                 break;
             default:
                 break;
@@ -133,11 +129,12 @@ GDN_EXPORT void pandemonium_gdnative_init(pandemonium_gdnative_init_options *opt
     }
 
     // Check for mandatory plugins
-
+    /*
     if (!pythonscript_gdapi10 || !pythonscript_gdapi11 || !pythonscript_gdapi12) {
         GD_ERROR_PRINT("Pandemonium-Python requires GDNative API >= v1.2");
         return;
     }
+    */
     if (!pythonscript_gdapi_ext_pluginscript) {
         GD_ERROR_PRINT("Pluginscript extension not available");
         return;
