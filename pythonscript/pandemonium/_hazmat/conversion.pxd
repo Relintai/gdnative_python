@@ -14,7 +14,7 @@ from pandemonium._hazmat.gdnative_api_struct cimport (
     pandemonium_variant,
     pandemonium_variant_type,
 )
-from pandemonium.builtins cimport GDString, NodePath
+from pandemonium.builtins cimport GDString, NodePath, StringName
 
 
 # Strings are now char32_t
@@ -81,7 +81,7 @@ cdef pandemonium_variant_type pytype_to_pandemonium_type(object pytype)
 
 cdef GDString ensure_is_gdstring(object gdstring_or_pystr)
 cdef NodePath ensure_is_nodepath(object nodepath_or_pystr)
-
+cdef StringName ensure_is_string_name(object string_name_or_pystr)
 
 # TODO: finish this...
 

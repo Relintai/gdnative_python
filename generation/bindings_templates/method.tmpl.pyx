@@ -69,6 +69,9 @@ cdef GDString __gdstr_{{ arg.name }} = ensure_is_gdstring({{ arg.name }})
 {% elif arg.type.c_type == "pandemonium_node_path" %}
 cdef NodePath __nodepath_{{ arg.name }} = ensure_is_nodepath({{ arg.name }})
 {{ argsval }}[{{ i }}] = <void*>(&__nodepath_{{ arg.name }}._gd_data)
+{% elif arg.type.c_type == "pandemonium_string_name" %}
+cdef StringName __string_name_{{ arg.name }} = ensure_is_string_name({{ arg.name }})
+{{ argsval }}[{{ i }}] = <void*>(&__string_name_{{ arg.name }}._gd_data)
 {% elif arg.type.is_object %}
 {%- if arg.has_default_value and arg.default_value == "None" %}
 {{ argsval }}[{{ i }}] = <void*>{{ arg.name }}._gd_ptr if {{ arg.name }} is not None else NULL
