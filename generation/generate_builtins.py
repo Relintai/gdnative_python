@@ -380,7 +380,7 @@ if __name__ == "__main__":
         required=True,
         metavar="GDNATIVE_API_PATH",
         type=argparse.FileType("r", encoding="utf8"),
-        help="Path to Godot gdnative_api.json file",
+        help="Path to Pandemonium gdnative_api.json file",
     )
     parser.add_argument(
         "--output",

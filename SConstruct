@@ -21,7 +21,7 @@ def pandemonium_binary_converter(val, env):
     file = File(val)
     if file.exists():
         # Note here `env["pandemonium_binary_download_version"]` is not defined, this is ok given
-        # this variable shouldn't be needed if Godot doesn't have to be downloaded
+        # this variable shouldn't be needed if Pandemonium doesn't have to be downloaded
         return file
     # Provided value is version information with format <major>.<minor>.<patch>[-<extra>]
     match = re.match(r"^([0-9]+)\.([0-9]+)\.([0-9]+)(?:-(\w+))?$", val)
@@ -29,7 +29,7 @@ def pandemonium_binary_converter(val, env):
         major, minor, patch, extra = match.groups()
     else:
         raise UserError(
-            f"`{val}` is neither an existing file nor a valid <major>.<minor>.<patch>[-<extra>] Godot version format"
+            f"`{val}` is neither an existing file nor a valid <major>.<minor>.<patch>[-<extra>] Pandemonium version format"
         )
     env["pandemonium_binary_download_version"] = (major, minor, patch, extra or "stable")
     # `pandemonium_binary` is set to None to indicate it should be downloaded
@@ -52,11 +52,11 @@ vars.Add(
 vars.Add("release_suffix", "Suffix to add to the release archive", extract_version())
 vars.Add(
     "pandemonium_binary",
-    "Path to Godot binary or version of Godot to use",
+    "Path to Pandemonium binary or version of Pandemonium to use",
     default="3.2.2",
     converter=pandemonium_binary_converter,
 )
-vars.Add("pandemonium_headers", "Path to Godot GDnative headers", "")
+vars.Add("pandemonium_headers", "Path to Pandemonium GDnative headers", "")
 vars.Add("debugger", "Run test with a debugger", "")
 vars.Add(BoolVariable("debug", "Compile with debug symbols", False))
 vars.Add(BoolVariable("headless", "Run tests in headless mode", False))

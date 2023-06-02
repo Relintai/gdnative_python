@@ -182,7 +182,7 @@ def test_access_property(generate_obj):
 def test_new_on_overloaded_class(generate_obj):
     node = generate_obj(virtualtestbedcls)
     # Make sure doing MyClass.new() doesn't return an instance of the
-    # Godot class we inherit from
+    # Pandemonium class we inherit from
     assert isinstance(node, virtualtestbedcls)
 
 

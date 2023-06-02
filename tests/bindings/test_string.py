@@ -29,7 +29,7 @@ def test_base():
 
 @pytest.mark.parametrize("char", ["e", "é", "€", "蛇", "🐍"])
 def test_unicode(char):
-    # Godot supports UCS2 on Windows and UCS4 on other platforms
+    # Pandemonium supports UCS2 on Windows and UCS4 on other platforms
     if len(char.encode("utf8")) > 2 and sys.platform == "win32":
         pytest.skip("Windows only supports UCS2")
 

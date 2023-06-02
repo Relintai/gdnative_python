@@ -79,7 +79,7 @@ cdef class Dictionary:
         {{ force_mark_rendered("pandemonium_dictionary_operator_index") }}
         cdef pandemonium_variant var_key
         if not pyobj_to_pandemonium_variant(key, &var_key):
-            raise TypeError(f"Cannot convert `{key!r}` to Godot Variant")
+            raise TypeError(f"Cannot convert `{key!r}` to Pandemonium Variant")
         cdef pandemonium_variant *p_var_ret = gdapi10.pandemonium_dictionary_operator_index(&self._gd_data, &var_key)
         gdapi10.pandemonium_variant_destroy(&var_key)
         if p_var_ret == NULL:
@@ -93,7 +93,7 @@ cdef class Dictionary:
         {{ force_mark_rendered("pandemonium_dictionary_erase_with_return") }}
         cdef pandemonium_variant var_key
         if not pyobj_to_pandemonium_variant(key, &var_key):
-            raise TypeError(f"Cannot convert `{key!r}` to Godot Variant")
+            raise TypeError(f"Cannot convert `{key!r}` to Pandemonium Variant")
         cdef pandemonium_bool ret = gdapi11.pandemonium_dictionary_erase_with_return(&self._gd_data, &var_key)
         gdapi10.pandemonium_variant_destroy(&var_key)
         if not ret:

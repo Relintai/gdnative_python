@@ -1,5 +1,5 @@
-# `_pandemoniummonium` module contains all the callbacks needed by Godot's Pluginscript
-# system to expose Python as a language to Godot (see pythonscript.c for
+# `_pandemoniummonium` module contains all the callbacks needed by Pandemonium's Pluginscript
+# system to expose Python as a language to Pandemonium (see pythonscript.c for
 # more on this).
 # Hence there is no point of importing this module from Python given it
 # only expose C functions.
@@ -45,10 +45,10 @@ cdef api pandemonium_pluginscript_language_data *pythonscript_init() with gil:
         p = ProjectSettings.globalize_path(GDString(p))
         sys.path.insert(0, str(p))
 
-    # Redirect stdout/stderr to have it in the Godot editor console
+    # Redirect stdout/stderr to have it in the Pandemonium editor console
     if _setup_config_entry("python_script/io_streams_capture", True):
         # Note we don't have to remove the stream capture in `pythonscript_finish` given
-        # Godot print API is available until after the Python interpreter is teardown
+        # Pandemonium print API is available until after the Python interpreter is teardown
         install_io_streams_capture()
 
     # Enable verbose output from pythonscript framework

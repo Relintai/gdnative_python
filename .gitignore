@@ -14,11 +14,11 @@ pandemonium_headers/
 # mac os thumbs files
 .DS_Store
 
-# Godot import folders
+# Pandemonium import folders
 .import
 .cache
 
-# Godot runtime logs
+# Pandemonium runtime logs
 logs
 
 # Scons build artefact

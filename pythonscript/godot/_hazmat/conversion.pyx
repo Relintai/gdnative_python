@@ -92,7 +92,7 @@ cdef bint is_pytype_compatible_with_pandemonium_variant(object pytype):
 cdef object pandemonium_type_to_pytype(pandemonium_variant_type gdtype):
     cdef pytype = next((py for gd, py in GD_PY_TYPES if gd == gdtype), None)
     if pytype is None:
-        warn(f"No Python equivalent for Godot type `{gdtype}`")
+        warn(f"No Python equivalent for Pandemonium type `{gdtype}`")
         return None
 
     return pytype
@@ -104,7 +104,7 @@ cdef pandemonium_variant_type pytype_to_pandemonium_type(object pytype):
         if issubclass(pytype, Object):
             return pandemonium_variant_type.GODOT_VARIANT_TYPE_OBJECT
         else:
-            warn(f"No Godot equivalent for Python type `{pytype}`")
+            warn(f"No Pandemonium equivalent for Python type `{pytype}`")
             return pandemonium_variant_type.GODOT_VARIANT_TYPE_NIL
 
     return gdtype
@@ -396,7 +396,7 @@ cdef bint pyobj_to_pandemonium_variant(object pyobj, pandemonium_variant *p_var)
     elif isinstance(pyobj, Object):
         gdapi10.pandemonium_variant_new_object(p_var, (<Object>pyobj)._gd_ptr)
     else:
-        warn(f"Cannot convert `{type(pyobj)}` to Godot's Variant")
+        warn(f"Cannot convert `{type(pyobj)}` to Pandemonium's Variant")
         gdapi10.pandemonium_variant_new_nil(p_var)
         return False
     return True

@@ -10,7 +10,7 @@
 Introduction
 ------------
 
-This is a beta version of the Python module for Godot.
+This is a beta version of the Python module for Pandemonium.
 
 You are likely to encounter bugs and catastrophic crashes, if so please
 report them to https://github.com/Relintai/gdnative_python.
@@ -19,7 +19,7 @@ report them to https://github.com/Relintai/gdnative_python.
 Working features
 ----------------
 
-Every Godot core features are expected to work fine:
+Every Pandemonium core features are expected to work fine:
 - builtins (e.g. Vector2)
 - Objects classes (e.g. Node)
 - signals

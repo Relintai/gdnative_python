@@ -1,4 +1,4 @@
-# Start with a sanity check to ensure the loading is done from Godot-Python
+# Start with a sanity check to ensure the loading is done from Pandemonium-Python
 # (and not from a regular Python interpreter which would lead to a segfault).
 # The idea is we should have the following loading order:
 # pandemonium binary -> pythonscript.so -> _pandemonium.so -> pandemonium/__init__.py
@@ -6,10 +6,10 @@ import sys
 
 if "_pandemonium" not in sys.modules:
     raise ImportError(
-        "Cannot initialize pandemonium module given Godot GDNative API not available.\n"
+        "Cannot initialize pandemonium module given Pandemonium GDNative API not available.\n"
         "This is most likely because you are running code from a regular Python interpreter"
         " (i.e. doing something like `python my_script.py`) while pandemonium module is only available"
-        " to Python code loaded from Godot through Godot-Python plugin."
+        " to Python code loaded from Pandemonium through Pandemonium-Python plugin."
     )
 del sys
 

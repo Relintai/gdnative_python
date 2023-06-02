@@ -8,7 +8,7 @@ from libc.stdint cimport int8_t
 {{ force_mark_rendered("pandemonium_char_string_destroy") }}
 {{ force_mark_rendered("pandemonium_char_string_get_data") }}
 {{ force_mark_rendered("pandemonium_char_string_length") }}
-{# Those methods are present in gdnative_api.json but not in the Godot documentation... #}
+{# Those methods are present in gdnative_api.json but not in the Pandemonium documentation... #}
 {{ force_mark_rendered("pandemonium_string_ascii") }}
 {{ force_mark_rendered("pandemonium_string_ascii_extended") }}
 {{ force_mark_rendered("pandemonium_string_begins_with_char_array") }}

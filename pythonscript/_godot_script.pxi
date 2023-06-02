@@ -115,7 +115,7 @@ cdef pandemonium_pluginscript_script_manifest _build_script_manifest(object cls)
     gdapi10.pandemonium_dictionary_new(&manifest.member_lines)
 
     if cls.__bases__:
-        # Only one Godot parent class (checked at class definition time)
+        # Only one Pandemonium parent class (checked at class definition time)
         pandemonium_parent_class = next(
             (b for b in cls.__bases__ if issubclass(b, Object))
         )
@@ -150,7 +150,7 @@ cdef api pandemonium_pluginscript_script_manifest pythonscript_script_init(
     const pandemonium_string *p_source,
     pandemonium_error *r_error
 ) with gil:
-    # Godot class&singleton are not all available at Pythonscript bootstrap.
+    # Pandemonium class&singleton are not all available at Pythonscript bootstrap.
     # Hence we wait until the Pythonscript start being actually used (i.e. until
     # the first Python script is loaded) before initializing the bindings.
     _initialize_bindings()
@@ -182,7 +182,7 @@ cdef api pandemonium_pluginscript_script_manifest pythonscript_script_init(
         cls = get_exposed_class(modname)
 
         # If the module has no exported class, it has no real connection with
-        # Godot and doesn't need to be reloaded
+        # Pandemonium and doesn't need to be reloaded
         if cls:
             if get_pythonscript_verbose():
                 print(f"Reloading python script from {path} ({modname})")
@@ -205,13 +205,13 @@ cdef api pandemonium_pluginscript_script_manifest pythonscript_script_init(
 
     if cls is None:
         print(
-            f"Cannot load {path} ({modname}) because it doesn't expose any class to Godot"
+            f"Cannot load {path} ({modname}) because it doesn't expose any class to Pandemonium"
         )
         r_error[0] = GODOT_ERR_PARSE_ERROR
         return _build_empty_script_manifest()
 
     if is_reload:
-        # During reloading, Godot calls the new class init before the old class finish (so
+        # During reloading, Pandemonium calls the new class init before the old class finish (so
         # `pythonscript_script_finish` is going to be called after this function returns).
         # Hence we must manually increase the refcount to prevent finish to remove
         # the class.

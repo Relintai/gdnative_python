@@ -9,7 +9,7 @@ from pandemonium.builtins cimport *
 from enum import IntFlag
 
 
-__ERR_MSG_BINDING_NOT_AVAILABLE = "No Godot binding available"
+__ERR_MSG_BINDING_NOT_AVAILABLE = "No Pandemonium binding available"
 
 
 class Error(IntFlag):
@@ -138,11 +138,11 @@ class VariantOperator(IntFlag):
 
 ### Class&singletons needed for Pythonscript bootstrap ###
 
-# Godot classes&singletons are not all available when loading Pythonscript.
+# Pandemonium classes&singletons are not all available when loading Pythonscript.
 # Hence greedy loading is done only for items needed for Pythonscript
 # bootstrap.
 # The remaining loading will be achieved when loading the first python script
-# (where at this point Godot should have finished it initialization).
+# (where at this point Pandemonium should have finished it initialization).
 
 {% set early_needed_bindings = ["_OS", "_ProjectSettings"] %}
 cdef pandemonium_object *_ptr

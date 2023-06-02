@@ -14,7 +14,7 @@ cpython_build = Dir("cpython_build")
 
 env["bits"] = "64"
 env["pandemonium_binary_download_platform"] = "osx.64"
-env["pandemonium_binary_download_zip_path"] = "Godot.app/Contents/MacOS/Godot"
+env["pandemonium_binary_download_zip_path"] = "Pandemonium.app/Contents/MacOS/Pandemonium"
 env["cpython_build"] = cpython_build
 env["cpython_build_dir"] = cpython_build
 env["DIST_SITE_PACKAGES"] = Dir(f"{env['DIST_PLATFORM']}/lib/python3.8/site-packages")

@@ -108,7 +108,7 @@ with nogil:
 {% set retval_as_arg = "NULL" %}
 {% elif method.return_type.is_object %}
 # It's important to initialize this pointer to null given
-# in case of Reference, Godot will try to decrease the
+# in case of Reference, Pandemonium will try to decrease the
 # refcount if the pointer is valid !
 # (see https://github.com/pandemoniumengine/pandemonium/issues/35609)
 cdef pandemonium_object *{{ retval }} = NULL

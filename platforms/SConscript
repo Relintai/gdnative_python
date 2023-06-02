@@ -13,15 +13,15 @@ Import("env")
 def resolve_pandemonium_download_url(major, minor, patch, extra, platform):
     #version = f"{major}.{minor}.{patch}" if patch != 0 else f"{major}.{minor}"
     #if extra == "stable":
-    #    return f"https://downloads.tuxfamily.org/godotengine/{version}/Godot_v{version}-{extra}_{platform}.zip"
+    #    return f"https://downloads.tuxfamily.org/godotengine/{version}/Pandemonium_v{version}-{extra}_{platform}.zip"
     #else:
-    #   return f"https://downloads.tuxfamily.org/godotengine/{version}/{extra}/Godot_v{version}-{extra}_{platform}.zip"
+    #   return f"https://downloads.tuxfamily.org/godotengine/{version}/{extra}/Pandemonium_v{version}-{extra}_{platform}.zip"
     returnf ""
 
 
 def resolve_pandemonium_binary_name(major, minor, patch, extra, platform):
     version = f"{major}.{minor}.{patch}" if patch != 0 else f"{major}.{minor}"
-    return f"Godot_v{version}-{extra}_{platform}"
+    return f"Pandemonium_v{version}-{extra}_{platform}"
 
 
 SConscript([f"{env['platform']}/SConscript"])
@@ -74,7 +74,7 @@ env.AddMethod(install, "Install")
 env.AddMethod(install_as, "InstallAs")
 
 
-### Godot binary (to run tests) ###
+### Pandemonium binary (to run tests) ###
 
 
 if not env["pandemonium_binary"]:

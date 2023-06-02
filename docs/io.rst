@@ -12,9 +12,9 @@ outside the interpretor) through numerous ways:
 - ...
 
 However those functions are no longer relevant when python is embedded
-into Godot. They can even be dangerous when opening a Godot application to
+into Pandemonium. They can even be dangerous when opening a Pandemonium application to
 modding given a 3rd party python code has suddently full access to the computer !
 
-Hence, those functions needs to be adapted to Godot:
+Hence, those functions needs to be adapted to Pandemonium:
 - ``ctype``, ``ffi`` and ``open`` disabled
-- ``stdout``, ``stderr`` and ``stdin`` redirected to Godot editor's console
+- ``stdout``, ``stderr`` and ``stdin`` redirected to Pandemonium editor's console

@@ -28,11 +28,11 @@ example:
 	@exposed
 	class Player(Node2D):
 		"""
-		This is the file's main class which will be made available to Godot. This
+		This is the file's main class which will be made available to Pandemonium. This
 		class must inherit from `godot.Node` or any of its children (e.g.
 		`godot.KinematicBody`).
 
-		Because Godot scripts only accept file paths, you can't have two `exposed` classes in the same file.
+		Because Pandemonium scripts only accept file paths, you can't have two `exposed` classes in the same file.
 		"""
 		# Exposed class can define some attributes as export(<type>) to achieve
 		# similar goal than GDSscript's `export` keyword
@@ -48,12 +48,12 @@ example:
 		def age(self, value):
 			self._age = value
 
-		# All methods are exposed to Godot
+		# All methods are exposed to Pandemonium
 		def talk(self, msg):
 			print(f"I'm saying {msg}")
 
 		def _ready(self):
-			# Don't confuse `__init__` with Godot's `_ready`!
+			# Don't confuse `__init__` with Pandemonium's `_ready`!
 			self.weapon = WEAPON_RES.instance()
 			self._age = 42
 			# Of course you can access property & methods defined in the parent
@@ -80,10 +80,10 @@ Building
 To build the project from source, first checkout the repo or download the
 latest tarball.
 
-Godot-Python requires Python >= 3.7 and a C compiler.
+GDNative Python requires Python >= 3.7 and a C compiler.
 
 
-Godot GDNative header
+Pandemonium GDNative header
 ---------------------
 
 TODO (need to be copied from the gdnative module)

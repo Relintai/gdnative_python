@@ -8,7 +8,7 @@ def environment_factory():
     # Environment objects are stubbed on headless server, hence
     # their corresponding RID is always the same default value
     if OS.has_feature("Server"):
-        pytest.skip("Not available on headless Godot")
+        pytest.skip("Not available on headless Pandemonium")
 
     def _factory():
         return Environment()

@@ -1,23 +1,23 @@
-# Describe all base types (i.e. scalar such as int and Godot builtins)
+# Describe all base types (i.e. scalar such as int and Pandemonium builtins)
 
 from dataclasses import dataclass
 
 
 @dataclass
 class TypeSpec:
-    # Type used within Godot api.json
+    # Type used within Pandemonium api.json
     gdapi_type: str
     # Type used when calling C api functions
     c_type: str
     # Type used in Cython, basically similar to c_type for scalars&enums
-    # and to py_type for Godot objects&builtins
+    # and to py_type for Pandemonium objects&builtins
     cy_type: str
     # TODO: typing should be divided between argument and return (e.g. `Union[str, NodePath]` vs `NodePath`)
     # Type used for PEP 484 Python typing
     py_type: str = ""
-    # Type is a Godot object (i.e. defined in api.json)
+    # Type is a Pandemonium object (i.e. defined in api.json)
     is_object: bool = False
-    # Type is a Godot builtin (e.g. Vector2)
+    # Type is a Pandemonium builtin (e.g. Vector2)
     is_builtin: bool = False
     # Type is a scalar (e.g. int, float) or void
     is_base_type: bool = False

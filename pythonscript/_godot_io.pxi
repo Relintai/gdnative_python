@@ -88,7 +88,7 @@ class StdoutStderrCapture(TextIOBase):
         self._enabled = False
 
 
-class StdoutStderrCaptureToGodot(StdoutStderrCapture):
+class StdoutStderrCaptureToPandemonium(StdoutStderrCapture):
 
     def __init__(self):
         self.buffer = ""
@@ -125,5 +125,5 @@ cdef _capture_io_streams = None
 cdef install_io_streams_capture():
     global _capture_io_streams
     assert _capture_io_streams is None
-    _capture_io_streams = StdoutStderrCaptureToGodot()
+    _capture_io_streams = StdoutStderrCaptureToPandemonium()
     _capture_io_streams.install()

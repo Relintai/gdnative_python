@@ -5,7 +5,7 @@ Object conversion model
 Base object types
 -----------------
 
-Godot Variant
+Pandemonium Variant
 - standalone: bool, int, real
 - pointer to builtin type (e.g. ``Matrix32``, ``AABB``, etc.)
 - pointer to generic ``Object``
@@ -19,11 +19,11 @@ Python mp_obj_t
 	needed on themselves.
 
 Naming conventions:
-- GST: Godot STandalone
-- GPB: Godot Pointer Builtin
-- GPO: Godot Pointer Object
+- GST: Pandemonium STandalone
+- GPB: Pandemonium Pointer Builtin
+- GPO: Pandemonium Pointer Object
 - PST: Python STandalone
-- PPB: Python Pointer Binding (proxy to Godot data)
+- PPB: Python Pointer Binding (proxy to Pandemonium data)
 - PPE: Python Pointer Exposed (defined with `@exposed` decorator)
 - PPI: Python Pointer Internal
 
@@ -51,24 +51,24 @@ Standalone doesn't need garbage collection and doesn't hold reference on
 other objects. Hence conversion is trivial.
 
 
-Conversion Godot -> Python
+Conversion Pandemonium -> Python
 --------------------------
 
 Each GPB has a corresponding PPB, acting like a proxy from within the
 Python interpreter.
 
-GPO binding is done dynamically with the ``DynamicBinder`` using Godot
+GPO binding is done dynamically with the ``DynamicBinder`` using Pandemonium
 introspection (i.e. ``ObjectTypeDB``).
 
 It is possible in the future that to create static proxy for core GPO and rely
 on dynamic method as a fall-back for unknown classes (i.g. added by 3rd party).
 
 
-Conversion Python -> Godot
+Conversion Python -> Pandemonium
 --------------------------
 
 PPB -> GPB described earlier.
 
-PPI objects cannot be converted back to Godot.
+PPI objects cannot be converted back to Pandemonium.
 
 PPE instance are exposed as ``PyInstance`` (class exposed as ``PyScript``).

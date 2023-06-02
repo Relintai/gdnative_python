@@ -40,7 +40,7 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
 
     def __init__(self):
         raise RuntimeError(
-            f"Use `new()` method to instantiate non-refcounted Godot object (and don't forget to free it !)"
+            f"Use `new()` method to instantiate non-refcounted Pandemonium object (and don't forget to free it !)"
         )
 
     def __repr__(self):
@@ -101,7 +101,7 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
                 # return partial(self.call, gdname)
 
             elif any(x for x in self.get_property_list() if x[gdnamefield] == gdname):
-                # TODO: Godot currently lacks a `has_property` method
+                # TODO: Pandemonium currently lacks a `has_property` method
                 return self.get(gdname)
 
         raise AttributeError(
@@ -116,11 +116,11 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
             PyObject_GenericSetAttr(self, name, value)
             return
 
-        # Could retrieve the item inside the Godot class, try to look into
+        # Could retrieve the item inside the Pandemonium class, try to look into
         # the attached script if it has one
         else:
             if any(x for x in self.get_property_list() if x[gdnamefield] == gdname):
-                # TODO: Godot currently lacks a `has_property` method
+                # TODO: Pandemonium currently lacks a `has_property` method
                 self.set(name, value)
                 return
 
@@ -169,7 +169,7 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
 {% if cls.name == "Reference" %}
     @classmethod
     def new(cls):
-        raise RuntimeError(f"Refcounted Godot object must be created with `{ cls.__name__ }()`")
+        raise RuntimeError(f"Refcounted Pandemonium object must be created with `{ cls.__name__ }()`")
 
     def __dealloc__(self):
         cdef pandemonium_bool __ret

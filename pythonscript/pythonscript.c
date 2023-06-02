@@ -1,11 +1,11 @@
 /*
  * This file gets compiled as a shared library that act as the entry point
  * to the pythonscript plugin.
- * It should be loaded by Godot's GDNative system (see the `pythonscript.gdnlib`
+ * It should be loaded by Pandemonium's GDNative system (see the `pythonscript.gdnlib`
  * file in the example/test projects).
  * As part of the loading, GDNative will call the `pandemonium_gdnative_init`
  * function which will in turn initialize the CPython interpreter then register
- * Python as a new language using Godot's Pluginscript system.
+ * Python as a new language using Pandemonium's Pluginscript system.
  */
 
 #define PY_SSIZE_T_CLEAN
@@ -65,7 +65,7 @@ static PyThreadState *gilstate = NULL;
 
 
 /*
- * Global variables exposing Godot API to the pandemonium.hazmat cython module.
+ * Global variables exposing Pandemonium API to the pandemonium.hazmat cython module.
  * Hence we must initialized them before loading `_pandemonium`/`pandemonium` modules
  * (which both depend on `pandemonium.hazmat`).
  */
@@ -135,7 +135,7 @@ GDN_EXPORT void pandemonium_gdnative_init(pandemonium_gdnative_init_options *opt
     // Check for mandatory plugins
 
     if (!pythonscript_gdapi10 || !pythonscript_gdapi11 || !pythonscript_gdapi12) {
-        GD_ERROR_PRINT("Godot-Python requires GDNative API >= v1.2");
+        GD_ERROR_PRINT("Pandemonium-Python requires GDNative API >= v1.2");
         return;
     }
     if (!pythonscript_gdapi_ext_pluginscript) {

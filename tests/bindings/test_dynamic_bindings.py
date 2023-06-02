@@ -27,7 +27,7 @@
 #         assert isinstance(KEY_ESCAPE, int)
 
 #     def test_objects_unicity(self):
-#         # Main loop object is a Godot Object, calling `get_main_loop` from
+#         # Main loop object is a Pandemonium Object, calling `get_main_loop` from
 #         # python returns a different python wrapper on the same object each time.
 #         # However those wrappers should feel like they are the same object.
 #         ml = Engine.get_main_loop()
@@ -40,7 +40,7 @@
 #         assert ml != None  # noqa
 #         assert ml != ""
 #         assert ml != 42
-#         # Don't forget to free the Godot Object
+#         # Don't forget to free the Pandemonium Object
 #         obj.free()
 
 #     def test_class(self):

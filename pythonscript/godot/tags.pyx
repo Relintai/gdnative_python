@@ -19,7 +19,7 @@ from pandemonium.builtins cimport Array, Dictionary, GDString
 from pandemonium.bindings cimport Object, Resource
 
 
-# Make Godot enums accesible from Python at runtime
+# Make Pandemonium enums accesible from Python at runtime
 
 
 class MethodRPCMode(enum.IntEnum):
@@ -162,14 +162,14 @@ class ExportedField:
         type = Dictionary if type == dict else type
 
         if not is_pytype_compatible_with_pandemonium_variant(type):
-            raise ValueError(f"{type!r} type value not compatible with Godot")
+            raise ValueError(f"{type!r} type value not compatible with Pandemonium")
 
         cdef pandemonium_variant gd_default
         if default is not None:
-            # Convert `default` to a Godot-compatible value (e.g. str -> GDString)
+            # Convert `default` to a Pandemonium-compatible value (e.g. str -> GDString)
             if not pyobj_to_pandemonium_variant(default, &gd_default):
                 gdapi10.pandemonium_variant_destroy(&gd_default)
-                raise ValueError(f"{default!r} default value not compatible with Godot")
+                raise ValueError(f"{default!r} default value not compatible with Pandemonium")
             default = pandemonium_variant_to_pyobj(&gd_default)
             gdapi10.pandemonium_variant_destroy(&gd_default)
 
@@ -245,8 +245,8 @@ def export(
         rpc: MethodRPCMode=MethodRPCMode.DISABLED
     ):
     """
-    Decorator used to mark a class attribute as beeing exported to Godot
-    (hence making it readable/writable from Godot)
+    Decorator used to mark a class attribute as beeing exported to Pandemonium
+    (hence making it readable/writable from Pandemonium)
 
     usage::
         @exposed
@@ -276,9 +276,9 @@ def export(
 
 def exposed(cls=None, tool=False):
     """
-    Decorator used to mark a class as beeing exposed to Godot (hence making
-    it available from other Godot languages and the Godot IDE).
-    Due to how Godot identifiest classes by their file pathes, only a single
+    Decorator used to mark a class as beeing exposed to Pandemonium (hence making
+    it available from other Pandemonium languages and the Pandemonium IDE).
+    Due to how Pandemonium identifiest classes by their file pathes, only a single
     class can be marked with this decorator per file.
 
     usage::
@@ -290,7 +290,7 @@ def exposed(cls=None, tool=False):
     def wrapper(cls):
         if not issubclass(cls, Object):
             raise ValueError(
-                f"{cls!r} must inherit from a Godot (e.g. `pandemonium.bindings.Node`) "
+                f"{cls!r} must inherit from a Pandemonium (e.g. `pandemonium.bindings.Node`) "
                 "class to be marked as @exposed"
             )
 
@@ -333,15 +333,15 @@ def exposed(cls=None, tool=False):
             elif callable(v):
                 cls.__exported[k] = v
 
-        # Overwrite parent __init__ to avoid creating a Godot object given
-        # exported script are always initialized with an existing Godot object
+        # Overwrite parent __init__ to avoid creating a Pandemonium object given
+        # exported script are always initialized with an existing Pandemonium object
         # On top of that, we must initialize the attributes defined in the class
         # and it parents
         g = {}
         exec(init_func_code, g)
         cls.__init__ = g["__init__"]
         # Also overwrite parent new otherwise we would return an instance
-        # of a Godot class without our script attached to it...
+        # of a Pandemonium class without our script attached to it...
         @classmethod
         def new(cls):
             raise NotImplementedError("Instantiating Python script from Python is not implemented yet :'(")
@@ -350,7 +350,7 @@ def exposed(cls=None, tool=False):
             # except AttributeError:
             #     # It's also possible we try to instantiate a singleton, but a better
             #     # message will be provided anyway if the user try the provided hint
-            #     raise RuntimeError(f"Refcounted Godot object must be created with `{ cls.__name__ }()`")
+            #     raise RuntimeError(f"Refcounted Pandemonium object must be created with `{ cls.__name__ }()`")
             # instance = cls._from_ptr(ptr)
             # # TODO: We should generate a Resource instance containing the script
             # # and attach it to the main class here.

@@ -69,7 +69,7 @@ def test_getitem():
     assert v[0.5] == Vector2()
     # Missing items are stored as None
     assert v["dummy"] is None
-    # Cannot store non Godot types
+    # Cannot store non Pandemonium types
     with pytest.raises(TypeError):
         v[object()]
 
@@ -82,7 +82,7 @@ def test_setitem():
     v["a"] = 4
     assert len(v) == 4
     assert v["a"] == 4
-    # Cannot store non Godot types
+    # Cannot store non Pandemonium types
     with pytest.raises(TypeError):
         v[object()] = 4
     with pytest.raises(TypeError):
@@ -99,7 +99,7 @@ def test_delitem():
     # Delete on missing items should raise error
     with pytest.raises(KeyError):
         del v["missing"]
-    # Cannot store non Godot types
+    # Cannot store non Pandemonium types
     with pytest.raises(TypeError):
         del v[object()]
 

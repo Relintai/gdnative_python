@@ -76,7 +76,7 @@ test_factory(
 try:
     import pandemonium
 except ImportError as exc:
-    assert "Cannot initialize pandemonium module given Godot GDNative API not available." in str(exc)
+    assert "Cannot initialize pandemonium module given Pandemonium GDNative API not available." in str(exc)
 """,
     ],
 )

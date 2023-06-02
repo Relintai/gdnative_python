@@ -51,7 +51,7 @@ cdef api pandemonium_bool pythonscript_instance_set_prop(
     cdef str key = pandemonium_string_to_pyobj(p_name)
 
     # Should look among properties added by the script and it parents,
-    # not Godot native properties that are handled by the caller
+    # not Pandemonium native properties that are handled by the caller
     try:
         field = instance.__exported[key]
     except KeyError:
@@ -78,7 +78,7 @@ cdef api pandemonium_bool pythonscript_instance_get_prop(
     cdef str key = pandemonium_string_to_pyobj(p_name)
 
     # Should look among properties added by the script and it parents,
-    # not Godot native properties that are handled by the caller
+    # not Pandemonium native properties that are handled by the caller
     try:
         field = instance.__exported[key]
     except KeyError:
@@ -155,7 +155,7 @@ cdef api void pythonscript_instance_notification(
     int p_notification
 ) with gil:
     cdef object instance = <object>p_data
-    # Godot's notification should call all parent `_notification`
+    # Pandemonium's notification should call all parent `_notification`
     # methods (better not use `super()._notification` in those methods...)
     # TODO: cache the methods to call ?
     for parentcls in instance.__class__.__mro__:

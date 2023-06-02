@@ -13,7 +13,7 @@ from pandemonium._hazmat.gdnative_api_struct cimport (
 from pandemonium.builtins cimport GDString, NodePath
 
 
-# Godot string are basically a vector of wchar_t, each wchar_t representing
+# Pandemonium string are basically a vector of wchar_t, each wchar_t representing
 # a single unicode character (i.e. there is no surrogates support).
 # The sad part is wchar_t is not portable: it is 16bits long on Windows and
 # 32bits long on Linux and MacOS...

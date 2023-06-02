@@ -5,7 +5,7 @@ from collections import deque
 from threading import Thread, Lock, Event
 from queue import SimpleQueue
 
-from _pandemonium import StdoutStderrCaptureToGodot, StdinCapture
+from _pandemonium import StdoutStderrCaptureToPandemonium, StdinCapture
 from pandemonium import exposed, export, ResourceLoader, VBoxContainer
 
 from .plugin import BASE_RES
@@ -14,7 +14,7 @@ from .plugin import BASE_RES
 FONT = ResourceLoader.load(f"{BASE_RES}/hack_regular.tres")
 
 
-class StdoutStderrCaptureToBufferAndPassthrough(StdoutStderrCaptureToGodot):
+class StdoutStderrCaptureToBufferAndPassthrough(StdoutStderrCaptureToPandemonium):
     def __init__(self):
         super().__init__()
         self._buffer = ""

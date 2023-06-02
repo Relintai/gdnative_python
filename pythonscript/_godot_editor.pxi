@@ -149,7 +149,7 @@ cdef api void pythonscript_add_global_constant(
     const pandemonium_string *p_variable,
     const pandemonium_variant *p_value
 ) with gil:
-    # However, Godot add global constants very early (first as an empty variant
+    # However, Pandemonium add global constants very early (first as an empty variant
     # placeholder before any script is loaded, then as a proper loaded script).
     # So it's possible this function get called before `pythonscript_script_init`
     # (which is supposed to do the lazy `_initialize_bindings`).

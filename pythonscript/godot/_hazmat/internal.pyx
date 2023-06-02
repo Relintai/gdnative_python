@@ -16,7 +16,7 @@ cdef class ModExposedClass:
 
 
 # /!\ Those containers are strictly private /!\
-# They contain class objects that are referenced from Godot without refcounting,
+# They contain class objects that are referenced from Pandemonium without refcounting,
 # so droping an item from there will likely cause a segfault !
 cdef dict __modules_with_exposed_class = {}
 cdef list __all_exposed_classes = []
@@ -40,25 +40,25 @@ cdef void set_exposed_class(object cls):
 
         # We must keep track of reference counts for the module when reloading a script,
         # pandemonium calls pythonscript_script_init BEFORE pythonscript_script_finish
-        # this happens because Godot can make multiple PluginScript instances for the same resource.
+        # this happens because Pandemonium can make multiple PluginScript instances for the same resource.
 
-        # Godot calls
+        # Pandemonium calls
         try:
             mod = __modules_with_exposed_class[modname]
         except KeyError:
             __modules_with_exposed_class[modname] = ModExposedClass(cls)
         else:
-            # When reloading a script, Godot calls `pythonscript_script_init` BEFORE
+            # When reloading a script, Pandemonium calls `pythonscript_script_init` BEFORE
             # `pythonscript_script_finish`. Hence we drop replace the old class
             # here but have to increase the refcount so
             mod.kls = cls
             mod.refcount += 1
 
-        # Sometimes Godot fails to reload a script, and when this happens we end
+        # Sometimes Pandemonium fails to reload a script, and when this happens we end
         # up with a stale PyObject* for the class, which is then garbage collected by Python
-        # so next time a script is instantiated from Godot we end up with a sefault :(
+        # so next time a script is instantiated from Pandemonium we end up with a sefault :(
         # To avoid this we keep reference forever to all the classes.
-        # TODO: This may be troublesome when running the Godot editor given the classes are
+        # TODO: This may be troublesome when running the Pandemonium editor given the classes are
         # reloaded each time they are modified, hence leading to a small memory leak...
         __all_exposed_classes.append(cls)
 

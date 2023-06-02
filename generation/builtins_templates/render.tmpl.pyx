@@ -27,7 +27,7 @@ def {{ py_name or spec.py_name }}({{ spec.klass.cy_type }} self{%- if args_witho
         gdapi10.pandemonium_variant_destroy(&__var_{{ initialized_arg.name }})
 {%             endif %}
 {%         endfor %}
-        raise TypeError(f"Cannot convert `{ {{ arg.name}} !r}` to Godot Variant")
+        raise TypeError(f"Cannot convert `{ {{ arg.name}} !r}` to Pandemonium Variant")
 {%     endif %}
 {% endfor %}
 {% if spec.return_type.is_variant %}
