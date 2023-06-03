@@ -15,7 +15,7 @@ __methbind__{{ cls.name }}__{{ method.name }}
 {% macro render_method_signature(method) %}
 {{ method.name }}(self,
 {%- for arg in method.arguments %}
-{%- if arg.type.c_type in ("pandemonium_string", "pandemonium_node_path") %}
+{%- if arg.type.c_type in ("pandemonium_string", "pandemonium_node_path", "pandemonium_string_name") %}
  object {{ arg.name }}
 {%- else %}
  {{ arg.type.cy_type }} {{ arg.name }}
