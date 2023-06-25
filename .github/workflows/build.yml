@@ -217,7 +217,7 @@ jobs:
         uses: actions/upload-artifact@11830c9f4d30053679cb8904e3b3ce1b8c00bf40  # pin@v2
         with:
           name: ${{ env.PLATFORM }}-release
-          path: 'build/pandemonium-python-*.tar.bz2'
+          path: 'build/pandemonium-python-*.zip'
 
 
 #################################################################################
