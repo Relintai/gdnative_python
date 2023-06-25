@@ -172,7 +172,7 @@ GDN_EXPORT void pandemonium_gdnative_init(pandemonium_gdnative_init_options *opt
 			++i;
 		}
 		pythonhome[i] = '\0';
-		
+
 		pythonscript_gdapi10->pandemonium_string_destroy(&_pythonhome);
 		Py_SetPythonHome(pythonhome);
 	}
