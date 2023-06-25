@@ -9,8 +9,6 @@ __pycache__
 .vscode
 .idea
 
-pandemonium_headers/
-
 # mac os thumbs files
 .DS_Store
 
