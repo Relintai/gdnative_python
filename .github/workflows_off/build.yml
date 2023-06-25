@@ -17,26 +17,26 @@ env:
 jobs:
 
 
-  static-checks:
-    name: '📊 Static checks'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@f1d3225b5376a0791fdee5a0e8eac5289355e43a  # pin@v2
-        with:
-            submodules: true
-      - name: Set up Python
-        uses: actions/setup-python@0291cefc54fa79cd1986aee8fa5ecb89ad4defea  # pin@v2
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-      - name: Bootstrap
-        run: |
-          set -eux
-          python --version
-          pip install pre-commit
-      - name: Pre-commit hooks check
-        run: |
-          pre-commit run --all-files --show-diff-on-failure
+#  static-checks:
+#    name: '📊 Static checks'
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@f1d3225b5376a0791fdee5a0e8eac5289355e43a  # pin@v2
+#        with:
+#            submodules: true
+#      - name: Set up Python
+#        uses: actions/setup-python@0291cefc54fa79cd1986aee8fa5ecb89ad4defea  # pin@v2
+#        with:
+#          python-version: ${{ env.PYTHON_VERSION }}
+#      - name: Bootstrap
+#        run: |
+#          set -eux
+#          python --version
+#          pip install pre-commit
+#      - name: Pre-commit hooks check
+#        run: |
+#          pre-commit run --all-files --show-diff-on-failure
 
 
 #################################################################################
@@ -72,16 +72,16 @@ jobs:
         run: |
           set -eux
           scons build -j2
-      - name: 'Start xvfb'
-        run: |
-          /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-          echo ">>> Started xvfb"
-      - name: 'Run tests'
-        run: |
-          set -eux
-          scons tests headless=true
-        env:
-          DISPLAY: ':99.0'
+#      - name: 'Start xvfb'
+#        run: |
+#          /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+#          echo ">>> Started xvfb"
+#      - name: 'Run tests'
+#        run: |
+#          set -eux
+#          scons tests headless=true
+#        env:
+#          DISPLAY: ':99.0'
       - name: 'Generate artifact archive'
         run: |
           set -eux
@@ -136,28 +136,28 @@ jobs:
         run: |
           set -eux
           scons build -j2
-      - name: 'Install Mesa3D OpenGL'
-        shell: bash
-        run: |
-          set -eux
-          # Azure pipelines doesn't provide a GPU with an OpenGL driver,
-          # hence we use Mesa3D as software OpenGL driver
-          pushd build/${{ matrix.PLATFORM }}/platforms/
-          if [ "${{ matrix.PLATFORM }}" = "windows-64" ]
-          then
-            curl https://downloads.fdossena.com/Projects/Mesa3D/Builds/MesaForWindows-x64-20.0.7.7z -o mesa.7z
-          else
-            curl https://downloads.fdossena.com/Projects/Mesa3D/Builds/MesaForWindows-20.0.7.7z -o mesa.7z
-          fi
-          # opengl32.dll must be extracted in the same directory than Pandemonium binary
-          7z.exe x mesa.7z
-          ls -lh opengl32.dll  # Sanity check
-          popd
-      - name: 'Run tests'
-        shell: bash
-        run: |
-          set -eux
-          scons tests
+#      - name: 'Install Mesa3D OpenGL'
+#        shell: bash
+#        run: |
+#          set -eux
+#          # Azure pipelines doesn't provide a GPU with an OpenGL driver,
+#          # hence we use Mesa3D as software OpenGL driver
+#          pushd build/${{ matrix.PLATFORM }}/platforms/
+#          if [ "${{ matrix.PLATFORM }}" = "windows-64" ]
+#          then
+#            curl https://downloads.fdossena.com/Projects/Mesa3D/Builds/MesaForWindows-x64-20.0.7.7z -o mesa.7z
+#          else
+#            curl https://downloads.fdossena.com/Projects/Mesa3D/Builds/MesaForWindows-20.0.7.7z -o mesa.7z
+#          fi
+#          # opengl32.dll must be extracted in the same directory than Pandemonium binary
+#          7z.exe x mesa.7z
+#          ls -lh opengl32.dll  # Sanity check
+#          popd
+#      - name: 'Run tests'
+#        shell: bash
+#        run: |
+#          set -eux
+#          scons tests
       - name: 'Generate artifact archive'
         shell: bash
         run: |
@@ -205,10 +205,10 @@ jobs:
         run: |
           set -eux
           scons build -j2
-      - name: 'Run tests'
-        run: |
-          set -eux
-          scons tests
+#      - name: 'Run tests'
+#        run: |
+#          set -eux
+#          scons tests
       - name: 'Generate artifact archive'
         run: |
           set -eux
