@@ -193,6 +193,8 @@ from libc.stdint cimport int8_t
 {{ force_mark_rendered("pandemonium_string_split_ints_mk") }}
 {{ force_mark_rendered("pandemonium_string_split_spaces") }}
 {{ force_mark_rendered("pandemonium_string_sprintf") }}
+{{ force_mark_rendered("pandemonium_string_to_real") }}
+{{ force_mark_rendered("pandemonium_string_to_float") }}
 {{ force_mark_rendered("pandemonium_string_to_double") }}
 {{ force_mark_rendered("pandemonium_string_to_int64") }}
 {{ force_mark_rendered("pandemonium_string_utf8") }}

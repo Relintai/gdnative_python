@@ -794,7 +794,8 @@ typedef struct pandemonium_gdnative_core_api_struct {
 	pandemonium_bool (*pandemonium_string_is_numeric)(const pandemonium_string *p_self);
 	pandemonium_bool (*pandemonium_string_is_zero)(const pandemonium_string *p_self);
 	double (*pandemonium_string_to_double)(const pandemonium_string *p_self);
-	pandemonium_real (*pandemonium_string_to_float)(const pandemonium_string *p_self);
+	float (*pandemonium_string_to_float)(const pandemonium_string *p_self);
+	pandemonium_real (*pandemonium_string_to_real)(const pandemonium_string *p_self);
 	pandemonium_int (*pandemonium_string_to_int)(const pandemonium_string *p_self);
 	pandemonium_bool (*pandemonium_string_to_bool)(const pandemonium_string *p_self);
 	uint32_t (*pandemonium_string_to_uint)(const pandemonium_string *p_self);
