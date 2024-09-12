@@ -55,7 +55,7 @@ typedef enum {
 	PANDEMONIUM_PROPERTY_HINT_ENUM, ///< hint_text= "val1,val2,val3,etc"
 	PANDEMONIUM_PROPERTY_HINT_EXP_EASING, /// exponential easing function (Math::ease) use "attenuation" hint string to revert (flip h), "full" to also include in/out. (ie: "attenuation,inout")
 	PANDEMONIUM_PROPERTY_HINT_LENGTH, ///< hint_text= "length" (as integer)
-	PANDEMONIUM_PROPERTY_HINT_BUTTON, // Use a button in the inspector for this property. The property's type has to be Variant::NIL. hint_text="call_func:name/theme_type" -> calls call_func on press, optional: ":name/theme_type" -> get_theme_icon("name", "theme_type")
+	PANDEMONIUM_PROPERTY_HINT_BUTTON, // Use a button in the inspector for this property. The property's type has to be Variant::NIL. hint_text="call_func:name/theme_type" -> calls call_func(const StringName &p_property) on press, optional: ":name/theme_type" -> get_theme_icon("name", "theme_type")
 	PANDEMONIUM_PROPERTY_HINT_KEY_ACCEL, ///< hint_text= "length" (as integer)
 	PANDEMONIUM_PROPERTY_HINT_FLAGS, ///< hint_text= "flag1,flag2,etc" (as bit flags)
 	PANDEMONIUM_PROPERTY_HINT_LAYERS_2D_RENDER,
@@ -91,6 +91,7 @@ typedef enum {
 	PANDEMONIUM_PROPERTY_HINT_SAVE_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,". This opens a save dialog
 	PANDEMONIUM_PROPERTY_HINT_ENUM_SUGGESTION, ///< hint_text= "val1,val2,val3,etc"
 	PANDEMONIUM_PROPERTY_HINT_LINK,
+	PANDEMONIUM_PROPERTY_HINT_LOCALE_ID,
 	PANDEMONIUM_PROPERTY_HINT_MAX,
 } pandemonium_property_hint;
 
@@ -105,6 +106,7 @@ typedef enum {
 	PANDEMONIUM_PROPERTY_USAGE_INTERNATIONALIZED = 64, //hint for internationalized strings
 	PANDEMONIUM_PROPERTY_USAGE_GROUP = 128, //used for grouping props in the editor
 	PANDEMONIUM_PROPERTY_USAGE_CATEGORY = 256,
+	PANDEMONIUM_PROPERTY_USAGE_ARRAY = 512, // Used in the inspector to group properties as elements of an array.
 	PANDEMONIUM_PROPERTY_USAGE_NO_INSTANCE_STATE = 2048,
 	PANDEMONIUM_PROPERTY_USAGE_RESTART_IF_CHANGED = 4096,
 	PANDEMONIUM_PROPERTY_USAGE_SCRIPT_VARIABLE = 8192,

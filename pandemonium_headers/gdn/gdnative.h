@@ -36,7 +36,7 @@
 extern "C" {
 #endif
 
-#if defined(_WIN32) || defined(__ANDROID__)
+#if defined(_WIN32) || defined(__ANDROID__) || defined(GDNATIVE_LINUX_BSD_WEB)
 #define GDCALLINGCONV
 #elif defined(__APPLE__)
 #include "TargetConditionals.h"
@@ -46,7 +46,7 @@ extern "C" {
 #define GDCALLINGCONV __attribute__((sysv_abi))
 #endif
 #else // Linux/BSD/Web
-#if defined(__aarch64__)
+#if defined(__aarch64__) || defined(__arm__) || defined(__riscv)
 #define GDCALLINGCONV
 #else
 #define GDCALLINGCONV __attribute__((sysv_abi))
