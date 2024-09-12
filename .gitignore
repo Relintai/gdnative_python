@@ -34,3 +34,6 @@ logs
 /tests/*/lib
 
 output.preprocessed.c
+
+pandemonium_engine/
+
