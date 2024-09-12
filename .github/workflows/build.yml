@@ -174,7 +174,7 @@ jobs:
 
   macos-build:
     name: '🍎 macOS build'
-    runs-on: macos-latest
+    runs-on: macos-13
     env:
       CC: clang
       PLATFORM: 'osx-64'
