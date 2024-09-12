@@ -75,6 +75,7 @@ class PropertyHint(enum.IntEnum):
     PANDEMONIUM_PROPERTY_HINT_SAVE_FILE = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_SAVE_FILE
     PANDEMONIUM_PROPERTY_HINT_ENUM_SUGGESTION = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_ENUM_SUGGESTION
     PANDEMONIUM_PROPERTY_HINT_LINK = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_LINK
+    PANDEMONIUM_PROPERTY_HINT_LOCALE_ID = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_LOCALE_ID
     MAX = pandemonium_property_hint.PANDEMONIUM_PROPERTY_HINT_MAX
 
 class PropertyUsageFlag(enum.IntFlag):
@@ -87,6 +88,7 @@ class PropertyUsageFlag(enum.IntFlag):
     INTERNATIONALIZED = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_INTERNATIONALIZED
     GROUP = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_GROUP
     CATEGORY = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_CATEGORY
+    PANDEMONIUM_PROPERTY_USAGE_ARRAY = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_ARRAY
     NO_INSTANCE_STATE = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_NO_INSTANCE_STATE
     RESTART_IF_CHANGED = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_RESTART_IF_CHANGED
     SCRIPT_VARIABLE = pandemonium_property_usage_flags.PANDEMONIUM_PROPERTY_USAGE_SCRIPT_VARIABLE
