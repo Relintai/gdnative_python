@@ -10,8 +10,7 @@ on:
 
 # Global Settings
 env:
-  PYTHON_VERSION: "3.7"
-  OSX_PYTHON_VERSION: "3.7"
+  PYTHON_VERSION: "3.8"
   PANDEMONIUM_BINARY_VERSION: "3.4.0"
 
 
@@ -187,7 +186,7 @@ jobs:
       - name: 'Set up Python'
         uses: actions/setup-python@0291cefc54fa79cd1986aee8fa5ecb89ad4defea  # pin@v2
         with:
-            python-version: ${{ env.OSX_PYTHON_VERSION }}
+            python-version: ${{ env.PYTHON_VERSION }}
       - name: 'Setup venv'
         run: |
           set -eux
