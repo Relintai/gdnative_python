@@ -327,7 +327,8 @@ typedef struct pandemonium_gdnative_core_api_struct {
 	pandemonium_basis (*pandemonium_basis_get_normal_xform_basis)(const pandemonium_basis *p_self);
 	pandemonium_vector3 (*pandemonium_basis_xform_normal_fast)(const pandemonium_basis *p_self, const pandemonium_vector3 *p_vector);
 	pandemonium_vector3 (*pandemonium_basis_xform_normal)(const pandemonium_basis *p_self, const pandemonium_vector3 *p_vector);
-	pandemonium_basis (*pandemonium_basis_looking_at)(const pandemonium_vector3 *p_target);
+	pandemonium_basis (*pandemonium_basis_looking_at)(const pandemonium_vector3 *p_target, const pandemonium_vector3 *p_up, const pandemonium_bool p_use_model_front);
+	void (*pandemonium_basis_set_look_at)(pandemonium_basis *p_self, const pandemonium_vector3 *p_target, const pandemonium_vector3 *p_up, const pandemonium_bool p_use_model_front);
 	pandemonium_basis (*pandemonium_basis_looking_at_up)(const pandemonium_vector3 *p_target, const pandemonium_vector3 *p_up);
 	pandemonium_basis (*pandemonium_basis_from_scale)(const pandemonium_vector3 *p_scale);
 	void (*pandemonium_basis_get_elements)(const pandemonium_basis *p_self, pandemonium_vector3 *p_elements);
@@ -958,8 +959,8 @@ typedef struct pandemonium_gdnative_core_api_struct {
 	void (*pandemonium_transform_rotate)(pandemonium_transform *p_self, const pandemonium_vector3 *p_axis, pandemonium_real p_phi);
 	void (*pandemonium_transform_rotate_local)(pandemonium_transform *p_self, const pandemonium_vector3 *p_axis, pandemonium_real p_phi);
 	void (*pandemonium_transform_rotate_basis)(pandemonium_transform *p_self, const pandemonium_vector3 *p_axis, pandemonium_real p_phi);
-	void (*pandemonium_transform_set_look_at)(pandemonium_transform *p_self, const pandemonium_vector3 *p_eye, const pandemonium_vector3 *p_target, const pandemonium_vector3 *p_up);
-	pandemonium_transform (*pandemonium_transform_looking_at)(const pandemonium_transform *p_self, const pandemonium_vector3 *p_target, const pandemonium_vector3 *p_up);
+	void (*pandemonium_transform_set_look_at)(pandemonium_transform *p_self, const pandemonium_vector3 *p_eye, const pandemonium_vector3 *p_target, const pandemonium_vector3 *p_up, const pandemonium_bool p_use_model_front);
+	pandemonium_transform (*pandemonium_transform_looking_at)(const pandemonium_transform *p_self, const pandemonium_vector3 *p_target, const pandemonium_vector3 *p_up, const pandemonium_bool p_use_model_front);
 	void (*pandemonium_transform_scale)(pandemonium_transform *p_self, const pandemonium_vector3 *p_scale);
 	pandemonium_transform (*pandemonium_transform_scaled)(const pandemonium_transform *p_self, const pandemonium_vector3 *p_scale);
 	pandemonium_transform (*pandemonium_transform_scaled_local)(const pandemonium_transform *p_self, const pandemonium_vector3 *p_scale);
