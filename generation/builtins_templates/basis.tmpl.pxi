@@ -35,6 +35,7 @@
 {{ force_mark_rendered("pandemonium_basis_is_symmetric") }}
 {{ force_mark_rendered("pandemonium_basis_lerp") }}
 {{ force_mark_rendered("pandemonium_basis_looking_at") }}
+{{ force_mark_rendered("pandemonium_basis_set_look_at") }}
 {{ force_mark_rendered("pandemonium_basis_looking_at_up") }}
 {{ force_mark_rendered("pandemonium_basis_make_scale_uniform") }}
 {{ force_mark_rendered("pandemonium_basis_new_axis_phi_scale") }}
