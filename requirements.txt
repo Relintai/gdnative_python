@@ -42,6 +42,10 @@ click==8.1.8 \
     #   autopxd2
     #   black
     #   pip-tools
+colorama==0.4.6 \
+    --hash=sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44 \
+    --hash=sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6
+    # via -r requirements.in
 cython==0.29.23 \
     --hash=sha256:0c4b9f7e3aa004cf3f364e3e772f55fec5740485bafea99d1f13bdc9bbd8a545 \
     --hash=sha256:20402ef316393168909926ab21848aa6e08e39bed5003b657139774e66166cd0 \
