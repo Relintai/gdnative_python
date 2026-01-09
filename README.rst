@@ -372,3 +372,9 @@ pyenv local 3.7
 
 pyenv shell 3.7
 
+
+Note
+----
+
+The release workflow doesn't work. Just download the zip from actions, and reupload if necessary.
+
