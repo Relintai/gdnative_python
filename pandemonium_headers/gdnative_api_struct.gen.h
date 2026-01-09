@@ -343,8 +343,8 @@ typedef struct pandemonium_gdnative_core_api_struct {
 	pandemonium_string (*pandemonium_packed_typed_array_get_typename_string)(const pandemonium_packed_typed_array *p_self);
 	pandemonium_int (*pandemonium_packed_typed_array_get_variant_type)(const pandemonium_packed_typed_array *p_self);
 	void (*pandemonium_packed_typed_array_set_variant_type)(pandemonium_packed_typed_array *p_self, const pandemonium_int p_variant_type);
-	pandemonium_int (*pandemonium_packed_typed_array_get_int_type)(const pandemonium_packed_typed_array *p_self);
-	void (*pandemonium_packed_typed_array_set_int_type)(pandemonium_packed_typed_array *p_self, const pandemonium_int p_int_type);
+	pandemonium_packed_typed_array_int_type (*pandemonium_packed_typed_array_get_int_type)(const pandemonium_packed_typed_array *p_self);
+	void (*pandemonium_packed_typed_array_set_int_type)(pandemonium_packed_typed_array *p_self, const pandemonium_packed_typed_array_int_type p_int_type);
 	pandemonium_string_name (*pandemonium_packed_typed_array_get_object_class_name)(const pandemonium_packed_typed_array *p_self);
 	void (*pandemonium_packed_typed_array_set_object_class_name)(pandemonium_packed_typed_array *p_self, const pandemonium_string_name *p_object_type_name);
 	void (*pandemonium_packed_typed_array_set_type_from_name)(pandemonium_packed_typed_array *p_self, const pandemonium_string_name *p_type_name);
