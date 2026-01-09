@@ -116,6 +116,7 @@ from libc.stdint cimport int8_t
 {{ force_mark_rendered("pandemonium_string_validate_node_name") }}
 {{ force_mark_rendered("pandemonium_string_wchar_to_double") }}
 {{ force_mark_rendered("pandemonium_string_wchar_to_float") }}
+{{ force_mark_rendered("pandemonium_string_to_uint64") }}
 
 # END TODO
 

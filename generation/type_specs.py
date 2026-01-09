@@ -134,6 +134,15 @@ TYPE_PROJECTION_PLANES = TypeSpec(
     is_stack_only=True,
     is_enum=True,
 )
+TYPE_PACKED_TYPED_ARRAY_INT_TYPE = TypeSpec(
+    gdapi_type="enum.PackedTypedArray::IntType",
+    c_type="pandemonium_packed_typed_array_int_type",
+    cy_type="pandemonium_packed_typed_array_int_type",
+    py_type="PackedTypedArray.IntType",
+    is_base_type=True,
+    is_stack_only=True,
+    is_enum=True,
+)
 TYPE_VARIANT_TYPE = TypeSpec(
     gdapi_type="enum.Variant::Type",
     c_type="pandemonium_variant_type",
@@ -171,6 +180,12 @@ TYPE_AABB = TypeSpec(
 )
 TYPE_ARRAY = TypeSpec(
     gdapi_type="Array", c_type="pandemonium_array", cy_type="Array", is_builtin=True, is_stack_only=True
+)
+TYPE_TYPED_ARRAY = TypeSpec(
+    gdapi_type="TypedArray", c_type="pandemonium_typed_array_array", cy_type="TypedArray", is_builtin=True, is_stack_only=True
+)
+TYPE_PACKED_TYPED_ARRAY = TypeSpec(
+    gdapi_type="PackedTypedArray", c_type="pandemonium_packed_typed_array_array", cy_type="PackedTypedArray", is_builtin=True, is_stack_only=True
 )
 TYPE_BASIS = TypeSpec(
     gdapi_type="Basis", c_type="pandemonium_basis", cy_type="Basis", is_builtin=True, is_stack_only=True
@@ -371,12 +386,15 @@ ALL_TYPES_EXCEPT_OBJECTS = [
     TYPE_VECTOR4_AXIS,
     TYPE_VECTOR4I_AXIS,
     TYPE_PROJECTION_PLANES,
+    TYPE_PACKED_TYPED_ARRAY_INT_TYPE,
     TYPE_VARIANT_TYPE,
     TYPE_VARIANT_OPERATOR,
     TYPE_VARIANT,
     TYPE_STRING,
     TYPE_AABB,
     TYPE_ARRAY,
+    TYPE_TYPED_ARRAY,
+    TYPE_PACKED_TYPED_ARRAY,
     TYPE_BASIS,
     TYPE_COLOR,
     TYPE_DICTIONARY,

@@ -22,6 +22,7 @@
 {{ force_mark_rendered("pandemonium_quaternion_set_euler_xyz") }}
 {{ force_mark_rendered("pandemonium_quaternion_set_euler_yxz") }}
 {{ force_mark_rendered("pandemonium_quaternion_spherical_cubic_interpolate") }}
+{{ force_mark_rendered("pandemonium_quaternion_set_shortest_arc") }}
 
 # END TODO
 

@@ -8,6 +8,8 @@ from enum import IntFlag
 from pandemonium.builtins import (
     AABB,
     Array,
+    TypedArray,
+    PackedTypedArray,
     Basis,
     Color,
     Dictionary,
@@ -122,6 +124,8 @@ class VariantType(IntFlag):
     OBJECT: int
     DICTIONARY: int
     ARRAY: int
+    TYPED_ARRAY: int
+    PACKED_TYPED_ARRAY: int
     POOL_BYTE_ARRAY: int
     POOL_INT_ARRAY: int
     POOL_REAL_ARRAY: int

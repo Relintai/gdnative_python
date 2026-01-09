@@ -192,6 +192,8 @@ SUPPORTED_TYPES = {
     "pandemonium_object",
     "pandemonium_aabb",
     "pandemonium_array",
+    "pandemonium_typed_array_array",
+    "pandemonium_packed_typed_array_array",
     "pandemonium_basis",
     "pandemonium_color",
     "pandemonium_dictionary",
@@ -453,6 +455,10 @@ def cook_data(data):
             return "PoolColorArray()"
         elif type == "pandemonium_array" and value == "[]":
             return f"Array()"
+        elif type == "pandemonium_typed_array" and value == "[]":
+            return f"TypedArray()"
+        elif type == "pandemonium_packed_typed_array_array" and value == "[]":
+            return f"PackedTypedArray()"
         elif type == "pandemonium_pool_vector2_array" and value == "[]":
             return f"PoolVector2Array()"
         elif type == "pandemonium_pool_vector2i_array" and value == "[]":
