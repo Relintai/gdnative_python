@@ -365,12 +365,12 @@ See the `godot-python issue <https://github.com/touilleMan/godot-python/issues/8
 PyEnv
 -----
 
-pyenv install 3.7
+pyenv install 3.9
 
-pyenv local 3.7
+pyenv local 3.9
 
 
-pyenv shell 3.7
+pyenv shell 3.9
 
 
 Note
