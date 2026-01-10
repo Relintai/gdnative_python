@@ -6,6 +6,8 @@
 
 {{ force_mark_rendered("pandemonium_dictionary_deep_equal") }}
 {{ force_mark_rendered("pandemonium_dictionary_deep_equal_recursion_count") }}
+{{ force_mark_rendered("pandemonium_dictionary_deep_equal_approx") }}
+{{ force_mark_rendered("pandemonium_dictionary_deep_equal_approx_recursion_count") }}
 {{ force_mark_rendered("pandemonium_dictionary_merge") }}
 {{ force_mark_rendered("pandemonium_dictionary_merge_overwrite") }}
 

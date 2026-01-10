@@ -7,6 +7,8 @@
 {{ force_mark_rendered("pandemonium_array_append_array") }}
 {{ force_mark_rendered("pandemonium_array_deep_equal") }}
 {{ force_mark_rendered("pandemonium_array_deep_equal_recursion_count") }}
+{{ force_mark_rendered("pandemonium_array_deep_equal_approx") }}
+{{ force_mark_rendered("pandemonium_array_deep_equal_approx_recursion_count") }}
 {{ force_mark_rendered("pandemonium_array_duplicate_deep") }}
 {{ force_mark_rendered("pandemonium_array_fill") }}
 {{ force_mark_rendered("pandemonium_array_find_from") }}
