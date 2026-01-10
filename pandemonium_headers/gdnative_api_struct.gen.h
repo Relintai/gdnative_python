@@ -174,6 +174,8 @@ typedef struct pandemonium_gdnative_core_api_struct {
 	void (*pandemonium_array_clear)(pandemonium_array *p_self);
 	pandemonium_bool (*pandemonium_array_deep_equal)(const pandemonium_array *p_self, const pandemonium_array *p_array);
 	pandemonium_bool (*pandemonium_array_deep_equal_recursion_count)(const pandemonium_array *p_self, const pandemonium_array *p_array, pandemonium_int p_recursion_count);
+	pandemonium_bool (*pandemonium_array_deep_equal_approx)(const pandemonium_array *p_self, const pandemonium_array *p_array);
+	pandemonium_bool (*pandemonium_array_deep_equal_approx_recursion_count)(const pandemonium_array *p_self, const pandemonium_array *p_array, pandemonium_int p_recursion_count);
 	pandemonium_bool (*pandemonium_array_operator_equals)(pandemonium_array *p_self, const pandemonium_array *p_array);
 	pandemonium_int (*pandemonium_array_hash)(const pandemonium_array *p_self);
 	void (*pandemonium_array_push_back)(pandemonium_array *p_self, const pandemonium_variant *p_value);
@@ -232,6 +234,8 @@ typedef struct pandemonium_gdnative_core_api_struct {
 	void (*pandemonium_typed_array_clear)(pandemonium_typed_array *p_self);
 	pandemonium_bool (*pandemonium_typed_array_deep_equal)(const pandemonium_typed_array *p_self, const pandemonium_typed_array *p_typed_array);
 	pandemonium_bool (*pandemonium_typed_array_deep_equal_recursion_count)(const pandemonium_typed_array *p_self, const pandemonium_typed_array *p_typed_array, pandemonium_int p_recursion_count);
+	pandemonium_bool (*pandemonium_typed_array_deep_equal_approx)(const pandemonium_typed_array *p_self, const pandemonium_typed_array *p_typed_array);
+	pandemonium_bool (*pandemonium_typed_array_deep_equal_approx_recursion_count)(const pandemonium_typed_array *p_self, const pandemonium_typed_array *p_typed_array, pandemonium_int p_recursion_count);
 	pandemonium_bool (*pandemonium_typed_array_operator_equals)(pandemonium_typed_array *p_self, const pandemonium_typed_array *p_typed_array);
 	pandemonium_int (*pandemonium_typed_array_hash)(const pandemonium_typed_array *p_self);
 	pandemonium_bool (*pandemonium_typed_array_push_back)(pandemonium_typed_array *p_self, const pandemonium_variant *p_value);
@@ -303,6 +307,8 @@ typedef struct pandemonium_gdnative_core_api_struct {
 	void (*pandemonium_packed_typed_array_clear)(pandemonium_packed_typed_array *p_self);
 	pandemonium_bool (*pandemonium_packed_typed_array_deep_equal)(const pandemonium_packed_typed_array *p_self, const pandemonium_packed_typed_array *p_packed_typed_array);
 	pandemonium_bool (*pandemonium_packed_typed_array_deep_equal_recursion_count)(const pandemonium_packed_typed_array *p_self, const pandemonium_packed_typed_array *p_packed_typed_array, pandemonium_int p_recursion_count);
+	pandemonium_bool (*pandemonium_packed_typed_array_deep_equal_approx)(const pandemonium_packed_typed_array *p_self, const pandemonium_packed_typed_array *p_packed_typed_array);
+	pandemonium_bool (*pandemonium_packed_typed_array_deep_equal_approx_recursion_count)(const pandemonium_packed_typed_array *p_self, const pandemonium_packed_typed_array *p_packed_typed_array, pandemonium_int p_recursion_count);
 	pandemonium_bool (*pandemonium_packed_typed_array_operator_equals)(pandemonium_packed_typed_array *p_self, const pandemonium_packed_typed_array *p_packed_typed_array);
 	pandemonium_int (*pandemonium_packed_typed_array_hash)(const pandemonium_packed_typed_array *p_self);
 	pandemonium_bool (*pandemonium_packed_typed_array_push_back)(pandemonium_packed_typed_array *p_self, const pandemonium_variant *p_value);
@@ -576,6 +582,8 @@ typedef struct pandemonium_gdnative_core_api_struct {
 	pandemonium_bool (*pandemonium_dictionary_erase_with_return)(pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
 	pandemonium_bool (*pandemonium_dictionary_deep_equal)(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary);
 	pandemonium_bool (*pandemonium_dictionary_deep_equal_recursion_count)(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary, pandemonium_int p_recursion_count);
+	pandemonium_bool (*pandemonium_dictionary_deep_equal_approx)(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary);
+	pandemonium_bool (*pandemonium_dictionary_deep_equal_approx_recursion_count)(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary, pandemonium_int p_recursion_count);
 	pandemonium_bool (*pandemonium_dictionary_operator_equal)(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_b);
 	pandemonium_int (*pandemonium_dictionary_hash)(const pandemonium_dictionary *p_self);
 	pandemonium_variant *(*pandemonium_dictionary_next)(const pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
@@ -1229,6 +1237,8 @@ typedef struct pandemonium_gdnative_core_api_struct {
 	pandemonium_bool (*pandemonium_variant_has_method)(const pandemonium_variant *p_self, const pandemonium_string *p_method);
 	pandemonium_bool (*pandemonium_variant_deep_equal)(const pandemonium_variant *p_self, const pandemonium_variant *p_variant);
 	pandemonium_bool (*pandemonium_variant_deep_equal_recursion_count)(const pandemonium_variant *p_self, const pandemonium_variant *p_variant, pandemonium_int p_recursion_count);
+	pandemonium_bool (*pandemonium_variant_deep_equal_approx)(const pandemonium_variant *p_self, const pandemonium_variant *p_variant);
+	pandemonium_bool (*pandemonium_variant_deep_equal_approx_recursion_count)(const pandemonium_variant *p_self, const pandemonium_variant *p_variant, pandemonium_int p_recursion_count);
 	pandemonium_bool (*pandemonium_variant_operator_equal)(const pandemonium_variant *p_self, const pandemonium_variant *p_other);
 	pandemonium_bool (*pandemonium_variant_operator_less)(const pandemonium_variant *p_self, const pandemonium_variant *p_other);
 	pandemonium_int (*pandemonium_variant_hash)(const pandemonium_variant *p_self);
