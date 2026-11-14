@@ -57,7 +57,7 @@ typedef struct pandemonium_gdnative_ext_nativescript_api_struct {
 	const pandemonium_gdnative_api_struct *next;
 	void (*pandemonium_nativescript_register_class)(void *p_gdnative_handle, const char *p_name, const char *p_base, pandemonium_instance_create_func p_create_func, pandemonium_instance_destroy_func p_destroy_func);
 	void (*pandemonium_nativescript_register_tool_class)(void *p_gdnative_handle, const char *p_name, const char *p_base, pandemonium_instance_create_func p_create_func, pandemonium_instance_destroy_func p_destroy_func);
-	void (*pandemonium_nativescript_register_method)(void *p_gdnative_handle, const char *p_name, const char *p_function_name, pandemonium_method_attributes p_attr, pandemonium_instance_method p_method);
+	void (*pandemonium_nativescript_register_method)(void *p_gdnative_handle, const char *p_name, const char *p_function_name, pandemonium_instance_method p_method);
 	void (*pandemonium_nativescript_register_property)(void *p_gdnative_handle, const char *p_name, const char *p_path, pandemonium_property_attributes *p_attr, pandemonium_property_set_func p_set_func, pandemonium_property_get_func p_get_func);
 	void (*pandemonium_nativescript_register_signal)(void *p_gdnative_handle, const char *p_name, const pandemonium_signal *p_signal);
 	void *(*pandemonium_nativescript_get_userdata)(pandemonium_object *p_instance);
@@ -287,6 +287,7 @@ typedef struct pandemonium_gdnative_core_api_struct {
 	pandemonium_bool (*pandemonium_typed_array_can_take_variant)(const pandemonium_typed_array *p_self, const pandemonium_variant *p_value);
 	void (*pandemonium_typed_array_new)(pandemonium_typed_array *r_dest);
 	void (*pandemonium_typed_array_new_copy)(pandemonium_typed_array *r_dest, const pandemonium_typed_array *p_src);
+	void (*pandemonium_typed_array_new_append_from)(pandemonium_typed_array *r_dest, const pandemonium_string_name *p_type_name, const pandemonium_variant *p_variant);
 	void (*pandemonium_typed_array_new_pool_byte_array)(pandemonium_typed_array *r_dest, const pandemonium_pool_byte_array *p_pba);
 	void (*pandemonium_typed_array_new_pool_int_array)(pandemonium_typed_array *r_dest, const pandemonium_pool_int_array *p_pia);
 	void (*pandemonium_typed_array_new_pool_real_array)(pandemonium_typed_array *r_dest, const pandemonium_pool_real_array *p_pra);
@@ -300,7 +301,7 @@ typedef struct pandemonium_gdnative_core_api_struct {
 	void (*pandemonium_typed_array_new_pool_color_array)(pandemonium_typed_array *r_dest, const pandemonium_pool_color_array *p_pca);
 	void (*pandemonium_typed_array_destroy)(pandemonium_typed_array *p_self);
 	const pandemonium_variant (*pandemonium_packed_typed_array_operator_index_const)(const pandemonium_packed_typed_array *p_self, const pandemonium_int p_idx);
-	void (*pandemonium_packed_typed_array_set)(pandemonium_packed_typed_array *p_self, const pandemonium_int p_idx, const pandemonium_variant *p_value);
+	pandemonium_bool (*pandemonium_packed_typed_array_set)(pandemonium_packed_typed_array *p_self, const pandemonium_int p_idx, const pandemonium_variant *p_value);
 	pandemonium_variant (*pandemonium_packed_typed_array_get)(const pandemonium_packed_typed_array *p_self, const pandemonium_int p_idx);
 	pandemonium_int (*pandemonium_packed_typed_array_size)(const pandemonium_packed_typed_array *p_self);
 	pandemonium_bool (*pandemonium_packed_typed_array_empty)(const pandemonium_packed_typed_array *p_self);
@@ -362,6 +363,7 @@ typedef struct pandemonium_gdnative_core_api_struct {
 	pandemonium_bool (*pandemonium_packed_typed_array_can_take_variant)(const pandemonium_packed_typed_array *p_self, const pandemonium_variant *p_value);
 	void (*pandemonium_packed_typed_array_new)(pandemonium_packed_typed_array *r_dest);
 	void (*pandemonium_packed_typed_array_new_copy)(pandemonium_packed_typed_array *r_dest, const pandemonium_packed_typed_array *p_src);
+	void (*pandemonium_packed_typed_array_new_type)(pandemonium_packed_typed_array *r_dest, const pandemonium_string_name *p_type_name, const pandemonium_packed_typed_array_int_type p_int_type);
 	void (*pandemonium_packed_typed_array_new_pool_byte_array)(pandemonium_packed_typed_array *r_dest, const pandemonium_pool_byte_array *p_pba);
 	void (*pandemonium_packed_typed_array_new_pool_int_array)(pandemonium_packed_typed_array *r_dest, const pandemonium_pool_int_array *p_pia);
 	void (*pandemonium_packed_typed_array_new_pool_real_array)(pandemonium_packed_typed_array *r_dest, const pandemonium_pool_real_array *p_pra);

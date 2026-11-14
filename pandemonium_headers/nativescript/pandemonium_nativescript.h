@@ -129,8 +129,6 @@ typedef enum {
 } pandemonium_property_usage_flags;
 
 typedef struct {
-	pandemonium_method_rpc_mode rset_type;
-
 	pandemonium_int type;
 	pandemonium_property_hint hint;
 	pandemonium_string hint_string;
@@ -157,17 +155,13 @@ void GDAPI pandemonium_nativescript_register_class(void *p_gdnative_handle, cons
 void GDAPI pandemonium_nativescript_register_tool_class(void *p_gdnative_handle, const char *p_name, const char *p_base, pandemonium_instance_create_func p_create_func, pandemonium_instance_destroy_func p_destroy_func);
 
 typedef struct {
-	pandemonium_method_rpc_mode rpc_type;
-} pandemonium_method_attributes;
-
-typedef struct {
 	// instance pointer, method data, user data, num args, args - return result as variant
 	GDCALLINGCONV pandemonium_variant (*method)(pandemonium_object *, void *, void *, int, pandemonium_variant **);
 	void *method_data;
 	GDCALLINGCONV void (*free_func)(void *);
 } pandemonium_instance_method;
 
-void GDAPI pandemonium_nativescript_register_method(void *p_gdnative_handle, const char *p_name, const char *p_function_name, pandemonium_method_attributes p_attr, pandemonium_instance_method p_method);
+void GDAPI pandemonium_nativescript_register_method(void *p_gdnative_handle, const char *p_class_name, const char *p_function_name, pandemonium_instance_method p_method);
 
 typedef struct {
 	// instance pointer, method data, user data, value
@@ -216,7 +210,7 @@ typedef struct {
 	pandemonium_string hint_string;
 } pandemonium_method_arg;
 
-void GDAPI pandemonium_nativescript_set_method_argument_information(void *p_gdnative_handle, const char *p_name, const char *p_function_name, int p_num_args, const pandemonium_method_arg *p_args);
+void GDAPI pandemonium_nativescript_set_method_argument_information(void *p_gdnative_handle, const char *p_class_name, const char *p_function_name, int p_num_args, const pandemonium_method_arg *p_args);
 
 // documentation
 
