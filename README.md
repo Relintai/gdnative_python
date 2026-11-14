@@ -218,7 +218,7 @@ use that the static library and binary for building and tests.
 
 ### Additional build options
 
-You check out all the build options `in this file <https://github.com/touilleMan/godot-python/blob/master/SConstruct#L23>`_.
+You check out all the build options [in this file](https://github.com/Relintai/gdnative_python/blob/master/SConstruct).
 
 
 ## FAQ
