@@ -4,7 +4,7 @@ set -e
 basedir=$(pwd)/
 
 project_root=$(pwd)/
-img_version=pe
+img_version=gdnp
 
 mkdir -p logs
 
@@ -12,26 +12,31 @@ mkdir -p logs
 
 custom_envvars=""
 
-# Windows Build
+# Linux Build
+docker run ${custom_envvars} \
+        -v ${project_root}:/root/project \
+        -w /root/project pandemonium-linux:${img_version} \
+        bash /root/project/in_container_build_scripts/linux.sh "$@" 2>&1 | tee logs/linux.log
+
+# Windows Build 64
 docker run ${custom_envvars} \
 	      -v ${basedir}/engine_build_scripts:/root/engine_build_scripts \
 	      -v ${project_root}:/root/project \
 	      -w /root/project pandemonium-windows:${img_version} \
-	      bash /root/engine_build_scripts/windows.sh "$@" 2>&1 | tee logs/windows.log
+	      bash /root/project/in_container_build_scripts/windows-64.sh "$@" 2>&1 | tee logs/windows-64.log
 
-# Linux Build
+# Windows Build 32
 docker run ${custom_envvars} \
-        -v ${basedir}/engine_build_scripts:/root/engine_build_scripts \
-        -v ${project_root}:/root/project \
-        -w /root/project pandemonium-linux:${img_version} \
-        bash /root/engine_build_scripts/linux.sh "$@" 2>&1 | tee logs/linux.log
+	      -v ${basedir}/engine_build_scripts:/root/engine_build_scripts \
+	      -v ${project_root}:/root/project \
+	      -w /root/project pandemonium-windows:${img_version} \
+	      bash /root/project/in_container_build_scripts/windows-32.sh "$@" 2>&1 | tee logs/windows-32.log
 
-# OSX Build
-docker run ${custom_envvars} \
-        -v ${basedir}/engine_build_scripts:/root/engine_build_scripts \
-        -v ${project_root}:/root/project \
-        -w /root/project pandemonium-osx:${img_version} \
-        bash /root/engine_build_scripts/osx.sh "$@" 2>&1 | tee logs/osx.log
+# OSX Build - TODO
+#docker run ${custom_envvars} \
+#        -v ${project_root}:/root/project \
+#        -w /root/project pandemonium-osx:${img_version} \
+#        bash /root/project/in_container_build_scripts/osx.sh "$@" 2>&1 | tee logs/osx.log
 
 # Check files
 
