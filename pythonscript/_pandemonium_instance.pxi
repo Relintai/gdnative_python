@@ -40,7 +40,7 @@ cdef api pandemonium_pluginscript_instance_data* pythonscript_instance_init(
 
 cdef api void pythonscript_instance_finish(
     pandemonium_pluginscript_instance_data *p_data
-) with gil:
+) noexcept with gil:
     Py_DECREF(<object>p_data)
 
 
@@ -109,7 +109,7 @@ cdef api pandemonium_variant pythonscript_instance_call_method(
     const pandemonium_variant **p_args,
     int p_argcount,
     pandemonium_variant_call_error *r_error
-) with gil:
+) noexcept with gil:
     cdef pandemonium_variant var_ret
     cdef object instance = <object>p_data
     cdef object fn
@@ -155,7 +155,7 @@ cdef api pandemonium_variant pythonscript_instance_call_method(
 cdef api void pythonscript_instance_notification(
     pandemonium_pluginscript_instance_data *p_data,
     int p_notification
-) with gil:
+) noexcept with gil:
     cdef object instance = <object>p_data
     # Pandemonium's notification should call all parent `_notification`
     # methods (better not use `super()._notification` in those methods...)

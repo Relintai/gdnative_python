@@ -66,7 +66,7 @@ cdef api pandemonium_pluginscript_language_data *pythonscript_init() with gil:
     return NULL
 
 
-cdef api void pythonscript_finish(pandemonium_pluginscript_language_data *data) with gil:
+cdef api void pythonscript_finish(pandemonium_pluginscript_language_data *data) noexcept with gil:
     # /!\ When this function is called, the Python interpreter is fully operational
     # and might be running user-created threads doing concurrent stuff.
     # That will continue until `pandemonium_gdnative_terminate` is called (which is

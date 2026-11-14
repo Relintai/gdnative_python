@@ -27,7 +27,7 @@ cdef api pandemonium_string pythonscript_get_template_source_code(
     pandemonium_pluginscript_language_data *p_data,
     const pandemonium_string *p_class_name,
     const pandemonium_string *p_base_class_name
-) with gil:
+) noexcept with gil:
     cdef str class_name
     if p_class_name == NULL:
         class_name = "MyExportedCls"
@@ -82,7 +82,7 @@ cdef api pandemonium_string pythonscript_make_function(
     const pandemonium_string *p_class,
     const pandemonium_string *p_name,
     const pandemonium_pool_string_array *p_args
-) with gil:
+) noexcept with gil:
     cdef str name = pandemonium_string_to_pyobj(p_name)
 
     # TODO: replace this with PoolStringArray binding once implemented
@@ -112,7 +112,7 @@ cdef api pandemonium_error pythonscript_complete_code(
     pandemonium_array *r_options,
     pandemonium_bool *r_force,
     pandemonium_string *r_call_hint
-) with gil:
+) noexcept with gil:
     return pandemonium_error.PANDEMONIUM_OK
 
 
@@ -121,7 +121,7 @@ cdef api void pythonscript_auto_indent_code(
     pandemonium_string *p_code,
     int p_from_line,
     int p_to_line
-) with gil:
+) noexcept with gil:
     # TODO: use black for this job
 #     try:
 #         import autopep8
@@ -150,7 +150,7 @@ cdef api void pythonscript_add_global_constant(
     pandemonium_pluginscript_language_data *p_data,
     const pandemonium_string *p_variable,
     const pandemonium_variant *p_value
-) with gil:
+) noexcept with gil:
     # However, Pandemonium add global constants very early (first as an empty variant
     # placeholder before any script is loaded, then as a proper loaded script).
     # So it's possible this function get called before `pythonscript_script_init`
@@ -163,7 +163,7 @@ cdef api void pythonscript_add_global_constant(
 
 cdef api pandemonium_string pythonscript_debug_get_error(
     pandemonium_pluginscript_language_data *p_data
-) with gil:
+) noexcept with gil:
     cdef pandemonium_string ret
     pyobj_to_pandemonium_string("Nothing", &ret)
     return ret
@@ -171,21 +171,21 @@ cdef api pandemonium_string pythonscript_debug_get_error(
 
 cdef api int pythonscript_debug_get_stack_level_count(
     pandemonium_pluginscript_language_data *p_data
-) with gil:
+) noexcept with gil:
     return 1
 
 
 cdef api int pythonscript_debug_get_stack_level_line(
     pandemonium_pluginscript_language_data *p_data,
     int p_level
-) with gil:
+) noexcept with gil:
     return 1
 
 
 cdef api pandemonium_string pythonscript_debug_get_stack_level_function(
     pandemonium_pluginscript_language_data *p_data,
     int p_level
-) with gil:
+) noexcept with gil:
     cdef pandemonium_string ret
     pyobj_to_pandemonium_string("Nothing", &ret)
     return ret
@@ -194,7 +194,7 @@ cdef api pandemonium_string pythonscript_debug_get_stack_level_function(
 cdef api pandemonium_string pythonscript_debug_get_stack_level_source(
     pandemonium_pluginscript_language_data *p_data,
     int p_level
-) with gil:
+) noexcept with gil:
     cdef pandemonium_string ret
     pyobj_to_pandemonium_string("Nothing", &ret)
     return ret
@@ -207,7 +207,7 @@ cdef api void pythonscript_debug_get_stack_level_locals(
     pandemonium_array *p_values,
     int p_max_subitems,
     int p_max_depth
-) with gil:
+) noexcept with gil:
     pass
 
 
@@ -218,7 +218,7 @@ cdef api void pythonscript_debug_get_stack_level_members(
     pandemonium_array *p_values,
     int p_max_subitems,
     int p_max_depth
-) with gil:
+) noexcept with gil:
     pass
 
 
@@ -228,7 +228,7 @@ cdef api void pythonscript_debug_get_globals(
     pandemonium_array *p_values,
     int p_max_subitems,
     int p_max_depth
-) with gil:
+) noexcept with gil:
     pass
 
 
@@ -238,7 +238,7 @@ cdef api pandemonium_string pythonscript_debug_parse_stack_level_expression(
     const pandemonium_string *p_expression,
     int p_max_subitems,
     int p_max_depth
-) with gil:
+) noexcept with gil:
     cdef pandemonium_string ret
     pyobj_to_pandemonium_string("Nothing", &ret)
     return ret
@@ -247,12 +247,12 @@ cdef api pandemonium_string pythonscript_debug_parse_stack_level_expression(
 cdef api void pythonscript_get_public_functions(
     pandemonium_pluginscript_language_data *p_data,
     pandemonium_array *r_functions
-) with gil:
+) noexcept with gil:
     pass
 
 
 cdef api void pythonscript_get_public_constants(
     pandemonium_pluginscript_language_data *p_data,
     pandemonium_dictionary *r_constants
-) with gil:
+) noexcept with gil:
     pass

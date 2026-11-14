@@ -147,7 +147,7 @@ cdef api pandemonium_pluginscript_script_manifest pythonscript_script_init(
     const pandemonium_string *p_path,
     const pandemonium_string *p_source,
     pandemonium_error *r_error
-) with gil:
+) noexcept with gil:
     # Pandemonium class&singleton are not all available at Pythonscript bootstrap.
     # Hence we wait until the Pythonscript start being actually used (i.e. until
     # the first Python script is loaded) before initializing the bindings.
@@ -222,7 +222,7 @@ cdef api pandemonium_pluginscript_script_manifest pythonscript_script_init(
 
 cdef api void pythonscript_script_finish(
     pandemonium_pluginscript_script_data *p_data
-) with gil:
+) noexcept with gil:
     cdef object cls = <object>p_data
     if get_pythonscript_verbose():
         # Using print here will cause a crash on editor/game shutdown

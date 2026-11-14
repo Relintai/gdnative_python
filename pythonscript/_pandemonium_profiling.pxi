@@ -137,7 +137,7 @@ cdef object profiler = None
 
 cdef api void pythonscript_profiling_start(
     pandemonium_pluginscript_language_data *p_data
-) with gil:
+) noexcept with gil:
     global profiler
     profiler = Profiler()
     sys.setprofile(profiler.get_profilefunc())
@@ -145,7 +145,7 @@ cdef api void pythonscript_profiling_start(
 
 cdef api void pythonscript_profiling_stop(
     pandemonium_pluginscript_language_data *p_data
-) with gil:
+) noexcept with gil:
     global profiler
     profiler = None
     sys.setprofile(None)
@@ -193,6 +193,6 @@ cdef api int pythonscript_profiling_get_frame_data(
 
 cdef api void pythonscript_profiling_frame(
     pandemonium_pluginscript_language_data *p_data
-) with gil:
+) noexcept with gil:
     if profiler is not None:
         profiler.next_frame()
