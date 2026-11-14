@@ -17,7 +17,7 @@ env["pandemonium_binary_download_platform"] = "osx.64"
 env["pandemonium_binary_download_zip_path"] = "Pandemonium.app/Contents/MacOS/Pandemonium"
 env["cpython_build"] = cpython_build
 env["cpython_build_dir"] = cpython_build
-env["DIST_SITE_PACKAGES"] = Dir(f"{env['DIST_PLATFORM']}/lib/python{env["python_version"]}/site-packages")
+env["DIST_SITE_PACKAGES"] = Dir(str(env['DIST_PLATFORM']) + "/lib/python" + str(env["python_version"]) + "/site-packages")
 
 
 ### Build config for pythonscript ###
@@ -27,7 +27,7 @@ env.AppendUnique(CFLAGS=["-m64"])
 env.AppendUnique(LINKFLAGS=["-m64"])
 # Cannot use CPPPATH&LIBPATH here given headers are within `cpython_build` target,
 # so Scons consider the headers are a missing target
-env.AppendUnique(CFLAGS=[f"-I{cpython_build.abspath}/include/python{env["python_version"]}/"])
+env.AppendUnique(CFLAGS=["-I" + str(cpython_build.abspath) + "/include/python" + str(env["python_version"]) + "/"])
 env.AppendUnique(LINKFLAGS=[f"-L{cpython_build.abspath}/lib"])
 
 
