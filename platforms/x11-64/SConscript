@@ -19,7 +19,7 @@ else:
     env["pandemonium_binary_download_platform"] = "x11.64"
 env["cpython_build"] = cpython_build
 env["cpython_build_dir"] = cpython_build
-env["DIST_SITE_PACKAGES"] = Dir(f"{env['DIST_PLATFORM']}/lib/python3.9/site-packages")
+env["DIST_SITE_PACKAGES"] = Dir(f"{env['DIST_PLATFORM']}/lib/python{env["python_version"]}/site-packages")
 
 
 ### Build config for pythonscript ###
@@ -29,7 +29,7 @@ env.AppendUnique(CFLAGS=["-m64"])
 env.AppendUnique(LINKFLAGS=["-m64"])
 # Cannot use CPPPATH&LIBPATH here given headers are within `cpython_build` target,
 # so Scons consider the headers are a missing target
-env.AppendUnique(CFLAGS=[f"-I{cpython_build.abspath}/include/python3.9/"])
+env.AppendUnique(CFLAGS=[f"-I{cpython_build.abspath}/include/python{env["python_version"]}/"])
 env.AppendUnique(LINKFLAGS=[f"-L{cpython_build.abspath}/lib"])
 env.AppendUnique(CYTHON_COMPILE_DEPS=[cpython_build])
 
@@ -37,8 +37,11 @@ env.AppendUnique(CYTHON_COMPILE_DEPS=[cpython_build])
 ### Fetch Python prebuild ###
 
 
-#CPYTHON_PREBUILD_URL = "https://github.com/indygreg/python-build-standalone/releases/download/20200822/cpython-3.8.5-x86_64-unknown-linux-gnu-pgo-20200823T0036.tar.zst"
-CPYTHON_PREBUILD_URL = "https://github.com/astral-sh/python-build-standalone/releases/download/20251031/cpython-3.9.25+20251031-x86_64-unknown-linux-gnu-pgo+lto-full.tar.zst"
+CPYTHON_PREBUILD_URL = ""
+
+if env["python_version"] == "3.9":
+    CPYTHON_PREBUILD_URL = "https://github.com/astral-sh/python-build-standalone/releases/download/20251031/cpython-3.9.25+20251031-x86_64-unknown-linux-gnu-pgo+lto-full.tar.zst"
+
 cpython_prebuild_archive = env.Download(
     target=File(CPYTHON_PREBUILD_URL.rsplit("/", 1)[1]), url=CPYTHON_PREBUILD_URL
 )
@@ -89,7 +92,7 @@ def generate_cpython_build(target, source, env):
     assert config.exists()
     shutil.rmtree(str(config))
 
-    stdlib_path = build / "lib/python3.9"
+    stdlib_path = build / ("lib/python" + env["python_version"])
 
     # Remove tests lib (pretty big and basically useless)
     shutil.rmtree(str(stdlib_path / "test"))
@@ -103,12 +106,12 @@ def generate_cpython_build(target, source, env):
 
     # Zip the stdlib to save plenty of space \o/
     if env["compressed_stdlib"]:
-        tmp_stdlib_path = build / "lib/tmp_python3.9"
+        tmp_stdlib_path = build / "lib/tmp_python" + env["python_version"]
         shutil.move(str(stdlib_path), str(tmp_stdlib_path))
         stdlib_path.mkdir()
         shutil.move(str(tmp_stdlib_path / "lib-dynload"), str(stdlib_path / "lib-dynload"))
         shutil.make_archive(
-            base_name=build / "lib/python38", format="zip", root_dir=str(tmp_stdlib_path)
+            base_name=build / ("lib/python" + env["python_version"].replace(".", "")), format="zip", root_dir=str(tmp_stdlib_path)
         )
         shutil.rmtree(str(tmp_stdlib_path))
         # Oddly enough, os.py must be present (even if empty !) otherwise

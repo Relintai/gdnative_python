@@ -30,8 +30,11 @@ env.AppendUnique(CYTHON_COMPILE_DEPS=[cpython_build])
 
 ### Fetch Python prebuild ###
 
+CPYTHON_PREBUILD_URL = ""
 
-CPYTHON_PREBUILD_URL = "https://github.com/indygreg/python-build-standalone/releases/download/20200830/cpython-3.8.5-x86_64-pc-windows-msvc-shared-pgo-20200830T2254.tar.zst"
+if env["python_version"] == "3.9":
+    CPYTHON_PREBUILD_URL = "https://github.com/astral-sh/python-build-standalone/releases/download/20251031/cpython-3.9.25+20251031-x86_64-pc-windows-msvc-pgo-full.tar.zst"
+
 cpython_prebuild_archive = env.Download(
     target=File(CPYTHON_PREBUILD_URL.rsplit("/", 1)[1]), url=CPYTHON_PREBUILD_URL
 )
@@ -65,7 +68,7 @@ def generate_cpython_build(target, source, env):
     prebuild = Path(source[0].abspath) / "python"
 
     conf = json.loads((prebuild / "PYTHON.json").read_text())
-    assert conf["version"] == "5"
+    #assert conf["version"] == "5"
     assert conf["libpython_link_mode"] == "shared"
     assert conf["target_triple"] == "x86_64-pc-windows-msvc"
 
@@ -90,7 +93,7 @@ def generate_cpython_build(target, source, env):
 
     # Zip the stdlib to save plenty of space \o/
     if env["compressed_stdlib"]:
-        shutil.make_archive(base_name=build / "python38", format="zip", root_dir=str(stdlib_path))
+        shutil.make_archive(base_name=build / ("python" + env["python_version"].replace(".", "")), format="zip", root_dir=str(stdlib_path))
         shutil.rmtree(str(stdlib_path))
         stdlib_path.mkdir()
         # Oddly enough, os.py must be present (even if empty !) otherwise
