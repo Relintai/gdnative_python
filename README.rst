@@ -362,16 +362,6 @@ boundary check so you may end up with memory corruption if you don't take care ;
 
 See the `godot-python issue <https://github.com/touilleMan/godot-python/issues/84>`_.
 
-PyEnv
------
-
-pyenv install 3.9
-
-pyenv local 3.9
-
-
-pyenv shell 3.9
-
 
 Note
 ----
