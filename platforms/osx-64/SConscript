@@ -45,6 +45,8 @@ elif env["python_version"] == "3.12":
     CPYTHON_PREBUILD_URL = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.12.16+20261110-x86_64-apple-darwin-pgo+lto-full.tar.zst"
 elif env["python_version"] == "3.13":
     CPYTHON_PREBUILD_URL = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.13.18+20261110-x86_64-apple-darwin-pgo+lto-full.tar.zst"
+elif env["python_version"] == "3.14":
+    CPYTHON_PREBUILD_URL = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.14.10+20261110-x86_64-apple-darwin-pgo+lto-full.tar.zst"
 
 cpython_prebuild_archive = env.Download(
     target=File(CPYTHON_PREBUILD_URL.rsplit("/", 1)[1]), url=CPYTHON_PREBUILD_URL

@@ -42,6 +42,8 @@ if env["python_version"] == "3.12":
     cpython_prebuild_url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.12.16+20261110-i686-pc-windows-msvc-pgo-full.tar.zst"
 if env["python_version"] == "3.13":
     cpython_prebuild_url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.13.18+20261110-i686-pc-windows-msvc-pgo-full.tar.zst"
+if env["python_version"] == "3.14":
+    cpython_prebuild_url = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.14.10+20261110-i686-pc-windows-msvc-pgo-full.tar.zst"
 
 cpython_prebuild_archive = env.Download(
     target=File(CPYTHON_PREBUILD_URL.rsplit("/", 1)[1]), url=CPYTHON_PREBUILD_URL
