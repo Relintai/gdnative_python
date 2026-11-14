@@ -20,14 +20,12 @@ docker run ${custom_envvars} \
 
 # Windows Build 64
 docker run ${custom_envvars} \
-	      -v ${basedir}/engine_build_scripts:/root/engine_build_scripts \
 	      -v ${project_root}:/root/project \
 	      -w /root/project pandemonium-windows:${img_version} \
 	      bash /root/project/in_container_build_scripts/windows-64.sh "$@" 2>&1 | tee logs/windows-64.log
 
 # Windows Build 32
 docker run ${custom_envvars} \
-	      -v ${basedir}/engine_build_scripts:/root/engine_build_scripts \
 	      -v ${project_root}:/root/project \
 	      -w /root/project pandemonium-windows:${img_version} \
 	      bash /root/project/in_container_build_scripts/windows-32.sh "$@" 2>&1 | tee logs/windows-32.log
@@ -43,14 +41,20 @@ docker run ${custom_envvars} \
 cd ./build/
 
 files=(
-  # Windows
-  "pandemonium.windows.opt.64.exe"
-
   # Linux
-  "pandemonium.x11.opt.32"
+  "pandemonium-python-1.0.0-python3.9-x11-64.tar.bz2"
+  "pandemonium-python-1.0.0-python3.11-x11-64.tar.bz2"
+  "pandemonium-python-1.0.0-python3.12-x11-64.tar.bz2"
+  "pandemonium-python-1.0.0-python3.13-x11-64.tar.bz2"
+  "pandemonium-python-1.0.0-python3.14-x11-64.tar.bz2"
+  "pandemonium-python-1.0.0-python3.15-x11-64.tar.bz2"
 
-  # OSX
-  "pandemonium.osx.opt.universal"
+  # Windows - TODO
+  #"pandemonium.windows.opt.64.exe"
+
+
+  # OSX TODO
+  #"pandemonium.osx.opt.universal"
 )
 
 error=0
