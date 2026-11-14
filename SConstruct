@@ -235,9 +235,9 @@ def generate_release(target, source, env):
 
 # Zip format doesn't support symlinks that are needed for Linux&macOS
 if env["platform"].startswith("windows") or env["platform"].startswith("osx"):
-    release_target = "build/pandemonium-python-${release_suffix}-${platform}.zip"
+    release_target = "build/pandemonium-python-${release_suffix}-python${python_version}-${platform}.zip"
 else:
-    release_target = "build/pandemonium-python-${release_suffix}-${platform}.tar.bz2"
+    release_target = "build/pandemonium-python-${release_suffix}-python${python_version}-${platform}.tar.bz2"
 
 release = env.Command(release_target, env["DIST_ROOT"], generate_release)
 env.Alias("release", release)
