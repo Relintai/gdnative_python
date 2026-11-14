@@ -157,6 +157,16 @@ GDN_EXPORT void pandemonium_gdnative_init(pandemonium_gdnative_init_options *opt
 
 	// Initialize CPython interpreter
 
+#if (PY_MAJOR_VERSION >= 3) && (PY_MINOR_VERSION >= 11)
+	PyConfig config;
+	// Maybe PyConfig_InitIsolatedConfig() ?
+	PyConfig_InitPythonConfig(&config);
+	config.isolated = 1;
+	//config.install_signal_handlers = 0;
+
+	PyConfig_SetBytesString(&config, &config.program_name, "pandemonium");
+#endif
+
 	// Retrieve path and set pythonhome
 	{
 		static wchar_t pythonhome[300];
@@ -174,8 +184,20 @@ GDN_EXPORT void pandemonium_gdnative_init(pandemonium_gdnative_init_options *opt
 		pythonhome[i] = '\0';
 
 		pythonscript_gdapi10->pandemonium_string_destroy(&_pythonhome);
+
+#if (PY_MAJOR_VERSION >= 3) && (PY_MINOR_VERSION >= 11)
+		PyConfig_SetString(&config, &config.home, pythonhome);
+#else
+		// Depracated in Python 3.11
 		Py_SetPythonHome(pythonhome);
+#endif
 	}
+
+#if (PY_MAJOR_VERSION >= 3) && (PY_MINOR_VERSION >= 11)
+	Py_InitializeFromConfig(&config);
+
+	PyConfig_Clear(&config);
+#else
 	// TODO: site.USER_SITE seems to point to an invalid location in ~/.local
 	// // Add current dir to PYTHONPATH
 	// wchar_t *path = Py_GetPath();
@@ -192,6 +214,8 @@ GDN_EXPORT void pandemonium_gdnative_init(pandemonium_gdnative_init_options *opt
 	// Since python3.7 PyEval_InitThreads is automatically called by Py_InitializeEx, but it's better to leave it here
 	// to be explicit. Calling it again does nothing.
 	//PyEval_InitThreads();
+#endif
+
 	int ret = import__pandemonium();
 	if (ret != 0) {
 		GD_ERROR_PRINT("Cannot load pandemonium python module");
