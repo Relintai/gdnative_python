@@ -52,9 +52,10 @@ vars.Add(
 vars.Add("release_suffix", "Suffix to add to the release archive", extract_version())
 vars.Add(
     "pandemonium_binary",
-    "Path to Pandemonium binary or version of Pandemonium to use",
-    default="3.2.2",
-    converter=pandemonium_binary_converter,
+    #"Path to Pandemonium binary or version of Pandemonium to use",
+    "Pandemonium version",
+    default="5.3.0",
+    #converter=pandemonium_binary_converter,
 )
 vars.Add("pandemonium_headers", "Path to Pandemonium GDnative headers", "")
 vars.Add("debugger", "Run test with a debugger", "")
