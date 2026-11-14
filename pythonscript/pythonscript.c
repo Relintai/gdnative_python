@@ -191,7 +191,7 @@ GDN_EXPORT void pandemonium_gdnative_init(pandemonium_gdnative_init_options *opt
 	// PyEval_InitThreads acquires the GIL, so we must release it later.
 	// Since python3.7 PyEval_InitThreads is automatically called by Py_InitializeEx, but it's better to leave it here
 	// to be explicit. Calling it again does nothing.
-	PyEval_InitThreads();
+	//PyEval_InitThreads();
 	int ret = import__pandemonium();
 	if (ret != 0) {
 		GD_ERROR_PRINT("Cannot load pandemonium python module");
