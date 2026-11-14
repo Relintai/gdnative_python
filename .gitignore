@@ -4,6 +4,8 @@ __pycache__
 *.pyc
 .mypy_cache
 
+logs/
+
 # IDE stuff
 .vs
 .vscode
