@@ -98,7 +98,7 @@ def CythonCompile(env, target, source):
             SHLIBSUFFIX=".so",
             CFLAGS=cflags,
             LINKFLAGS=[*linkflags, *env["LINKFLAGS"]],
-            LIBS=["python3.9", "pythonscript"],
+            LIBS=["python" + env["python_version"], "pythonscript"],
             # LIBS=[*env["CYTHON_LIBS"], *env["LIBS"]],
             # LIBPATH=[*env['CYTHON_LIBPATH'], *env['LIBPATH']]
         )
