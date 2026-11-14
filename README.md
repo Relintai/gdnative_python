@@ -1,23 +1,17 @@
 
-===============
-GDNative Python
-===============
-
+#GDNative Python
 
 The goal of this project is to provide Python language support as a scripting module for the Pandemonium game engine.
 
-It's a fork of https://github.com/touilleMan/godot-python .
+It's a fork of `https://github.com/touilleMan/godot-python`.
 
-.. image:: https://github.com/Relintai/gdnative_python/raw/master/misc/showcase.png
-   :align: center
+![Showcase](https://github.com/Relintai/gdnative_python/raw/master/misc/showcase.png)
 
-
-API
-===
+## API
 
 example:
 
-.. code-block:: python
+```python
 
 	# Explicit is better than implicit
 	from pandemonium import exposed, export, Vector2, Node2D, ResourceLoader
@@ -72,99 +66,81 @@ example:
 		Python. However they can be imported from another python module.
 		"""
 		...
+```
 
-
-Building
-========
+## Building
 
 To build the project from source, first checkout the repo or download the
 latest tarball.
 
 GDNative Python requires Python >= 3.7 and a C compiler.
 
-
-Pandemonium GDNative header
----------------------
+### Pandemonium GDNative header
 
 TODO (need to be copied from the gdnative module)
 
-Linux
------
-
+### Linux
 
 On a fresh Ubuntu install, you will need to install these:
 
-.. code-block:: bash
-
-	$ apt install python3 python3-pip python3-venv build-essential
+`apt install python3 python3-pip python3-venv build-essential`
 
 On top of that build the CPython interpreter requires development headers
-of it `extension modules <https://devguide.python.org/setup/#install-dependencies>`_
+of it [extension modules](https://devguide.python.org/setup/#install-dependencies)
 (for instance if you lack sqlite dev headers, your Godot-Python build won't
 contain the sqlite3 python module)
 
 The simplest way is to uncomment the main deb-src in `/etc/apt/sources.list`:
 
-.. code-block:: bash
-
-	deb-src http://archive.ubuntu.com/ubuntu/ artful main
+`deb-src http://archive.ubuntu.com/ubuntu/ artful main`
 
 and instruct apt to install the needed packages:
 
-.. code-block:: bash
+```
+apt update
+apt build-dep python3.6
+```
 
-	$ apt update
-	$ apt build-dep python3.6
+Note, you might need a newer python than this, building was tested with 3.14.7.
 
-See the `Python Developer's Guide <https://devguide.python.org/setup/#build-dependencies>`_
+See the [Python Developer's Guide](https://devguide.python.org/setup/#build-dependencies>)
 for instructions on additional platforms.
 
 
-MacOS
------
+### MacOS
 
 With MacOS, you will need XCode installed and install the command line tools.
 
-.. code-block:: bash
-
-	$ xcode-select --install
+`xcode-select --install`
 
 If you are using CPython as your backend, you will need these. To install with Homebrew:
 
-.. code-block:: bash
-
-	$ brew install python3 openssl zlib
+`brew install python3 openssl zlib`
 
 You will also need virtualenv for your python.
 
 
-Windows
--------
+### Windows
 
 
 Install VisualStudio and Python3, then submit a PR to improve this paragraph ;-)
 
 
-Create the virtual env
-----------------------
+### Create the virtual env
 
 Godot-Python build system is heavily based on Python (mainly Scons, Cython and Jinja2).
 Hence we have to create a Python virtual env to install all those dependencies
 without clashing with your global Python configuration.
 
-
-.. code-block:: bash
-
-	$ cd <godot-python-dir>
-	godot-python$ python3 -m venv venv
-
+```
+cd <godot-python-dir>
+godot-python$ python3 -m venv venv
+```
 
 Now you need to activate the virtual env, this is something you should do
 every time you want to use the virtual env.
 
 For Linux/MacOS:
-
-.. code-block:: bash
 
 	godot-python$ . ./venv/bin/activate
 
@@ -182,27 +158,19 @@ Finally we can install dependencies:
 	godot-python(venv)$ pip install -r requirements.txt
 
 
-Running the build
------------------
-
+### Running the build
 
 For Linux:
 
-.. code-block:: bash
-
-	godot-python(venv)$ scons platform=x11-64 release
+`godot-python(venv)$ scons platform=x11-64 release`
 
 For Windows:
 
-.. code-block:: bash
-
-	godot-python(venv)$ scons platform=windows-64 release
+`godot-python(venv)$ scons platform=windows-64 release`
 
 For MacOS:
 
-.. code-block:: bash
-
-	godot-python(venv)$ scons platform=osx-64 CC=clang release
+`godot-python(venv)$ scons platform=osx-64 CC=clang release`
 
 Valid platforms are `x11-64`, `x11-32`, `windows-64`, `windows-32` and `osx-64`.
 Check Travis or Appveyor links above to see the current status of your platform.
@@ -220,12 +188,9 @@ Eventually the rest of the source will be compiled and a zip build archive
 will be available in the build directory.
 
 
-Testing your build
-------------------
+### Testing your build
 
-.. code-block:: bash
-
-	godot-python(venv)$ scons platform=<platform> test
+`godot-python(venv)$ scons platform=<platform> test`
 
 This will run pytests defined in `tests/bindings` inside the Godot environment.
 If not present, will download a precompiled Godot binary (defined in SConstruct
@@ -233,12 +198,9 @@ and platform specific SCSub files) to and set the correct library path for
 the GDNative wrapper.
 
 
-Running the example project
----------------------------
+### Running the example project
 
-.. code-block:: bash
-
-	godot-python(venv)$ scons platform=<platform> example
+`godot-python(venv)$ scons platform=<platform> example`
 
 This will run the converted pong example in `examples/pong` inside the Godot
 environment. If not present, will download a precompiled Godot binary
@@ -246,25 +208,20 @@ environment. If not present, will download a precompiled Godot binary
 wrapper.
 
 
-Using a local Godot version
----------------------------
+### Using a local Godot version
 
 If you have a pre-existing version of godot, you can instruct the build script to
 use that the static library and binary for building and tests.
 
-.. code-block:: bash
-
-	godot-python(venv)$ scons platform=x11-64 pandemonium_binary=../godot/bin/godot.x11.opt.64
+`godot-python(venv)$ scons platform=x11-64 pandemonium_binary=../godot/bin/godot.x11.opt.64`
 
 
-Additional build options
-------------------------
+### Additional build options
 
 You check out all the build options `in this file <https://github.com/touilleMan/godot-python/blob/master/SConstruct#L23>`_.
 
 
-FAQ
-===
+## FAQ
 
 **How can I export my project?**
 
@@ -288,15 +245,11 @@ In essence, godot-python installs a python interpreter inside your project which
 
 First, locate the correct python interpreter. This will be inside your project at :code:`addons\pythonscript\windows-64\python.exe` for 64-bit Windows, :code:`addons/pythonscript/ox-64/bin/python3` for OSX, etc. Then install pip by running:
 
-.. code-block::
-
-	addons\pythonscript\windows-64\python.exe -m ensurepip
+`addons\pythonscript\windows-64\python.exe -m ensurepip`
 
 (substituting the correct python for your system). Any other method of installing pip at this location is fine too, and this only needs to be done once. Afterward, any desired packages can be installed by running
 
-.. code-block::
-
-	addons\pythonscript\windows-64\python.exe -m pip install numpy
+`addons\pythonscript\windows-64\python.exe -m pip install numpy`
 
 again, substituting the correct python executable, and replacing numpy with whatever packages you desire. The package can now be imported in your Python code as normal.
 
@@ -309,21 +262,25 @@ For more detailed guide and explanation see this `external blog post <https://me
 
 **How can I autoload a python script without attaching it to a Node?**
 
-In your :code:`project.godot` file, add the following section::
+In your `project.pandemonium` file, add the following section::
 
+```
   [autoload]
   autoloadpy="*res://autoload.py"
+```
 
-In addition to the usual::
+In addition to the usual:
 
+```
   [gdnative]
   singletons=[ "res://pythonscript.gdnlib" ]
+```
 
-You can use any name for the python file and the class name
-:code:`autoloadpy`.
+You can use any name for the python file and the class name `autoload.py`.
 
-Then :code:`autoload.py` can expose a Node::
+Then `autoload.py` can expose a Node:
 
+```
   from godot import exposed, export
   from godot.bindings import *
 
@@ -332,19 +289,21 @@ Then :code:`autoload.py` can expose a Node::
 
       def hi(self, to):
           return 'Hello %s from Python !' % to
+```
 
 which can then be called from your gdscript code as an attribute of
-the :code:`autoloadpy` class (use the name defined in your :code:`project.godot`)::
+the `autoload.py` class (use the name defined in your `project.pandemonium`)::
 
-  print(autoloadpy.hi('root'))
+`print(autoloadpy.hi('root'))`
 
 **How can I efficiently access PoolArrays?**
 
-:code:`PoolIntArray`, :code:`PoolFloatArray`, :code:`PoolVector3Array`
+`PoolIntArray`, `PoolFloatArray`, `PoolVector3Array`
 and the other pool arrays can't be accessed directly because they must
-be locked in memory first. Use the :code:`arr.raw_access()` context
-manager to lock it::
+be locked in memory first. Use the `arr.raw_access()` context
+manager to lock it:
 
+```
   arr = PoolIntArray() # create the array
   arr.resize(10000)
 
@@ -356,18 +315,15 @@ manager to lock it::
   with arr.raw_access() as ptr:
       for i in range(10000):
           assert ptr[i] == i # so is this
+```
 
 Keep in mind great performances comes with great responsabilities: there is no
 boundary check so you may end up with memory corruption if you don't take care ;-)
 
-See the `godot-python issue <https://github.com/touilleMan/godot-python/issues/84>`_.
 
-
-Note
-----
+## Note
 
 The release workflow doesn't work. Just download the zip from actions, and reupload if necessary.
-
 
 autopxd2 2.5.0 is the last version we can use, 3.0+ is basically a difeerent library with a single method.
 
