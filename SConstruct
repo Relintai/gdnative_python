@@ -91,7 +91,14 @@ vars.Add(
     )
 )
 
-vars.Add("python_version", "python version to build with.", "3.9")
+vars.Add(
+    EnumVariable(
+        "python_version",
+        "python version to build with.",
+        "3.15",
+        allowed_values=("3.9", "3.10", "3.11", "3.12", "3.13", "3.14", "3.15"),
+    )
+)
 
 # Set Visual Studio arch according to platform target
 vanilla_vars_update = vars.Update
