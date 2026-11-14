@@ -32,7 +32,7 @@ env.AppendUnique(CYTHON_COMPILE_DEPS=[cpython_build])
 
 CPYTHON_PREBUILD_URL = ""
 
-if env["python_version"] == "3.9":
+if env["python_version"] == "3.9": # Not updated anymore
     CPYTHON_PREBUILD_URL = "https://github.com/astral-sh/python-build-standalone/releases/download/20251031/cpython-3.9.25+20251031-x86_64-pc-windows-msvc-pgo-full.tar.zst"
 
 cpython_prebuild_archive = env.Download(
