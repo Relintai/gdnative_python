@@ -1,6 +1,6 @@
 ARG img_version
 FROM pandemonium-fedora:${img_version}
 
-RUN dnf -y install --setopt=install_weak_deps=False gcc g++
+RUN dnf -y install --setopt=install_weak_deps=False gcc g++ clang
 
 CMD /bin/bash
