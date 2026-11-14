@@ -1,41 +1,41 @@
 #!/bin/bash
 set -e
 
-export PATH="${PANDEMONIUN_SDK_LINUX_X86_64}/bin:${BASE_PATH}"
+rm -Rf venv
 
-# Linux editor 64 bit
-scons production=yes tools=yes target=release_debug custom_modules_shared=no debug_symbols=no platform=x11 bits=64 "$@"
+python3 -m venv venv
+. ./venv/bin/activate
+pip install -r requirements.txt
 
-# Linux templates 64 bit
-scons production=yes tools=no target=release_debug custom_modules_shared=no debug_symbols=no platform=x11 bits=64 "$@"
-scons production=yes tools=no target=release custom_modules_shared=no debug_symbols=no platform=x11 bits=64 "$@"
+scons platform=x11-64 python_version=3.15 release
 
-export PATH="${PANDEMONIUN_SDK_LINUX_X86_32}/bin:${BASE_PATH}"
+rm -Rf build/x11-64
+rm -Rf build/dist
 
-# Linux editor 32 bit
-scons production=yes tools=yes target=release_debug custom_modules_shared=no debug_symbols=no platform=x11 bits=32 "$@"
+scons platform=x11-64 python_version=3.14 release
 
-# Linux templates 32 bit
-scons production=yes tools=no target=release_debug custom_modules_shared=no debug_symbols=no platform=x11 bits=32 "$@"
-scons production=yes tools=no target=release custom_modules_shared=no debug_symbols=no platform=x11 bits=32 "$@"
+rm -Rf build/x11-64
+rm -Rf build/dist
 
-export PATH="${PANDEMONIUN_SDK_LINUX_ARM64}/bin:${BASE_PATH}"
+scons platform=x11-64 python_version=3.13 release
 
-# Linux editor arm64
-scons production=yes tools=yes target=release_debug custom_modules_shared=no debug_symbols=no platform=x11 arch=arm64 "$@"
+rm -Rf build/x11-64
+rm -Rf build/dist
 
-# Linux templates arm64
-scons production=yes tools=no target=release_debug custom_modules_shared=no debug_symbols=no platform=x11 arch=arm64 "$@"
-scons production=yes tools=no target=release custom_modules_shared=no debug_symbols=no platform=x11 arch=arm64 "$@"
+scons platform=x11-64 python_version=3.12 release
 
-# = arm32 template
-export PATH="${PANDEMONIUN_SDK_LINUX_ARMV7}/bin:${BASE_PATH}"
+rm -Rf build/x11-64
+rm -Rf build/dist
 
-# Linux editor arm
-scons production=yes tools=yes target=release_debug custom_modules_shared=no debug_symbols=no platform=x11 arch=arm "$@"
+scons platform=x11-64 python_version=3.11 release
 
-# Linux templates arm
-scons production=yes tools=no target=release_debug custom_modules_shared=no debug_symbols=no platform=x11 arch=arm "$@"
-scons production=yes tools=no target=release custom_modules_shared=no debug_symbols=no platform=x11 arch=arm "$@"
+rm -Rf build/x11-64
+rm -Rf build/dist
+
+scons platform=x11-64 python_version=3.9 release
+
+rm -Rf build/x11-64
+rm -Rf build/dist
+
 
 
