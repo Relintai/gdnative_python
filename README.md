@@ -325,5 +325,5 @@ boundary check so you may end up with memory corruption if you don't take care ;
 
 The release workflow doesn't work. Just download the zip from actions, and reupload if necessary.
 
-autopxd2 2.5.0 is the last version we can use, 3.0+ is basically a difeerent library with a single method.
+autopxd2 2.5.0 is the last version we can use, 3.0+ is basically a different library with a single method.
 
