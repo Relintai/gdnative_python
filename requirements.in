@@ -2,6 +2,7 @@ pip-tools~=6.0.1
 black~=25.11.0
 scons~=4.5
 cython~=0.29.21
+# Note needs to be set explicitly
 autopxd2~=1.1.0
 pycparser~=2.20
 jinja2~=2.11.3
