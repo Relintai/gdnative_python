@@ -19,16 +19,16 @@ docker run ${custom_envvars} \
         bash /root/project/in_container_build_scripts/linux.sh "$@" 2>&1 | tee logs/linux.log
 
 # Windows Build 64
-docker run ${custom_envvars} \
-	      -v ${project_root}:/root/project \
-	      -w /root/project pandemonium-windows:${img_version} \
-	      bash /root/project/in_container_build_scripts/windows-64.sh "$@" 2>&1 | tee logs/windows-64.log
+#docker run ${custom_envvars} \
+#	      -v ${project_root}:/root/project \
+#	      -w /root/project pandemonium-windows:${img_version} \
+#	      bash /root/project/in_container_build_scripts/windows-64.sh "$@" 2>&1 | tee logs/windows-64.log
 
 # Windows Build 32
-docker run ${custom_envvars} \
-	      -v ${project_root}:/root/project \
-	      -w /root/project pandemonium-windows:${img_version} \
-	      bash /root/project/in_container_build_scripts/windows-32.sh "$@" 2>&1 | tee logs/windows-32.log
+#docker run ${custom_envvars} \
+#	      -v ${project_root}:/root/project \
+#	      -w /root/project pandemonium-windows:${img_version} \
+#	      bash /root/project/in_container_build_scripts/windows-32.sh "$@" 2>&1 | tee logs/windows-32.log
 
 # OSX Build - TODO
 #docker run ${custom_envvars} \
