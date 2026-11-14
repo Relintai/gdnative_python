@@ -1,3 +1,4 @@
+import os
 import zstandard
 import tarfile
 import json
@@ -18,6 +19,14 @@ env["cpython_build"] = cpython_build
 env["cpython_build_dir"] = cpython_build
 env["DIST_SITE_PACKAGES"] = Dir(str(env['DIST_PLATFORM']) + "/Lib/site-packages")
 
+if os.name == "posix":
+    mingw_prefix = "i686-w64-mingw32-"
+    if env["CC_IS_CLANG"]:
+        env["CC"] = mingw_prefix + "clang"
+        env["CXX"] = mingw_prefix + "clang++"
+    else:
+        env["CC"] = mingw_prefix + "gcc"
+        env["CXX"] = mingw_prefix + "g++"
 
 ### Build config for pythonscript ###
 
