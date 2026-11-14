@@ -36,6 +36,8 @@ if env["python_version"] == "3.9": # Not updated anymore
     CPYTHON_PREBUILD_URL = "https://github.com/astral-sh/python-build-standalone/releases/download/20251031/cpython-3.9.25+20251031-x86_64-pc-windows-msvc-pgo-full.tar.zst"
 elif env["python_version"] == "3.10": # Likely not updated anymore
     CPYTHON_PREBUILD_URL = "https://github.com/astral-sh/python-build-standalone/releases/download/20261009/cpython-3.10.22+20261009-x86_64-pc-windows-msvc-pgo-full.tar.zst"
+elif env["python_version"] == "3.11":
+    CPYTHON_PREBUILD_URL = "https://github.com/astral-sh/python-build-standalone/releases/download/20261110/cpython-3.11.18+20261110-x86_64-pc-windows-msvc-pgo-full.tar.zst"
 
 cpython_prebuild_archive = env.Download(
     target=File(CPYTHON_PREBUILD_URL.rsplit("/", 1)[1]), url=CPYTHON_PREBUILD_URL
