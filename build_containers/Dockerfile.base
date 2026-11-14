@@ -1,0 +1,9 @@
+FROM fedora:43
+
+WORKDIR /root
+
+RUN dnf -y install --setopt=install_weak_deps=False \
+      bash binutils bzip2 curl file findutils gettext git make nano patch pkgconfig python3-pip unzip which xz && \
+    pip install scons==4.9.1
+
+CMD /bin/bash
