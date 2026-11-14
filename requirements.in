@@ -1,11 +1,19 @@
-pip-tools~=6.0.1
-black~=25.11.0
-scons~=4.5
-cython~=0.29.21
-# Note needs to be set explicitly
-autopxd2~=1.1.0
-pycparser~=2.20
-jinja2~=2.11.3
-zstandard~=0.15.2
-# click needs this, doesnt get installed for some reason on linux, they use it on non linux
-colorama~=0.4.6
+autopxd2==2.5.0
+black==26.10.1
+build==1.6.1
+click==8.5.1
+colorama==0.4.6
+Cython==3.3.1
+Jinja2==3.1.6
+MarkupSafe==3.0.4
+mypy_extensions==1.2.0
+packaging==26.3
+pathspec==1.1.1
+platformdirs==4.14.5
+pycparser==3.12
+pyproject_hooks==1.3.3
+pytokens==0.4.1
+SCons==4.11.1
+setuptools==84.2.1
+wheel==0.48.0
+zstandard==0.25.0
