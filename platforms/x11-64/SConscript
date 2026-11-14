@@ -108,7 +108,7 @@ def generate_cpython_build(target, source, env):
 
     # Zip the stdlib to save plenty of space \o/
     if env["compressed_stdlib"]:
-        tmp_stdlib_path = build / "lib/tmp_python" + env["python_version"]
+        tmp_stdlib_path = build / ("lib/tmp_python" + env["python_version"])
         shutil.move(str(stdlib_path), str(tmp_stdlib_path))
         stdlib_path.mkdir()
         shutil.move(str(tmp_stdlib_path / "lib-dynload"), str(stdlib_path / "lib-dynload"))
