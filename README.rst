@@ -20,7 +20,7 @@ example:
 .. code-block:: python
 
 	# Explicit is better than implicit
-	from godot import exposed, export, Vector2, Node2D, ResourceLoader
+	from pandemonium import exposed, export, Vector2, Node2D, ResourceLoader
 
 	WEAPON_RES = ResourceLoader.load("res://weapon.tscn")
 	SPEED = Vector2(10, 10)
