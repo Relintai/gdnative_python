@@ -1,24 +1,19 @@
-=======
-Credits
-=======
+# Credits
 
-Development Lead
-----------------
+## Development Lead
 
-* Péter Magyar  `@Relintai <https://github.com/Relintai>`_
+* Péter Magyar  `Relintai <https://github.com/Relintai>`
 
+## Godot Python Development Lead
 
-Godot Python Development Lead
------------------------------
+* Emmanuel Leblond `touilleMan <https://github.com/touilleMan>`
 
-* Emmanuel Leblond `@touilleMan <https://github.com/touilleMan>`_
+## Godot Python Original Contributors
 
-Godot Python Original Contributors
-----------------------------------
+* Răzvan Cosmin Rădulescu `razvanc-r <https://github.com/razvanc-r>`
+* Max Hilbrunner `mhilbrunner <https://github.com/mhilbrunner>`
+* Chris Ridenour `cridenour <https://github.com/cridenour>`
+* Gary Oberbrunner `garyo <https://github.com/garyo>`
+* Paolo Barresi `paolobb4 <https://github.com/paolobb4>`
+* Colin Kinloch `ColinKinloch <https://github.com/ColinKinloch>`
 
-* Răzvan Cosmin Rădulescu `@razvanc-r <https://github.com/razvanc-r>`_
-* Max Hilbrunner `@mhilbrunner <https://github.com/mhilbrunner>`_
-* Chris Ridenour `@cridenour <https://github.com/cridenour>`_
-* Gary Oberbrunner `@garyo <https://github.com/garyo>`_
-* Paolo Barresi `@paolobb4 <https://github.com/paolobb4>`_
-* Colin Kinloch `@ColinKinloch <https://github.com/ColinKinloch>`_
