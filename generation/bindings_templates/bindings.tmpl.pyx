@@ -9,7 +9,7 @@ from pandemonium.builtins cimport *
 from enum import IntFlag
 
 
-__ERR_MSG_BINDING_NOT_AVAILABLE = "No Pandemonium binding available"
+_ERR_MSG_BINDING_NOT_AVAILABLE = "No Pandemonium binding available"
 
 
 class Error(IntFlag):

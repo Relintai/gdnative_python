@@ -138,7 +138,7 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
 {% if cls.is_reference %}
     def __init__(self):
         if __{{ cls.name }}_constructor == NULL:
-            raise NotImplementedError(__ERR_MSG_BINDING_NOT_AVAILABLE)
+            raise NotImplementedError(_ERR_MSG_BINDING_NOT_AVAILABLE)
         cdef pandemonium_bool __ret
         with nogil:
             self._gd_ptr = __{{ cls["name"] }}_constructor()
@@ -156,7 +156,7 @@ cdef class {{ cls.name }}({{ cls.base_class }}):
     @staticmethod
     def new():
         if __{{ cls.name }}_constructor == NULL:
-            raise NotImplementedError(__ERR_MSG_BINDING_NOT_AVAILABLE)
+            raise NotImplementedError(_ERR_MSG_BINDING_NOT_AVAILABLE)
         # Call to __new__ bypasses __init__ constructor
         cdef {{ cls.name }} wrapper = {{ cls.name }}.__new__({{ cls.name }})
         with nogil:

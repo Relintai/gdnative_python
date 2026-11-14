@@ -132,7 +132,7 @@ cdef {{ method.return_type.c_type }} {{ retval }}
 {% set retval_as_arg = "&{}".format(retval) %}
 {% endif %}
 if {{ get_method_bind_register_name(cls, method) }} == NULL:
-    raise NotImplementedError(__ERR_MSG_BINDING_NOT_AVAILABLE)
+    raise NotImplementedError(_ERR_MSG_BINDING_NOT_AVAILABLE)
 with nogil:
     gdapi10.pandemonium_method_bind_ptrcall(
         {{ get_method_bind_register_name(cls, method) }},
