@@ -3,6 +3,8 @@ set -e
 
 img_version=gdnp
 
+mkdir -p logs
+
 # You can add --no-cache  as an option to docker_build below to rebuild all containers from scratch
 export docker_build="docker build --build-arg img_version=${img_version} "
 
