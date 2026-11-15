@@ -42,12 +42,12 @@ cd ./build/
 
 files=(
   # Linux
-  "pandemonium-python-1.0.0-python3.9-x11-64.tar.bz2"
-  "pandemonium-python-1.0.0-python3.11-x11-64.tar.bz2"
-  "pandemonium-python-1.0.0-python3.12-x11-64.tar.bz2"
-  "pandemonium-python-1.0.0-python3.13-x11-64.tar.bz2"
-  "pandemonium-python-1.0.0-python3.14-x11-64.tar.bz2"
-  "pandemonium-python-1.0.0-python3.15-x11-64.tar.bz2"
+  "pandemonium-python-0.9.0-python3.9-x11-64.tar.bz2"
+  "pandemonium-python-0.9.0-python3.11-x11-64.tar.bz2"
+  "pandemonium-python-0.9.0-python3.12-x11-64.tar.bz2"
+  "pandemonium-python-0.9.0-python3.13-x11-64.tar.bz2"
+  "pandemonium-python-0.9.0-python3.14-x11-64.tar.bz2"
+  "pandemonium-python-0.9.0-python3.15-x11-64.tar.bz2"
 
   # Windows - TODO
   #"pandemonium.windows.opt.64.exe"
