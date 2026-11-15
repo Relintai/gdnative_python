@@ -19,7 +19,7 @@ env["cpython_build"] = cpython_build
 env["cpython_build_dir"] = cpython_build
 env["DIST_SITE_PACKAGES"] = Dir(str(env['DIST_PLATFORM']) + "/Lib/site-packages")
 
-if os.name == "posix":
+if not env["CC_IS_MSVC"] and os.name == "posix":
     mingw_prefix = "x86_64-w64-mingw32-"
     if env["CC_IS_CLANG"]:
         env["CC"] = mingw_prefix + "clang"

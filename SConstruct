@@ -125,10 +125,9 @@ env = Environment(
 
 
 # Detect compiler
-env["CC_IS_MSVC"] = env.get("CC") in ("cl", "cl.exe")
+env["CC_IS_MSVC"] = os.path.basename(env.get("CC")) in ("cl", "cl.exe")
 env["CC_IS_GCC"] = "gcc" in env.get("CC")
 env["CC_IS_CLANG"] = "clang" in env.get("CC")
-
 
 Help(vars.GenerateHelpText(env))
 # if env["HOST_OS"] == "win32":
@@ -173,6 +172,31 @@ if not env["CC_IS_MSVC"]:
     else:
         env.Append(CFLAGS=["-O2"])
 else:
+    if os.name == "posix":
+        # Cross compilation from linux
+        # Doesn't work, need to set tool.
+
+        env["OBJPREFIX"] = ""
+        env["OBJSUFFIX"] = ".obj"
+        env["SHOBJPREFIX"] = "$OBJPREFIX"
+        env["SHOBJSUFFIX"] = "$OBJSUFFIX"
+        env["PROGPREFIX"] = ""
+        env["PROGSUFFIX"] = ".exe"
+        env["LIBPREFIX"] = ""
+        env["LIBSUFFIX"] = ".lib"
+        env["SHLIBPREFIX"] = ""
+        env["SHLIBSUFFIX"] = ".dll"
+        env['LIBPREFIXES'] = ['$LIBPREFIX']
+        env['LIBSUFFIXES'] = ['$LIBSUFFIX']
+        env['LIBLITERALPREFIX'] = ''
+
+        env["CCCOM"] = "$CC /Fo:$TARGET /c $CFLAGS $CCFLAGS $_CCCOMCOM $SOURCES"
+        env["CXXCOM"] = "$CXX /Fo:$TARGET /c $CFLAGS $CCFLAGS $_CCCOMCOM $SOURCES"
+        env["LINKCOM"] = "$LINK /Fe$TARGET $LINKFLAGS $__RPATH $SOURCES $_LIBDIRFLAGS $_LIBFLAGS"
+        env["SHCCCOM"] = "$SHCC /Fo:$TARGET /c $SHCFLAGS $SHCCFLAGS $_CCCOMCOM $SOURCES"
+        env["SHCXXCOM"] = "$SHCXX /Fo:$TARGET /c $SHCXXFLAGS $SHCCFLAGS $_CCCOMCOM $SOURCES"
+        env["SHLINKCOM"] = "$SHLINK /Fo:$TARGET /link $SHLINKFLAGS $__SHLIBVERSIONFLAGS $__RPATH $SOURCES $_LIBDIRFLAGS $_LIBFLAGS"
+
     if env["debug"]:
         env.Append(CFLAGS=["/DEBUG:FULL"])
         env.Append(LINKFLAGS=["/DEBUG:FULL"])
@@ -242,3 +266,6 @@ else:
 release = env.Command(release_target, env["DIST_ROOT"], generate_release)
 env.Alias("release", release)
 env.AlwaysBuild("release")
+
+#print(env.Dump())
+
